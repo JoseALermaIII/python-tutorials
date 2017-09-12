@@ -1,6 +1,7 @@
 # Introduction
 
 These are sets of problems given in [Udacity's CS101 Course](https://classroom.udacity.com/courses/cs101).
+Unfortunately, Python 2.x is used in the course, so these problem sets may not be forwards compatible.
 
 It is fantastic that classes can be taken for free, though a machine does all the grading. The only downside is that there is
 little feedback, but that may be what the forums are for.
