@@ -43,6 +43,19 @@ def print_abacus(value):
        #
        ### Add you code here
        #
+       row = "|00000*****   |"
+       index = 1000000000
+
+       while index > 1:
+           print(row.center(value/index))
+           value %= index
+           index /= 10
+
+           # Debug
+           print("Value: ", value,
+           "\nIndex: ", index,
+           "\nvalue/index:", value/index)
+
 
 ###  TEST CASES
 print "Abacus showing 0:"
