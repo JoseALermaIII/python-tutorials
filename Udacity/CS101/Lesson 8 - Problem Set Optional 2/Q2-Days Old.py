@@ -12,7 +12,7 @@ def daysBetweenDates(year1, month1, day1, year2, month2, day2):
     # Your code here.
     ##
     days = 0
-    daysOfMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    days_of_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
     def check_leap_year(year):
         if year % 4 != 0:
@@ -29,26 +29,26 @@ def daysBetweenDates(year1, month1, day1, year2, month2, day2):
         return 365
 
     def get_day_of_year(month, day):
-        dayOfYear = 0
+        day_of_year = 0
         i = 0
         while i < month - 1:
-            dayOfYear += daysOfMonths[i]
+            day_of_year += days_of_months[i]
             i += 1
-        dayOfYear += day  # Adjust for partial month
-        return dayOfYear
+        day_of_year += day  # Adjust for partial month
+        return day_of_year
 
-    def get_days_left(year, dayOfYear):
+    def get_days_left(year, day_of_year):
         if check_leap_year(year):
-            return 366 - dayOfYear
-        return 365 - dayOfYear
+            return 366 - day_of_year
+        return 365 - day_of_year
 
-    def get_days_between_years(year1, year2):
-        daysBetweenYears = 0
-        i = year1 + 1
-        while i < year2:
-            daysBetweenYears += get_days_in_year(i)
+    def get_days_between_years(year1_, year2_):
+        days_between_years = 0
+        i = year1_ + 1
+        while i < year2_:
+            days_between_years += get_days_in_year(i)
             i += 1
-        return daysBetweenYears
+        return days_between_years
 
     if year1 != year2:
         days = (get_days_left(year1, get_day_of_year(month1, day1))
