@@ -13,6 +13,19 @@
 def is_leap_baby(day,month,year):
     # Write your code after this line.
 
+    def check_leap_year(year_):
+        if year_ % 4 != 0:
+            return 0
+        if year_ % 100 != 0:
+            return 1
+        if year_ % 400 != 0:
+            return 0
+        return 1
+
+    if check_leap_year(year) and month == 2 and day == 29:
+        return True
+    else:
+        return False
 
 # The function 'output' prints one of two statements based on whether
 # the is_leap_baby function returned True or False.
