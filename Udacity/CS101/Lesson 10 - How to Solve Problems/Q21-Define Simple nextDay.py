@@ -14,4 +14,15 @@ def nextDay(year, month, day):
     Simple version: assume every month has 30 days.
     """
     # YOUR CODE HERE
-    return
+    if month == 12 and day == 30:
+        return (year + 1, 1, 1)
+    elif day == 30:
+        return (year, month + 1, 1)
+    else:
+        return (year, month, day + 1)
+
+
+# Test routines
+print(nextDay(1999, 12, 30))
+print(nextDay(2013, 1, 30))
+print(nextDay(2012, 12, 30))
