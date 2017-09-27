@@ -24,7 +24,21 @@ def daysBetweenDates(year1, month1, day1, year2, month2, day2):
        the second."""
 
     # YOUR CODE HERE!
-    return
+    days = 0
+    year, month, day = year1, month1, day1
+    if year1 != year2:
+        while year < year2:
+            year, month, day = nextDay(year, month, day)
+            days += 1
+    if month1 != month2:
+        while month < month2:
+            year, month, day = nextDay(year, month, day)
+            days += 1
+    if day1 != day2:
+        while day < day2:
+            year, month, day = nextDay(year, month, day)
+            days += 1
+    return days
 
 
 def test():
@@ -35,11 +49,9 @@ def test():
     for (args, answer) in test_cases:
         result = daysBetweenDates(*args)
         if result != answer:
-            print
-            "Test with data:", args, "failed"
+            print "Test with data:", args, "failed"
         else:
-            print
-            "Test case passed!"
+            print "Test case passed!"
 
 
 test()
