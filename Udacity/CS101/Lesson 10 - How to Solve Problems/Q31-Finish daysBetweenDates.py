@@ -5,8 +5,8 @@
 # in addition to the correct number of days in each month.
 
 def nextDay(year, month, day):
-    """Simple version: assume every month has 30 days"""
-    if day < 30:
+    """Increments year-month-day to the next day."""
+    if day < daysInMonth(year, month):
         return year, month, day + 1
     else:
         if month == 12:
@@ -14,6 +14,23 @@ def nextDay(year, month, day):
         else:
             return year, month + 1, 1
 
+def isLeapYear(year):
+    """Returns True if year is a leap year; otherwise, returns False"""
+    if year % 4 != 0:
+        return False
+    if year % 100 != 0:
+        return True
+    if year % 400 != 0:
+        return False
+    return True
+
+def daysInMonth(year, month):
+    """Returns number of days in a month, adjusting for leap year."""
+    days_of_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    if month == 2 and isLeapYear(year):
+        return days_of_months[month - 1] + 1
+    else:
+        return days_of_months[month - 1]
 
 def dateIsBefore(year1, month1, day1, year2, month2, day2):
     """Returns True if year1-month1-day1 is before year2-month2-day2. Otherwise, returns False."""
@@ -50,11 +67,9 @@ def test():
     for (args, answer) in test_cases:
         result = daysBetweenDates(*args)
         if result != answer:
-            print
-            "Test with data:", args, "failed"
+            print "Test with data:", args, "failed"
         else:
-            print
-            "Test case passed!"
+            print "Test case passed!"
 
 
 test()
