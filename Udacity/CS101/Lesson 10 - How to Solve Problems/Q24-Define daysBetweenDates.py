@@ -26,15 +26,16 @@ def daysBetweenDates(year1, month1, day1, year2, month2, day2):
     # YOUR CODE HERE!
     days = 0
     year, month, day = year1, month1, day1
-    if year1 != year2:
+
+    if year != year2:
         while year < year2:
             year, month, day = nextDay(year, month, day)
             days += 1
-    if month1 != month2:
+    if month != month2:
         while month < month2:
             year, month, day = nextDay(year, month, day)
             days += 1
-    if day1 != day2:
+    if day != day2:
         while day < day2:
             year, month, day = nextDay(year, month, day)
             days += 1
