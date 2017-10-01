@@ -9,3 +9,4 @@ countries = [['China','Beijing',1350],
 # Write code to print out the capital of India
 # by accessing the list
 
+print countries[1][1]
