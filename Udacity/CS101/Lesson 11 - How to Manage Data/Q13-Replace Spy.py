@@ -7,20 +7,15 @@
 
 spy = [0,0,7]
 
-
-
-
-
-
-
-
-
+def replace_spy(input):
+    input[2] += 1
+    return
 
 # In the test below, the first line calls your
 # procedure which will change spy, and the
 # second checks you have changed it.
 # Uncomment the top two lines below.
 
-#replace_spy(spy)
-#print spy
+replace_spy(spy)
+print spy
 #>>> [0,0,8]
