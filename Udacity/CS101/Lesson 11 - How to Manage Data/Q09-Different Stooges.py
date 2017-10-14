@@ -8,8 +8,11 @@ stooges = ['Moe','Larry','Curly']
 # Write one line of code that changes
 # the value of stooges to be:
 
-['Moe','Larry','Shemp']
+# ['Moe','Larry','Shemp']
 
 # but does not create a new List
 # object.
+# Please print your result.
 
+stooges[2] = 'Shemp'
+print stooges
