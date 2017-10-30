@@ -3,23 +3,20 @@
 # list of numbers, and returns
 # the sum of all the elements in
 # the input list.
+def sum_list(in_list):
+    sum = 0
 
+    for element in in_list:
+        sum += int(element)
 
+    return sum
 
-
-
-
-
-
-
-
-
-#print sum_list([1, 7, 4])
+print sum_list([1, 7, 4])
 #>>> 12
 
-#print sum_list([9, 4, 10])
+print sum_list([9, 4, 10])
 #>>> 23
 
-#print sum_list([44, 14, 76])
+print sum_list([44, 14, 76])
 #>>> 134
 
