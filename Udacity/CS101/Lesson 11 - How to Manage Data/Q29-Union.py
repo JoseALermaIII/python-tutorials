@@ -5,19 +5,19 @@
 # lists. You may assume the first list
 # is a set, that is, it contains no
 # repeated elements.
-
-
-
-
-
+def union(list1, list2):
+    for element in list2:
+        if element not in list1:
+            list1.append(element)
+    return
 
 # To test, uncomment all lines
 # below except those beginning with >>>.
 
-#a = [1,2,3]
-#b = [2,4,6]
-#union(a,b)
-#print a
+a = [1,2,3]
+b = [2,4,6]
+union(a,b)
+print a
 #>>> [1,2,3,4,6]
-#print b
+print b
 #>>> [2,4,6]
