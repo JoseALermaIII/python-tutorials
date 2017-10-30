@@ -4,12 +4,12 @@
 # the sum of all the elements in
 # the input list.
 def sum_list(in_list):
-    sum = 0
+    out_sum = 0
 
     for element in in_list:
-        sum += int(element)
+        out_sum += int(element)
 
-    return sum
+    return out_sum
 
 print sum_list([1, 7, 4])
 #>>> 12
