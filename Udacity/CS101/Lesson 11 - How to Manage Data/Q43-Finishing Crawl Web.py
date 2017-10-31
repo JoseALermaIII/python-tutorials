@@ -1,4 +1,5 @@
-#Finish crawl web
+# Finish crawl web
+
 
 def get_page(url):
     # This is a simulated get_page procedure so that you can test your
@@ -14,6 +15,7 @@ def get_page(url):
         return ""
     return ""
 
+
 def get_next_target(page):
     start_link = page.find('<a href=')
     if start_link == -1:
@@ -22,6 +24,7 @@ def get_next_target(page):
     end_quote = page.find('"', start_quote + 1)
     url = page[start_quote + 1:end_quote]
     return url, end_quote
+
 
 def union(p,q):
     for e in q:
@@ -40,12 +43,16 @@ def get_all_links(page):
             break
     return links
 
+
 def crawl_web(seed):
     tocrawl = [seed]
     crawled = []
     while tocrawl:
         page = tocrawl.pop()
         if page not in crawled:
+            union(tocrawl, get_all_links(get_page(page)))
+            crawled.append(page)
+    return crawled
 
-
-
+# Test
+print crawl_web("http://xkcd.com/353")
