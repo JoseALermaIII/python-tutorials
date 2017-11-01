@@ -10,9 +10,6 @@
 def greatest(list_of_numbers):
     greater = 0
 
-    if list_of_numbers is False:
-        return 0
-
     for element in list_of_numbers:
         if element > greater:
             greater = element
