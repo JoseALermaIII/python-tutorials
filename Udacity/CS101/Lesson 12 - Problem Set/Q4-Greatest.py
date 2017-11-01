@@ -6,11 +6,19 @@
 # list is empty, the output
 # should be 0.
 
+
 def greatest(list_of_numbers):
+    greater = 0
 
-# print greatest([4,23,1])
+    if list_of_numbers is False:
+        return 0
+
+    for element in list_of_numbers:
+        if element > greater:
+            greater = element
+    return greater
+
+print greatest([4,23,1])
 # >>> 23
-# print greatest([])
+print greatest([])
 # >>> 0
-
-
