@@ -26,13 +26,13 @@ usa_univs = [['California Institute of Technology', 2175, 37704],
 
 
 def total_enrollment(in_list):
-    students, tuition = 0, 0
+    total_students, total_tuition = 0, 0
 
-    for element in in_list:
-        students += element[1]
-        tuition += element[1] * element[2]
+    for name, students, tuition in in_list:
+        total_students += students
+        total_tuition += students * tuition
 
-    return students, tuition
+    return total_students, total_tuition
 
 
 print total_enrollment(udacious_univs)
