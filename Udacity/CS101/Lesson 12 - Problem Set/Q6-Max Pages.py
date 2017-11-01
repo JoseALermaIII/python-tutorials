@@ -74,11 +74,9 @@ def crawl_web(seed, max_pages):
 
     while tocrawl:
         page = tocrawl.pop()
-        if page not in crawled:
+        if page not in crawled and len(crawled) < max_pages:
             union(tocrawl, get_all_links(get_page(page)))
             crawled.append(page)
-            if len(crawled) >= max_pages:
-                break
 
     return crawled
 
