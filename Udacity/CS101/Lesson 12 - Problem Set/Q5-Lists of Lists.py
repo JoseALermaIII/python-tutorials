@@ -25,15 +25,22 @@ usa_univs = [['California Institute of Technology', 2175, 37704],
              ['Yale', 11701, 40500]]
 
 
-def total_enrollment():
+def total_enrollment(in_list):
+    students, tuition = 0, 0
 
-# print total_enrollment(udacious_univs)
+    for element in in_list:
+        students += element[1]
+        tuition += element[1] * element[2]
+
+    return students, tuition
+
+
+print total_enrollment(udacious_univs)
 # >>> (90000,0)
 
 # The L is automatically added by Python to indicate a long
 # number. If you are trying the question in an outside
 # interpreter you might not see it.
 
-# print total_enrollment(usa_univs)
+print total_enrollment(usa_univs)
 # >>> (77285,3058581079)
-
