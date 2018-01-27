@@ -59,6 +59,8 @@ def check_sequence(list_):
     for element in list_:
         if isinstance(element, int) == False:
             return False
+        if element < 1:
+            return False
     temp = sorted(list_)
     return (len(temp) == (temp[-1] - temp[0] + 1))
 
@@ -123,6 +125,10 @@ def test_cr():
              [1, 2, 3, 4],
              [1, 2, 3, 4],
              [1, 2, 3, 4]])
+    print check_rows(
+            [[0, 1, 2],
+             [2, 0, 1],
+             [1, 2, 0]])
     print "End test check_rows"
 
 def test_cc():
@@ -149,30 +155,30 @@ def test_cc():
              [3, 3, 3, 3],
              [4, 4, 4, 4]])
     print "End test check_columns"
-    
+
 #
 # Begin main
 #
 
 #test_cs()
 #test_cud()
-#test_cr()
+test_cr()
 #test_cc()
 
-print check_sudoku(incorrect)
+#print check_sudoku(incorrect)
 # >>> False
 
-print check_sudoku(correct)
+#print check_sudoku(correct)
 # >>> True
 
-print check_sudoku(incorrect2)
+#print check_sudoku(incorrect2)
 # >>> False
 
-print check_sudoku(incorrect3)
+#print check_sudoku(incorrect3)
 # >>> False
 
-print check_sudoku(incorrect4)
+#print check_sudoku(incorrect4)
 # >>> False
 
-print check_sudoku(incorrect5)
+#print check_sudoku(incorrect5)
 # >>> False
