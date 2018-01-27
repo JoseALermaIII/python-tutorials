@@ -72,14 +72,14 @@ def check_sudoku(p):
             j = 0
             while j < n: # for each entry in ith row/column
                 if p[i][j] == digit: # check row count
-                    row_count = row_count + 1
+                    row_count += 1
                 if p[j][i] == digit:
-                    col_count = col_count + 1
-                j = j + 1
+                    col_count += 1
+                j += 1
             if row_count != 1 or col_count != 1:
                 return False
-            i = i + 1 # next row/column
-        digit = digit + 1 # next digit
+            i += 1 # next row/column
+        digit += 1 # next digit
     return True # Nothing was wrong!
 
 print check_sudoku(incorrect)
