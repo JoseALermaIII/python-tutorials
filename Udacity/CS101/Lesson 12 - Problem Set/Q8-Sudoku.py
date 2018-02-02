@@ -57,14 +57,14 @@ incorrect5 = [[1, 1.5],
 
 def check_sequence(list_):
     for element in list_:
-        if isinstance(element, int) == False:
+        if isinstance(element, int) == False: # Filter non-integers
             return False
-        if element < 1:
+        if element < 1: # Filter negative integers and zero
             return False
-    temp = sorted(list_)
-    return (len(temp) == (temp[-1] - temp[0] + 1))
+    temp = sorted(list_) # Sort list_ for sequence check
+    return (len(temp) == (temp[-1] - temp[0] + 1)) # Confirm list_ is a sequence
 
-def check_unique_digit(element, list_):
+def check_unique_digit(element, list_): # Confirm element is within range of list_ and unique
     return (element in range(min(list_), max(list_) + 1)) and (list_.count(element) == 1)
 
 def check_rows(matrix):
@@ -79,7 +79,7 @@ def check_rows(matrix):
     return True
 
 def check_columns(matrix):
-    new_matrix = zip(*matrix)
+    new_matrix = zip(*matrix) # Converts rows to columns in a new matrix
     return check_rows(new_matrix)
 
 def check_sudoku(square):
@@ -160,25 +160,26 @@ def test_cc():
 # Begin main
 #
 
+# Debug function calls
 #test_cs()
 #test_cud()
-test_cr()
+#test_cr()
 #test_cc()
 
-#print check_sudoku(incorrect)
+print check_sudoku(incorrect)
 # >>> False
 
-#print check_sudoku(correct)
+print check_sudoku(correct)
 # >>> True
 
-#print check_sudoku(incorrect2)
+print check_sudoku(incorrect2)
 # >>> False
 
-#print check_sudoku(incorrect3)
+print check_sudoku(incorrect3)
 # >>> False
 
-#print check_sudoku(incorrect4)
+print check_sudoku(incorrect4)
 # >>> False
 
-#print check_sudoku(incorrect5)
+print check_sudoku(incorrect5)
 # >>> False
