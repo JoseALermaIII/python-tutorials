@@ -2,33 +2,56 @@
 # the second row is the same as the second column and so on. Write a
 # procedure, symmetric, which takes a list as input, and returns the
 # boolean True if the list is symmetric and False if it is not.
-def symmetric():
-    # Your code here
+def symmetric(list_):
+    new_list = zip(*list_) # Converts rows to columns in new list
+    length = len(list_)
+    i = 0
+    # Debug list and new_list conversion
+    #print("list: ", list_, "new_list: ", new_list)
 
-#print symmetric([[1, 2, 3],
-#                [2, 3, 4],
-#                [3, 4, 1]])
+    # Filters non-square lists
+    while i < length:
+        if len(list_[i]) != len(new_list[i]):
+            return False
+        i += 1
+
+    # Compares lists
+    i = 0
+    while i < length:
+        for element in list_:
+            # Debug list_ element, new_list element, and comparison
+            #print("element: ", element, "new element", new_list[i],
+            #      "result: ", set(element) != set(new_list[i]))
+
+            if set(element) != set(new_list[i]): # Makes them the same type for comparison
+                return False
+            i += 1
+    return True
+
+print symmetric([[1, 2, 3],
+                [2, 3, 4],
+                [3, 4, 1]])
 #>>> True
 
-#print symmetric([["cat", "dog", "fish"],
-#                ["dog", "dog", "fish"],
-#                ["fish", "fish", "cat"]])
+print symmetric([["cat", "dog", "fish"],
+                ["dog", "dog", "fish"],
+                ["fish", "fish", "cat"]])
 #>>> True
 
-#print symmetric([["cat", "dog", "fish"],
-#                ["dog", "dog", "dog"],
-#                ["fish","fish","cat"]])
+print symmetric([["cat", "dog", "fish"],
+                ["dog", "dog", "dog"],
+                ["fish","fish","cat"]])
 #>>> False
 
-#print symmetric([[1, 2],
-#                [2, 1]])
+print symmetric([[1, 2],
+                [2, 1]])
 #>>> True
 
-#print symmetric([[1, 2, 3, 4],
-#                [2, 3, 4, 5],
-#                [3, 4, 5, 6]])
+print symmetric([[1, 2, 3, 4],
+                [2, 3, 4, 5],
+                [3, 4, 5, 6]])
 #>>> False
 
-#print symmetric([[1,2,3],
-#                 [2,3,1]])
+print symmetric([[1,2,3],
+                 [2,3,1]])
 #>>> False
