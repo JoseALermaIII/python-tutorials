@@ -18,14 +18,16 @@ def symmetric(list_):
     # Compares lists
     i = 0
     while i < length:
-        for element in list_:
-            # Debug list_ element, new_list element, and comparison
-            #print("element: ", element, "new element", new_list[i],
-            #      "result: ", set(element) != set(new_list[i]))
-
-            if set(element) != set(new_list[i]): # Makes them the same type for comparison
+        j = 0
+        while j < len(list_[i]):
+            # Debug list_[i][j], new_list[i][j], and comparison
+            #print("list_[i][j]: ", list_[i][j],
+            #      "new_list[i][j]: ", new_list[i][j],
+            #      "result: ", list_[i][j] != new_list[i][j])
+            if list_[i][j] != new_list[i][j]:
                 return False
-            i += 1
+            j += 1
+        i += 1
     return True
 
 print symmetric([[1, 2, 3],
@@ -55,3 +57,8 @@ print symmetric([[1, 2, 3, 4],
 print symmetric([[1,2,3],
                  [2,3,1]])
 #>>> False
+
+print symmetric([[1, 2, 3],
+                 [3, 1, 2],
+                 [2, 3, 1]])
+# >>> False
