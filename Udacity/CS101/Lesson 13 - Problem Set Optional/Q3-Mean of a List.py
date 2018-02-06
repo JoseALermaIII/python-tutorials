@@ -8,7 +8,7 @@
 
 def list_mean(list_):
     sum_ = 0
-    if list_ == []:
+    if not list_:
         raise TypeError
     for element in list_:
         sum_ += element
