@@ -6,14 +6,19 @@
 # division instead of integer division. You get decimal division if any of
 # the numbers involved are decimals.
 
-def list_mean():
-
+def list_mean(list_):
+    sum_ = 0
+    if list_ == []:
+        raise TypeError
+    for element in list_:
+        sum_ += element
+    return float(sum_) / len(list_)
 
 print list_mean([1,2,3,4])
 #>>> 2.5
 print list_mean([1,3,4,5,2])
 #>>> 3.0
-#print list_mean([])
+print list_mean([])
 #>>> ??? You decide. If you decide it should give an error, comment
 # out the print line above to prevent your code from being graded as
 # incorrect.
