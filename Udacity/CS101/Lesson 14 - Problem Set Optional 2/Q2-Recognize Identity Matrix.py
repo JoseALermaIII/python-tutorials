@@ -25,6 +25,10 @@ def is_identity_matrix(matrix):
     # Filters matrices without 1s or 0s
     i = 0
     while i < length:
+        # Debug matrix[i].count(1) and matrix[i].count(0)
+        #print("matrix: ", matrix, "i: ", i,
+        #      "matrix[i].count(1): ", matrix[i].count(1),
+        #      "matrix[i].count(0): ", matrix[i].count(0))
         if matrix[i].count(1) != 1 and matrix[i].count(0) != length - 1:
             return False
         i += 1
@@ -85,5 +89,6 @@ print is_identity_matrix(matrix6)
 matrix7 = [[1, -1, 1],
            [0, 1, 0],
            [0, 0, 1]]
+
 print is_identity_matrix(matrix7)
 # >>>False
