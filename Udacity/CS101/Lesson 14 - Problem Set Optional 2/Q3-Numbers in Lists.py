@@ -11,8 +11,33 @@
 
 #Hint - "int()" turns a string's element into a number
 
-def numbers_in_lists(string):
-    # YOUR CODE
+def numbers_in_lists(string_):
+    list_ = [int(i) for i in string_] # Converts string to list
+    # DEBUG: string to list conversion
+    #print("\nstring: {} \nlist: {}".format(string_,list_))
+    stack = []
+    output = []
+    previous = 0
+    for current in list_:
+        # DEBUG: variables and lists
+        #print("""\nlist_: {} stack: {} output: {}
+        #      \ncurrent: {} previous: {} current<=previous: {}""".format(list_,stack,output,
+        #                                                                 current,previous,current<=previous))
+        if current <= previous:
+            stack.append(current)
+        else:
+            if stack:
+                #print("\nStack {} to output {} before".format(stack,output)) # DEBUG: stack to output pre
+                output.append(stack)
+                #del stack[:] # BUG: del stack[:] breaks past and present references to stack. Feature?
+                stack = [] # TODO: can use stack.clear() in Python 3.x?
+                #print("Stack {} to output {} after".format(stack,output))  # DEBUG: stack to output post
+            output.append(current)
+            previous = current
+    if stack: # stack at the end of the list
+        output.append(stack)
+    #print(output) # DEBUG
+    return output
 
 #testcases
 string = '543987'
