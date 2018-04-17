@@ -15,9 +15,19 @@
 # divided by the total number of characters in the message, n.
 
 def freq_analysis(message):
-    ##
-    # Your code here
-    ##
+    alphabet = [chr(i) for i in range(ord('a'), ord('z') + 1)]
+    freq_list = []
+    for letter in alphabet:
+        # DEBUG: variables and lists
+        # NOTE: Divide by zero exception during debug cycle. Move to end of for loop?
+        #print("""\n message: {} freq_list: {}
+        #\n letter: {} count: {}
+        #\n len: {} frequency: {}""".format(message, freq_list, letter, message.count(letter),
+        #                                   len(message), len(message) / message.count(letter)))
+        if message.count(letter) == 0:
+            freq_list.append(0.0)
+        else:
+            freq_list.append(message.count(letter) / float(len(message)))
     return freq_list
 
 
