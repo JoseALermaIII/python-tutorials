@@ -1,4 +1,4 @@
-# Introduction
+# Udacity
 
 These are sets of problems given in [Udacity's CS101 Course](https://classroom.udacity.com/courses/cs101).
 Unfortunately, Python 2.x is used in the course, so these problem sets may not be forwards compatible.
