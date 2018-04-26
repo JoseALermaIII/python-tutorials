@@ -1,7 +1,7 @@
 # Caesar Cipher
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
-import pyperclip
+from books.CrackingCodesWithPython.pyperclip import copy
 
 # The string to be encrypted/decrypted:
 message = 'This is my secret message.'
@@ -10,7 +10,7 @@ message = 'This is my secret message.'
 key = 13
 
 # Whether the program encrypts or decrypts:
-mode = 'encrypt' # Set to either 'encrypt' or 'decrypt'.
+mode = 'encrypt'  # Set to either 'encrypt' or 'decrypt'.
 
 # Every possible symbol that can be encrypted:
 SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?.'
@@ -42,4 +42,4 @@ for symbol in message:
 
 # Output the translated string:
 print(translated)
-pyperclip.copy(translated)
+copy(translated)
