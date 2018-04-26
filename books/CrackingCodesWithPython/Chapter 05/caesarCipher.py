@@ -31,14 +31,14 @@ for symbol in message:
 
         # Handle wraparound, if needed:
         if translatedIndex >= len(SYMBOLS):
-            translatedIndex = translatedIndex - len(SYMBOLS)
+            translatedIndex -= len(SYMBOLS)
         elif translatedIndex < 0:
-            translatedIndex = translatedIndex + len(SYMBOLS)
+            translatedIndex += len(SYMBOLS)
 
-        translated = translated + SYMBOLS[translatedIndex]
+        translated += SYMBOLS[translatedIndex]
     else:
         # Append the symbol without encrypting/decrypting:
-        translated = translated + symbol
+        translated += symbol
 
 # Output the translated string:
 print(translated)
