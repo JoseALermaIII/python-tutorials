@@ -19,4 +19,4 @@ print(translated)
 # Decrypt example
 # Was going to make a function out of it so it's easier, but I
 # didn't want to change it more than I already did. (^_^;)
-print(translated[::-1])  # a step of -1 reverses the string
+#print(translated[::-1])  # a step of -1 reverses the string
