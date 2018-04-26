@@ -4,6 +4,5 @@
 # and it technically doesn't matter
 
 print("Hello, world!")
-print("What is your name?")
-myName = input()
+myName = input("What is your name?\n")
 print("It is good to meet you, " + myName)
