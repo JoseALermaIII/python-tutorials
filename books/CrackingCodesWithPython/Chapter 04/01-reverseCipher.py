@@ -5,12 +5,14 @@
 # and use fancier operators
 
 message = "Three can keep a secret, if two of them are dead."
+#message = input("Enter message: ")  # Allow users to enter message
 translated = ""
 
 index = len(message)
 while index:
     index -= 1  # equivalent to index = index - 1
     translated += message[index]
+    #print("index is", i, ", message[index] is", message[index], ", translated is", translated)  #DEBUG
 
 print(translated)
 
