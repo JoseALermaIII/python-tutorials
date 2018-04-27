@@ -20,14 +20,14 @@ for key in range(len(SYMBOLS)):
 
             # Handle the wraparound:
             if translatedIndex < 0:
-                translatedIndex = translatedIndex + len(SYMBOLS)
+                translatedIndex += len(SYMBOLS)
 
             # Append the decrypted symbol:
-            translated = translated + SYMBOLS[translatedIndex]
+            translated += SYMBOLS[translatedIndex]
 
         else:
             # Append the symbol without encrypting/decrypting:
-            translated = translated + symbol
+            translated += symbol
 
     # Display every possible decryption:
     print('Key #%s: %s' % (key, translated))
