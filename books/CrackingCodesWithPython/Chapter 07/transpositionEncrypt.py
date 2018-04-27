@@ -1,7 +1,7 @@
 # Transposition Cipher Encryption
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
-import pyperclip
+from books.CrackingCodesWithPython.pyperclip import copy
 
 def main():
     myMessage = 'Common sense is not so common.'
@@ -15,7 +15,7 @@ def main():
     print(ciphertext + '|')
 
     # Copy the encrypted string in cipher text to the clipboard:
-    pyperclip.copy(ciphertext)
+    copy(ciphertext)
 
 
 def encryptMessage(key, message):
