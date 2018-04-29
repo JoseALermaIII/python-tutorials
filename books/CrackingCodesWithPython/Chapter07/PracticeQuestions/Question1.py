@@ -1,4 +1,5 @@
 # Encrypt the following with the transposition cipher (with paper and pencil, *cough*)
+# SPOILER for Chapter 9!
 
 from books.CrackingCodesWithPython.Chapter07.transpositionEncrypt import encryptMessage
 
