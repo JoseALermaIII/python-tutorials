@@ -4,7 +4,7 @@ def hello(name):
 
 
 print('Start.')
-hello('Alice')
+hello('Clarice')
 print('Call the function again:')
-hello('Bob')
+hello('Dr. Lecter')
 print('Done.')
