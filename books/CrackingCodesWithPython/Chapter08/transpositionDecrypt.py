@@ -1,7 +1,8 @@
 # Transposition Cipher Decryption
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
-import math, pyperclip
+import math
+from books.CrackingCodesWithPython.pyperclip import copy
 
 def main():
     myMessage = "Cenoonommstmme oo snnio. s s c"
@@ -13,7 +14,7 @@ def main():
     # there are spaces at the end of the decrypted message:
     print(plaintext + '|')
 
-    pyperclip.copy(plaintext)
+    copy(plaintext)
 
 
 def decryptMessage(key, message):
