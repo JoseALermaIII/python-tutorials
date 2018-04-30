@@ -33,7 +33,7 @@ def decryptCaesar(message):
 
         # Display every possible decryption:
         print('Key #%s: %s' % (key, translated))
-
+    return None
 
 ciphertext = ["qeFIP?eGSeECNNS,",
               "5coOMXXcoPSZIWoQI,",
