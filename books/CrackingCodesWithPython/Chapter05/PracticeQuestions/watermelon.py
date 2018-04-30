@@ -1,4 +1,5 @@
 # Demonstration for Question3
+# SPOILER for Chapter 7 (functions)
 
 
 def nutrition():
