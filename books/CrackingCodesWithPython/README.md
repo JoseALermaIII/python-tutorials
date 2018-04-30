@@ -7,3 +7,5 @@ and compromise various ciphers with Python.
 
 Granted, most of the ciphers are old enough to be broken with a Raspberry Pi, but the general idea is how they are
 implemented and what about them are easy to break.
+
+For detailed answers to Practice Questions, check the [No Starch Press Website](https://nostarch.com/crackingcodes)
