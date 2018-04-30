@@ -33,10 +33,15 @@ def caesarCipher(key, message, mode):
 
     return translated
 
-
-messages = ["'You can show black is white by argument,' said Filby, 'but you will never convince me.'",
+def main():
+    messages = ["'You can show black is white by argument,' said Filby, 'but you will never convince me.'",
             "1234567890"]
-keys = [8, 21]
+    keys = [8, 21]
 
-for index in range(len(keys)):
-    print(caesarCipher(keys[index], messages[index], "encrypt"))
+    for index in range(len(keys)):
+        print(caesarCipher(keys[index], messages[index], "encrypt"))
+
+    return None
+
+if __name__ == "__main__":
+    main()
