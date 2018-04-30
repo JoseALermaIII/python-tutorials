@@ -37,8 +37,8 @@ def caesarCipher(key, message, mode):
 
 def main():
     messages = ["'You can show black is white by argument,' said Filby, 'but you will never convince me.'",
-                "1234567890"]
-    keys = [8, 21]
+                "1234567890", "I'm not crazy, I'm just a little unwell"]
+    keys = [8, 21, 6]
 
     for index in range(len(keys)):
         print(caesarCipher(keys[index], messages[index], "encrypt"))
