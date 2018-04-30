@@ -1,6 +1,7 @@
 # Using caesarCipher.py, encrypt the following sentences with the given keys
 # SPOILER for Chapter 7 (functions)
 
+
 def caesarCipher(key, message, mode):
 
     # Every possible symbol that can be encrypted:
@@ -32,6 +33,7 @@ def caesarCipher(key, message, mode):
             translated += symbol
 
     return translated
+
 
 def main():
     messages = ["'You can show black is white by argument,' said Filby, 'but you will never convince me.'",
