@@ -1,7 +1,12 @@
 # Transposition Cipher Encrypt/Decrypt File
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
-import time, os, sys, transpositionEncrypt, transpositionDecrypt
+import time
+import os
+import sys
+from books.CrackingCodesWithPython.Chapter07.transpositionEncrypt import encryptMessage
+from books.CrackingCodesWithPython.Chapter08.transpositionDecrypt import decryptMessage
+
 
 def main():
     inputFilename = 'frankenstein.txt'
@@ -13,12 +18,12 @@ def main():
 
     # If the input file does not exist, the program terminates early:
     if not os.path.exists(inputFilename):
-        print('The file %s does not exist. Quitting...' % (inputFilename))
+        print('The file %s does not exist. Quitting...' % inputFilename)
         sys.exit()
 
     # If the output file already exists, give the user a chance to quit:
     if os.path.exists(outputFilename):
-        print('This will overwrite the file %s. (C)ontinue or (Q)uit?' % (outputFilename))
+        print('This will overwrite the file %s. (C)ontinue or (Q)uit?' % outputFilename)
         response = input('> ')
         if not response.lower().startswith('c'):
             sys.exit()
@@ -33,9 +38,9 @@ def main():
     # Measure how long the encryption/decryption takes:
     startTime = time.time()
     if myMode == 'encrypt':
-        translated = transpositionEncrypt.encryptMessage(myKey, content)
+        translated = encryptMessage(myKey, content)
     elif myMode == 'decrypt':
-        translated = transpositionDecrypt.decryptMessage(myKey, content)
+        translated = decryptMessage(myKey, content)
     totalTime = round(time.time() - startTime, 2)
     print('%sion time: %s seconds' % (myMode.title(), totalTime))
 
