@@ -1,7 +1,8 @@
 # Transposition Cipher Test
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
-import random, sys
+import random
+import sys
 from books.CrackingCodesWithPython.Chapter07.transpositionEncrypt import encryptMessage
 from books.CrackingCodesWithPython.Chapter08.transpositionDecrypt import decryptMessage
 
