@@ -97,5 +97,5 @@ print("\nHacking 'HZAYVUVTF':")
 caesarHacker("HZAYVUVTF")
 
 # 5. What does this sentence encrypted with key 8 decrypt to with key 9?
-print("\nHacking 'UMMSVMAA: CVKWUUWV XIBQMVKM QV XTIVVQVO I ZMDMVOM BPIB QA EWZBP EPQTM.'")
+print("\nHacking 'UMMSVMAA: CVKWUUWV XIBQMVKM QV XTIVVQVO I ZMDMVOM BPIB QA EWZBP EPQTM.':")
 caesarHacker("UMMSVMAA: CVKWUUWV XIBQMVKM QV XTIVVQVO I ZMDMVOM BPIB QA EWZBP EPQTM.")
