@@ -90,3 +90,7 @@ ENV/
 
 # Pycharm project settings
 .idea/
+
+# CrackingCodesWithPython settings
+/books/CrackingCodesWithPython/Chapter10/frankenstein.txt
+/books/CrackingCodesWithPython/Chapter10/frankenstein.encrypted.txt
