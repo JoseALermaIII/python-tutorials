@@ -18,7 +18,7 @@ print(ham == spam)
 # 3. Which module contains the deepcopy() function?
 # Hint: Check page 122...or the next question
 
-# 4. What does the following programs print?
+# 4. What does the following program print?
 import copy  # Don't do this, imports are supposed to be at the top of file
 spam = [1, 2, 3]
 eggs = copy.deepcopy(spam)
