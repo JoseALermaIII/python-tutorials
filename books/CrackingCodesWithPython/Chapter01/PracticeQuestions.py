@@ -2,6 +2,7 @@
 # SPOILERS: Chapter 5 (caesar cipher), 6 (caesar hacker), 7 (functions)
 # Corrections submitted for Question 1, 3, 4, and 5
 
+
 def caesarCipher(key, message, mode):
 
     # Every possible symbol that can be encrypted (if encrypting by hand):
@@ -34,6 +35,7 @@ def caesarCipher(key, message, mode):
 
     return translated
 
+
 def caesarHacker(message):
     SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -65,6 +67,7 @@ def caesarHacker(message):
         # Display every possible decryption:
         print('Key #%s: %s' % (key, translated))
     return None
+
 
 # 1. Encrypt the following entries from Ambrose Bierce's The Devil's Dictionary
 #    with the given keys:
