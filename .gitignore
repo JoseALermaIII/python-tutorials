@@ -94,3 +94,4 @@ ENV/
 # CrackingCodesWithPython settings
 /books/CrackingCodesWithPython/Chapter10/frankenstein.txt
 /books/CrackingCodesWithPython/Chapter10/frankenstein.encrypted.txt
+/books/CrackingCodesWithPython/Chapter10/frankenstein.decrypted.txt
