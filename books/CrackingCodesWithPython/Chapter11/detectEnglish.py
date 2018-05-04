@@ -28,7 +28,7 @@ def getEnglishCount(message):
     message = removeNonLetters(message)
     possibleWords = message.split()
 
-    if possibleWords == []:
+    if not possibleWords:  # Given [] = False, if possibleWords = [] then if not possibleWords = True
         return 0.0  # No words at all, so return 0.0
 
     matches = 0
