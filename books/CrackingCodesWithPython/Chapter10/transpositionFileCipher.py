@@ -14,7 +14,7 @@ def main():
     # this program will overwrite that file:
     outputFilename = 'frankenstein.encrypted.txt'
     myKey = 10
-    myMode = 'encrypt' # Set to 'encrypt' or 'decrypt'
+    myMode = 'encrypt'  # Set to 'encrypt' or 'decrypt'
 
     # If the input file does not exist, the program terminates early:
     if not os.path.exists(inputFilename):
