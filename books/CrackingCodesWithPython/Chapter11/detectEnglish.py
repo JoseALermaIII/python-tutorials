@@ -12,7 +12,7 @@ LETTERS_AND_SPACE = UPPERLETTERS + UPPERLETTERS.lower() + ' \t\n'
 
 
 def loadDictionary():
-    dictionaryFile = open('dictionary.txt')
+    dictionaryFile = open('/home/jose/PycharmProjects/python-tutorials/books/CrackingCodesWithPython/Chapter11/dictionary.txt')
     englishWords = {}
     for word in dictionaryFile.read().split('\n'):
         englishWords[word] = None
