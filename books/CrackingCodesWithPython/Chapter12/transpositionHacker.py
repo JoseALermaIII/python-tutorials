@@ -1,21 +1,30 @@
 # Transposition Cipher Hacker
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
-import pyperclip, detectEnglish, transpositionDecrypt
+from books.CrackingCodesWithPython.pyperclip import copy
+from books.CrackingCodesWithPython.Chapter11.detectEnglish import isEnglish
+from books.CrackingCodesWithPython.Chapter08.transpositionDecrypt import decryptMessage
+
 
 def main():
     # You might want to copy & paste this text from the source code at
     # https://www.nostarch.com/crackingcodes/:
-    myMessage = """AaKoosoeDe5 b5sn ma reno ora'lhlrrceey e enlh na indeit n uhoretrm au ieu v er Ne2 gmanw,forwnlbsya apor tE.no euarisfatt e mealefedhsppmgAnlnoe(c -or)alat r lw o eb nglom,Ain one dtes ilhetcdba. t tg eturmudg,tfl1e1 v nitiaicynhrCsaemie-sp ncgHt nie cetrgmnoa yc r,ieaa toesa- e a0m82e1w shcnth ekh gaecnpeutaaieetgn iodhso d ro hAe snrsfcegrt NCsLc b17m8aEheideikfr aBercaeu thllnrshicwsg etriebruaisss d iorr."""
+    myMessage = """AaKoosoeDe5 b5sn ma reno ora'lhlrrceey e enlh
+    na indeit n uhoretrm au ieu v er Ne2 gmanw,forwnlbsya apor tE.no
+    euarisfatt e mealefedhsppmgAnlnoe(c -or)alat r lw o eb nglom,Ain
+    one dtes ilhetcdba. t tg eturmudg,tfl1e1 v nitiaicynhrCsaemie-sp
+    ncgHt nie cetrgmnoa yc r,ieaa toesa- e a0m82e1w shcnth ekh
+    gaecnpeutaaieetgn iodhso d ro hAe snrsfcegrt NCsLc b17m8aEheideikfr
+    aBercaeu thllnrshicwsg etriebruaisss d iorr."""
 
     hackedMessage = hackTransposition(myMessage)
 
-    if hackedMessage == None:
+    if hackedMessage is None:
         print('Failed to hack encryption.')
     else:
         print('Copying hacked message to clipboard:')
         print('hackedMessage')
-        pyperclip.copy(hackedMessage)
+        copy(hackedMessage)
 
 
 def hackTransposition(message):
@@ -29,9 +38,9 @@ def hackTransposition(message):
     for key in range(1, len(message)):
         print('Trying key #%s...' % (key))
 
-        decryptedText = transpositionDecrypt.decryptMessage(key, message)
+        decryptedText = decryptMessage(key, message)
 
-        if detectEnglish.isEnglish(decryptedText):
+        if isEnglish(decryptedText):
             # Ask user if this is the correct decryption:
             print()
             print('Possible encryption hack:')
@@ -44,6 +53,7 @@ def hackTransposition(message):
                 return decryptedText
 
     return None
+
 
 if __name__ == '__main__':
     main()
