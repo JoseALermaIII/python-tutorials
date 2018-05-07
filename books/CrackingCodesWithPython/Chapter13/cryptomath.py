@@ -1,11 +1,13 @@
 # Cryptomath Module
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
+
 def gcd(a, b):
     # Return the GCD of a and b using Euclid's algorithm:
     while a != 0:
         a, b = b % a, a
     return b
+
 
 def findModInverse(a, m):
     # Return the modular inverse of a % m, which is
