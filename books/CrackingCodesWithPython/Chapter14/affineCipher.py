@@ -24,6 +24,13 @@ def main():
     copy(translated)
     print('Full %sed text copied to clipboard.' % myMode)
 
+    if myMode == 'encrypt':
+        print("Decrypted text:")
+        translated = decryptMessage(myKey, translated)
+        print(translated)
+
+    return None
+
 
 def getKeyParts(key):
     keyA = key // len(SYMBOLS)
