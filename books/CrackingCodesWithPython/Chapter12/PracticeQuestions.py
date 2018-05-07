@@ -6,9 +6,10 @@ print(expression)
 
 # 2. Which characters are whitespace characters?
 # Hint: Check page 145
-print("Answer: These are the whitespace characters in Python.")
+print("\nAnswer: These are the whitespace characters in Python.")
 print("What are ' ', '\\t', and '\\n'?")
 print("Ooh, I'm sorry, we were looking for their names, not characters.")
+print("(╯°□°)╯︵ ┻━┻\n")
 
 # 3. Why does 'Hello world'.strip('o') evaluate to a string that still has Os
 #    in it?
