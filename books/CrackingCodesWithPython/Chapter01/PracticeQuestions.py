@@ -73,7 +73,7 @@ def caesarHacker(message):
 #    with the given keys:
 messages = ["AMBIDEXTROUS: ABLE TO PICK WITH EQUAL SKILL A RIGHT-HAND POCKET OR A LEFT.",
             "GUILLOTINE: A MACHINE WHICH MAKES A FRENCHMAN SHRUG HIS SHOULDERS WITH GOOD REASON.",
-            "IMPIETY: YOUR IRREVERENCE TOWARD MY DIETY."]
+            "IMPIETY: YOUR IRREVERENCE TOWARD MY DEITY."]
 keys = [4, 17, 21]
 
 for index in range(len(keys)):
