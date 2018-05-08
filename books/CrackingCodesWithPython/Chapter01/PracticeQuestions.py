@@ -3,6 +3,7 @@
 # Corrections submitted for Question 1, 3, 4, and 5
 
 
+# caesarCipher from Chapter 5
 def caesarCipher(key, message, mode):
 
     # Every possible symbol that can be encrypted (if encrypting by hand):
@@ -36,6 +37,7 @@ def caesarCipher(key, message, mode):
     return translated
 
 
+# caesarHacker from Chapter 6
 def caesarHacker(message):
     SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
