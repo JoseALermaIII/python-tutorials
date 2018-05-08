@@ -18,9 +18,9 @@ print(sampleTuple[2])
 # Hint: Check page 190
 SYMBOLS = "ABC"
 keyA = 1
-print(SYMBOLS.find('C') * keyA)
+print(SYMBOLS[SYMBOLS.find('C') * keyA])
 
 # 4. If Key B is 0, why does it make the affine cipher weak?
 # Hint: Check page 190
 keyB = 0
-print(SYMBOLS.find('C') * keyA + keyB)
+print(SYMBOLS[SYMBOLS.find('C') * keyA + keyB])
