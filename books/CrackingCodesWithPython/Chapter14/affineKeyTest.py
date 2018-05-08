@@ -1,11 +1,12 @@
 # This program proves that the keyspace of the affine cipher is limited
 # to less than len(SYMBOLS) ^ 2.
 
-import affineCipher, cryptomath
+from books.CrackingCodesWithPython.Chapter14.affineCipher import encryptMessage, SYMBOLS
+from books.CrackingCodesWithPython.Chapter13.cryptomath import gcd
 
 message = 'Make things as simple as possible, but not simpler.'
 for keyA in range(2, 80):
-    key = keyA * len(affineCipher.SYMBOLS) + 1
+    key = keyA * len(SYMBOLS) + 1
 
-    if cryptomath.gcd(keyA, len(affineCipher.SYMBOLS)) == 1:
-        print(keyA, affineCipher.encryptMessage(key, message))
+    if gcd(keyA, len(SYMBOLS)) == 1:
+        print(keyA, encryptMessage(key, message))
