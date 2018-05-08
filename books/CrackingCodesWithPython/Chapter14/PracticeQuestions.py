@@ -13,7 +13,6 @@ sampleTuple = (1, 4, 6)
 print(sampleTuple[2])
 #sampleTuple[2] = 5  # Uncomment this line, I dare you
 
-
 # 3. If Key A is 1, why does it make the affine cipher weak?
 # Hint: Check page 190
 SYMBOLS = "ABC"
