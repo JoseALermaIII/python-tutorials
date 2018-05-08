@@ -5,7 +5,7 @@
 print("Answer: The affine cipher is comprised of these two ciphers.")
 print("What are the times cipher and the salad cipher?")
 print("Ooh, I'm sorry, but we were looking for the proper names.")
-print("(╯°□°)╯︵ ┻━┻\n")
+print("(┛◉Д◉)┛彡┻━┻\n")
 
 # 2. What is a tuple? How is a tuple different from a list?
 # Hint: Check page 190
