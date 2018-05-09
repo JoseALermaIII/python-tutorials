@@ -1,7 +1,10 @@
 # Affine Cipher Hacker
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
-import pyperclip, affineCipher, detectEnglish, cryptomath
+from books.CrackingCodesWithPython.pyperclip import copy
+from books.CrackingCodesWithPython.Chapter14.affineCipher import decryptMessage, SYMBOLS, getKeyParts
+from books.CrackingCodesWithPython.Chapter13.cryptomath import gcd
+from books.CrackingCodesWithPython.Chapter11.detectEnglish import isEnglish
 
 SILENT_MODE = False
 
@@ -19,7 +22,7 @@ iQX3o1RN"Q-5!1RQP36ARu"""
         # the user, we copy the text of the code to the clipboard:
         print('Copying hacked message to clipboard:')
         print(hackedMessage)
-        pyperclip.copy(hackedMessage)
+        copy(hackedMessage)
     else:
         print('Failed to hack encryption.')
 
@@ -32,16 +35,16 @@ def hackAffine(message):
     print('(Press Ctrl-C or Ctrl-D to quit at any time.)')
 
     # Brute-force by looping through every possible key:
-    for key in range(len(affineCipher.SYMBOLS) ** 2):
-        keyA = affineCipher.getKeyParts(key)[0]
-        if cryptomath.gcd(keyA, len(affineCipher.SYMBOLS)) ! = 1:
+    for key in range(len(SYMBOLS) ** 2):
+        keyA = getKeyParts(key)[0]
+        if gcd(keyA, len(SYMBOLS)) != 1:
             continue
 
-        decryptedText = affineCipher.decryptMessage(key, message)
+        decryptedText = decryptMessage(key, message)
         if not SILENT_MODE:
             print('Tried Key %s... (%s)' % (key, decryptedText[:40]))
 
-        if detectEnglish.isEnglish(decryptedText):
+        if isEnglish(decryptedText):
             # Check with the user if the decrypted key has been found:
             print()
             print('Possible encryption hack:')
