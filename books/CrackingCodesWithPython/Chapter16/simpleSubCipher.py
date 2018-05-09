@@ -1,10 +1,12 @@
 # Simple Substitution Cipher
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
-import pyperclip, sys, random
-
+from books.CrackingCodesWithPython.pyperclip import copy
+import sys
+import random
 
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
 
 def main():
     myMessage = '''If a man is offered a fact which goes against his
@@ -23,10 +25,10 @@ slightest evidence. The origin of myths is explained in this way.
         translated = encryptMessage(myKey, myMessage)
     elif myMode == 'decrypt':
         translated = decryptMessage(myKey, myMessage)
-    print('Using key %s' % (myKey))
-    print('The %sed message is:' % (myMode))
+    print('Using key %s' % myKey)
+    print('The %sed message is:' % myMode)
     print(translated)
-    pyperclip.copy(translated)
+    copy(translated)
     print()
     print('This message has been copied to the clipboard.')
 
@@ -50,7 +52,7 @@ def decryptMessage(key, message):
 
 def translateMessage(key, message, mode):
     translated = ''
-    CharsA = LETTERS
+    charsA = LETTERS
     charsB = key
     if mode == 'decrypt':
         # For decrypting, we can use the same code as encrypting. We
