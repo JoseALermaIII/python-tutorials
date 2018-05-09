@@ -12,9 +12,8 @@ SILENT_MODE = False
 def main():
     # You might want to copy & paste this text from the source code at
     # https://www.nostarch.com/crackingcodes/.
-    myMessage = """5QG9ol3La6QI93!xQxaia6faQL9QdaQG1!!axQARLa!!A
-uaRLQADQALQG93!xQxaGaAfaQ1QX3o1RQARL9Qda!AafARuQLX1LQALQI1
-iQX3o1RN"Q-5!1RQP36ARu"""
+    myMessage = """5QG9ol3La6QI93!xQxaia6faQL9QdaQG1!!axQARLa!!AuaRLQ
+ADQALQG93!xQxaGaAfaQ1QX3o1RQARL9Qda!AafARuQLX1LQALQI1iQX3o1RN"Q-5!1RQP36ARu"""
 
     hackedMessage = hackAffine(myMessage)
 
