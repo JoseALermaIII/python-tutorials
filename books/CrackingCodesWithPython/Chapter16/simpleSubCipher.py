@@ -32,6 +32,10 @@ slightest evidence. The origin of myths is explained in this way.
     print()
     print('This message has been copied to the clipboard.')
 
+    if myMode == 'encrypt':
+        print("\nDecrypted message is:")
+        print(decryptMessage(myKey, translated))
+
 
 def keyIsValid(key):
     keyList = list(key)
