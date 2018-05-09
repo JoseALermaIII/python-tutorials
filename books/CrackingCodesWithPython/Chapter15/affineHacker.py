@@ -8,6 +8,7 @@ from books.CrackingCodesWithPython.Chapter11.detectEnglish import isEnglish
 
 SILENT_MODE = False
 
+
 def main():
     # You might want to copy & paste this text from the source code at
     # https://www.nostarch.com/crackingcodes/.
@@ -17,7 +18,7 @@ iQX3o1RN"Q-5!1RQP36ARu"""
 
     hackedMessage = hackAffine(myMessage)
 
-    if hackedMessage != None:
+    if hackedMessage is not None:
         # The plaintext is displayed on the screen. For the convenience of
         # the user, we copy the text of the code to the clipboard:
         print('Copying hacked message to clipboard:')
@@ -48,7 +49,7 @@ def hackAffine(message):
             # Check with the user if the decrypted key has been found:
             print()
             print('Possible encryption hack:')
-            print('Key: %s' % (key))
+            print('Key: %s' % key)
             print('Decrypted message: ' + decryptedText[:200])
             print()
             print('Enter D for done, or just press Enter to continue hacking:')
