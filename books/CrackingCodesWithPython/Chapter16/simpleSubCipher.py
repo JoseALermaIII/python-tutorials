@@ -19,7 +19,7 @@ slightest evidence. The origin of myths is explained in this way.
     myKey = 'LFWOAYUISVKMNXPBDCRJTQEGHZ'
     myMode = 'encrypt'  # Set to 'encrypt' or 'decrypt'.
 
-    if keyIsValid(myKey):
+    if not keyIsValid(myKey):
         sys.exit('There is an error in the key or symbol set.')
     if myMode == 'encrypt':
         translated = encryptMessage(myKey, myMessage)
