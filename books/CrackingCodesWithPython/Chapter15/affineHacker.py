@@ -6,7 +6,7 @@ from books.CrackingCodesWithPython.Chapter14.affineCipher import decryptMessage,
 from books.CrackingCodesWithPython.Chapter13.cryptomath import gcd
 from books.CrackingCodesWithPython.Chapter11.detectEnglish import isEnglish
 
-SILENT_MODE = False
+SILENT_MODE = True
 
 
 def main():
