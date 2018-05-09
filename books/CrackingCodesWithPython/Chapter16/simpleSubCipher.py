@@ -17,7 +17,7 @@ in accordance to his instincts, he will accept it even on the
 slightest evidence. The origin of myths is explained in this way.
 -Bertrand Russell'''
     myKey = 'LFWOAYUISVKMNXPBDCRJTQEGHZ'
-    myMode = 'encrypt' # Set to 'encrypt' or 'decrypt'.
+    myMode = 'encrypt'  # Set to 'encrypt' or 'decrypt'.
 
     if keyIsValid(myKey):
         sys.exit('There is an error in the key or symbol set.')
