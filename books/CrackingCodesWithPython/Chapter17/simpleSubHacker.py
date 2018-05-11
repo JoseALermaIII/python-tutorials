@@ -1,7 +1,13 @@
 # Simple Substitution Cipher Hacker
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
-import os, re, copy, pyperclip, simpleSubCipher, wordPatterns, makeWordPatterns
+import os
+import re
+import copy
+from books.CrackingCodesWithPython.pyperclip import copy
+from books.CrackingCodesWithPython.Chapter16.simpleSubCipher import decryptMessage
+import wordPatterns
+import makeWordPatterns
 
 
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -30,7 +36,7 @@ rmsuijarj aqsoaxwa. Jia pcsusx py nhjir sr agbmlsxao sx jisr elh.
     print()
     print('Copying hacked message to clipboard:')
     hackedMessage = decryptWithCipherletterMapping(message, letterMapping)
-    pyperclip.copy(hackedMessage)
+    copy(hackedMessage)
     print(hackedMessage)
 
 
@@ -155,7 +161,7 @@ def decryptWithCipherletterMapping(ciphertext, letterMapping):
     key = ''.join(key)
 
     # With the key we've created, decrypt the ciphertext:
-    return simpleSubCipher.decryptMessage(key, ciphertext)
+    return decryptMessage(key, ciphertext)
 
 
 if __name__ == '__main__':
