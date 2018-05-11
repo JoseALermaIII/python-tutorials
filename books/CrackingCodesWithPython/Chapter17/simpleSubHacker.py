@@ -4,11 +4,9 @@
 import os, re, copy, pyperclip, simpleSubCipher, wordPatterns, makeWordPatterns
 
 
-
-
-
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 nonLettersOrSpacePattern = re.compile('[^A-Z\s]')
+
 
 def main():
     message = """Sy l nlx sr pyyacao l ylwj eiswi upar lulsxrj isr
@@ -54,7 +52,6 @@ def addLettersToMapping(letterMapping, cipherword, candidate):
     # This function adds the letters in the candidate as potential
     # decryption letters for the cipherletters in the cipherletter
     # mapping.
-
 
     for i in range(len(cipherword)):
         if candidate[i] not in letterMapping[cipherword[i]]:
@@ -128,7 +125,7 @@ def hackSimpleSub(message):
 
         wordPattern = makeWordPatterns.getWordPattern(cipherword)
         if wordPattern not in wordPatterns.allPatterns:
-            continue # This word was not in our dictionary, so continue.
+            continue  # This word was not in our dictionary, so continue.
 
         # Add the letters of each candidate to the mapping:
         for candidate in wordPatterns.allPatterns[wordPattern]:
