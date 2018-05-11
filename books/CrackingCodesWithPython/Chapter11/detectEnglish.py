@@ -9,10 +9,11 @@
 # https://www.nostartch.com/crackingcodes/.)
 UPPERLETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 LETTERS_AND_SPACE = UPPERLETTERS + UPPERLETTERS.lower() + ' \t\n'
+DICTIONARY_FILE = '/home/jose/PycharmProjects/python-tutorials/books/CrackingCodesWithPython/Chapter11/dictionary.txt'
 
 
 def loadDictionary():
-    dictionaryFile = open('/home/jose/PycharmProjects/python-tutorials/books/CrackingCodesWithPython/Chapter11/dictionary.txt')
+    dictionaryFile = open(DICTIONARY_FILE)
     englishWords = {}
     for word in dictionaryFile.read().split('\n'):
         englishWords[word] = None
