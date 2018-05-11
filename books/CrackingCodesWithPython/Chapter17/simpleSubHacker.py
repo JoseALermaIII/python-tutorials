@@ -1,7 +1,6 @@
 # Simple Substitution Cipher Hacker
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
-import os
 import re
 import copy
 import books.CrackingCodesWithPython.pyperclip
