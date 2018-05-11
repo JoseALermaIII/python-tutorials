@@ -67,9 +67,9 @@ def intersectMappings(mapA, mapB):
 
         # An empty list means "any letter is possible". In this case just
         # copy the other map entirely:
-        if mapA[letter] == []:
+        if not mapA[letter]:
             intersectedMapping[letter] = copy.deepcopy(mapB[letter])
-        elif mapB[letter] == []:
+        elif not mapB[letter]:
             intersectedMapping[letter] = copy.deepcopy(mapA[letter])
         else:
             # If a letter in mapA[letter] exists in mapB[letter],
