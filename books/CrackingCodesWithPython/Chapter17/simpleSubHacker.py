@@ -6,8 +6,8 @@ import re
 import copy
 from books.CrackingCodesWithPython.pyperclip import copy
 from books.CrackingCodesWithPython.Chapter16.simpleSubCipher import decryptMessage
-import wordPatterns
-import makeWordPatterns
+import books.CrackingCodesWithPython.Chapter17.wordPatterns
+import books.CrackingCodesWithPython.Chapter17.makeWordPatterns
 
 
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
