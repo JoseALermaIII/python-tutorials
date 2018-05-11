@@ -4,7 +4,7 @@
 import os
 import re
 import copy
-from books.CrackingCodesWithPython.pyperclip import copy
+import books.CrackingCodesWithPython.pyperclip
 from books.CrackingCodesWithPython.Chapter16.simpleSubCipher import decryptMessage
 from books.CrackingCodesWithPython.Chapter17.wordPatterns import allPatterns
 from books.CrackingCodesWithPython.Chapter17.makeWordPatterns import getWordPattern
@@ -36,7 +36,7 @@ rmsuijarj aqsoaxwa. Jia pcsusx py nhjir sr agbmlsxao sx jisr elh.
     print()
     print('Copying hacked message to clipboard:')
     hackedMessage = decryptWithCipherletterMapping(message, letterMapping)
-    copy(hackedMessage)
+    books.CrackingCodesWithPython.pyperclip.copy(hackedMessage)
     print(hackedMessage)
 
 
