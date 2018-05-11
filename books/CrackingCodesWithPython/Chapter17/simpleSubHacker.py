@@ -6,8 +6,8 @@ import re
 import copy
 from books.CrackingCodesWithPython.pyperclip import copy
 from books.CrackingCodesWithPython.Chapter16.simpleSubCipher import decryptMessage
-import books.CrackingCodesWithPython.Chapter17.wordPatterns
-import books.CrackingCodesWithPython.Chapter17.makeWordPatterns
+from books.CrackingCodesWithPython.Chapter17.wordPatterns import allPatterns
+from books.CrackingCodesWithPython.Chapter17.makeWordPatterns import getWordPattern
 
 
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -129,12 +129,12 @@ def hackSimpleSub(message):
         # Get a new cipherletter mapping for each ciphertext word:
         candidateMap = getBlankCipherletterMapping()
 
-        wordPattern = makeWordPatterns.getWordPattern(cipherword)
-        if wordPattern not in wordPatterns.allPatterns:
+        wordPattern = getWordPattern(cipherword)
+        if wordPattern not in allPatterns:
             continue  # This word was not in our dictionary, so continue.
 
         # Add the letters of each candidate to the mapping:
-        for candidate in wordPatterns.allPatterns[wordPattern]:
+        for candidate in allPatterns[wordPattern]:
             addLettersToMapping(candidateMap, cipherword, candidate)
 
         # Intersect the new mapping with the existing intersected mapping:
