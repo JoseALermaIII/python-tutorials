@@ -9,6 +9,7 @@ import pprint
 
 DICTIONARY_FILE = '/home/jose/PycharmProjects/python-tutorials/books/CrackingCodesWithPython/Chapter11/dictionary.txt'
 
+
 def getWordPattern(word):
     # Returns a string of the pattern form of the given word.
     # e.g. '0.1.2.3.4.1.2.3.5.6' for 'DUSTBUSTER'
