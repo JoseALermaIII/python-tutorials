@@ -7,6 +7,7 @@
 
 import pprint
 
+DICTIONARY_FILE = '/home/jose/PycharmProjects/python-tutorials/books/CrackingCodesWithPython/Chapter11/dictionary.txt'
 
 def getWordPattern(word):
     # Returns a string of the pattern form of the given word.
@@ -27,7 +28,7 @@ def getWordPattern(word):
 def main():
     allPatterns = {}
 
-    fo = open('dictionary.txt')
+    fo = open(DICTIONARY_FILE)
     wordList = fo.read().split('\n')
     fo.close()
 
