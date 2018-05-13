@@ -1,0 +1,30 @@
+# Chapter 17 Practice Questions
+
+# 1. What is the word pattern for the word hello?
+import books.CrackingCodesWithPython.Chapter17.makeWordPatterns
+
+wordPat = books.CrackingCodesWithPython.Chapter17.makeWordPatterns.getWordPattern('hello')
+print(wordPat)
+
+# 2. Do mammoth and goggles have the same word pattern?
+wordPat1 = books.CrackingCodesWithPython.Chapter17.makeWordPatterns.getWordPattern('mammoth')
+wordPat2 = books.CrackingCodesWithPython.Chapter17.makeWordPatterns.getWordPattern('goggles')
+
+if wordPat1 == wordPat2:
+    print("Yes: " + wordPat1)
+else:
+    print("No: " + wordPat1 + " and " + wordPat2)
+
+# 3. Which word could be the possible plaintext word for the cipherword
+#    PYYACAO? Alleged, efficiently, or poodle?
+wordPat = []
+words = ["PYYACAO", "Alleged", "efficiently", "poodle"]
+for word in words:
+    wordPat.append(books.CrackingCodesWithPython.Chapter17.makeWordPatterns.getWordPattern(word))
+
+for index in range(1, len(wordPat)):
+    if wordPat[0] == wordPat[index]:
+        print("It's gotta be %s!" % words[index])
+        break
+    elif index == len(wordPat) - 1:
+        print("Match not found (-_-)")
