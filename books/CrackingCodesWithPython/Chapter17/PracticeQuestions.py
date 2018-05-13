@@ -1,14 +1,14 @@
 # Chapter 17 Practice Questions
 
 # 1. What is the word pattern for the word hello?
-import books.CrackingCodesWithPython.Chapter17.makeWordPatterns
+from books.CrackingCodesWithPython.Chapter17.makeWordPatterns import getWordPattern
 
-wordPat = books.CrackingCodesWithPython.Chapter17.makeWordPatterns.getWordPattern('hello')
+wordPat = getWordPattern('hello')
 print(wordPat)
 
 # 2. Do mammoth and goggles have the same word pattern?
-wordPat1 = books.CrackingCodesWithPython.Chapter17.makeWordPatterns.getWordPattern('mammoth')
-wordPat2 = books.CrackingCodesWithPython.Chapter17.makeWordPatterns.getWordPattern('goggles')
+wordPat1 = getWordPattern('mammoth')
+wordPat2 = getWordPattern('goggles')
 
 if wordPat1 == wordPat2:
     print("Yes: " + wordPat1)
@@ -20,7 +20,7 @@ else:
 wordPat = []
 words = ["PYYACAO", "Alleged", "efficiently", "poodle"]
 for word in words:
-    wordPat.append(books.CrackingCodesWithPython.Chapter17.makeWordPatterns.getWordPattern(word))
+    wordPat.append(getWordPattern(word))
 
 for index in range(1, len(wordPat)):
     if wordPat[0] == wordPat[index]:
