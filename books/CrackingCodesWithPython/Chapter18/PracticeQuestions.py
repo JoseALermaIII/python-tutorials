@@ -17,7 +17,20 @@ message = "Tuw Rmxeawni Ticzav zs faimcae lk xye Psawrr pallvr."  # Encrypted wi
 # c. Millions
 # d. More than a trillion
 from math import pow  # Don't do this - imports should be at the top of the file
-print(pow(26, 10))
+solution = pow(26, 10)
+answer = "Undefined"
+if solution < 999:
+    answer = "a. Hundreds"
+elif 999 < solution < 9999:
+    answer = "b. Thousands"
+elif 999999 < solution < 999999999:
+    answer = "c. Millions"
+elif solution > 1000000000:
+    answer = "d. More than a trillion"
+else:
+    print("404: Answer not found (;_;)")
+
+#print("%s: %s" % (answer, solution))
 
 # 3. What kind of cipher is the Vigenere cipher?
 # Hint: Check page 248
