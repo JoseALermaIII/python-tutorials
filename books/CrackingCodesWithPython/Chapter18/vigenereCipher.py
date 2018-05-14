@@ -1,4 +1,4 @@
-# Vigenere Cipher (Polyalphabetic Substitution Cipher)
+# Vigenère Cipher (Polyalphabetic Substitution Cipher)
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
 from books.CrackingCodesWithPython.pyperclip import copy
