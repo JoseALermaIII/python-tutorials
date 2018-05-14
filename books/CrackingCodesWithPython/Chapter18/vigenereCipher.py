@@ -9,7 +9,7 @@ def main():
     # This text can be downloaded from https://www.nostarch.com/crackingcodes/:
     myMessage = """Alan Mathison Turing was a British mathematician, logician, cryptanalyst, and computer scientist."""
     myKey = 'ASIMOV'
-    myMode = 'encrypt' # Set to either 'encrypt' or 'decrypt'.
+    myMode = 'encrypt'  # Set to either 'encrypt' or 'decrypt'.
 
     if myMode == 'encrypt':
         translated = encryptMessage(myKey, myMessage)
@@ -32,20 +32,20 @@ def decryptMessage(key, message):
 
 
 def translateMessage(key, message, mode):
-    translated = [] # Stores the encrypted/decrypted message string.
+    translated = []  # Stores the encrypted/decrypted message string.
 
     keyIndex = 0
     key = key.upper()
 
-    for symbol in message: # Loop through each symbol in message.
+    for symbol in message:  # Loop through each symbol in message.
         num = LETTERS.find(symbol.upper())
-        if num != -1: # -1 means symbol.upper() was not found in LETTERS.
+        if num != -1:  # -1 means symbol.upper() was not found in LETTERS.
             if mode == 'encrypt':
-                num += LETTERS.find(key[keyIndex]) # Add if encrypting.
+                num += LETTERS.find(key[keyIndex])  # Add if encrypting.
             elif mode == 'decrypt':
-                num -= LETTERS.find(key[keyIndex]) # Subtract if decrypting.
+                num -= LETTERS.find(key[keyIndex])  # Subtract if decrypting.
 
-            num %= len(LETTERS) # Handle any wraparound.
+            num %= len(LETTERS)  # Handle any wraparound.
 
             # Add the encrypted/decrypted symbol to the end of translated:
             if symbol.isupper():
@@ -53,7 +53,7 @@ def translateMessage(key, message, mode):
             elif symbol.islower():
                 translated.append(LETTERS[num].lower())
 
-            keyIndex += 1 # Move to the next letter in the key.
+            keyIndex += 1  # Move to the next letter in the key.
             if keyIndex == len(key):
                 keyIndex = 0
         else:
