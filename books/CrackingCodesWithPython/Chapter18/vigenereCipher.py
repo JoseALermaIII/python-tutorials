@@ -1,7 +1,7 @@
 # Vigenere Cipher (Polyalphabetic Substitution Cipher)
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
-import pyperclip
+from books.CrackingCodesWithPython.pyperclip import copy
 
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
@@ -18,7 +18,7 @@ def main():
 
     print('%sed message:' % (myMode.title()))
     print(translated)
-    pyperclip.copy(translated)
+    copy(translated)
     print()
     print('The message has been copied to the clipboard.')
 
