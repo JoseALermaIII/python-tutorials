@@ -65,5 +65,5 @@ def translateMessage(key, message, mode):
 
 # If vigenereCipher.py is run (instead of imported as a module), call
 # the main() function:
-if __name__ = '__main__':
+if __name__ == '__main__':
     main()
