@@ -22,13 +22,17 @@ def main():
     print()
     print('The message has been copied to the clipboard.')
 
+    if myMode == 'encrypt':
+        print("\nDecrypted message: ")
+        print(decryptMessage(myKey, translated))
+
 
 def encryptMessage(key, message):
     return translateMessage(key, message, 'encrypt')
 
 
 def decryptMessage(key, message):
-    return translatedMessage(key, message, 'decrypt')
+    return translateMessage(key, message, 'decrypt')
 
 
 def translateMessage(key, message, mode):
