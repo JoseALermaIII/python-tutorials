@@ -3,7 +3,7 @@
 # 1. Why can't a brute-force attack be used against a simple substitution
 # cipher, even with a powerful supercomputer?
 # Hint: Check page 208
-from math import factorial  # Don't do this - imports should be at the top of the file
+from math import factorial
 numKeys = factorial(26)
 print(numKeys)
 
