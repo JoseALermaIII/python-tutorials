@@ -19,11 +19,11 @@ message = "Tuw Rmxeawni Ticzav zs faimcae lk xye Psawrr pallvr."  # Encrypted wi
 from math import pow  # Don't do this - imports should be at the top of the file
 solution = pow(26, 10)
 answer = "Undefined"
-if solution < 999:
+if solution <= 999:
     answer = "a. Hundreds"
-elif 999 < solution < 9999:
+elif 999 < solution <= 9999:
     answer = "b. Thousands"
-elif 999999 < solution < 999999999:
+elif 999999 < solution <= 999999999:
     answer = "c. Millions"
 elif solution > 1000000000:
     answer = "d. More than a trillion"
