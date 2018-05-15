@@ -4,6 +4,7 @@
 ETAOIN = 'ETAOINSHRDLCUMWFGYPBVKJXQZ'
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
+
 def getLetterCount(message):
     # Returns a dictionary with keys of single letters and values of the
     # count of how many times they appear in the message parameter:
