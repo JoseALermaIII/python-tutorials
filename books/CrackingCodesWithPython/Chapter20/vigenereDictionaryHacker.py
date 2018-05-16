@@ -3,6 +3,7 @@
 
 import detectEnglish, vigenereCipher, pyperclip
 
+
 def main():
     ciphertext = """Tzx isnz eccjxkg nfq lol mys bbqq I lxcz."""
     hackedMessage = hackVigenereDictionary(ciphertext)
@@ -21,7 +22,7 @@ def hackVigenereDictionary(ciphertext):
     fo.close()
 
     for word in lines:
-        word = word.strip() # Remove the newline at the end.
+        word = word.strip()  # Remove the newline at the end.
         decryptedText = vigenereCipher.decryptMessage(word, ciphertext)
         if detectEnglish.isEnglish(decryptedText, wordPercentage=40):
             # Check with user to see if the decrypted key has been found:
@@ -34,6 +35,7 @@ def hackVigenereDictionary(ciphertext):
 
             if response.upper().startswith('D'):
                 return decryptedText
+
 
 if __name__ == '__main__':
     main()
