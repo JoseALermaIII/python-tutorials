@@ -8,7 +8,7 @@ def main():
     ciphertext = """Tzx isnz eccjxkg nfq lol mys bbqq I lxcz."""
     hackedMessage = hackVigenereDictionary(ciphertext)
 
-    if hackedMessage != None:
+    if not hackedMessage:
         print('Copying hacked message to clipboard:')
         print(hackedMessage)
         pyperclip.copy(hackedMessage)
