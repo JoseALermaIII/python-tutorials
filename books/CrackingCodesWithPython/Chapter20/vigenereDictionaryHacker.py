@@ -1,7 +1,9 @@
 # Vigenère Cipher Dictionary Hacker
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
-import detectEnglish, vigenereCipher, pyperclip
+from books.CrackingCodesWithPython.pyperclip import copy
+from books.CrackingCodesWithPython.Chapter11.detectEnglish import isEnglish
+from books.CrackingCodesWithPython.Chapter18.vigenereCipher import decryptMessage
 
 
 def main():
@@ -11,7 +13,7 @@ def main():
     if not hackedMessage:
         print('Copying hacked message to clipboard:')
         print(hackedMessage)
-        pyperclip.copy(hackedMessage)
+        copy(hackedMessage)
     else:
         print('Failed to hack encryption.')
 
@@ -23,8 +25,8 @@ def hackVigenereDictionary(ciphertext):
 
     for word in words:
         word = word.strip()  # Remove the newline at the end.
-        decryptedText = vigenereCipher.decryptMessage(word, ciphertext)
-        if detectEnglish.isEnglish(decryptedText, wordPercentage=40):
+        decryptedText = decryptMessage(word, ciphertext)
+        if isEnglish(decryptedText, wordPercentage=40):
             # Check with user to see if the decrypted key has been found:
             print()
             print('Possible encryption break:')
