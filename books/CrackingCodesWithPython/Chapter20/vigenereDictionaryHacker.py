@@ -21,7 +21,7 @@ def hackVigenereDictionary(ciphertext):
     words = fo.readlines()
     fo.close()
 
-    for word in lines:
+    for word in words:
         word = word.strip()  # Remove the newline at the end.
         decryptedText = vigenereCipher.decryptMessage(word, ciphertext)
         if detectEnglish.isEnglish(decryptedText, wordPercentage=40):
