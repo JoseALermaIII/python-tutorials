@@ -12,7 +12,7 @@ def main():
     ciphertext = """Tzx isnz eccjxkg nfq lol mys bbqq I lxcz."""
     hackedMessage = hackVigenereDictionary(ciphertext)
 
-    if not hackedMessage:
+    if hackedMessage:
         print('Copying hacked message to clipboard:')
         print(hackedMessage)
         copy(hackedMessage)
