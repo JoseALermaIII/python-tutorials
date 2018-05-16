@@ -5,6 +5,8 @@ from books.CrackingCodesWithPython.pyperclip import copy
 from books.CrackingCodesWithPython.Chapter11.detectEnglish import isEnglish
 from books.CrackingCodesWithPython.Chapter18.vigenereCipher import decryptMessage
 
+DICTIONARY_FILE = "/home/jose/PycharmProjects/python-tutorials/books/CrackingCodesWithPython/Chapter11/dictionary.txt"
+
 
 def main():
     ciphertext = """Tzx isnz eccjxkg nfq lol mys bbqq I lxcz."""
@@ -19,7 +21,7 @@ def main():
 
 
 def hackVigenereDictionary(ciphertext):
-    fo = open('dictionary.txt')
+    fo = open(DICTIONARY_FILE)
     words = fo.readlines()
     fo.close()
 
