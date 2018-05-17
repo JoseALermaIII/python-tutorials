@@ -24,7 +24,7 @@ def main():
     if hackedMessage is not None:
         print('Copying hacked message to clipboard:')
         print(hackedMessage)
-        pyperclip.copy(hackedMessage)
+        copy(hackedMessage)
     else:
         print('Failed to hack encryption.')
 
@@ -171,8 +171,8 @@ def attemptHackWithKeyLength(ciphertext, mostLikelyKeyLength):
         # See the englishFreqMatchScore() comments in freqAnalysis.py.
         freqScores = []
         for possibleKey in LETTERS:
-            decryptedText = vigenereCipher.decryptMessage(possibleKey, nthLetters)
-            keyAndFreqMatchTuple = (possibleKey, freqAnalysis.englishFreqMatchScore(decryptedText))
+            decryptedText = decryptMessage(possibleKey, nthLetters)
+            keyAndFreqMatchTuple = (possibleKey, englishFreqMatchScore(decryptedText))
             freqScores.append(keyAndFreqMatchTuple)
         # Sort by match score:
         freqScores.sort(key=getItemAtIndexOne, reverse=True)
@@ -198,9 +198,9 @@ def attemptHackWithKeyLength(ciphertext, mostLikelyKeyLength):
         if not SILENT_MODE:
             print('Attempting with key: %s' % possibleKey)
 
-        decryptedText = vigenereCipher.decryptMessage(possibleKey, ciphertextUp)
+        decryptedText = decryptMessage(possibleKey, ciphertextUp)
 
-        if detectEnglish.isEnglish(decryptedText):
+        if isEnglish(decryptedText):
             # Set the hacked ciphertext to the original casing:
             origCase = []
             for i in range(len(ciphertext)):
