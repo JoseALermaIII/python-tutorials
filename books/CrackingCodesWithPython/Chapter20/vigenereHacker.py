@@ -1,4 +1,4 @@
-# Vigenere Cipher Hacker
+# Vigenère Cipher Hacker
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
 import itertools, re
