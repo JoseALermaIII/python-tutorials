@@ -5,9 +5,9 @@ import itertools, re
 import vigenereCipher, pyperclip, freqAnalysis, detectEnglish
 
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-MAX_KEY_LENGTH = 16 # Will not attempt keys longer than this.
-NUM_MOST_FREQ_LETTERS = 4 # Attempt this many letters per subkey.
-SILENT_MODE = False # If set to True, program doesn't print anything.
+MAX_KEY_LENGTH = 16  # Will not attempt keys longer than this.
+NUM_MOST_FREQ_LETTERS = 4  # Attempt this many letters per subkey.
+SILENT_MODE = False  # If set to True, program doesn't print anything.
 NONLETTERS_PATTERN = re.compile('[^A-Z]')
 
 
@@ -34,7 +34,7 @@ def findRepeatSequencesSpacings(message):
     message = NONLETTERS_PATTERN.sub('', message.upper())
 
     # Compile a list of seqLen-letter sequences found in the message:
-    seqSpacings = {} # Keys are sequences; values are lists of int spacings.
+    seqSpacings = {}  # Keys are sequences; values are lists of int spacings.
     for seqLen in range(3, 6):
         for seqStart in range(len(message) - seqLen):
             # Determine what the sequence is and store it in seq:
@@ -45,7 +45,7 @@ def findRepeatSequencesSpacings(message):
                 if message[i:i + seqLen] == seq:
                     # Found a repeated sequence:
                     if seq not in seqSpacings:
-                        seqSpacings[seq] = [] # Initialize blank list.
+                        seqSpacings[seq] = []  # Initialize blank list.
 
                     # Append the spacing distance between the repeated
                     # sequence and the original sequence:
@@ -59,19 +59,19 @@ def getUsefulFactors(num):
     # getUsefulFactors(144) returns [2, 3, 4, 6, 8, 9, 12, 16].
 
     if num < 2:
-        return [] # Numbers less than 2 have no useful factors.
+        return []  # Numbers less than 2 have no useful factors.
 
-    factors = [] # The list of factors found.
+    factors = []  # The list of factors found.
 
     # When finding factors, you only need to check the integers up to
     # MAX_KEY_LENGTH:
-    for i in range(2, MAX_KEY_LENGTH + 1): # Don't test 1: it's not useful.
+    for i in range(2, MAX_KEY_LENGTH + 1):  # Don't test 1: it's not useful.
         if num % i == 0:
             factors.append(i)
             otherFactor = int(num / i)
             if otherFactor < MAX_KEY_LENGTH + 1 and otherFactor != 1:
                 factors.append(otherFactor)
-    return list(set(factors)) # Remove duplicate factors.
+    return list(set(factors))  # Remove duplicate factors.
 
 
 def getItemAtIndexOne(x):
@@ -80,7 +80,7 @@ def getItemAtIndexOne(x):
 
 def getMostCommonFactors(seqFactors):
     # First, get a count of how many times a factor occurs in seqFactors:
-    factorCounts = {} # Key is a factor; value is how often it occurs.
+    factorCounts = {}  # Key is a factor; value is how often it occurs.
 
     # seqFactors keys are sequences; values are lists of factors of the
     # spacings. seqFactors has a value like {'GFD': [2, 3, 4, 6, 9, 12,
@@ -181,7 +181,7 @@ def attemptHackWithKeyLength(ciphertext, mostLikelyKeyLength):
             print('Possible letters for letter %s of the key: ' % (i + 1), end='')
             for freqScore in allFreqScores[i]:
                 print('%s ' % freqScore[0], end='')
-            print() # Print a newline.
+            print()  # Print a newline.
 
     # Try every combination of the most likely letters for each position
     # in the key:
@@ -192,7 +192,7 @@ def attemptHackWithKeyLength(ciphertext, mostLikelyKeyLength):
             possibleKey += allFreqScores[i][indexes[i]][0]
 
         if not SILENT_MODE:
-            print('Attempting with key: %s' % (possibleKey))
+            print('Attempting with key: %s' % possibleKey)
 
         decryptedText = vigenereCipher.decryptMessage(possibleKey, ciphertextUp)
 
@@ -207,8 +207,8 @@ def attemptHackWithKeyLength(ciphertext, mostLikelyKeyLength):
             decryptedText = ''.join(origCase)
 
             # Check with user to see if the key has been found:
-            print('Possible encryption hack with key %s:' % (possibleKey))
-            print(decryptedText[:200]) # Only show first 200 characters.
+            print('Possible encryption hack with key %s:' % possibleKey)
+            print(decryptedText[:200])  # Only show first 200 characters.
             print()
             print('Enter D if done, anything else to continue hacking:')
             response = input('> ')
