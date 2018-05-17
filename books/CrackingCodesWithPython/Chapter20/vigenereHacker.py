@@ -234,12 +234,12 @@ def hackVigenere(ciphertext):
         if not SILENT_MODE:
             print('Attempting hack with key length %s (%s possible keys)...' % (keyLength, NUM_MOST_FREQ_LETTERS ** keyLength))
         hackedMessage = attemptHackWithKeyLength(ciphertext, keyLength)
-        if hackedMessage != None:
+        if hackedMessage is not None:
             break
 
     # If none of the key lengths found using Kasiski examination
     # worked, start brute-forcing through key lengths:
-    if hackedMessage == None:
+    if hackedMessage is None:
         if not SILENT_MODE:
             print('Unable to hack message with likely key length(s). Brute-forcing key length...')
         for keyLength in range(1, MAX_KEY_LENGTH + 1):
@@ -248,7 +248,7 @@ def hackVigenere(ciphertext):
                 if not SILENT_MODE:
                     print('Attempting hack with key length %s (%s possible keys)...' % (keyLength, NUM_MOST_FREQ_LETTERS ** keyLength))
                 hackedMessage = attemptHackWithKeyLength(ciphertext, keyLength)
-                if hackedMessage != None:
+                if hackedMessage is not None:
                     break
     return hackedMessage
 
