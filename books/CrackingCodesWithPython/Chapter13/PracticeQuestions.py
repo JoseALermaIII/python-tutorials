@@ -24,3 +24,6 @@ print(gcd(6, 8))
 
 # 6. What is the formula for the modular inverse of A mod C?
 # Hint: check page 183
+SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?.'
+print("The modular inverse of %s mod %s is number %s such that (%s * %s) mod %s == %s" %
+      (SYMBOLS[0], SYMBOLS[2], SYMBOLS[34], SYMBOLS[0], SYMBOLS[34], SYMBOLS[2], SYMBOLS[-14]))
