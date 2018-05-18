@@ -15,5 +15,6 @@ for i in range(5):
 # 4. Does the main() function of affineHacker.py get called if another program
 #    runs import affineHacker?
 # Hint: check page 204
-from books.CrackingCodesWithPython.Chapter15.affineHacker import hackAffine
-hackAffine("Well, I can't figure out just two! So let's pretend you opened 200.")
+import books.CrackingCodesWithPython.Chapter15.affineHacker  # Don't do this - imports should be at the top of the file.
+
+books.CrackingCodesWithPython.Chapter15.affineHacker.hackAffine("Well, I can't figure out just two! So let's pretend you opened 200.")
