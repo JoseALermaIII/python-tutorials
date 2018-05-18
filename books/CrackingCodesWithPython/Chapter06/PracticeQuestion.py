@@ -3,37 +3,7 @@
 # SPOILER for chapter 7 (functions)
 
 
-def decryptCaesar(message):
-    SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?.'
-
-    # Loop through every possible key:
-    for key in range(len(SYMBOLS)):
-        # It is important to set translated to the blank string so that the
-        # previous iteration's value for translated is cleared:
-        translated = ''
-
-        # The rest of the program is almost the same as the Caesar program:
-
-        # Loop through each symbol in message:
-        for symbol in message:
-            if symbol in SYMBOLS:
-                symbolIndex = SYMBOLS.find(symbol)
-                translatedIndex = symbolIndex - key
-
-                # Handle the wraparound:
-                if translatedIndex < 0:
-                    translatedIndex += len(SYMBOLS)
-
-                # Append the decrypted symbol:
-                translated += SYMBOLS[translatedIndex]
-
-            else:
-                # Append the symbol without encrypting/decrypting:
-                translated += symbol
-
-        # Display every possible decryption:
-        print('Key #%s: %s' % (key, translated))
-    return None
+from books.CrackingCodesWithPython.Chapter01.caesarHacker import hackCaesar
 
 ciphertext = ["qeFIP?eGSeECNNS,",
               "5coOMXXcoPSZIWoQI,",
@@ -44,5 +14,5 @@ ciphertext = ["qeFIP?eGSeECNNS,",
               "Zfbi,!tif!xpvme!qspcbcmz!fbu!nfA"]  # ROFL
 
 for line in ciphertext:
-    print(decryptCaesar(line))
+    print(hackCaesar(line))
     input("Press enter to continue\n")
