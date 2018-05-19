@@ -21,7 +21,9 @@ print(spam[-5:])
 print(spam[:])
 
 # 4. Which window displays the >>> prompt, the interactive shell or the file editor?
-# Hint: We're in the file editor
+# Hint: Check page 30
+answers = ["interactive shell", "file editor"]
+print("The window that displays the >>> prompt is the %s." % answers[-2 + 5 * 7 * 9 * 0])
 
 # 5. What does the following line print?
 
