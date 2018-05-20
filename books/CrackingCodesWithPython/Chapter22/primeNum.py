@@ -80,12 +80,12 @@ LOW_PRIMES = primeSieve(100)
 def isPrime(num):
     # Return True if num is a prime numbers. This function does a quicker
     # prime number check before calling rabinMiller().
-    if (num < 2):
+    if num < 2:
         return False  # 0, 1, and negative numbers are not prime.
 
     # See if any of the low prime numbers can divide num:
     for prime in LOW_PRIMES:
-        if (num % prime == 0):
+        if num % prime == 0:
             return False
 
     # If all else fails, call rabinMiller() to determine if num is prime:
@@ -95,6 +95,6 @@ def isPrime(num):
 def generateLargePrime(keysize=1024):
     # Return a random prime number that is keysize bits in size:
     while True:
-        num = random.randrange(2**(keysize-1), 2**(keysize))
+        num = random.randrange(2**(keysize-1), 2**keysize)
         if isPrime(num):
             return num
