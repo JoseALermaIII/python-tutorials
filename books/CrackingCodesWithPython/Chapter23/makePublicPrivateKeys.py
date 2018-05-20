@@ -10,6 +10,7 @@ def main():
     makeKeyFiles('al_sweigart', 1024)
     print('Key files made.')
 
+
 def generateKey(keySize):
     # Creates public/private keys keySize bits in size.
     p = 0
@@ -25,7 +26,7 @@ def generateKey(keySize):
     print('Generating e that is relatively prime to (p-1)*(q-1)...')
     while True:
         # Keep trying random numbers for e until one is valid:
-        e = random.randrange(2 ** (keySize - 1), 2 ** (keySize))
+        e = random.randrange(2 ** (keySize - 1), 2 ** keySize)
         if cryptomath.gcd(e, (p - 1) * (q - 1)) == 1:
             break
 
@@ -48,22 +49,23 @@ def makeKeyFiles(name, keySize):
     # them, delimited by a comma.
 
     # Our safety check will prevent us from overwriting our old key files:
-    if os.path.exists('%s_pubkey.txt' % (name)) or os.path.exists('%s_privkey.txt' % (name)):
-        sys.exit('WARNING: The file %s_pubkey.txt or %s_privkey.txt already exists! Use a different name or delete these files and rerun this program.' % (name, name))
+    if os.path.exists('%s_pubkey.txt' % name) or os.path.exists('%s_privkey.txt' % name):
+        sys.exit('WARNING: The file %s_pubkey.txt or %s_privkey.txt already exists!'
+                 'Use a different name or delete these files and rerun this program.' % (name, name))
 
     publicKey, privateKey = generateKey(keySize)
 
     print()
     print('The public key is a %s and a %s digit number.' % (len(str(publicKey[0])), len(str(publicKey[1]))))
-    print('Writing public key to file %s_pubkey.txt...' % (name))
-    fo = open('%s_pubkey.txt' % (name), 'w')
+    print('Writing public key to file %s_pubkey.txt...' % name)
+    fo = open('%s_pubkey.txt' % name, 'w')
     fo.write('%s,%s,%s' % (keySize, publicKey[0], publicKey[1]))
     fo.close()
 
     print()
     print('The private key is a %s and a %s digit number.' % (len(str(publicKey[0])), len(str(publicKey[1]))))
-    print('Writing private key to file %s_privkey.txt...' % (name))
-    fo = open('%s_privkey.txt' % (name), 'w')
+    print('Writing private key to file %s_privkey.txt...' % name)
+    fo = open('%s_privkey.txt' % name, 'w')
     fo.write('%s,%s,%s' % (keySize, privateKey[0], privateKey[1]))
     fo.close()
 
