@@ -73,7 +73,7 @@ def rabinMiller(num):
 
 # Most of the time we can quickly determine if num is not prime
 # by dividing by the first few dozen prime numbers. This is quicker
-# than rabinMiller() but does not detect all composites.
+# than rabinMiller(), but does not detect all composites.
 LOW_PRIMES = primeSieve(100)
 
 
