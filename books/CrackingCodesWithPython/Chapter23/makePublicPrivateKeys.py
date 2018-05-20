@@ -42,7 +42,7 @@ def generateKey(keySize):
     print('Public key:', publicKey)
     print('Private key:', privateKey)
 
-    return (publicKey, privateKey)
+    return publicKey, privateKey
 
 
 def makeKeyFiles(name, keySize):
