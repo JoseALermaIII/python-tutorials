@@ -88,7 +88,7 @@ def isPrime(num):
         if num % prime == 0:
             return False
 
-    # If all else fails, call rabinMiller() to determine if num is prime:
+    # If all else fails, call rabinMiller() to determine if num is a prime:
     return rabinMiller(num)
 
 
