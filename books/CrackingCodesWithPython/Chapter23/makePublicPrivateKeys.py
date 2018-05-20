@@ -1,7 +1,9 @@
 # Public Key Generator
 # https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 
-import random, sys, os, primeNum, cryptomath
+import random, sys, os
+from books.CrackingCodesWithPython.Chapter13.cryptomath import gcd, findModInverse
+from books.CrackingCodesWithPython.Chapter22.primeNum import generateLargePrime
 
 
 def main():
@@ -18,8 +20,8 @@ def generateKey(keySize):
     # Step 1: Create two prime numbers, p and q. Calculate n = p * q:
     print('Generating p prime...')
     while p == q:
-        p = primeNum.generateLargePrime(keySize)
-        q = primeNum.generateLargePrime(keySize)
+        p = generateLargePrime(keySize)
+        q = generateLargePrime(keySize)
     n = p * q
 
     # Step 2: Create a number e that is relatively prime to (p-1)*(q-1):
@@ -27,12 +29,12 @@ def generateKey(keySize):
     while True:
         # Keep trying random numbers for e until one is valid:
         e = random.randrange(2 ** (keySize - 1), 2 ** keySize)
-        if cryptomath.gcd(e, (p - 1) * (q - 1)) == 1:
+        if gcd(e, (p - 1) * (q - 1)) == 1:
             break
 
     # Step 3: Calculate d, the mod inverse of e:
     print('Calculating d that is mod inverse of e...')
-    d = cryptomath.findModInverse(e, (p - 1) * (q - 1))
+    d = findModInverse(e, (p - 1) * (q - 1))
 
     publicKey = (n, e)
     privateKey = (n, d)
