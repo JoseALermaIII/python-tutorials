@@ -38,7 +38,7 @@ def primeSieve(sieveSize):
     # Compile the list of primes:
     primes = []
     for i in range(sieveSize):
-        if sieve[i] == True:
+        if sieve[i] is True:
             primes.append(i)
 
     return primes
