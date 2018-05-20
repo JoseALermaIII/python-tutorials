@@ -25,7 +25,7 @@ def primeSieve(sieveSize):
     # the Sieve of Eratosthenes algorithm.
 
     sieve = [True] * sieveSize
-    sieve[0] = False # Zero and one are not prime numbers.
+    sieve[0] = False  # Zero and one are not prime numbers.
     sieve[1] = False
 
     # Create the sieve:
@@ -43,10 +43,11 @@ def primeSieve(sieveSize):
 
     return primes
 
+
 def rabinMiller(num):
     # Returns True if num is a prime number.
     if num % 2 == 0 or num < 2:
-        return False # Rabin-Miller doesn't work on even integers.
+        return False  # Rabin-Miller doesn't work on even integers.
     if num == 3:
         return True
     s = num - 1
@@ -56,10 +57,10 @@ def rabinMiller(num):
         # to count how many times we halve s):
         s = s // 2
         t += 1
-    for trials in range(5): # Try to falsify num's primality 5 times.
+    for trials in range(5):  # Try to falsify num's primality 5 times.
         a = random.randrange(2, num - 1)
         v = pow(a, s, num)
-        if v != 1: # This test does not apply if v is 1.
+        if v != 1:  # This test does not apply if v is 1.
             i = 0
             while v != (num - 1):
                 if i == t - 1:
@@ -68,6 +69,7 @@ def rabinMiller(num):
                     i = i + 1
                     v = (v ** 2) % num
     return True
+
 
 # Most of the time we can quickly determine if num is not prime
 # by dividing by the first few dozen prime numbers. This is quicker
@@ -79,7 +81,7 @@ def isPrime(num):
     # Return True if num is a prime numbers. This function does a quicker
     # prime number check before calling rabinMiller().
     if (num < 2):
-        return False # 0, 1, and negative numbers are not prime.
+        return False  # 0, 1, and negative numbers are not prime.
 
     # See if any of the low prime numbers can divide num:
     for prime in LOW_PRIMES:
