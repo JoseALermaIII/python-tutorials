@@ -83,6 +83,9 @@ def isPrime(num):
     if num < 2:
         return False  # 0, 1, and negative numbers are not prime.
 
+    if num in LOW_PRIMES:
+        return True  # Low prime numbers are still prime numbers
+
     # See if any of the low prime numbers can divide num:
     for prime in LOW_PRIMES:
         if num % prime == 0:
