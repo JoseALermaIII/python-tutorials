@@ -9,6 +9,8 @@ import sys, math
 
 SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?.'
 PUBLIC_KEY_PATH = "/home/jose/PycharmProjects/python-tutorials/books/CrackingCodesWithPython/Chapter23/al_sweigart_pubkey.txt"
+PRIVATE_KEY_PATH= "/home/jose/PycharmProjects/python-tutorials/books/CrackingCodesWithPython/Chapter23/al_sweigart_privkey.txt"
+
 
 def main():
     # Runs a test that encrypts a message to a file or decrypts a message
@@ -26,7 +28,7 @@ def main():
         print(encryptedText)
 
     elif mode == 'decrypt':
-        privKeyFilename = 'al_sweigart_privkey.txt'
+        privKeyFilename = PRIVATE_KEY_PATH
         print('Reading from %s and decrypting...' % filename)
         decryptedText = readFromFileAndDecrypt(filename, privKeyFilename)
 
