@@ -95,3 +95,5 @@ ENV/
 /books/CrackingCodesWithPython/Chapter10/frankenstein.txt
 /books/CrackingCodesWithPython/Chapter10/frankenstein.encrypted.txt
 /books/CrackingCodesWithPython/Chapter10/frankenstein.decrypted.txt
+*_privkey.txt
+*_pubkey.txt
