@@ -105,7 +105,7 @@ def encryptAndWriteToFile(messageFilename, keyFilename, message, blockSize=None)
     # Using a key from a keyfile, encrypt the message and save it to a
     # file. Returns the encrypted message string.
     keySize, n, e = readKeyFile(keyFilename)
-    if blockSize == None:
+    if blockSize is None:
         # If blockSize isn't given, set it to the largest size allowed by the key size and symbol set size.
         blockSize = int(math.log(2 ** keySize, len(SYMBOLS)))
     # Check that the key size is large enough for the block size:
