@@ -18,15 +18,15 @@ def main():
     if mode == 'encrypt':
         message = 'Journalists belong in the gutter because that is where the ruling classes throw their guilty secrets. Gerald Priestland. The Founding Fathers gave the free press the protection it must have to bare the secrets of government and inform the people. Hugo Black.'
         pubKeyFilename = 'al_sweigart_pubkey.txt'
-        print('Encrypting and writing to %s...' % (filename))
+        print('Encrypting and writing to %s...' % filename)
         encryptedText = encryptAndWriteToFile(filename, pubKeyFilename, message)
 
         print('Encrypted text:')
         print(encryptedText)
 
-    elif mode = 'decrypt':
+    elif mode == 'decrypt':
         privKeyFilename = 'al_sweigart_privkey.txt'
-        print('Reading from %s and decrypting...' % (filename))
+        print('Reading from %s and decrypting...' % filename)
         decryptedText = readFromFileAndDecrypt(filename, privKeyFilename)
 
         print('Decrypted text:')
@@ -37,7 +37,7 @@ def getBlocksFromText(message, blockSize):
     # Converts a string message to a list of block integers.
     for character in message:
         if character not in SYMBOLS:
-            print('ERROR: The symbol set does not have the character %s' % (character))
+            print('ERROR: The symbol set does not have the character %s' % character)
             sys.exit()
     blockInts = []
     for blockStart in range(0, len(message), blockSize):
@@ -98,7 +98,7 @@ def readKeyFile(keyFilename):
     content = fo.read()
     fo.close()
     keySize, n, EorD = content.split(',')
-    return (int(keySize), int(n), int(EorD))
+    return int(keySize), int(n), int(EorD)
 
 
 def encryptAndWriteToFile(messageFilename, keyFilename, message, blockSize=None):
@@ -132,7 +132,6 @@ def readFromFileAndDecrypt(messageFilename, keyFilename):
     # Using a key from a key file, read an encrypted message from a file
     # and then decrypt it. Returns the decrypted message string.
     keySize, n, d = readKeyFile(keyFilename)
-
 
     # Read in the message length and the encrypted message from the file:
     fo = open(messageFilename)
