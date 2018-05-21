@@ -8,6 +8,7 @@ import sys, math
 # This program must be run in the same folder as the key files.
 
 SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?.'
+PUBLIC_KEY_PATH = "/home/jose/PycharmProjects/python-tutorials/books/CrackingCodesWithPython/Chapter23/al_sweigart_pubkey.txt"
 
 def main():
     # Runs a test that encrypts a message to a file or decrypts a message
@@ -17,7 +18,7 @@ def main():
 
     if mode == 'encrypt':
         message = 'Journalists belong in the gutter because that is where the ruling classes throw their guilty secrets. Gerald Priestland. The Founding Fathers gave the free press the protection it must have to bare the secrets of government and inform the people. Hugo Black.'
-        pubKeyFilename = 'al_sweigart_pubkey.txt'
+        pubKeyFilename = PUBLIC_KEY_PATH
         print('Encrypting and writing to %s...' % filename)
         encryptedText = encryptAndWriteToFile(filename, pubKeyFilename, message)
 
