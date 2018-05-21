@@ -35,6 +35,11 @@ def main():
         print('Decrypted text:')
         print(decryptedText)
 
+    if mode == "encrypt":
+        privKeyFilename = PRIVATE_KEY_PATH
+        print("Decrypted text: ")
+        print(readFromFileAndDecrypt(filename, privKeyFilename))
+
 
 def getBlocksFromText(message, blockSize):
     # Converts a string message to a list of block integers.
