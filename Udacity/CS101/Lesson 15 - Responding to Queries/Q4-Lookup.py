@@ -13,13 +13,13 @@
 index = [['udacity', ['http://udacity.com', 'http://npr.org']],
          ['computing', ['http://acm.org']]]
 
-def lookup(index,keyword):
+
+def lookup(index, keyword):
+    for element in index:
+        if element[0] == keyword:
+            return element[1]
+    return []
 
 
-
-
-
-
-
-#print lookup(index,'udacity')
-#>>> ['http://udacity.com','http://npr.org']
+print(lookup(index,'udacity'))
+# >>> ['http://udacity.com','http://npr.org']
