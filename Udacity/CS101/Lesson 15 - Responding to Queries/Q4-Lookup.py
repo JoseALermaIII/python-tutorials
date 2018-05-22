@@ -21,5 +21,5 @@ def lookup(index, keyword):
     return []
 
 
-print(lookup(index,'udacity'))
+print(lookup(index, 'udacity'))
 # >>> ['http://udacity.com','http://npr.org']
