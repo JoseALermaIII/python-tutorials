@@ -21,6 +21,8 @@ def add_to_index(index, keyword, url):
     index.append([keyword, [url]])
 
 
+# Note that as written, multiple occurrences of the same word will
+# be stored in the index. TODO: Update to not repeat entries
 def add_page_to_index(index, url, content):
     words = content.split()
     for word in words:
