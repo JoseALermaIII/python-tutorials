@@ -14,20 +14,31 @@
 # splitlist.
 
 
-def split_string(source,splitlist):
+def split_string(source, splitlist):
+    if len(splitlist) == 1:
+        source = source.split(splitlist)
+    else:
+        for element in splitlist:
+            source = source.split(element)
+            source = '|'.join(source)
+        source = source.split('|')
+    while '' in source:
+        source.remove('')
+    return source
 
 
+out = split_string("This is a test-of the,string separation-code!", " ,!-")
+print(out)
+# >>> ['This', 'is', 'a', 'test', 'of', 'the', 'string', 'separation', 'code']
 
+out = split_string("After  the flood   ...  all the colors came out.", " .")
+print(out)
+# >>> ['After', 'the', 'flood', 'all', 'the', 'colors', 'came', 'out']
 
+out = split_string("First Name,Last Name,Street Address,City,State,Zip Code", ",")
+print(out)
+# >>>['First Name', 'Last Name', 'Street Address', 'City', 'State', 'Zip Code']
 
-#out = split_string("This is a test-of the,string separation-code!"," ,!-")
-#print out
-#>>> ['This', 'is', 'a', 'test', 'of', 'the', 'string', 'separation', 'code']
-
-#out = split_string("After  the flood   ...  all the colors came out.", " .")
-#print out
-#>>> ['After', 'the', 'flood', 'all', 'the', 'colors', 'came', 'out']
-
-#out = split_string("First Name,Last Name,Street Address,City,State,Zip Code",",")
-#print out
-#>>>['First Name', 'Last Name', 'Street Address', 'City', 'State', 'Zip Code']
+out = split_string("http://this.domain.com/here/there/everywhere.html", '/')
+print(out)
+# >>>['http:', 'this.domain.com', 'here', 'there', 'everywhere.html']
