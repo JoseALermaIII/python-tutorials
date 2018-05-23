@@ -10,10 +10,12 @@
 # included once in the url list for a keyword,
 # no matter how many times that keyword appears.
 
+
 def add_to_index(index, keyword, url):
     for entry in index:
         if entry[0] == keyword:
-            entry[1].append(url)
+            if url not in entry[1]:
+                entry[1].append(url)
             return
     # not found, add new keyword to index
     index.append([keyword, [url]])
@@ -46,10 +48,12 @@ quite good at  <a href="http://www.udacity.com/cs101x/kicking.html">kicking</a>.
         return ""
     return ""
 
+
 def union(a, b):
     for e in b:
         if e not in a:
             a.append(e)
+
 
 def get_next_target(page):
     start_link = page.find('<a href=')
@@ -59,6 +63,7 @@ def get_next_target(page):
     end_quote = page.find('"', start_quote + 1)
     url = page[start_quote + 1:end_quote]
     return url, end_quote
+
 
 def get_all_links(page):
     links = []
@@ -70,6 +75,7 @@ def get_all_links(page):
         else:
             break
     return links
+
 
 def crawl_web(seed):
     tocrawl = [seed]
@@ -84,10 +90,12 @@ def crawl_web(seed):
             crawled.append(page)
     return index
 
+
 def add_page_to_index(index, url, content):
     words = content.split()
     for word in words:
         add_to_index(index, word, url)
+
 
 def lookup(index, keyword):
     for entry in index:
@@ -95,6 +103,7 @@ def lookup(index, keyword):
             return entry[1]
     return None
 
-#index = crawl_web("http://www.udacity.com/cs101x/index.html")
-#print lookup(index,"is")
-#>>> ['http://www.udacity.com/cs101x/index.html']
+
+index = crawl_web("http://www.udacity.com/cs101x/index.html")
+print(lookup(index, "is"))
+# >>> ['http://www.udacity.com/cs101x/index.html']
