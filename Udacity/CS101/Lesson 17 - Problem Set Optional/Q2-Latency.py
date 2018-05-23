@@ -17,6 +17,8 @@ print(speed_fraction(50, 5000))
 
 print(speed_fraction(50, 10000))
 # >>> 1.33333333333  # Any thoughts about this answer, or these inputs?
+# 1.3 = faster than the speed of light (I wish)
+# even .7 the speed of light is pretty fast. No routers?
 
 print(speed_fraction(16, 20))
 # >>> 0.00833333333333
