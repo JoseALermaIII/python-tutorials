@@ -24,6 +24,10 @@
 # Often bandwidth is given in megabits (Mb) per second whereas file size
 # is given in megabytes (MB).
 
+# Note: Normally, 1 Kilobit = 1000 bits, but here, 1 Kilobit = 1024 bits
+# which is actually a Kibibit and uses different math.
+# For more info: https://en.wikipedia.org/wiki/Binary_prefix
+
 
 # Converts given unit to bits
 def unit_converter(size, unit):
