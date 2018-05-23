@@ -39,19 +39,19 @@
 
 
 def record_user_click(index, keyword, url):
-    for entry in index:
-        if entry[0] == keyword:
-            for entry2 in entry[1]:
-                if entry2[0] == url:
-                    entry2[1] += 1
+    urls = lookup(index, keyword)
+    if urls:
+        for entry in urls:
+            if entry[0] == url:
+                entry[1] += 1
     return None
 
 
 def add_to_index(index, keyword, url):
     for entry in index:
         if entry[0] == keyword:
-            for entry2 in entry[1]:
-                if entry2[0] == url:
+            for element in entry[1]:
+                if element[0] == url:
                     return
             entry[1].append([url, 0])
             return
