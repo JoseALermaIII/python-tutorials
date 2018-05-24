@@ -10,9 +10,9 @@
 
 def hashtable_lookup(htable, key):
     bucket = hashtable_get_bucket(htable, key)
-    for index in range(0, len(bucket)):
-        if key in bucket[index]:
-            return bucket[index][1]
+    for element in bucket:
+        if key in element[0]:
+            return element[1]
     return None
 
 
