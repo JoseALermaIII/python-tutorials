@@ -12,3 +12,8 @@
 # Karachi   |   13.0
 # Mumbai    |   12.5
 
+population = {"Shanghai": 17.8, "Istanbul": 13.3, "Karachi": 13.0, "Mumbai": 12.5, "Austin": 0.947}
+
+print(population)
+print(population["Karachi"])
+print(population["Austin"])
