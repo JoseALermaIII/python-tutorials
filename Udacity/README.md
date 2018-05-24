@@ -12,5 +12,6 @@ Unfortunately, Python 2.x is used in the course, so these problem sets may not b
 The goal of the CS101 class is to create an Internet search engine from scratch in Python. While the basics of Python are covered,
 I still recommend reading a primer on Python programming to better understand how programs are written.
 
-To that end, I recommend [Automate the Boring Stuff by Al Sweigart](https://automatetheboringstuff.com/)
+To that end, I recommend [Cracking Codes with Python by Al Sweigart](http://inventwithpython.com/cracking/) because it
+demonstrates in-depth usage of strings, lists, and dictionaries with full explanations in short-form.
 
