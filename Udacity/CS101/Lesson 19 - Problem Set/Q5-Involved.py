@@ -10,37 +10,34 @@
 # For example,
 
 courses = {
-    'feb2012': { 'cs101': {'name': 'Building a Search Engine',
-                           'teacher': 'Dave',
-                           'assistant': 'Peter C.'},
-                 'cs373': {'name': 'Programming a Robotic Car',
-                           'teacher': 'Sebastian',
-                           'assistant': 'Andy'}},
-    'apr2012': { 'cs101': {'name': 'Building a Search Engine',
-                           'teacher': 'Dave',
-                           'assistant': 'Sarah'},
-                 'cs212': {'name': 'The Design of Computer Programs',
-                           'teacher': 'Peter N.',
-                           'assistant': 'Andy',
-                           'prereq': 'cs101'},
-                 'cs253':
-                {'name': 'Web Application Engineering - Building a Blog',
-                           'teacher': 'Steve',
-                           'prereq': 'cs101'},
-                 'cs262':
-                {'name': 'Programming Languages - Building a Web Browser',
-                           'teacher': 'Wes',
-                           'assistant': 'Peter C.',
-                           'prereq': 'cs101'},
-                 'cs373': {'name': 'Programming a Robotic Car',
-                           'teacher': 'Sebastian'},
-                 'cs387': {'name': 'Applied Cryptography',
-                           'teacher': 'Dave'}},
-    'jan2044': { 'cs001': {'name': 'Building a Quantum Holodeck',
-                           'teacher': 'Dorina'},
-               'cs003': {'name': 'Programming a Robotic Robotics Teacher',
-                           'teacher': 'Jasper'},
-                     }
+    'feb2012': {'cs101': {'name': 'Building a Search Engine',
+                          'teacher': 'Dave',
+                          'assistant': 'Peter C.'},
+                'cs373': {'name': 'Programming a Robotic Car',
+                          'teacher': 'Sebastian',
+                          'assistant': 'Andy'}},
+    'apr2012': {'cs101': {'name': 'Building a Search Engine',
+                          'teacher': 'Dave',
+                          'assistant': 'Sarah'},
+                'cs212': {'name': 'The Design of Computer Programs',
+                          'teacher': 'Peter N.',
+                          'assistant': 'Andy',
+                          'prereq': 'cs101'},
+                'cs253': {'name': 'Web Application Engineering - Building a Blog',
+                          'teacher': 'Steve',
+                          'prereq': 'cs101'},
+                'cs262': {'name': 'Programming Languages - Building a Web Browser',
+                          'teacher': 'Wes',
+                          'assistant': 'Peter C.',
+                          'prereq': 'cs101'},
+                'cs373': {'name': 'Programming a Robotic Car',
+                          'teacher': 'Sebastian'},
+                'cs387': {'name': 'Applied Cryptography',
+                          'teacher': 'Dave'}},
+    'jan2044': {'cs001': {'name': 'Building a Quantum Holodeck',
+                          'teacher': 'Dorina'},
+                'cs003': {'name': 'Programming a Robotic Robotics Teacher',
+                          'teacher': 'Jasper'}}
     }
 
 
@@ -65,28 +62,36 @@ def courses_offered(courses, hexamester):
 # list of courses that are offered that hexamester (the courses in the list
 # can be in any order).
 
+
 def involved(courses, person):
-
-
+    output = {}
+    for hexamester in courses:
+        for course in courses[hexamester]:
+            for entry in courses[hexamester][course]:
+                if person is courses[hexamester][course][entry]:
+                    if hexamester in output:
+                        output[hexamester].append(course)
+                    else:
+                        output[hexamester] = [course]
+    return output
 
 
 # For example:
 
-#print involved(courses, 'Dave')
-#>>> {'apr2012': ['cs101', 'cs387'], 'feb2012': ['cs101']}
+print(involved(courses, 'Dave'))
+# >>> {'apr2012': ['cs101', 'cs387'], 'feb2012': ['cs101']}
 
-#print involved(courses, 'Peter C.')
-#>>> {'apr2012': ['cs262'], 'feb2012': ['cs101']}
+print(involved(courses, 'Peter C.'))
+# >>> {'apr2012': ['cs262'], 'feb2012': ['cs101']}
 
-#print involved(courses, 'Dorina')
-#>>> {'jan2044': ['cs001']}
+print(involved(courses, 'Dorina'))
+# >>> {'jan2044': ['cs001']}
 
-#print involved(courses,'Peter')
-#>>> {}
+print(involved(courses, 'Peter'))
+# >>> {}
 
-#print involved(courses,'Robotic')
-#>>> {}
+print(involved(courses, 'Robotic'))
+# >>> {}
 
-#print involved(courses, '')
-#>>> {}
-
+print(involved(courses, ''))
+# >>> {}
