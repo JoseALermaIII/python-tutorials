@@ -9,10 +9,10 @@
 def hashtable_update(htable, key, value):
     bucket = hashtable_get_bucket(htable, key)
     entry = bucket_find(bucket, key)
-    if entry is not None:
+    if entry:
             entry[1] = value
-            return
-    bucket.append([key, value])
+    else:
+        bucket.append([key, value])
 
 
 def hashtable_lookup(htable, key):
