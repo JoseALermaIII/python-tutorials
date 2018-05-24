@@ -36,7 +36,7 @@ courses = {
                            'teacher': 'Dave'}},
     'jan2044': { 'cs001': {'name': 'Building a Quantum Holodeck',
                            'teacher': 'Dorina'},
-                        'cs003': {'name': 'Programming a Robotic Robotics Teacher',
+                 'cs003': {'name': 'Programming a Robotic Robotics Teacher',
                            'teacher': 'Jasper'},
                      }
     }
@@ -59,14 +59,18 @@ def courses_offered(courses, hexamester):
 # structure and a string representing a class, and returns a list of strings
 # representing the hexamesters when the input course is offered.
 
-def when_offered(courses,course):
+
+def when_offered(courses, course):
+    output = []
+    for hexamester in courses:
+        course_list = courses_offered(courses, hexamester)
+        if course in course_list:
+            output.append(hexamester)
+    return output
 
 
+print(when_offered(courses, 'cs101'))
+# >>> ['apr2012', 'feb2012']
 
-
-
-#print when_offered (courses, 'cs101')
-#>>> ['apr2012', 'feb2012']
-
-#print when_offered(courses, 'bio893')
-#>>> []
+print(when_offered(courses, 'bio893'))
+# >>> []
