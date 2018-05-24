@@ -10,17 +10,17 @@
 # Your procedure should return the value of the proc with input proc_input,
 # but should only evaluate it if it has not been previously called.
 
+
 def cached_execution(cache, proc, proc_input):
-
-
-# Your code here
+    if proc_input not in cache:
+        cache[proc_input] = proc(proc_input)
+    return cache[proc_input]
 
 
 # Here is an example showing the desired behavior of cached_execution:
 
 def factorial(n):
-    print
-    "Running factorial"
+    print("Running factorial")
     result = 1
     for i in range(2, n + 1):
         result = result * i
@@ -28,15 +28,12 @@ def factorial(n):
 
 
 cache = {}  # start cache as an empty dictionary
-### first execution (should print out Running factorial and the result)
-print
-cached_execution(cache, factorial, 50)
+# first execution (should print out Running factorial and the result)
+print(cached_execution(cache, factorial, 50))
 
-print
-"Second time:"
-### second execution (should only print out the result)
-print
-cached_execution(cache, factorial, 50)
+print("Second time:")
+# second execution (should only print out the result)
+print(cached_execution(cache, factorial, 50))
 
 
 # Here is a more interesting example using cached_execution
@@ -53,5 +50,4 @@ def cached_fibo(n):
 
 cache = {}  # new cache for this procedure
 # do not try this at home...at least without a cache!
-print
-cached_execution(cache, cached_fibo, 100)
+print(cached_execution(cache, cached_fibo, 100))
