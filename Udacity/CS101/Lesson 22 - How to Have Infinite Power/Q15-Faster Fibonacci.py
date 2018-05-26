@@ -3,12 +3,12 @@
 
 
 def fibonacci(n):
-    i, j = 0, 1
+    current, after = 0, 1
     n -= 1
     while n >= 0:
-        i, j = j, j + i
+        current, after = after, after + current
         n -= 1
-    return i
+    return current
 
 
 print(fibonacci(0))
