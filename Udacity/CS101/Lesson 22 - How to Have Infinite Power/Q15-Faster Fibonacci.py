@@ -10,6 +10,7 @@ def fibonacci(n):
         n -= 1
     return i
 
+
 print(fibonacci(0))
 # >>> 0
 print(fibonacci(1))
