@@ -1,5 +1,6 @@
 # Finishing the page ranking algorithm.
 
+
 def compute_ranks(graph):
     d = 0.8  # damping factor
     numloops = 10
@@ -13,9 +14,9 @@ def compute_ranks(graph):
         newranks = {}
         for page in graph:
             newrank = (1 - d) / npages
-
-            # Insert Code Here
-
+            for link in graph:
+                if page in graph[link]:
+                    newrank += d * (ranks[link] / len(graph[link]))
             newranks[page] = newrank
         ranks = newranks
     return ranks
@@ -26,7 +27,7 @@ cache = {
 <body>
 <h1>Dave's Cooking Algorithms</h1>
 <p>
-Here are my favorite recipies:
+Here are my favorite recipes:
 <ul>
 <li> <a href="http://udacity.com/cs101x/urank/hummus.html">Hummus Recipe</a>
 <li> <a href="http://udacity.com/cs101x/urank/arsenic.html">World's Best Hummus</a>
@@ -91,9 +92,9 @@ Kathleen's Hummus Recipe
 <p>
 
 <ol>
-<li> Open a can of garbonzo beans.
+<li> Open a can of garbanzo beans.
 <li> Crush them in a blender.
-<li> Add 3 tablesppons of tahini sauce.
+<li> Add 3 tablespoons of tahini sauce.
 <li> Squeeze in one lemon.
 <li> Add salt, pepper, and buttercream frosting to taste.
 </ol>
@@ -216,8 +217,7 @@ def lookup(index, keyword):
 
 index, graph = crawl_web('http://udacity.com/cs101x/urank/index.html')
 ranks = compute_ranks(graph)
-print
-ranks
+print(ranks)
 
 # >>> {'http://udacity.com/cs101x/urank/kathleen.html': 0.11661866666666663,
 # 'http://udacity.com/cs101x/urank/zinc.html': 0.038666666666666655,
@@ -225,6 +225,3 @@ ranks
 # 'http://udacity.com/cs101x/urank/arsenic.html': 0.054133333333333325,
 # 'http://udacity.com/cs101x/urank/index.html': 0.033333333333333326,
 # 'http://udacity.com/cs101x/urank/nickel.html': 0.09743999999999997}
-
-
-
