@@ -29,13 +29,13 @@
 
 
 def rabbits(n):
-    count = [0, 1, 1]  # Initialize month 0, 1, and 2 counts
-    for month in range(3, n + 1):  # from month 3 to n. If n < 3, range = []
-        if month <= 5:
-            count.append(count[month - 1] + count[month - 2])
+    if n < 1:  # No rabbits dead
+        return 0
+    else:
+        if n == 1 or n == 2:  # base case
+            return 1
         else:
-            count.append(count[month - 1] + count[month - 2] - count[month - 5])
-    return count[n]
+            return rabbits(n - 1) + rabbits(n - 2) - rabbits(n - 5)  # given formula
 
 
 print(rabbits(10))
