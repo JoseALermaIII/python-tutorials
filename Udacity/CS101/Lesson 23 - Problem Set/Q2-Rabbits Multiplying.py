@@ -27,17 +27,22 @@
 # For example, rabbits(10) -> 35. (It is okay if your procedure takes too
 #                                long to run on inputs above 30.)
 
+
 def rabbits(n):
+    count = [0, 1, 1]  # Initialize month 0, 1, and 2 counts
+    for month in range(3, n + 1):  # from month 3 to n. If n < 3, range = []
+        if month <= 5:
+            count.append(count[month - 1] + count[month - 2])
+        else:
+            count.append(count[month - 1] + count[month - 2] - count[month - 5])
+    return count[n]
 
 
+print(rabbits(10))
+# >>> 35
 
-
-#print rabbits(10)
-#>>> 35
-
-#s = ""
-#for i in range(1,12):
-#    s = s + str(rabbits(i)) + " "
-#print s
-#>>> 1 1 2 3 5 7 11 16 24 35 52
-
+s = ""
+for i in range(1, 12):
+    s = s + str(rabbits(i)) + " "
+print(s)
+# >>> 1 1 2 3 5 7 11 16 24 35 52
