@@ -9,7 +9,17 @@
 # URL most likely to be the best site for that keyword. If the keyword does not
 # appear in the index, lucky_search should return None.
 
+
 def lucky_search(index, ranks, keyword):
+    if keyword not in index:
+        return None
+    else:
+        linklist = index[keyword]
+        highest = (linklist[0], ranks[linklist[0]])  # Initialize
+        for link in linklist:
+            if ranks[link] > highest[1]:
+                highest = (link, ranks[link])
+        return highest[0]
 
 
 cache = {
@@ -17,7 +27,7 @@ cache = {
 <body>
 <h1>Dave's Cooking Algorithms</h1>
 <p>
-Here are my favorite recipies:
+Here are my favorite recipes:
 <ul>
 <li> <a href="http://udacity.com/cs101x/urank/hummus.html">Hummus Recipe</a>
 <li> <a href="http://udacity.com/cs101x/urank/arsenic.html">World's Best Hummus</a>
@@ -82,9 +92,9 @@ Kathleen's Hummus Recipe
 <p>
 
 <ol>
-<li> Open a can of garbonzo beans.
+<li> Open a can of garbanzo beans.
 <li> Crush them in a blender.
-<li> Add 3 tablesppons of tahini sauce.
+<li> Add 3 tablespoons of tahini sauce.
 <li> Squeeze in one lemon.
 <li> Add salt, pepper, and buttercream frosting to taste.
 </ol>
@@ -224,14 +234,15 @@ def compute_ranks(graph):
 
 # Here's an example of how your procedure should work on the test site:
 
-# index, graph = crawl_web('http://udacity.com/cs101x/urank/index.html')
-# ranks = compute_ranks(graph)
 
-# print lucky_search(index, ranks, 'Hummus')
+index, graph = crawl_web('http://udacity.com/cs101x/urank/index.html')
+ranks = compute_ranks(graph)
+
+print(lucky_search(index, ranks, 'Hummus'))
 # >>> http://udacity.com/cs101x/urank/kathleen.html
 
-# print lucky_search(index, ranks, 'the')
+print(lucky_search(index, ranks, 'the'))
 # >>> http://udacity.com/cs101x/urank/nickel.html
 
-# print lucky_search(index, ranks, 'babaganoush')
+print(lucky_search(index, ranks, 'babaganoush'))
 # >>> None
