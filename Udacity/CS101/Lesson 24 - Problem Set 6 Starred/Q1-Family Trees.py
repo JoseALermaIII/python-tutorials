@@ -23,24 +23,28 @@ ada_family = { 'Judith Blunt-Lytton': ['Anne Isabella Blunt', 'Wilfrid Scawen Bl
 # person (this should be the empty list if there are none). The order of the list
 # does not matter and duplicates will be ignored.
 
+
 def ancestors(genealogy, person):
-
-
-
-
+    ancestorlist = []
+    if person not in genealogy:
+        return ancestorlist
+    for ancestor in genealogy[person]:
+        ancestorlist.append(ancestor)
+        if ancestor in genealogy:
+            ancestorlist.extend(ancestors(genealogy, ancestor))
+    return ancestorlist
 
 
 # Here are some examples:
 
-#print ancestors(ada_family, 'Augusta Ada King')
-#>>> ['Anne Isabella Milbanke', 'George Gordon Byron',
+print(ancestors(ada_family, 'Augusta Ada King'))
+# >>> ['Anne Isabella Milbanke', 'George Gordon Byron',
 #    'Catherine Gordon','Captain John Byron']
 
-#print ancestors(ada_family, 'Judith Blunt-Lytton')
-#>>> ['Anne Isabella Blunt', 'Wilfrid Scawen Blunt', 'Augusta Ada King',
+print(ancestors(ada_family, 'Judith Blunt-Lytton'))
+# >>> ['Anne Isabella Blunt', 'Wilfrid Scawen Blunt', 'Augusta Ada King',
 #    'William King-Noel', 'Anne Isabella Milbanke', 'George Gordon Byron',
 #    'Catherine Gordon', 'Captain John Byron']
 
-#print ancestors(ada_family, 'Dave')
-#>>> []
-
+print(ancestors(ada_family, 'Dave'))
+# >>> []
