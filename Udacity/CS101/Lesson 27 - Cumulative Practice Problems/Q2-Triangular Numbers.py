@@ -12,15 +12,20 @@
 # Write a procedure, triangular, that takes as its input a positive
 # integer n and returns the nth triangular number.
 
-def triangular():
 
+def triangular(n):
+    total = 0
+    while n >= 0:
+        total += n
+        n -= 1
+    return total
 
 
 print triangular(1)
-#>>>1
+# >>>1
 
 print triangular(3)
-#>>> 6
+# >>> 6
 
 print triangular(10)
-#>>> 55
+# >>> 55
