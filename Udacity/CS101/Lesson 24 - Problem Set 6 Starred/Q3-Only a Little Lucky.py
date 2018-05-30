@@ -32,8 +32,38 @@
 # is not usually a good choice, since it means if the input list is already
 # nearly sorted, the actual work will be much worse than expected).
 
-def ordered_search(index, ranks, keyword):
 
+def ordered_search(index, ranks, keyword):
+    linklist = lookup(index, keyword)
+    if linklist is None:
+        return None
+    else:
+        ranklist = []
+        for link in linklist:
+            ranklist.append([link, ranks[link]])
+    sortedranks = quick_sort_rank(ranklist)
+    sortedlinks = []
+    for rank in sortedranks:
+        sortedlinks.append(rank[0])
+    return sortedlinks
+
+
+def quick_sort_rank(alist):
+    pivotlist, leftlist, rightlist = [], [], []
+    if len(alist) <= 1:
+        return alist
+    else:
+        pivotrank = alist[len(alist) // 2][1]  # Start in the middle
+        for element in alist:
+            if element[1] > pivotrank:  # Sort high-to-low
+                leftlist.append(element)
+            elif element[1] < pivotrank:
+                rightlist.append(element)
+            else:
+                pivotlist.append(element)
+        leftlist = quick_sort_rank(leftlist)
+        rightlist = quick_sort_rank(rightlist)
+    return leftlist + pivotlist + rightlist
 
 
 cache = {
@@ -41,7 +71,7 @@ cache = {
 <body>
 <h1>Dave's Cooking Algorithms</h1>
 <p>
-Here are my favorite recipies:
+Here are my favorite recipes:
 <ul>
 <li> <a href="http://udacity.com/cs101x/urank/hummus.html">Hummus Recipe</a>
 <li> <a href="http://udacity.com/cs101x/urank/arsenic.html">World's Best Hummus</a>
@@ -106,9 +136,9 @@ Kathleen's Hummus Recipe
 <p>
 
 <ol>
-<li> Open a can of garbonzo beans.
+<li> Open a can of garbanzo beans.
 <li> Crush them in a blender.
-<li> Add 3 tablesppons of tahini sauce.
+<li> Add 3 tablespoons of tahini sauce.
 <li> Squeeze in one lemon.
 <li> Add salt, pepper, and buttercream frosting to taste.
 </ol>
@@ -154,6 +184,7 @@ Hummus Recipe
 """,
 }
 
+
 def get_page(url):
     if url in cache:
         return cache[url]
@@ -168,6 +199,7 @@ def get_next_target(page):
     end_quote = page.find('"', start_quote + 1)
     url = page[start_quote + 1:end_quote]
     return url, end_quote
+
 
 def get_all_links(page):
     links = []
@@ -186,10 +218,12 @@ def union(a, b):
         if e not in a:
             a.append(e)
 
+
 def add_page_to_index(index, url, content):
     words = content.split()
     for word in words:
         add_to_index(index, word, url)
+
 
 def add_to_index(index, keyword, url):
     if keyword in index:
@@ -197,11 +231,13 @@ def add_to_index(index, keyword, url):
     else:
         index[keyword] = [url]
 
+
 def lookup(index, keyword):
     if keyword in index:
         return index[keyword]
     else:
         return None
+
 
 def crawl_web(seed): # returns index, graph of inlinks
     tocrawl = [seed]
@@ -218,6 +254,7 @@ def crawl_web(seed): # returns index, graph of inlinks
             union(tocrawl, outlinks)
             crawled.append(page)
     return index, graph
+
 
 def compute_ranks(graph):
     d = 0.8 # damping factor
@@ -251,20 +288,19 @@ def compute_ranks(graph):
 index, graph = crawl_web('http://udacity.com/cs101x/urank/index.html')
 ranks = compute_ranks(graph)
 
-#print ordered_search(index, ranks, 'Hummus')
-#>>> ['http://udacity.com/cs101x/urank/kathleen.html',
+print(ordered_search(index, ranks, 'Hummus'))
+# >>> ['http://udacity.com/cs101x/urank/kathleen.html',
 #    'http://udacity.com/cs101x/urank/nickel.html',
 #    'http://udacity.com/cs101x/urank/arsenic.html',
 #    'http://udacity.com/cs101x/urank/hummus.html',
 #    'http://udacity.com/cs101x/urank/index.html']
 
-#print ordered_search(index, ranks, 'the')
-#>>> ['http://udacity.com/cs101x/urank/nickel.html',
+print(ordered_search(index, ranks, 'the'))
+# >>> ['http://udacity.com/cs101x/urank/nickel.html',
 #    'http://udacity.com/cs101x/urank/arsenic.html',
 #    'http://udacity.com/cs101x/urank/hummus.html',
 #    'http://udacity.com/cs101x/urank/index.html']
 
 
-#print ordered_search(index, ranks, 'babaganoush')
-#>>> None
-
+print(ordered_search(index, ranks, 'babaganoush'))
+# >>> None
