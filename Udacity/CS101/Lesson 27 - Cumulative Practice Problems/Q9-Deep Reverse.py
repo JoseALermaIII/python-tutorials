@@ -10,23 +10,34 @@
 # The procedure is_list below is from Homework 6. It returns True if
 # p is a list and False if it is not.
 
+
 def is_list(p):
     return isinstance(p, list)
 
-def deep_reverse():
+
+def deep_reverse(inlist):
+    if is_list(inlist):
+        reverse = []
+        for element in inlist[::-1]:
+            if is_list(element):
+                reverse.append(deep_reverse(element))
+            else:
+                reverse.append(element)
+        return reverse
+    else:
+        return inlist
 
 
-
-#For example,
+# For example,
 
 p = [1, [2, 3, [4, [5, 6]]]]
 print deep_reverse(p)
-#>>> [[[[6, 5], 4], 3, 2], 1]
+# >>> [[[[6, 5], 4], 3, 2], 1]
 print p
-#>>> [1, [2, 3, [4, [5, 6]]]]
+# >>> [1, [2, 3, [4, [5, 6]]]]
 
-q =  [1, [2,3], 4, [5,6]]
+q = [1, [2,3], 4, [5,6]]
 print deep_reverse(q)
-#>>> [ [6,5], 4, [3, 2], 1]
+# >>> [[6, 5], 4, [3, 2], 1]
 print q
-#>>> [1, [2,3], 4, [5,6]]
+# >>> [1, [2, 3], 4, [5, 6]]
