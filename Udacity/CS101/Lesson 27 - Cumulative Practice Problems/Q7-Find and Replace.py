@@ -14,22 +14,25 @@
 
 
 def make_converter(match, replacement):
-
+    return [match, replacement]
 
 
 def apply_converter(converter, string):
-
+    if string.find(converter[0]) == -1:
+        return string
+    else:
+        return apply_converter(converter, string.replace(converter[0], converter[1]))
 
 
 # For example,
 
 c1 = make_converter('aa', 'a')
 print apply_converter(c1, 'aaaa')
-#>>> a
+# >>> a
 
 c = make_converter('aba', 'b')
 print apply_converter(c, 'aaaaaabaaaaa')
-#>>> ab
+# >>> ab
 
 # Note that this process is not guaranteed to terminate for all inputs
 # (for example, apply_converter(make_converter('a', 'aa'), 'a') would
