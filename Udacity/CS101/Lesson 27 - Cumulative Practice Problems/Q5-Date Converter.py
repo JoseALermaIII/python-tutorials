@@ -22,17 +22,28 @@ swedish = {1:"januari", 2:"februari", 3:"mars", 4:"april", 5:"maj",
 
 # Hint: int('12') converts the string '12' to the integer 12.
 
-def date_converter():
+
+def date_converter(language, date):
+    output = []
+    endpos = date.find('/')
+    while endpos != -1:
+        output.append(date[:endpos])
+        date = date[endpos + 1:]
+        endpos = date.find('/')
+    output.append(date)  # add year
+    output[0] = language[int(output[0])]  # convert month to string
+    output[0], output[1] = output[1], output[0]  # swap month and day
+    return ' '.join(output)
 
 
 print date_converter(english, '5/11/2012')
-#>>> 11 May 2012
+# >>> 11 May 2012
 
 print date_converter(english, '5/11/12')
-#>>> 11 May 12
+# >>> 11 May 12
 
 print date_converter(swedish, '5/11/2012')
-#>>> 11 maj 2012
+# >>> 11 maj 2012
 
 print date_converter(swedish, '12/5/1791')
-#>>> 5 december 1791
+# >>> 5 december 1791
