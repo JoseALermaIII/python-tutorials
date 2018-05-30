@@ -12,14 +12,17 @@ def longest_repetition(inlist):
     if not inlist:
         return None
     longest = inlist[0]
+    checked = []
     for element in inlist:
-        if inlist.count(element) > inlist.count(longest):
-            startpos = inlist.index(element)
-            endpos = startpos + inlist.count(element)
-            inlistslice = inlist[startpos:endpos]
-            sequence = [element] * inlist.count(element)
-            if sequence == inlistslice:
-                longest = element
+        if element not in checked:
+            if inlist.count(element) > inlist.count(longest):
+                startpos = inlist.index(element)
+                endpos = startpos + inlist.count(element)
+                inlistslice = inlist[startpos:endpos]
+                sequence = [element] * inlist.count(element)
+                if sequence == inlistslice:
+                    longest = element
+            checked.append(element)
     return longest
 
 
