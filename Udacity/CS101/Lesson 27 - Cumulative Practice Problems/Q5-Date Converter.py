@@ -24,13 +24,7 @@ swedish = {1:"januari", 2:"februari", 3:"mars", 4:"april", 5:"maj",
 
 
 def date_converter(language, date):
-    output = []
-    endpos = date.find('/')
-    while endpos != -1:
-        output.append(date[:endpos])
-        date = date[endpos + 1:]
-        endpos = date.find('/')
-    output.append(date)  # add year
+    output = date.split('/')
     output[0] = language[int(output[0])]  # convert month to string
     output[0], output[1] = output[1], output[0]  # swap month and day
     return ' '.join(output)
