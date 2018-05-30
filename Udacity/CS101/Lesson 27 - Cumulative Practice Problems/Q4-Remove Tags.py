@@ -9,20 +9,27 @@
 # You may assume the input does not include any unclosed tags, that is,
 # there will be no '<' without a following '>'.
 
-def remove_tags():
+
+def remove_tags(string):
+    startpos = string.find('<')
+    while startpos != -1:  # startpos is -1 if not found
+        endpos = string.find('>', startpos)  # start endpos search from startpos
+        string = string[:startpos] + ' ' + string[endpos + 1:]
+        startpos = string.find('<')
+    return string.split()
 
 
 print remove_tags('''<h1>Title</h1><p>This is a
                     <a href="http://www.udacity.com">link</a>.<p>''')
-#>>> ['Title','This','is','a','link','.']
+# >>> ['Title','This','is','a','link','.']
 
 print remove_tags('''<table cellpadding='3'>
                      <tr><td>Hello</td><td>World!</td></tr>
                      </table>''')
-#>>> ['Hello','World!']
+# >>> ['Hello','World!']
 
 print remove_tags("<hello><goodbye>")
-#>>> []
+# >>> []
 
 print remove_tags("This is plain text.")
-#>>> ['This', 'is', 'plain', 'text.']
+# >>> ['This', 'is', 'plain', 'text.']
