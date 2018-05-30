@@ -9,10 +9,10 @@
 # pick_one(False, 37, 'hello') should return 'hello'.
 
 
-def pick_one(boolean, num, string):
+def pick_one(boolean, trueoutput, falseoutput):
     if boolean:
-        return num
-    return string
+        return trueoutput
+    return falseoutput
 
 
 print pick_one(True, 37, 'hello')
