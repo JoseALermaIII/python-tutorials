@@ -8,18 +8,21 @@
 # For example, pick_one(True, 37, 'hello') should return 37, and
 # pick_one(False, 37, 'hello') should return 'hello'.
 
-def pick_one():
 
+def pick_one(boolean, num, string):
+    if boolean:
+        return num
+    return string
 
 
 print pick_one(True, 37, 'hello')
-#>>> 37
+# >>> 37
 
 print pick_one(False, 37, 'hello')
-#>>> hello
+# >>> hello
 
 print pick_one(True, 'red pill', 'blue pill')
-#>>> red pill
+# >>> red pill
 
 print pick_one(False, 'sunny', 'rainy')
-#>>> rainy
+# >>> rainy
