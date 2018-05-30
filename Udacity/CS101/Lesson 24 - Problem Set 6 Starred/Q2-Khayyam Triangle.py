@@ -27,23 +27,33 @@
 
 
 def triangle(n):
+    trianglelist = []  # Initialize row 0
+    currentrow = [1]  # Initialize row 1
+    for count in range(0, n):
+        trianglelist.append(currentrow)
+        nextrow = []
+        previouselement = 0
+        for element in currentrow:
+            nextrow.append(element + previouselement)
+            previouselement = element
+        nextrow.append(previouselement)
+        currentrow = nextrow
+    return trianglelist
 
 
+# For example:
 
+print(triangle(0))
+# >>> []
 
-#For example:
+print(triangle(1))
+# >>> [[1]]
 
-#print triangle(0)
-#>>> []
+print(triangle(2))
+# >>> [[1], [1, 1]]
 
-#print triangle(1)
-#>>> [[1]]
+print(triangle(3))
+# >>> [[1], [1, 1], [1, 2, 1]]
 
-#print triangle(2)
-#>> [[1], [1, 1]]
-
-#print triangle(3)
-#>>> [[1], [1, 1], [1, 2, 1]]
-
-#print triangle(6)
-#>>> [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1]]
+print(triangle(6))
+# >>> [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1]]
