@@ -7,12 +7,21 @@
 # be the one that appears first. If the input list is empty,
 # it should return None.
 
-def longest_repetition():
+
+def longest_repetition(inlist):
+    if not inlist:
+        return None
+    longest = inlist[0]
+    for element in inlist:
+        startpos = inlist.index(element)
+        endpos = startpos + inlist.count(element)
+        testlist = [element] * inlist.count(element)
+        if inlist.count(element) > inlist.count(longest) and (testlist == inlist[startpos:endpos]):
+            longest = element
+    return longest
 
 
-
-
-#For example,
+# For example,
 
 print longest_repetition([1, 2, 2, 3, 3, 3, 2, 2, 1])
 # 3
@@ -20,9 +29,8 @@ print longest_repetition([1, 2, 2, 3, 3, 3, 2, 2, 1])
 print longest_repetition(['a', 'b', 'b', 'b', 'c', 'd', 'd', 'd'])
 # b
 
-print longest_repetition([1,2,3,4,5])
+print longest_repetition([1, 2, 3, 4, 5])
 # 1
 
 print longest_repetition([])
 # None
-
