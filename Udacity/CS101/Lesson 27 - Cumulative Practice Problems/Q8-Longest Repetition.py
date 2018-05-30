@@ -15,8 +15,9 @@ def longest_repetition(inlist):
     for element in inlist:
         startpos = inlist.index(element)
         endpos = startpos + inlist.count(element)
-        testlist = [element] * inlist.count(element)
-        if inlist.count(element) > inlist.count(longest) and (testlist == inlist[startpos:endpos]):
+        inlistslice = inlist[startpos:endpos]
+        sequence = [element] * inlist.count(element)
+        if inlist.count(element) > inlist.count(longest) and (sequence == inlistslice):
             longest = element
     return longest
 
