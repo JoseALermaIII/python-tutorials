@@ -1,5 +1,5 @@
 # Two Gold Stars
-# Question 2: Combatting Link Spam
+# Question 2: Combating Link Spam
 
 # One of the problems with our page ranking system is pages can
 # collude with each other to improve their page ranks.  We consider
@@ -25,7 +25,7 @@
 #     helping the page rank.
 
 
-def compute_ranks(graph):
+def compute_ranks(graph, k):
     d = 0.8 # damping factor
     numloops = 10
     ranks = {}
@@ -38,27 +38,38 @@ def compute_ranks(graph):
             newrank = (1 - d) / npages
             for node in graph:
                 if page in graph[node]:
-                    newrank = newrank + d * (ranks[node]/len(graph[node]))
+                    if not check_reciprocal(graph, node, page, k):
+                        newrank = newrank + d * (ranks[node]/len(graph[node]))
             newranks[page] = newrank
         ranks = newranks
     return ranks
 
 
+def check_reciprocal(graph, node, page, k):
+    if k == 0:
+        return page == node
+    if node in graph[page]:
+        return True
+    for link in graph[page]:
+        if check_reciprocal(graph, node, link, k - 1):
+            return True
+    return False
+
+
 # For example
 
-g = {'a': ['a', 'b', 'c'], 'b':['a'], 'c':['d'], 'd':['a']}
+g = {'a': ['a', 'b', 'c'], 'b': ['a'], 'c': ['d'], 'd': ['a']}
 
-#print compute_ranks(g, 0) # the a->a link is reciprocal
-#>>> {'a': 0.26676872354238684, 'c': 0.1216391112164609,
+print compute_ranks(g, 0) # the a->a link is reciprocal
+# >>> {'a': 0.26676872354238684, 'c': 0.1216391112164609,
 #     'b': 0.1216391112164609, 'd': 0.1476647842238683}
 
-#print compute_ranks(g, 1) # a->a, a->b, b->a links are reciprocal
-#>>> {'a': 0.14761759762962962, 'c': 0.08936469270123457,
+print compute_ranks(g, 1) # a->a, a->b, b->a links are reciprocal
+# >>> {'a': 0.14761759762962962, 'c': 0.08936469270123457,
 #     'b': 0.04999999999999999, 'd': 0.12202199703703702}
 
-#print compute_ranks(g, 2)
+print compute_ranks(g, 2)
 # a->a, a->b, b->a, a->c, c->d, d->a links are reciprocal
 # (so all pages end up with the same rank)
-#>>> {'a': 0.04999999999999999, 'c': 0.04999999999999999,
+# >>> {'a': 0.04999999999999999, 'c': 0.04999999999999999,
 #     'b': 0.04999999999999999, 'd': 0.04999999999999999}
-
