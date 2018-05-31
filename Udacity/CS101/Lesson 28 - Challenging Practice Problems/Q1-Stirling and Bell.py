@@ -49,9 +49,7 @@
 
 
 def stirling(n, k):
-    if k == 1:
-        return 1
-    elif n == k:
+    if k == 1 or n == k:
         return 1
     elif k > n:
         return 0
