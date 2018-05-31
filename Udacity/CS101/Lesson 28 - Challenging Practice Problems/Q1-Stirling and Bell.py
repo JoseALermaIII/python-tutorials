@@ -61,8 +61,8 @@ def stirling(n, k):
 
 def bell(n):
     total = 0
-    for index in range(1, n + 1):
-        total += stirling(n, index)
+    for k in range(1, n + 1):
+        total += stirling(n, k)
     return total
 
 
