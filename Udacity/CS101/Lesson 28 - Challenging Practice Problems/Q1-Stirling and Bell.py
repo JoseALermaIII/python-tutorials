@@ -47,59 +47,74 @@
 # items will be split. The second procedure, bell, takes as input a
 # positive integer n and returns the Bell number B(n).
 
-def stirling():
+
+def stirling(n, k):
+    if k == 1:
+        return 1
+    elif n == k:
+        return 1
+    elif k > n:
+        return 0
+    else:
+        return k * stirling(n - 1, k) + stirling(n - 1, k - 1)
 
 
-def bell():
+def bell(n):
+    total = 0
+    for index in range(1, n + 1):
+        total += stirling(n, index)
+    return total
 
-# print stirling(1,1)
+
+print 'Stirling Set 1:'
+print stirling(1, 1)
 # >>> 1
-# print stirling(2,1)
+print stirling(2, 1)
 # >>> 1
-# print stirling(2,2)
+print stirling(2, 2)
 # >>> 1
-# print stirling(2,3)
+print stirling(2, 3)
 # >>>0
-
-# print stirling(3,1)
+print 'Stirling Set 2:'
+print stirling(3, 1)
 # >>> 1
-# print stirling(3,2)
+print stirling(3, 2)
 # >>> 3
-# print stirling(3,3)
+print stirling(3, 3)
 # >>> 1
-
-# print stirling(4,1)
+print 'Stirling Set 3:'
+print stirling(4, 1)
 # >>> 1
-# print stirling(4,2)
+print stirling(4, 2)
 # >>> 7
-# print stirling(4,3)
+print stirling(4, 3)
 # >>> 6
-# print stirling(4,4)
+print stirling(4, 4)
 # >>> 1
-
-# print stirling(5,1)
+print 'Stirling Set 4:'
+print stirling(5, 1)
 # >>> 1
-# print stirling(5,2)
+print stirling(5, 2)
 # >>> 15
-# print stirling(5,3)
+print stirling(5, 3)
 # >>> 25
-# print stirling(5,4)
+print stirling(5, 4)
 # >>> 10
-# print stirling(5,5)
+print stirling(5, 5)
 # >>> 1
-
-# print stirling(20,15)
+print 'Stirling(20, 15):'
+print stirling(20, 15)
 # >>> 452329200
-
-# print bell(1)
+print 'Bell Set:'
+print bell(1)
 # >>> 1
-# print bell(2)
+print bell(2)
 # >>> 2
-# print bell(3)
+print bell(3)
 # >>> 5
-# print bell(4)
+print bell(4)
 # >>> 15
-# print bell(5)
+print bell(5)
 # >>> 52
-# print bell(15)
+print bell(15)
 # >>> 1382958545
