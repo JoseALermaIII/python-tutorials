@@ -87,11 +87,36 @@ def make_rules(patternnum):
 
 
 def test_make_rules():
+    patternvalues = ['xxx', 'xx.', 'x.x', 'x..', '.xx', '.x.',
+                     '..x', '...']
     for pattern in range(0, 256):
-        print make_rules(pattern)
-    return None
+        rules = make_rules(pattern)
+        for patternvalue in patternvalues:
+            # First, check if all patterns in rules
+            if patternvalue not in rules and pattern != 0:
+                print "Pattern number " + str(pattern) + " missing rule " + patternvalue
+                return False
+            # Next, check a few patterns
+            if pattern == 0:
+                if rules != {}:
+                    print "Pattern number 0 not empty: " + str(rules)
+                    return False
+            if pattern == 128:
+                correctrules = {'...': '.', 'x.x': '.', 'xxx': 'x',
+                                '.xx': '.', '..x': '.', '.x.': '.', 'xx.': '.', 'x..': '.'}
+                if rules[patternvalue] != correctrules[patternvalue]:
+                    print "Pattern number 128 mismatched: pattern " + patternvalue + " incorrect"
+                    return False
+            if pattern == 256:
+                correctrules = {'...': 'x', 'x.x': '.', 'xxx': '.',
+                                '.xx': '.', '..x': '.', '.x.': '.', 'xx.': '.', 'x..': '.'}
+                if rules[patternvalue] != correctrules[patternvalue]:
+                    print "Pattern number 255 mismatched: pattern " + patternvalue + " incorrect"
+                    return False
+    return True
 
-test_make_rules()
+print test_make_rules()
+
 #print cellular_automaton('.x.x.x.x.', 17, 2)
 # >>> xxxxxxx..
 #print cellular_automaton('.x.x.x.x.', 249, 3)
