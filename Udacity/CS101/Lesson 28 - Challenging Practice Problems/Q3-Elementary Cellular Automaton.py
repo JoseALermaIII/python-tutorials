@@ -68,7 +68,28 @@
 
 def cellular_automaton(string, pattern, n):
     rules = make_rules(pattern)
-    return None
+    inlist = list(string)
+    tmplist = []
+    maxlength = len(inlist) - 1
+    #print rules  # DEBUG
+    #print inlist  # DEBUG
+    while n > 0:
+        for index in range(0, len(inlist)):
+            #print index  # DEBUG
+            testslice = []
+            if index == 0:
+                testslice = inlist[maxlength] + inlist[index] + inlist[index + 1]
+            elif index == maxlength:
+                testslice = inlist[index - 1] + inlist[index] + inlist[0]
+            else:
+                testslice = inlist[index - 1] + inlist[index] + inlist[index + 1]
+            #print testslice  # DEBUG
+            tmplist.append(rules[''.join(testslice)])
+            #print tmplist  # DEBUG
+        inlist = tmplist
+        tmplist = []
+        n -= 1
+    return ''.join(inlist)
 
 
 def make_rules(patternnum):
@@ -115,29 +136,30 @@ def test_make_rules():
                     return False
     return True
 
-print test_make_rules()
 
-#print cellular_automaton('.x.x.x.x.', 17, 2)
+# print test_make_rules()
+
+print cellular_automaton('.x.x.x.x.', 17, 2)
 # >>> xxxxxxx..
-#print cellular_automaton('.x.x.x.x.', 249, 3)
+print cellular_automaton('.x.x.x.x.', 249, 3)
 # >>> .x..x.x.x
-#print cellular_automaton('...x....', 125, 1)
+print cellular_automaton('...x....', 125, 1)
 # >>> xx.xxxxx
-#print cellular_automaton('...x....', 125, 2)
+print cellular_automaton('...x....', 125, 2)
 # >>> .xxx....
-#print cellular_automaton('...x....', 125, 3)
+print cellular_automaton('...x....', 125, 3)
 # >>> .x.xxxxx
-#print cellular_automaton('...x....', 125, 4)
+print cellular_automaton('...x....', 125, 4)
 # >>> xxxx...x
-#print cellular_automaton('...x....', 125, 5)
+print cellular_automaton('...x....', 125, 5)
 # >>> ...xxx.x
-#print cellular_automaton('...x....', 125, 6)
+print cellular_automaton('...x....', 125, 6)
 # >>> xx.x.xxx
-#print cellular_automaton('...x....', 125, 7)
+print cellular_automaton('...x....', 125, 7)
 # >>> .xxxxx..
-#print cellular_automaton('...x....', 125, 8)
+print cellular_automaton('...x....', 125, 8)
 # >>> .x...xxx
-#print cellular_automaton('...x....', 125, 9)
+print cellular_automaton('...x....', 125, 9)
 # >>> xxxx.x.x
-#print cellular_automaton('...x....', 125, 10)
+print cellular_automaton('...x....', 125, 10)
 # >>> ...xxxxx
