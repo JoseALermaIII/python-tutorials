@@ -96,6 +96,10 @@ def make_rules(patternnum):
     patternvalues = [[128, 'xxx'], [64, 'xx.'], [32, 'x.x'],
                      [16, 'x..'], [8, '.xx'], [4, '.x.'],
                      [2, '..x'], [1, '...']]
+    if patternnum == 0:
+        return {'xxx': '.', 'xx.': '.', 'x.x': '.',
+                'x..': '.', '.xx': '.', '.x.': '.',
+                '..x': '.', '...': '.'}
     rules = {}
     while patternnum > 0:
         for patternvalue in patternvalues:
@@ -119,8 +123,10 @@ def test_make_rules():
                 return False
             # Next, check a few patterns
             if pattern == 0:
-                if rules != {}:
-                    print "Pattern number 0 not empty: " + str(rules)
+                correctrules = {'...': '.', 'x.x': '.', 'xxx': '.',
+                                '.xx': '.', '..x': '.', '.x.': '.', 'xx.': '.', 'x..': '.'}
+                if rules [patternvalue] != correctrules[patternvalue]:
+                    print "Pattern number 0 mismatched: pattern " + patternvalue + " incorrect"
                     return False
             if pattern == 128:
                 correctrules = {'...': '.', 'x.x': '.', 'xxx': 'x',
@@ -163,3 +169,7 @@ print cellular_automaton('...x....', 125, 9)
 # >>> xxxx.x.x
 print cellular_automaton('...x....', 125, 10)
 # >>> ...xxxxx
+print cellular_automaton('.', 21, 1)  # FIXME: string = '.', n = 1
+# >>> x
+print cellular_automaton('.', 21, 2)  # FIXME: string = '.', n = 2
+# >>> .
