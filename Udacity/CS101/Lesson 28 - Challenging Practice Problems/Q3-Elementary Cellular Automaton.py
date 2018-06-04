@@ -77,7 +77,9 @@ def cellular_automaton(string, pattern, n):
         for index in range(0, len(inlist)):
             #print index  # DEBUG
             testslice = []
-            if index == 0:
+            if len(inlist) == 1:
+                testslice = inlist[index] * 3
+            elif index == 0:
                 testslice = inlist[maxlength] + inlist[index] + inlist[index + 1]
             elif index == maxlength:
                 testslice = inlist[index - 1] + inlist[index] + inlist[0]
@@ -169,7 +171,7 @@ print cellular_automaton('...x....', 125, 9)
 # >>> xxxx.x.x
 print cellular_automaton('...x....', 125, 10)
 # >>> ...xxxxx
-print cellular_automaton('.', 21, 1)  # FIXME: string = '.', n = 1
+print cellular_automaton('.', 21, 1)
 # >>> x
-print cellular_automaton('.', 21, 2)  # FIXME: string = '.', n = 2
+print cellular_automaton('.', 21, 2)  
 # >>> .
