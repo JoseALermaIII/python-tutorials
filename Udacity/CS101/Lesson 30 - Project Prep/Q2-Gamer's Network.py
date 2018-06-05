@@ -293,8 +293,6 @@ def find_path_to_friend(network, user_A, user_B, checked=None):
     # your RECURSIVE solution here!
     if user_A not in network or user_B not in network:
         return None
-    if user_B not in get_secondary_connections(network, user_A) and user_B not in get_connections(network, user_A):
-        return None
     path = [user_A]
     checked = checked or []
     checked.append(user_A)
@@ -303,7 +301,9 @@ def find_path_to_friend(network, user_A, user_B, checked=None):
         return path + [user_B]
     for person in connections_A:
         if person not in checked:
-            return path + find_path_to_friend(network, person, user_B, checked)
+            testpath = find_path_to_friend(network, person, user_B, checked)
+            if testpath:
+                return path + testpath
     return None
 
 
@@ -336,3 +336,5 @@ print count_common_connections(net, "Mercedes", "John")
 print find_path_to_friend(net, "John", "Ollie")
 print get_users_by_game(net, "Seven Schemers")
 print find_path_to_friend(net, "John", "Debra")
+print find_path_to_friend(net, "John", "Levi")
+print find_path_to_friend(net, "Bryant", "Levi")
