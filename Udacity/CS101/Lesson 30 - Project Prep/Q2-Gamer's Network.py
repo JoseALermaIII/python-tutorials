@@ -171,7 +171,7 @@ def get_games_liked(network, user):
 def add_connection(network, user_A, user_B):
     if user_A not in network or user_B not in network:
         return False
-    connections = network[user_A][0]
+    connections = get_connections(network, user_A)
     if user_B not in connections:
         connections.append(user_B)
     return network
@@ -222,12 +222,12 @@ def add_new_user(network, user, games):
 def get_secondary_connections(network, user):
     if user not in network:
         return None
-    connections = network[user][0]
+    connections = get_connections(network, user)
     if not connections:
         return connections
     secondary = []
     for connection in connections:
-        for person in network[connection][0]:
+        for person in get_connections(network, connection):
             if person not in secondary:
                 secondary.append(person)
     return secondary
@@ -248,8 +248,8 @@ def get_secondary_connections(network, user):
 def count_common_connections(network, user_A, user_B):
     if user_A not in network or user_B not in network:
         return False
-    connections_A = network[user_A][0]
-    connections_B = network[user_B][0]
+    connections_A = get_connections(network, user_A)
+    connections_B = get_connections(network, user_B)
     total = 0
     for person in connections_A:
         if person in connections_B:
@@ -289,9 +289,23 @@ def count_common_connections(network, user_A, user_B):
 #   in this procedure to keep track of nodes already visited in your search. You
 #   may safely add default parameters since all calls used in the grading script
 #   will only include the arguments network, user_A, and user_B.
-def find_path_to_friend(network, user_A, user_B):
+def find_path_to_friend(network, user_A, user_B, checked=None):
     # your RECURSIVE solution here!
+    if user_A not in network or user_B not in network:
+        return None
+    if user_B not in get_secondary_connections(network, user_A):
+        return None
+    path = [user_A]
+    checked = checked or []
+    checked.append(user_A)
+    connections_A = get_connections(network, user_A)
+    if user_B in connections_A:
+        return path + [user_B]
+    for person in connections_A:
+        if person not in checked:
+            return path + find_path_to_friend(network, person, user_B, checked)
     return None
+
 
 # Make-Your-Own-Procedure (MYOP)
 # -----------------------------------------------------------------------------
@@ -314,4 +328,4 @@ print add_new_user(net, "Debra", [])
 print add_new_user(net, "Nick", ["Seven Schemers", "The Movie: The Game"])  # True
 print get_secondary_connections(net, "Mercedes")
 print count_common_connections(net, "Mercedes", "John")
-# print find_path_to_friend(net, "John", "Ollie")
+print find_path_to_friend(net, "John", "Ollie")
