@@ -149,7 +149,9 @@ def get_connections(network, user):
 #   - If the user likes no games, return an empty list.
 #   - If the user is not in network, return None.
 def get_games_liked(network, user):
-    return []
+    if user not in network:
+        return None
+    return network[user][1]
 
 
 # -----------------------------------------------------------------------------
@@ -280,7 +282,7 @@ net = create_data_structure(example_input)
 print net
 print get_connections(net, "Debra")
 print get_connections(net, "Mercedes")
-# print get_games_liked(net, "John")
+print get_games_liked(net, "John")
 # print add_connection(net, "John", "Freda")
 # print add_new_user(net, "Debra", [])
 # print add_new_user(net, "Nick", ["Seven Schemers", "The Movie: The Game"]) # True
