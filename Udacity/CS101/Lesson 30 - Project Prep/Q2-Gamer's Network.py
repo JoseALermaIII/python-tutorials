@@ -246,7 +246,15 @@ def get_secondary_connections(network, user):
 #   The number of connections in common (as an integer).
 #   - If user_A or user_B is not in network, return False.
 def count_common_connections(network, user_A, user_B):
-    return 0
+    if user_A not in network or user_B not in network:
+        return False
+    connections_A = network[user_A][0]
+    connections_B = network[user_B][0]
+    total = 0
+    for person in connections_A:
+        if person in connections_B:
+            total += 1
+    return total
 
 
 # -----------------------------------------------------------------------------
@@ -305,5 +313,5 @@ print add_connection(net, "John", "Freda")
 print add_new_user(net, "Debra", [])
 print add_new_user(net, "Nick", ["Seven Schemers", "The Movie: The Game"])  # True
 print get_secondary_connections(net, "Mercedes")
-# print count_common_connections(net, "Mercedes", "John")
+print count_common_connections(net, "Mercedes", "John")
 # print find_path_to_friend(net, "John", "Ollie")
