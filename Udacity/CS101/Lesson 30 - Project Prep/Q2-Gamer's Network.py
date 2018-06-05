@@ -314,8 +314,13 @@ def find_path_to_friend(network, user_A, user_B, checked=None):
 # your network (like path_to_friend). Don't forget to comment your MYOP. You
 # may give this procedure any name you want.
 
-# Replace this with your own procedure! You can also uncomment the lines below
-# to see how your code behaves. Have fun!
+def get_users_by_game(network, game):
+    users = network.keys()
+    usersbygame = []
+    for user in users:
+        if game in get_games_liked(network, user):
+            usersbygame.append(user)
+    return usersbygame
 
 
 net = create_data_structure(example_input)
@@ -329,3 +334,4 @@ print add_new_user(net, "Nick", ["Seven Schemers", "The Movie: The Game"])  # Tr
 print get_secondary_connections(net, "Mercedes")
 print count_common_connections(net, "Mercedes", "John")
 print find_path_to_friend(net, "John", "Ollie")
+print get_users_by_game(net, "Seven Schemers")
