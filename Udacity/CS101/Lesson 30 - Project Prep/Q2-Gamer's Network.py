@@ -103,10 +103,10 @@ def create_data_structure(string_input):
         if user not in network:
             network[user] = [[], []]
         if "connected" in sentence:
-            connections = sentence[sentence.find('to') + 3:].split(',')
+            connections = sentence[sentence.find('to') + 3:].split(', ')
             network[user][0] = connections
         else:
-            games = sentence[sentence.find('play') + 5:].split(',')
+            games = sentence[sentence.find('play') + 5:].split(', ')
             network[user][1] = games
     return network
 
@@ -220,7 +220,17 @@ def add_new_user(network, user, games):
 #   himself/herself. It is also OK if the list contains a user's primary
 #   connection that is a secondary connection as well.
 def get_secondary_connections(network, user):
-    return []
+    if user not in network:
+        return None
+    connections = network[user][0]
+    if not connections:
+        return connections
+    secondary = []
+    for connection in connections:
+        for person in network[connection][0]:
+            if person not in secondary:
+                secondary.append(person)
+    return secondary
 
 
 # -----------------------------------------------------------------------------
@@ -294,6 +304,6 @@ print get_games_liked(net, "John")
 print add_connection(net, "John", "Freda")
 print add_new_user(net, "Debra", [])
 print add_new_user(net, "Nick", ["Seven Schemers", "The Movie: The Game"])  # True
-# print get_secondary_connections(net, "Mercedes")
+print get_secondary_connections(net, "Mercedes")
 # print count_common_connections(net, "Mercedes", "John")
 # print find_path_to_friend(net, "John", "Ollie")
