@@ -94,6 +94,20 @@ Freda likes to play Starfleet Commander, Ninja Hamsters, Seahorse Adventures."
 # Return:
 #   The newly created network data structure
 def create_data_structure(string_input):
+    network = {}
+    if string_input == '':
+        return network
+    sentences = string_input.split('.')
+    for sentence in sentences:
+        user = sentence[:sentence.find(' ')]
+        if user not in network:
+            network[user] = []
+        if "connected" in sentence:
+            connections = sentence[sentence.find('to') + 3:].split(',')
+            network[user].append(connections)
+        else:
+            games = sentence[sentence.find('play') + 5:].split(',')
+            network[user].append(games)
     return network
 
 
@@ -259,8 +273,9 @@ def find_path_to_friend(network, user_A, user_B):
 # Replace this with your own procedure! You can also uncomment the lines below
 # to see how your code behaves. Have fun!
 
-# net = create_data_structure(example_input)
-# print net
+
+net = create_data_structure(example_input)
+print net
 # print get_connections(net, "Debra")
 # print get_connections(net, "Mercedes")
 # print get_games_liked(net, "John")
