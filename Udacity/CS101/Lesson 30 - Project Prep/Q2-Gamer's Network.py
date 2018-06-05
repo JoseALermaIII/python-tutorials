@@ -131,7 +131,9 @@ def create_data_structure(string_input):
 #   - If the user has no connections, return an empty list.
 #   - If the user is not in network, return None.
 def get_connections(network, user):
-    return []
+    if user not in network:
+        return None
+    return network[user][0]
 
 
 # -----------------------------------------------------------------------------
@@ -276,8 +278,8 @@ def find_path_to_friend(network, user_A, user_B):
 
 net = create_data_structure(example_input)
 print net
-# print get_connections(net, "Debra")
-# print get_connections(net, "Mercedes")
+print get_connections(net, "Debra")
+print get_connections(net, "Mercedes")
 # print get_games_liked(net, "John")
 # print add_connection(net, "John", "Freda")
 # print add_new_user(net, "Debra", [])
