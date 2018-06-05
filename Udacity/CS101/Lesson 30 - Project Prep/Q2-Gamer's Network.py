@@ -101,13 +101,13 @@ def create_data_structure(string_input):
     for sentence in sentences:
         user = sentence[:sentence.find(' ')]
         if user not in network:
-            network[user] = []
+            network[user] = [[], []]
         if "connected" in sentence:
             connections = sentence[sentence.find('to') + 3:].split(',')
-            network[user].append(connections)
+            network[user][0] = connections
         else:
             games = sentence[sentence.find('play') + 5:].split(',')
-            network[user].append(games)
+            network[user][1] = games
     return network
 
 
