@@ -6,3 +6,5 @@ online at [his website](http://inventwithpython.com/). Please consider donating 
 covers automating common computer tasks.
 
 From file manipulation, spreadsheets, and PDFs to web scraping, e-mails, and texts - a little of everything is covered.
+
+I use the .epub format of the book, so rather than _pages_, I provide _locations_.
