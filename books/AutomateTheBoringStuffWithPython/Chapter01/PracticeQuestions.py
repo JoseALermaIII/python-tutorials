@@ -27,3 +27,10 @@ for item in items:
         print("%s has to be a variable." % item)
     else:
         print("'%s' is definitely a string." % item)
+
+# 3. Name three data types
+# Hint: Check location 33.8
+data = [124, 42.2, '\_(&_&)_/']
+for element in data:
+    print(type(element))
+
