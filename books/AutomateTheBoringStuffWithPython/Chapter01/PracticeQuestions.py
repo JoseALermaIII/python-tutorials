@@ -16,5 +16,14 @@ for item in items:
     else:
         print("%s is an operator." % item)
 
-
-
+# 2. Which of the following is a variable, and which is a string?
+# Hint: Check locations 33.8 and 37.0
+# spam
+# 'spam'
+spam = {"spam": True}
+items = [spam, 'spam']
+for item in items:
+    if not isinstance(item, str):
+        print("%s has to be a variable." % item)
+    else:
+        print("'%s' is definitely a string." % item)
