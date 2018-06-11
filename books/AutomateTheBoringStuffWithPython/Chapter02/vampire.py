@@ -1,4 +1,6 @@
 # This program checks name and age
+name = input("What's your name?")
+age = int(input("How old are you?"))
 if name == 'Alice':
     print('Hi, Alice.')
 elif age < 12:
