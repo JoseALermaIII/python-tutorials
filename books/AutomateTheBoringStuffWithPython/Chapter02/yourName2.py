@@ -1,3 +1,4 @@
+# This program also forces you to type your name
 while True:
     print('Please type your name.')
     name = input()
