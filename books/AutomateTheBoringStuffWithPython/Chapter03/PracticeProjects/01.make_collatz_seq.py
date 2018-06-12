@@ -17,3 +17,17 @@
 # 4
 # 2
 # 1
+
+
+def collatz(number):
+    if not number % 2:
+        return number // 2
+    else:
+        return 3 * number + 1
+
+
+n = int(input("Input a number: "))
+while n != 1:
+    print(n)
+    n = collatz(n)
+print(n)  # When n == 1
