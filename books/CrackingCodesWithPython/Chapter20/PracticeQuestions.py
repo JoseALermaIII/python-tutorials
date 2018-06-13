@@ -28,6 +28,6 @@ spam = list(set(spam))
 print("Spam contains %s and has %s items." % (spam, len(spam)))
 
 # 5. What does the following code print?
-# Hint: Check page
+# Hint: Check page 306
 print('Hello', end='')
 print('World')
