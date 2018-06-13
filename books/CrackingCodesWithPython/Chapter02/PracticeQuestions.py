@@ -3,20 +3,22 @@
 # print statements would be needed.
 
 # 1. Which is the operator for division, / or \?
-4 / 2
-4 \ 2
+# Uncomment lines to test
+# 4 / 2
+# 4 \ 2
 
 # 2. Which of the following is an integer value, and which is a floating-point value?
 type(42)
 type(3.141592)
 
 # 3. Which of the following lines are not expressions?
-4 x 10 + 2
-3 * 7 + 1
-2 +
-42
-2 + 2
-spam = 42
+# Uncomment lines to test
+# 4 x 10 + 2
+# 3 * 7 + 1
+# 2 +
+# 42
+# 2 + 2
+# spam = 42
 
 # 4. If you enter the following lines of code into the interactive shell, what do
 #    lines (1) and (2) print?
