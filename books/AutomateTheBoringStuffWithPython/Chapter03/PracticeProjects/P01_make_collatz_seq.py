@@ -26,8 +26,14 @@ def collatz(number):
         return 3 * number + 1
 
 
-n = int(input("Input a number: "))
-while n != 1:
-    print(n)
-    n = collatz(n)
-print(n)  # When n == 1
+def main():
+    n = int(input("Input a number: "))
+    while n != 1:
+        print(n)
+        n = collatz(n)
+    print(n)  # When n == 1
+
+
+# If program is run (instead of imported), call main():
+if __name__ == "__main__":
+    main()
