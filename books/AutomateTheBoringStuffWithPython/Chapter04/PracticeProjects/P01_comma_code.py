@@ -23,6 +23,8 @@ def to_string(input_list):
 def main():
     spam = ['apples', 'bananas', 'tofu', 'cats']
     print(to_string(spam))
+    spam = ['lions', 'tigers', 'bears']
+    print(to_string(spam) + ". Oh, my!")
 
 
 if __name__ == '__main__':
