@@ -9,3 +9,21 @@
 # For example, passing the previous spam list to the function would return
 # 'apples, bananas, tofu, and cats'. But your function should be able to work
 # with any list value passed to it.
+import copy
+
+
+def to_string(input_list):
+    temp_list = copy.copy(input_list)  # Don't modify input_list
+    temp_list.insert(-1, "and ")
+    for index in range(0, len(temp_list) - 2):
+        temp_list[index] += ', '
+    return ''.join(temp_list)
+
+
+def main():
+    spam = ['apples', 'bananas', 'tofu', 'cats']
+    print(to_string(spam))
+
+
+if __name__ == '__main__':
+    main()
