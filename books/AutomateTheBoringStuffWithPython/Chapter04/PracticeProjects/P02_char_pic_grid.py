@@ -22,3 +22,27 @@
 # ..OOOOO..
 # ...OOO...
 # ....O....
+
+
+def matrix_to_pic(matrix):
+    new_matrix = zip(*matrix)  # Convert rows to columns in new matrix
+    for item in new_matrix:
+        print(''.join(item))
+    return None
+
+
+def main():
+    grid = [['.', '.', '.', '.', '.', '.'],
+            ['.', 'O', 'O', '.', '.', '.'],
+            ['O', 'O', 'O', 'O', '.', '.'],
+            ['O', 'O', 'O', 'O', 'O', '.'],
+            ['.', 'O', 'O', 'O', 'O', 'O'],
+            ['O', 'O', 'O', 'O', 'O', '.'],
+            ['O', 'O', 'O', 'O', '.', '.'],
+            ['.', 'O', 'O', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.']]
+    matrix_to_pic(grid)
+
+
+if __name__ == "__main__":
+    main()
