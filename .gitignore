@@ -98,3 +98,6 @@ ENV/
 *_privkey.txt
 *_pubkey.txt
 /books/CrackingCodesWithPython/Chapter24/encrypted_file.txt
+
+# AutomateTheBoringStuffWithPython settings
+capitalsquiz*.txt
