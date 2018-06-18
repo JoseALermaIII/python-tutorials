@@ -92,9 +92,7 @@ ENV/
 .idea/
 
 # CrackingCodesWithPython settings
-/books/CrackingCodesWithPython/Chapter10/frankenstein.txt
-/books/CrackingCodesWithPython/Chapter10/frankenstein.encrypted.txt
-/books/CrackingCodesWithPython/Chapter10/frankenstein.decrypted.txt
+frankenstein*.txt
 *_privkey.txt
 *_pubkey.txt
 /books/CrackingCodesWithPython/Chapter24/encrypted_file.txt
