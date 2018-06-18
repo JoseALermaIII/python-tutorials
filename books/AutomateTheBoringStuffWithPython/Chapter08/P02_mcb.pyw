@@ -4,18 +4,18 @@
 #        py.exe P02_mcb.pyw <keyword> - Loads keyword to clipboard.
 #        py.exe P02_mcb.pyw list - Loads all keywords to clipboard.
 
-import shelve, books.CrackingCodesWithPython.pyperclip, sys
+import shelve, pyperclip, sys
 
 mcbShelf = shelve.open('mcb')
 
 # Save clipboard content.
 if len(sys.argv) == 3 and sys.argv[1].lower() == 'save':
-    mcbShelf[sys.argv[2]] = books.CrackingCodesWithPython.pyperclip.paste()
+    mcbShelf[sys.argv[2]] = pyperclip.paste()
 elif len(sys.argv) == 2:
     # List keywords and load content.
     if sys.argv[1].lower() == 'list':
-        books.CrackingCodesWithPython.pyperclip.copy(str(list(mcbShelf.keys())))
+        pyperclip.copy(str(list(mcbShelf.keys())))
     elif sys.argv[1] in mcbShelf:
-        books.CrackingCodesWithPython.pyperclip.copy(mcbShelf[sys.argv[1]])
+        pyperclip.copy(mcbShelf[sys.argv[1]])
 
 mcbShelf.close()
