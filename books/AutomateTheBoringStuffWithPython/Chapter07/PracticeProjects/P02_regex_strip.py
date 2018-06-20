@@ -10,12 +10,12 @@ import re
 
 def regex_strip(text, replace=""):
     if replace == "":
-        whitespaceRegex = re.compile(r"^\s+(\w+)\s+$")  # group characters between whitespace
-        match = whitespaceRegex.search(text)
+        whitespace_regex = re.compile(r"^\s+(\w+)\s+$")  # group characters between whitespace
+        match = whitespace_regex.search(text)
         return match.group(1)
     else:
-        subRegex = re.compile(replace)  # match replacement text
-        return subRegex.sub("", text)
+        sub_regex = re.compile(replace)  # match replacement text
+        return sub_regex.sub("", text)
 
 
 message = "    something     "
