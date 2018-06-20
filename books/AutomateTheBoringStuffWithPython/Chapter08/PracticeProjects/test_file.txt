@@ -1,0 +1,2 @@
+# given regex of [A-Z]{4,9} (from madlibs)
+I LIKE RAGECAPS BUT NOT IF THEY ARE TOO LONG
