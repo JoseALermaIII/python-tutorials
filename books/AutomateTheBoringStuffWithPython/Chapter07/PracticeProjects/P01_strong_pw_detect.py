@@ -8,19 +8,19 @@
 import re
 
 
-def isStrongPW(text):
-    lengthRegex = re.compile(r"[\d\w]{8,}")  # at least 8 numbers and characters
-    upperLowerRegex = re.compile(r"[a-z|A-Z]?[A-Z]+")  # at least 1 upper and lower character
-    digitRegex = re.compile(r"[\d]+")  # at least one digit
+def is_strong_pw(text):
+    length_regex = re.compile(r"[\d\w]{8,}")  # at least 8 numbers and characters
+    upper_lower_regex = re.compile(r"[a-z|A-Z]?[A-Z]+")  # at least 1 upper and lower character
+    digit_regex = re.compile(r"[\d]+")  # at least one digit
 
-    if not lengthRegex.search(text):
+    if not length_regex.search(text):
         return False
-    if not digitRegex.search(text):
+    if not digit_regex.search(text):
         return False
-    if not upperLowerRegex.search(text):
+    if not upper_lower_regex.search(text):
         return False
     return True
 
 
 password = "AutomateTheBoringStuff1"
-print(isStrongPW(password))
+print(is_strong_pw(password))
