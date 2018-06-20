@@ -5,26 +5,26 @@
 import os, re
 
 # Get list of all .txt files
-allfiles = os.listdir("./")  # use current working directory
-textfiles = []
-for file in allfiles:
+all_files = os.listdir("./")  # use current working directory
+text_files = []
+for file in all_files:
     if file.endswith(".txt"):
-        textfiles.append(file)
+        text_files.append(file)
 
 # Get regular expression
 regex = input("Enter regular expression to search for: ")
-searchregex = re.compile(regex)
+search_regex = re.compile(regex)
 
 # Open .txt file
-for file in textfiles:
-    inputfile = open(file)
-    inputcontent = inputfile.readlines()
-    inputfile.close()
+for file in text_files:
+    input_file = open(file)
+    input_content = input_file.readlines()
+    input_file.close()
 
     # Search for regex in file
-    for line in inputcontent:
-        matchobjects = searchregex.findall(line)
-        if matchobjects is not None:
+    for line in input_content:
+        match_objects = search_regex.findall(line)
+        if match_objects is not None:
             # Print result
-            for match in matchobjects:
+            for match in match_objects:
                 print(match)
