@@ -23,20 +23,20 @@
 import re
 
 # Read input file
-inputfile = open("madlibs_input.txt")
-inputcontent = inputfile.readlines()
-inputfile.close()
+input_file = open("madlibs_input.txt")
+input_content = input_file.readlines()
+input_file.close()
 
 # Open output file
-outputfile = open('madlibs_output.txt', 'w')
+output_file = open('madlibs_output.txt', 'w')
 
 # Check for keywords and prompt for input
 keywords = ["ADJECTIVE", "ADVERB", "NOUN", "VERB"]
-keywordregex = re.compile(r"[A-Z]{4,9}")  # uppercase words 4-9 characters long
-for line in inputcontent:
+keyword_regex = re.compile(r"[A-Z]{4,9}")  # uppercase words 4-9 characters long
+for line in input_content:
     match = -1
     while match is not None:
-        match = keywordregex.search(line)
+        match = keyword_regex.search(line)
         # Replace keywords and write to new file
         if match is not None and match.group() in keywords:
             if match.group()[0].lower() == 'a':
@@ -44,6 +44,6 @@ for line in inputcontent:
             else:
                 replace = input("Enter a %s: " % match.group().lower())
             line = line.replace(match.group(), replace, 1)
-    outputfile.write(line)
+    output_file.write(line)
     print(line)
-outputfile.close()
+output_file.close()
