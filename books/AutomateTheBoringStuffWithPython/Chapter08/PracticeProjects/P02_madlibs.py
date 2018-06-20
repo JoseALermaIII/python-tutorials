@@ -19,3 +19,29 @@
 # The silly panda walked to the chandelier and then screamed. A nearby pickup
 # truck was unaffected by these events.
 # The results should be printed to the screen and saved to a new text file.
+import re
+
+# Read input file
+inputfile = open("madlibs_input.txt")
+inputcontent = inputfile.readlines()
+inputfile.close()
+
+# Open output file
+outputfile = open('madlibs_output.txt', 'w')
+
+# Check for keywords and prompt for input
+keywords = ["ADJECTIVE", "ADVERB", "NOUN", "VERB"]
+keywordregex = re.compile(r"[A-Z]{4,9}")  # uppercase words 4-9 characters long
+for line in inputcontent:
+    match = -1
+    while match is not None:
+        match = keywordregex.search(line)
+        # Replace keywords and write to new file
+        if match is not None and match.group() in keywords:
+            if match.group()[0].lower() == 'a':
+                replace = input("Enter an %s: " % match.group().lower())
+            else:
+                replace = input("Enter a %s: " % match.group().lower())
+            line = line.replace(match.group(), replace, 1)
+    outputfile.write(line)
+outputfile.close()
