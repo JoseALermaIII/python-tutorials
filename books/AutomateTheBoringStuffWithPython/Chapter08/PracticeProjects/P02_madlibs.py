@@ -18,6 +18,7 @@
 # The following text file would then be created:
 # The silly panda walked to the chandelier and then screamed. A nearby pickup
 # truck was unaffected by these events.
+#
 # The results should be printed to the screen and saved to a new text file.
 import re
 
@@ -44,4 +45,5 @@ for line in inputcontent:
                 replace = input("Enter a %s: " % match.group().lower())
             line = line.replace(match.group(), replace, 1)
     outputfile.write(line)
+    print(line)
 outputfile.close()
