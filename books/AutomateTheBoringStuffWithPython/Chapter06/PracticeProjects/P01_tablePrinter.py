@@ -16,33 +16,33 @@
 #   banana David goose
 
 
-def printTable(matrix):
+def print_table(matrix):
     # Calculate length of longest word in each row
-    colWidths = []
+    col_widths = []
     for row in matrix:
-        maxWidth = 0
+        max_width = 0
         for item in row:
-            if len(item) > maxWidth:
-                maxWidth = len(item)
-        colWidths.append(maxWidth)
+            if len(item) > max_width:
+                max_width = len(item)
+        col_widths.append(max_width)
 
     # Sort lengths of words in each row and find longest word in matrix
-    colWidths = sorted(colWidths)
-    maxWidth = colWidths[-1]
+    col_widths = sorted(col_widths)
+    max_width = col_widths[-1]
 
     # Print each column with right-justification of longest word in matrix
     for index in range(len(matrix[0])):
         output = ""
         for row in matrix:
-            output += row[index].rjust(maxWidth)
+            output += row[index].rjust(max_width)
         print(output)
 
 
 def main():
-    tableData = [['apples', 'oranges', 'cherries', 'banana'],
+    table_data = [['apples', 'oranges', 'cherries', 'banana'],
                  ['Alice', 'Bob', 'Carol', 'David'],
                  ['dogs', 'cats', 'moose', 'goose']]
-    printTable(tableData)
+    print_table(table_data)
 
 
 if __name__ == "__main__":
