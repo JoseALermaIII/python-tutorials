@@ -18,3 +18,8 @@ print('Compressed file is %sx smaller!' % (round(spamInfo.file_size / spamInfo.c
 #exampleZip.extractall()  # extracts all files to current working directory
 exampleZip.extractall('./testdir')  # auto-creates folder
 exampleZip.close()
+
+# Creating and Adding to ZIP Files
+newZip = zipfile.ZipFile('new.zip', 'w')
+newZip.write('./delicious/spam.txt', compress_type=zipfile.ZIP_DEFLATED)
+newZip.close()
