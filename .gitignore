@@ -100,3 +100,4 @@ frankenstein*.txt
 # AutomateTheBoringStuffWithPython settings
 capitalsquiz*.txt
 mcb
+/books/AutomateTheBoringStuffWithPython/Chapter09/testdir/
