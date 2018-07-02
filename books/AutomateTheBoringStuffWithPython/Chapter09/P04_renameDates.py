@@ -18,7 +18,7 @@ for amerFilename in os.listdir('.'):
     mo = datePattern.search(amerFilename)
 
     # Skip files without a date.
-    if mo == None:
+    if mo is None:
         continue
 
     # Get the different parts of the filename.
