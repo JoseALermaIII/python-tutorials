@@ -20,6 +20,6 @@ exampleZip.extractall('./testdir')  # auto-creates folder
 exampleZip.close()
 
 # Creating and Adding to ZIP Files
-newZip = zipfile.ZipFile('new.zip', 'w')
+newZip = zipfile.ZipFile('new.zip', 'w')  # use 'a' to append
 newZip.write('./delicious/spam.txt', compress_type=zipfile.ZIP_DEFLATED)
 newZip.close()
