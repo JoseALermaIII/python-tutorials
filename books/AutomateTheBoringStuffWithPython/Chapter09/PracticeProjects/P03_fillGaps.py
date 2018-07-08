@@ -52,21 +52,7 @@ def get_numbers(files):
     return numlist
 
 
-def fill_gaps(folder):
-    files = get_filenames(folder)
-
-    # Get list of numbers used in file names
-    numlist = get_numbers(files)
-
-    # Check if numbers are in sequence
-    if is_sequence(numlist):
-        print("There are no gaps to fill.")
-        return None
-
-    # Find gap in sequence
-    gap = get_gap(numlist)
-
-    # Rename files to close gap
+def rename_files(folder, files, gap):
     for file in files:
         prefix, number, suffix = file[0], file[1], file[2]
         if gap <= int(number):
@@ -84,6 +70,27 @@ def fill_gaps(folder):
             # Rename file
             print("Renaming '%s' to '%s'..." % (oldfilename, newfilename))  # DEBUG
             #os.rename(oldfilepath, newfilepath)  # Uncomment after testing
+    return None
+
+
+def fill_gaps(folder):
+    files = get_filenames(folder)
+
+    # Get list of numbers used in file names
+    numlist = get_numbers(files)
+
+    # Check if numbers are in sequence
+    if is_sequence(numlist):
+        print("There are no gaps to fill.")
+        return None
+
+    # Find gap in sequence
+    gap = get_gap(numlist)
+
+    # Rename files to close gap
+    rename_files(folder, files, gap)
+
+    return None
 
 
 def main():
