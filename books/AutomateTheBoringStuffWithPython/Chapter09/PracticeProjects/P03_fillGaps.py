@@ -45,13 +45,18 @@ def get_filenames(folder):
     return files
 
 
+def get_numbers(files):
+    numlist = []
+    for file in files:
+        numlist.append(int(file[1]))
+    return numlist
+
+
 def fill_gaps(folder):
     files = get_filenames(folder)
 
     # Get list of numbers used in file names
-    numlist = []
-    for file in files:
-        numlist.append(int(file[1]))
+    numlist = get_numbers(files)
 
     # Check if numbers are in sequence
     if is_sequence(numlist):
