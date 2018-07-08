@@ -17,31 +17,16 @@ def is_sequence(numberlist):
     return len(numberlist) == (numberlist[-1] - numberlist[0] + 1)
 
 
-def fill_gaps(folder):
-    # Get list of numbers used in file names
-    numlist = []
-    for foldername, subfolders, filenames in os.walk(folder):
-        filenames.sort()
-        for filename in filenames:
-            match_object = seqRegex.search(filename)
+def find_missing_seq(numberlist):
+    seqlist = list(range(numberlist[0], numberlist[-1] + 1))
+    for element in seqlist:
+        if element not in numberlist:
+            return element
+    return None
 
-            # Skip files without numbering
-            if match_object is None:
-                continue
 
-            # Get numbers
-            number = match_object.group(2)
-            numlist.append(int(number))
-
-    # Check if numbers are in sequence
-    if is_sequence(numlist):
-        print("There are no gaps to fill.")
-        return None
-
-    # TODO: Determine missing number in sequence
-    sequence = list(range(numlist[0], numlist[-1] + 1))
-
-    # TODO: Rename folders
+def get_filenames(folder):
+    files = []
     for foldername, subfolders, filenames in os.walk(folder):
         filenames.sort()
         for filename in filenames:
@@ -56,6 +41,28 @@ def fill_gaps(folder):
             number = match_object.group(2)
             suffix = match_object.group(3)
 
+            files.append([prefix, number, suffix])
+    return files
+
+
+def fill_gaps(folder):
+    files = get_filenames(folder)
+
+    # Get list of numbers used in file names
+    numlist = []
+    for file in files:
+        numlist.append(int(file[1]))
+
+    # Check if numbers are in sequence
+    if is_sequence(numlist):
+        print("There are no gaps to fill.")
+        return None
+
+    # Determine missing number in sequence
+    missingnum = find_missing_seq(numlist)
+
+    # TODO: Rename folders
+    
 
 def main():
     fill_gaps("./testdir")
