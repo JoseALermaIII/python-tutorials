@@ -17,7 +17,7 @@ def is_sequence(numberlist):
     return len(numberlist) == (numberlist[-1] - numberlist[0] + 1)
 
 
-def get_missing_seq(numberlist):
+def get_gap(numberlist):
     seqlist = list(range(numberlist[0], numberlist[-1] + 1))
     for element in seqlist:
         if element not in numberlist:
@@ -63,18 +63,18 @@ def fill_gaps(folder):
         print("There are no gaps to fill.")
         return None
 
-    # Determine missing number in sequence
-    missingnum = get_missing_seq(numlist)
+    # Find gap in sequence
+    gap = get_gap(numlist)
 
     # Rename files to close gap
     for file in files:
         prefix, number, suffix = file[0], file[1], file[2]
-        if missingnum < int(number):
+        if gap <= int(number):
             # Get file names
             numlen = len(number)
             oldfilename = ''.join(file)
-            newfilename = prefix + str(missingnum).zfill(numlen) + suffix
-            missingnum += 1
+            newfilename = prefix + str(gap).zfill(numlen) + suffix
+            gap += 1
 
             # Get absolute paths
             workingdir = os.path.abspath(folder)
