@@ -61,8 +61,25 @@ def fill_gaps(folder):
     # Determine missing number in sequence
     missingnum = find_missing_seq(numlist)
 
-    # TODO: Rename folders
-    
+    # Rename files to close gap
+    for file in files:
+        prefix, number, suffix = file[0], file[1], file[2]
+        if missingnum < int(number):
+            # Get file names
+            numlen = len(number)
+            oldfilename = ''.join(file)
+            newfilename = prefix + str(missingnum).zfill(numlen) + suffix
+            missingnum += 1
+
+            # Get absolute paths
+            workingdir = os.path.abspath(folder)
+            oldfilepath = os.path.join(workingdir, oldfilename)
+            newfilepath = os.path.join(workingdir, newfilename)
+
+            # Rename file
+            print("Renaming '%s' to '%s'..." % (oldfilename, newfilename))  # DEBUG
+            #os.rename(oldfilepath, newfilepath)  # Uncomment after testing
+
 
 def main():
     fill_gaps("./testdir")
