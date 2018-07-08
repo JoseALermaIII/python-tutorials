@@ -17,7 +17,7 @@ def is_sequence(numberlist):
     return len(numberlist) == (numberlist[-1] - numberlist[0] + 1)
 
 
-def find_missing_seq(numberlist):
+def get_missing_seq(numberlist):
     seqlist = list(range(numberlist[0], numberlist[-1] + 1))
     for element in seqlist:
         if element not in numberlist:
@@ -59,7 +59,7 @@ def fill_gaps(folder):
         return None
 
     # Determine missing number in sequence
-    missingnum = find_missing_seq(numlist)
+    missingnum = get_missing_seq(numlist)
 
     # Rename files to close gap
     for file in files:
