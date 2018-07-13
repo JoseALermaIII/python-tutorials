@@ -70,7 +70,7 @@ def fill_gaps(folder):
     for file in files:
         prefix, number, suffix = file[0], file[1], file[2]
         if gap <= int(number):
-            # Get file names
+            # Make file names
             numlen = len(number)
             oldfilename = ''.join(file)
             newfilename = prefix + str(gap).zfill(numlen) + suffix
