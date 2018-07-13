@@ -30,7 +30,7 @@ def make_gaps(folder, gap):
     for file in files:
         prefix, number, suffix = file[0], file[1], file[2]
         if gap <= int(number):
-            # Get file names
+            # Make file names
             numlen = len(number)
             oldfilename = ''.join(file)
             newfilename = prefix + str(int(number) + 1).zfill(numlen) + suffix
