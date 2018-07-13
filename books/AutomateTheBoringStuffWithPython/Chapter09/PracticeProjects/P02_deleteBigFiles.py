@@ -19,5 +19,5 @@ FILESIZE = 100 * (1024 ** 2)  # 1024 ** 2 == 1 MB
 for foldername, subfolders, filenames in os.walk(FOLDER):
     for filename in filenames:
         if os.path.getsize(filename) > FILESIZE:
-            #os.unlink(filename)
             print(filename)  # DEBUG
+            #os.unlink(filename)  # Uncomment after testing
