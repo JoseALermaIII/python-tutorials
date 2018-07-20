@@ -1,7 +1,9 @@
 # This program calculates factorial and logs debug messages
 
 import logging
-logging.basicConfig(level=logging.DEBUG, format=" %(asctime)s - %(levelname)s - %(message)s")
+#logging.basicConfig(level=logging.DEBUG, format=" %(asctime)s - %(levelname)s - %(message)s")  # log to terminal
+logging.basicConfig(filename="factorialLog.txt", level=logging.DEBUG,
+                    format=" %(asctime)s - %(levelname)s - %(message)s")  # optional log to file
 logging.disable(logging.CRITICAL)  # Stop logging, comment out to debug
 logging.debug("Start of program")
 
