@@ -13,6 +13,7 @@ exampleSoup = bs4.BeautifulSoup(exampleFile, "lxml")
 print(type(exampleSoup))
 
 # Finding an Element with the select() Method
+exampleFile = open("example.html")
 exampleSoup = bs4.BeautifulSoup(exampleFile.read(), "lxml")
 elems = exampleSoup.select("#author")
 print(type(elems))
