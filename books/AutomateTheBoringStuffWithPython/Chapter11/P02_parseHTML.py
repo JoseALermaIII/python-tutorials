@@ -11,3 +11,13 @@ print(type(noStarchSoup))
 exampleFile = open("example.html")
 exampleSoup = bs4.BeautifulSoup(exampleFile, "lxml")
 print(type(exampleSoup))
+
+# Finding an Element with the select() Method
+exampleSoup = bs4.BeautifulSoup(exampleFile.read(), "lxml")
+elems = exampleSoup.select("#author")
+print(type(elems))
+print(len(elems))
+print(type(elems[0]))
+print(elems[0].getText())
+print(str(elems[0]))
+print(elems[0].attrs)
