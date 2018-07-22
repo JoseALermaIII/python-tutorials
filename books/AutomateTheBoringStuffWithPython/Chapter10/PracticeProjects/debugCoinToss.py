@@ -16,7 +16,7 @@ if toss == guess:
     print('You got it!')
 else:
     print('Nope! Guess again!')
-    guess = input()
+    guess = input().lower()
     if toss == guess:
         print('You got it!')
     else:
