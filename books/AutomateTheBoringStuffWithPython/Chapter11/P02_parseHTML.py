@@ -30,3 +30,11 @@ print(str(pElems[1]))
 print(pElems[1].getText())
 print(str(pElems[2]))
 print(pElems[2].getText())
+
+# Getting Data from an Element's Attributes
+soup = bs4.BeautifulSoup(open("example.html"), "lxml")
+spanElem = soup.select('span')[0]
+print(str(spanElem))
+print(spanElem.get("id"))
+print(spanElem.get("some_nonexistent_addr") is None)
+print(spanElem.attrs)
