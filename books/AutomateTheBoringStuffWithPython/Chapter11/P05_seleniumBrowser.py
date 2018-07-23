@@ -11,3 +11,11 @@ from selenium import webdriver
 # Starting a Selenium-Controlled Browser
 browser = webdriver.Firefox()
 print(type(browser))
+browser.get("http://inventwithpython.com")
+
+# Finding Elements on the Page
+try:
+    elem = browser.find_element_by_class_name("bookcover")
+    print("Found <%s> element with that class name!" % (elem.tag_name))
+except:
+    print("Was not able to find an element with that name.")
