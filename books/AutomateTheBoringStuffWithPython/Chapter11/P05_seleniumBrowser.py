@@ -15,7 +15,7 @@ browser.get("http://inventwithpython.com")
 
 # Finding Elements on the Page
 try:
-    elem = browser.find_element_by_class_name("bookcover")
+    elem = browser.find_element_by_class_name("card-img-top")
     print("Found <%s> element with that class name!" % (elem.tag_name))
 except:
     print("Was not able to find an element with that name.")
