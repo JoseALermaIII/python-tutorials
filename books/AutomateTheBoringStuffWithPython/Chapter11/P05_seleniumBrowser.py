@@ -21,7 +21,7 @@ except:
     print("Was not able to find an element with that name.")
 
 # Clicking the Page
-linkElem = browser.find_element_by_link_text("Read It Online")
+linkElem = browser.find_element_by_link_text("Read Online for Free")
 print(type(linkElem))
-linkElem.click()  # follows the "Read It Online" link
+linkElem.click()  # follows the "Read Online for Free" link
 
