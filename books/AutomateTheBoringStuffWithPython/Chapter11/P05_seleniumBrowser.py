@@ -42,4 +42,4 @@ from selenium.webdriver.common.keys import Keys  # Don't do this - imports shoul
 browser.get("http://nostarch.com")
 htmlElem = browser.find_element_by_tag_name("html")
 htmlElem.send_keys(Keys.END)  # scrolls to bottom
-htmlElem.send_Keys(Keys.HOME)  # scrolls to top
+htmlElem.send_keys(Keys.HOME)  # scrolls to top
