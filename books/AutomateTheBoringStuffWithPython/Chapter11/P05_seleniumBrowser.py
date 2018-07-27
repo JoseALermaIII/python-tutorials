@@ -17,8 +17,8 @@ browser.get("http://inventwithpython.com")
 try:
     elem = browser.find_element_by_class_name("card-img-top")
     print("Found <%s> element with that class name!" % elem.tag_name)
-except:
-    print("Was not able to find an element with that name.")
+except common.exceptions.NoSuchElementException as err:
+    print("Unable to locate element: %s" % err)
 
 # Clicking the Page
 linkElem = browser.find_element_by_link_text("Read Online for Free")
@@ -43,3 +43,5 @@ browser.get("http://nostarch.com")
 htmlElem = browser.find_element_by_tag_name("html")
 htmlElem.send_keys(Keys.END)  # scrolls to bottom
 htmlElem.send_keys(Keys.HOME)  # scrolls to top
+
+# Clicking Browser Buttons
