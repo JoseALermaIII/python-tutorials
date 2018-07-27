@@ -34,3 +34,9 @@ passwordElem = browser.find_element_by_id("login-passwd")
 passwordElem.send_keys("12345")
 passwordElem.submit()
 
+# Sending Special Keys
+from selenium.webdriver.common.keys import Keys  # Don't do this - imports should be at the top of the file
+browser.get("http://nostarch.com")
+htmlElem = browser.find_element_by_tag_name("html")
+htmlElem.send_keys(Keys.END)  # scrolls to bottom
+htmlElem.send_Keys(Keys.HOME)  # scrolls to top
