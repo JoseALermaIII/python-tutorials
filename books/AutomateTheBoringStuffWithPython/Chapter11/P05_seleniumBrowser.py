@@ -45,3 +45,7 @@ htmlElem.send_keys(Keys.END)  # scrolls to bottom
 htmlElem.send_keys(Keys.HOME)  # scrolls to top
 
 # Clicking Browser Buttons
+browser.back()  # Clicks the Back button
+browser.forward()  # Clicks the Forward button
+browser.refresh()  # Click the Refresh/Reload button
+browser.quit()  # Clicks on the Close Window button
