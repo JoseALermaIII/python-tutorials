@@ -6,7 +6,7 @@
 #   - place in /usr/local/bin
 #   - more info https://github.com/SeleniumHQ/selenium/blob/master/py/docs/source/index.rst
 
-from selenium import webdriver
+from selenium import webdriver, common
 
 # Starting a Selenium-Controlled Browser
 browser = webdriver.Firefox()
@@ -30,9 +30,12 @@ browser.get("https://mail.yahoo.com")
 emailElem = browser.find_element_by_id("login-username")
 emailElem.send_keys("not_my_real_email")
 emailElem.submit()
-passwordElem = browser.find_element_by_id("login-passwd")
-passwordElem.send_keys("12345")
-passwordElem.submit()
+try:
+    passwordElem = browser.find_element_by_id("login-passwd")
+    passwordElem.send_keys("12345")
+    passwordElem.submit()
+except common.exceptions.NoSuchElementException as err:
+    print("Unable to locate element: %s" % err)
 
 # Sending Special Keys
 from selenium.webdriver.common.keys import Keys  # Don't do this - imports should be at the top of the file
