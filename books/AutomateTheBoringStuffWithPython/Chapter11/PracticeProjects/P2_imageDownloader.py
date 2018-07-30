@@ -13,5 +13,11 @@ browser = webdriver.Firefox()
 browser.get(url)
 
 # Search for category of photos
+try:
+    searchElem = browser.find_element_by_class_name("Searchbar-textInput")
+    searchElem.send_keys("Cats")
+    searchElem.submit()
+except common.exceptions.NoSuchElementException as err:
+    print("Unable to locate element: %s" % err)
 
 # Download all images
