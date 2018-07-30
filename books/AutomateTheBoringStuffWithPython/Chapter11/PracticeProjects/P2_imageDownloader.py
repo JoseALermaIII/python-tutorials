@@ -21,3 +21,10 @@ except common.exceptions.NoSuchElementException as err:
     print("Unable to locate element: %s" % err)
 
 # Download all images
+try:
+    imageElems = browser.find_elements_by_class_name("image-list-link")  # FIXME: list not populating
+    for element in imageElems:
+        downloadUrl = element.__getattribute__("href") + "#"
+        # TODO: Save image to ./images
+except common.exceptions.NoSuchElementException as err:
+    print("Unable to locate element: %s" % err)
