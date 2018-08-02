@@ -10,6 +10,7 @@ url = "https://imgur.com/search?q="     # starting url
 os.makedirs("images", exist_ok=True)    # store images in ./images
 
 browser = webdriver.Firefox()
+browser.implicitly_wait(10)  # seconds
 
 # Search for category of photos
 browser.get(url + "Cats")
@@ -17,9 +18,9 @@ browser.get(url + "Cats")
 # Download all images
 try:
     imageElems = browser.find_elements_by_css_selector("a.image-list-link")
-    print(imageElems)
     for element in imageElems:
-        downloadUrl = element.__getattribute__("href") + "#"
+        downloadUrl = element.get_attribute("href") + "#"
+        print(downloadUrl)
         # TODO: Save image to ./images
 except common.exceptions.NoSuchElementException as err:
     print("Unable to locate element: %s" % err)
