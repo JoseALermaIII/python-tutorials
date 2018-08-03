@@ -12,6 +12,25 @@ from selenium.webdriver.support import expected_conditions as EC
 
 url = "https://gabrielecirulli.github.io/2048/"
 
+
+class ElementDoesNotHaveText(object):
+    """
+    An expectation for checking that an element does not have specified text.
+    locator - used to find the element
+    returns the WebElement once it doesn't have the specified text
+    """
+    def __init__(self, locator, text):
+        self.locator = locator
+        self.text = text
+
+    def __call__(self, browser):
+        element = browser.find_element(*self.locator)  # Finding the referenced element
+        if self.text not in element.text:
+            return element
+        else:
+            return False
+
+
 # Start Browser and go to 2048 game
 browser = webdriver.Firefox()
 browser.implicitly_wait(3)  # seconds
@@ -27,8 +46,7 @@ try:
         htmlElem.send_keys(Keys.ARROW_LEFT)
     # Get current score and best score
     wait = WebDriverWait(browser, 10)
-    scoreElem = wait.until(
-        EC.presence_of_element_located((By.CLASS_NAME, "score-container")))
+    scoreElem = wait.until(ElementDoesNotHaveText((By.CLASS_NAME, "score-container"), "+"))
     score = scoreElem.text
     bestElem = browser.find_element_by_class_name("best-container")
     best = bestElem.text
