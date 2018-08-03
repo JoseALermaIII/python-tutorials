@@ -6,6 +6,9 @@
 
 from selenium import webdriver, common
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 url = "https://gabrielecirulli.github.io/2048/"
 
@@ -23,13 +26,14 @@ try:
         htmlElem.send_keys(Keys.ARROW_DOWN)
         htmlElem.send_keys(Keys.ARROW_LEFT)
     # Get current score and best score
-    scoreElem = browser.find_element_by_class_name("score-container")
+    scoreElem = WebDriverWait(browser, 10).until(
+        EC.presence_of_element_located((By.CLASS_NAME, "score-container")))
     score = scoreElem.text
     bestElem = browser.find_element_by_class_name("best-container")
     best = bestElem.text
 
     # Display current score and best score
-    print("Current score: %s" % score)  # FIXME: Displays last point addition. e.g.: +4
+    print("Current score: %s" % score)
     print("Best score: %s" % best)
 
 except common.exceptions.NoSuchElementException as err:
