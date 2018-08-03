@@ -26,7 +26,8 @@ try:
         htmlElem.send_keys(Keys.ARROW_DOWN)
         htmlElem.send_keys(Keys.ARROW_LEFT)
     # Get current score and best score
-    scoreElem = WebDriverWait(browser, 10).until(
+    wait = WebDriverWait(browser, 10)
+    scoreElem = wait.until(
         EC.presence_of_element_located((By.CLASS_NAME, "score-container")))
     score = scoreElem.text
     bestElem = browser.find_element_by_class_name("best-container")
