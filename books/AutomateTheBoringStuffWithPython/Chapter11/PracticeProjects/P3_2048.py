@@ -36,4 +36,4 @@ except common.exceptions.NoSuchElementException as err:
     print("Unable to locate element: %s" % err)
 
 # Close browser
-#browser.close()
+browser.quit()
