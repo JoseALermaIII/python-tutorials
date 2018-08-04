@@ -44,7 +44,7 @@ try:
         htmlElem.send_keys(Keys.ARROW_DOWN)
         htmlElem.send_keys(Keys.ARROW_LEFT)
     # Get current score and best score
-    wait = WebDriverWait(browser, 10)
+    wait = WebDriverWait(browser, 10)  # wait up to 10 seconds
     scoreElem = wait.until(ElementDoesNotHaveText((By.CLASS_NAME, "score-container"), "+"))
     score = scoreElem.text
     bestElem = browser.find_element_by_class_name("best-container")
