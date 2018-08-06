@@ -33,3 +33,14 @@ for i in range(1, 8, 2):
 sheet = wb["Sheet1"]
 print(sheet.max_row)
 print(sheet.max_column)
+
+# Converting Between Column Letters and Numbers
+from openpyxl.cell import get_column_letter, column_index_from_string  # Imports should be at the top of the file
+print(get_column_letter(1))
+print(get_column_letter(2))
+print(get_column_letter(27))
+print(get_column_letter(900))
+
+print(get_column_letter(sheet.get_highest_column()))
+print(column_index_from_string('A'))
+print(column_index_from_string("AA"))
