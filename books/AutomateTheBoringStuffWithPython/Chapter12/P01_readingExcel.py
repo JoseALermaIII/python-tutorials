@@ -41,6 +41,6 @@ print(get_column_letter(2))
 print(get_column_letter(27))
 print(get_column_letter(900))
 
-print(get_column_letter(sheet.get_highest_column()))
+print(get_column_letter(sheet.max_column))
 print(column_index_from_string('A'))
 print(column_index_from_string("AA"))
