@@ -35,7 +35,7 @@ print(sheet.max_row)
 print(sheet.max_column)
 
 # Converting Between Column Letters and Numbers
-from openpyxl.cell import get_column_letter, column_index_from_string  # Imports should be at the top of the file
+from openpyxl.utils import get_column_letter, column_index_from_string  # Imports should be at the top of the file
 print(get_column_letter(1))
 print(get_column_letter(2))
 print(get_column_letter(27))
