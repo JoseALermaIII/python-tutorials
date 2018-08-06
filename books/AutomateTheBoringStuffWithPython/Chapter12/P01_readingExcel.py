@@ -31,5 +31,5 @@ for i in range(1, 8, 2):
     print(i, anotherSheet.cell(row=i, column=2).value)
 
 sheet = wb["Sheet1"]
-print(sheet.get_highest_row())
-print(sheet.get_highest_column())
+print(sheet.max_row)
+print(sheet.max_column)
