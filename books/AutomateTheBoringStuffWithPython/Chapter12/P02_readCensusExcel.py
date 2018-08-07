@@ -14,7 +14,7 @@ countyData = {}
 
 # Fill in countyData with each county's population and tracts.
 print("Reading rows...")
-for row in range(2, sheet.get_highest_row() + 1):
+for row in range(2, sheet.max_row + 1):
     # Each row in the spreadsheet has data for one census tract.
     state = sheet['B' + str(row)].value
     county = sheet['C' + str(row)].value
