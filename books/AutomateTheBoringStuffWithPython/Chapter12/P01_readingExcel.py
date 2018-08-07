@@ -44,3 +44,14 @@ print(get_column_letter(900))
 print(get_column_letter(sheet.max_column))
 print(column_index_from_string('A'))
 print(column_index_from_string("AA"))
+
+# Getting Rows and Columns from the Sheets
+print(tuple(sheet["A1":"C3"]))
+for rowOfCellObjects in sheet["A1":"C3"]:
+    for cellObj in rowOfCellObjects:
+        print(cellObj.coordinate, cellObj.value)
+    print("--- END OF ROW ---")
+
+print(sheet.columns[1])
+for cellObj in sheet.columns[1]:
+    print(cellObj.value)
