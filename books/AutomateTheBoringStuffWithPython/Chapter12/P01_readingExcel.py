@@ -52,6 +52,12 @@ for rowOfCellObjects in sheet["A1":"C3"]:
         print(cellObj.coordinate, cellObj.value)
     print("--- END OF ROW ---")
 
-print(sheet.columns[1])
-for cellObj in sheet.columns[1]:
+print(sheet.columns)
+for columnOfCellObjects in sheet.columns:
+    for cellObj in columnOfCellObjects:
+        print(cellObj.coordinate, cellObj.value)
+    print("--- END OF COLUMN ---")
+
+print(list(sheet.columns)[1])
+for cellObj in list(sheet.columns)[1]:
     print(cellObj.value)
