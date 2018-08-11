@@ -4,7 +4,7 @@ import openpyxl
 from openpyxl.styles import Font, NamedStyle
 
 wb = openpyxl.Workbook()
-sheet = wb.get_sheet_by_name("Sheet")
+sheet = wb["Sheet"]
 
 italic24Font = NamedStyle(name="italic24Font")
 italic24Font.font = Font(size=24, italic=True)
