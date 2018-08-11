@@ -28,3 +28,8 @@ print(wb.sheetnames)
 wb.remove(wb["Middle Sheet"])
 wb.remove(wb["Sheet1"])
 print(wb.sheetnames)
+
+# Writing Values to Cells
+sheet = wb.get_sheet_by_name("Sheet")
+sheet["A1"] = "Hello world!"
+print(sheet["A1"].value)
