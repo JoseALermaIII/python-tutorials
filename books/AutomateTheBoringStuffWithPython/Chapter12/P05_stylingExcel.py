@@ -21,12 +21,12 @@ sheet = wb.get_sheet_by_name("Sheet")
 
 fontObj1 = Font(name="Times New Roman", bold=True)
 styleObj1 = NamedStyle(font=fontObj1)
-sheet["A1"].style/styleObj
+sheet["A1"].style/styleObj1
 sheet["A1"] = "Bold Times New Roman"
 
 fontObj2 = Font(size=24, italic=True)
 styleObj2 = NamedStyle(font=fontObj2)
-sheet["B3"].style/styleObj
+sheet["B3"].style/styleObj2
 sheet["B3"] = "24 pt Italic"
 
 wb.save("styles.xlsx")
