@@ -50,3 +50,31 @@ print(sheet["A3"].value)
 wbDataOnly = openpyxl.load_workbook("writeFormula.xlsx", data_only=True)
 sheet = wbDataOnly.active
 print(sheet["A3"].value)  # Not working with LibreOffice 5.1.6.2
+
+# Adjusting Rows and Columns
+wb = openpyxl.Workbook()
+sheet = wb.get_active_sheet()
+
+sheet["A1"] = "Tall row"
+sheet["B2"] = "Wide column"
+sheet.row_dimensions[1].height = 70
+sheet.column_dimensions['B'].width = 20
+
+wb.save("dimensions.xlsx")
+
+wb = openpyxl.Workbook()
+sheet = wb.get_active_sheet()
+
+sheet.merge_cells("A1:D3")
+sheet["A1"] = "Twelve cells merged together."
+sheet.merge_cells("C5:D5")
+sheet["C5"] = "Two merged cells."
+
+wb.save("merged.xlsx")
+
+wb = openpyxl.load_workbook("merged.xlsx")
+sheet = wb.get_active_sheet()
+
+sheet.unmerge_cells("A1:D3")
+sheet.unmerge_cells("C5:D5")
+#wb.save("merged.xlsx")  # uncomment to see changes
