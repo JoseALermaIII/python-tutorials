@@ -35,7 +35,7 @@ wb.save("styles.xlsx")
 
 # Formulas
 wb = openpyxl.Workbook()
-sheet = wb.get_active_sheet()
+sheet = wb.active
 
 sheet["A1"] = 200
 sheet["A2"] = 300
@@ -44,9 +44,9 @@ sheet["A3"] = "=SUM(A1:A2)"
 wb.save("writeFormula.xlsx")
 
 wbFormulas = openpyxl.load_workbook("writeFormula.xlsx")
-sheet = wbFormulas.get_active_sheet()
+sheet = wbFormulas.active
 print(sheet["A3"].value)
 
 wbDataOnly = openpyxl.load_workbook("writeFormula.xlsx", data_only=True)
-sheet = wbDataOnly.get_active_sheet()
+sheet = wbDataOnly.active
 print(sheet["A3"].value)  # Not working with LibreOffice 5.1.6.2
