@@ -78,3 +78,8 @@ sheet = wb.active
 sheet.unmerge_cells("A1:D3")
 sheet.unmerge_cells("C5:D5")
 #wb.save("merged.xlsx")  # uncomment to see changes
+
+wb = openpyxl.load_workbook("produceSales.xlsx")
+sheet = wb.get_active_sheet()
+sheet.freeze_panes = "A2"
+wb.save("freezeExample.xlsx")
