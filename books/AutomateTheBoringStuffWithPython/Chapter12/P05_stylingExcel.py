@@ -70,6 +70,6 @@ sheet.unmerge_cells("C5:D5")
 #wb.save("merged.xlsx")  # uncomment to see changes
 
 wb = openpyxl.load_workbook("produceSales.xlsx")
-sheet = wb.get_active_sheet()
+sheet = wb.active
 sheet.freeze_panes = "A2"
 wb.save("freezeExample.xlsx")
