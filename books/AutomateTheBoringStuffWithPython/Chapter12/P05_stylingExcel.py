@@ -53,7 +53,7 @@ print(sheet["A3"].value)  # Not working with LibreOffice 5.1.6.2
 
 # Adjusting Rows and Columns
 wb = openpyxl.Workbook()
-sheet = wb.get_active_sheet()
+sheet = wb.active
 
 sheet["A1"] = "Tall row"
 sheet["B2"] = "Wide column"
@@ -63,7 +63,7 @@ sheet.column_dimensions['B'].width = 20
 wb.save("dimensions.xlsx")
 
 wb = openpyxl.Workbook()
-sheet = wb.get_active_sheet()
+sheet = wb.active
 
 sheet.merge_cells("A1:D3")
 sheet["A1"] = "Twelve cells merged together."
@@ -73,7 +73,7 @@ sheet["C5"] = "Two merged cells."
 wb.save("merged.xlsx")
 
 wb = openpyxl.load_workbook("merged.xlsx")
-sheet = wb.get_active_sheet()
+sheet = wb.active
 
 sheet.unmerge_cells("A1:D3")
 sheet.unmerge_cells("C5:D5")
