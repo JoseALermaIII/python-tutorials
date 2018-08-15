@@ -88,7 +88,7 @@ chartObj = openpyxl.charts.BarChart()
 chartObj.append(seriesObj)
 chartObj.drawing.top = 50    # set the position
 chartObj.drawing.left = 100
-chartObj.drawing.width = 300 # set the size
+chartObj.drawing.width = 300  # set the size
 chartObj.drawing.height = 200
 
 sheet.add_chart(chartObj)
