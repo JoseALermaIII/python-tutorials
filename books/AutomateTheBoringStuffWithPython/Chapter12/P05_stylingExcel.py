@@ -44,7 +44,7 @@ print(sheet["A3"].value)
 
 wbDataOnly = openpyxl.load_workbook("writeFormula.xlsx", data_only=True)
 sheet = wbDataOnly.active
-print(sheet["A3"].value)  # Not working with LibreOffice 5.1.6.2
+print(sheet["A3"].value)  # Not working with LibreOffice 6.0.3.2
 
 # Adjusting Rows and Columns
 wb = openpyxl.Workbook()
