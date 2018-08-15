@@ -76,7 +76,7 @@ wb.save("freezeExample.xlsx")
 
 # Charts
 wb = openpyxl.Workbook()
-sheet = wb.get_active_sheet()
+sheet = wb.active
 for i in range(1, 11):    # create some data in column A
     sheet['A' + str(i)] = i
 
