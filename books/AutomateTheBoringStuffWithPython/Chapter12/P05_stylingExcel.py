@@ -82,13 +82,13 @@ for i in range(1, 11):    # create some data in column A
 
 refObj = openpyxl.chart.Reference(sheet, min_row=1, min_col=1, max_row=10, max_col=1)
 
-seriesObj = openpyxl.chart.Series(refObj, title="First Series")
+seriesObj = openpyxl.chart.Series(refObj, title="First Series")  # FIXME: Chart layout is wrong
 
 chartObj = openpyxl.chart.BarChart()
 chartObj.append(seriesObj)
 chartObj.anchor = "B3"  # set the position
-chartObj.width = 14  # set the size
-chartObj.height = 5
+chartObj.width = 7.94  # set the size (in centimeters, where 1 cm = 37.8 pixels)
+chartObj.height = 5.29
 
 sheet.add_chart(chartObj)
 wb.save("sampleChart.xlsx")
