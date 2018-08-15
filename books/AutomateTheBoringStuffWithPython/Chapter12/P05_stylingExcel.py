@@ -80,7 +80,7 @@ sheet = wb.get_active_sheet()
 for i in range(1, 11):    # create some data in column A
     sheet['A' + str(i)] = i
 
-refObj = openpyxl.chart.Reference(sheet, (1, 1), (10, 1))
+refObj = openpyxl.chart.Reference(sheet, min_row=1, min_col=1, max_row=10, max_col=1)
 
 seriesObj = openpyxl.chart.Series(refObj, title="First Series")
 
