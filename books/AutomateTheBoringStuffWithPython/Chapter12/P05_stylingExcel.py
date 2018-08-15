@@ -80,11 +80,11 @@ sheet = wb.get_active_sheet()
 for i in range(1, 11):    # create some data in column A
     sheet['A' + str(i)] = i
 
-refObj = openpyxl.charts.Reference(sheet, (1, 1), (10, 1))
+refObj = openpyxl.chart.Reference(sheet, (1, 1), (10, 1))
 
-seriesObj = openpyxl.charts.Series(refObj, title="First Series")
+seriesObj = openpyxl.chart.Series(refObj, title="First Series")
 
-chartObj = openpyxl.charts.BarChart()
+chartObj = openpyxl.chart.BarChart()
 chartObj.append(seriesObj)
 chartObj.drawing.top = 50    # set the position
 chartObj.drawing.left = 100
