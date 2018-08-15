@@ -82,7 +82,7 @@ for i in range(1, 11):    # create some data in column A
 
 refObj = openpyxl.chart.Reference(sheet, min_row=1, min_col=1, max_row=10, max_col=1)
 
-seriesObj = openpyxl.chart.Series(refObj, title="First Series")  # FIXME: Chart layout is wrong
+seriesObj = openpyxl.chart.Series(refObj, title="First Series")  # FIXME: Chart layout is wrong (LibreOffice 6.0.3.2)
 
 chartObj = openpyxl.chart.BarChart()
 chartObj.append(seriesObj)
