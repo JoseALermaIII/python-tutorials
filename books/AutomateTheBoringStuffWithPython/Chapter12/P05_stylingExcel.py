@@ -86,10 +86,9 @@ seriesObj = openpyxl.chart.Series(refObj, title="First Series")
 
 chartObj = openpyxl.chart.BarChart()
 chartObj.append(seriesObj)
-chartObj.drawing.top = 50    # set the position
-chartObj.drawing.left = 100
-chartObj.drawing.width = 300  # set the size
-chartObj.drawing.height = 200
+chartObj.anchor = "B3"  # set the position
+chartObj.width = 14  # set the size
+chartObj.height = 5
 
 sheet.add_chart(chartObj)
 wb.save("sampleChart.xlsx")
