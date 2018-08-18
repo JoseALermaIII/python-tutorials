@@ -5,20 +5,26 @@
 # column B, and so on.
 
 import openpyxl
+import os
+
+FOLDER = "./p4files/"
 
 # Open workbook
 wb = openpyxl.Workbook()
 sheet = wb.active
 
 # Get list of files
+filelist = os.listdir(FOLDER)
+filelist.sort()
 
 # Open file
-
-# Scan lines into list
-
-# Transpose list into relevant workbook column
-
-# Close file
+for file in filelist:
+    with open(FOLDER + file) as fileObj:
+        index = 1
+        for line in fileObj:
+            # Transpose line into relevant workbook column
+            sheet.cell(row=index, column=(filelist.index(file) + 1)).value = line.strip()
+            index += 1
 
 # Save workbook
 wb.save("textToExcel.xlsx")
