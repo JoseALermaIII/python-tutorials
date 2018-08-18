@@ -3,3 +3,22 @@
 # one line of text per row. The lines of the first text file will be in the
 # cells of column A, the lines of the second text file will be in the cells of
 # column B, and so on.
+
+import openpyxl
+
+# Open workbook
+wb = openpyxl.Workbook()
+sheet = wb.active
+
+# Get list of files
+
+# Open file
+
+# Scan lines into list
+
+# Transpose list into relevant workbook column
+
+# Close file
+
+# Save workbook
+wb.save("textToExcel.xlsx")
