@@ -56,3 +56,15 @@ resultPdfFile = open("watermarkedCover.pdf", "wb")
 pdfWriter.write(resultPdfFile)
 minutesFile.close()
 resultPdfFile.close()
+
+# Encrypting PDFs
+pdfFile = open("meetingminutes.pdf", "rb")
+pdfReader = PyPDF4.PdfFileReader(pdfFile)
+pdfWriter = PyPDF4.PdfFileWriter()
+for pageNum in range(pdfReader.numPages):
+    pdfWriter.addPage(pdfReader.getPage(pageNum))
+
+pdfWriter.encrypt("swordfish")
+resultPdf = open("encryptedminutes.pdf", "wb")
+pdfWriter.write(resultPdf)
+resultPdf.close()
