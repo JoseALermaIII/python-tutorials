@@ -128,7 +128,4 @@ mcb
 /books/AutomateTheBoringStuffWithPython/Chapter12/PracticeProjects/updatedexample.xlsx
 /books/AutomateTheBoringStuffWithPython/Chapter12/PracticeProjects/textToExcel.xlsx
 /books/AutomateTheBoringStuffWithPython/Chapter12/PracticeProjects/p5files/
-/books/AutomateTheBoringStuffWithPython/Chapter13/meetingminutes.pdf
-/books/AutomateTheBoringStuffWithPython/Chapter13/encrypted.pdf
-/books/AutomateTheBoringStuffWithPython/Chapter13/meetingminutes2.pdf
-/books/AutomateTheBoringStuffWithPython/Chapter13/combinedminutes.pdf
+/books/AutomateTheBoringStuffWithPython/Chapter13/*.pdf
