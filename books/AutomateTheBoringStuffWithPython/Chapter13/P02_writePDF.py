@@ -39,3 +39,20 @@ resultPdfFile = open("rotatedPage.pdf", "wb")
 pdfWriter.write(resultPdfFile)
 resultPdfFile.close()
 minutesFile.close()
+
+# Overlaying Pages
+minutesFile = open("meetingminutes.pdf", "rb")
+pdfReader = PyPDF4.PdfFileReader(minutesFile)
+minutesFirstPage = pdfReader.getPage(0)
+pdfWatermarkReader = PyPDF4.PdfFileReader(open("watermark.pdf", "rb"))  # lol
+minutesFirstPage.mergePage(pdfWatermarkReader.getPage(0))
+pdfWriter = PyPDF4.PdfFileWriter()
+pdfWriter.addPage(minutesFirstPage)
+
+for pageNum in range(1, pdfReader.numPages):
+    pageObj = pdfReader.getPage(pageNum)
+    pdfWriter.addPage(pageObj)
+resultPdfFile = open("watermarkedCover.pdf", "wb")
+pdfWriter.write(resultPdfFile)
+minutesFile.close()
+resultPdfFile.close()
