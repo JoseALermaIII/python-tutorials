@@ -5,6 +5,8 @@
 import PyPDF4, os
 
 # Get all the PDF filenames.
+if os.path.exists("allminutes.pdf"):
+    os.remove("allminutes.pdf")
 pdfFiles = []
 for filename in os.listdir('.'):
     if filename.endswith(".pdf"):
