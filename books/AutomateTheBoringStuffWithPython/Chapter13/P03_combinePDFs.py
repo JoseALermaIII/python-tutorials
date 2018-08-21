@@ -1,6 +1,9 @@
 #! python3
 # combinePDFs.py - Combines all the PDFs in the current working directory into
 # a single PDF.
+# Note:
+# - Example PDFs can be downloaded from http://nostarch.com/automatestuff/
+# - Book uses PyPDF2; I'm an overachiever that uses PyPDF4
 
 import PyPDF4, os
 
