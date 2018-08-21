@@ -1,5 +1,5 @@
 #! python3
-# combinePdfs.py - Combines all the PDFs in the current working directory into
+# combinePDFs.py - Combines all the PDFs in the current working directory into
 # a single PDF.
 
 import PyPDF4, os
