@@ -17,6 +17,10 @@ pdfWriter = PyPDF4.PdfFileWriter()
 for filename in pdfFiles:
     pdfFileObj = open(filename, "rb")
     pdfReader = PyPDF4.PdfFileReader(pdfFileObj)
+    if pdfReader.isEncrypted and filename == "encrypted.pdf":
+        pdfReader.decrypt("rosebud")
+    if pdfReader.isEncrypted and filename == "encryptedminutes.pdf":
+        pdfReader.decrypt("swordfish")
     # Loop through all the pages (except the first) and add them.
     for pageNum in range(1, pdfReader.numPages):
         pageObj = pdfReader.getPage(pageNum)
