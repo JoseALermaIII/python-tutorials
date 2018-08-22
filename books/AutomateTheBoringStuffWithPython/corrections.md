@@ -526,3 +526,37 @@ should be:
 ➋         pdfFiles.append(filename)
 ➌ pdfFiles.sort(key=str.lower)  # changed
 ```
+
+# Aug. 22, 2018 Updates
+
+In Chapter 13, reference number 531.0, paragraph 22.79, the codeblock:
+
+```
+➎ >>> len(doc.paragraphs[1].runs)
+   4
+➏ >>> doc.paragraphs[1].runs[0].text
+   'A plain paragraph with some '
+➐ >>> doc.paragraphs[1].runs[1].text
+   'bold'
+➑ >>> doc.paragraphs[1].runs[2].text
+   ' and some '
+➒ >>> doc.paragraphs[1].runs[3].text
+   'italic'
+```
+
+outputs the following in LibreOffice 6.0.3.2:
+
+```
+➎ >>> len(doc.paragraphs[1].runs)
+   5    # changed
+➏ >>> doc.paragraphs[1].runs[0].text
+   'A plain paragraph with'     # changed
+➐ >>> doc.paragraphs[1].runs[1].text
+   ' some ' # changed
+➑ >>> doc.paragraphs[1].runs[2].text
+   'bold'   # changed
+➒ >>> doc.paragraphs[1].runs[3].text
+   ' and some '     # changed
+  >>> doc.paragraphs[1].runs[4].text    # added
+   'italic'
+```
