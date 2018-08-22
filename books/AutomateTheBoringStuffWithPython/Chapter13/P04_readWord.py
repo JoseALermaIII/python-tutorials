@@ -11,4 +11,4 @@ print(doc.paragraphs[1].runs[0].text)
 print(doc.paragraphs[1].runs[1].text)
 print(doc.paragraphs[1].runs[2].text)
 print(doc.paragraphs[1].runs[3].text)
-
+print(doc.paragraphs[1].runs[4].text)
