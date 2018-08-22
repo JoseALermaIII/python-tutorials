@@ -1,6 +1,9 @@
 #! python3
 # P05_readDocx.py - Accepts a filename of a .docx file and returns a single
 # string value of its text.
+#
+# Note:
+# - Example .docx files can be downloaded from http://nostarch.com/automatestuff/
 
 import docx
 
