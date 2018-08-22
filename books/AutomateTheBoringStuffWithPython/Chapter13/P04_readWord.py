@@ -12,3 +12,6 @@ print(doc.paragraphs[1].runs[1].text)
 print(doc.paragraphs[1].runs[2].text)
 print(doc.paragraphs[1].runs[3].text)
 print(doc.paragraphs[1].runs[4].text)
+
+import P05_readDocx  # Don't do this, imports should be at the top of the file
+print(P05_readDocx.getText("demo.docx"))
