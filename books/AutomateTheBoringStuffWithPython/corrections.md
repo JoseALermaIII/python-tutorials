@@ -544,7 +544,7 @@ In Chapter 13, reference number 531.0, paragraph 22.79, the codeblock:
    'italic'
 ```
 
-outputs the following in LibreOffice 6.0.3.2:
+outputs the following in LibreOffice 6.0.3.2 with Python-Docx 0.8.7:
 
 ```
 ➎ >>> len(doc.paragraphs[1].runs)
@@ -560,3 +560,5 @@ outputs the following in LibreOffice 6.0.3.2:
   >>> doc.paragraphs[1].runs[4].text    # added
    'italic'
 ```
+
+TODO: can someone confirm in Word on Windows? 
