@@ -527,7 +527,7 @@ should be:
 ➌ pdfFiles.sort(key=str.lower)  # changed
 ```
 
-# Aug. 22, 2018 Updates
+# Aug. 22, 2018 Update
 
 In Chapter 13, reference number 531.0, paragraph 22.79, the codeblock:
 
