@@ -561,4 +561,25 @@ outputs the following in LibreOffice 6.0.3.2 with Python-Docx 0.8.7:
    'italic'
 ```
 
-TODO: can someone confirm in Word on Windows? 
+TODO: can someone confirm in Word on Windows?
+
+On reference number 540.1, paragraph 22.163, the codeblock:
+
+```
+--snip--  # omitted to save space
+>>> doc.paragraphs[1].runs[0].style = 'QuoteChar'
+>>> doc.paragraphs[1].runs[1].underline = True
+>>> doc.paragraphs[1].runs[3].underline = True
+>>> doc.save('restyled.docx')
+```
+
+gives a `UserWarning: style lookup by style_id is deprecated. Use style name as key instead.
+  return self._get_style_id_from_style(self[style_name], style_type)` but the following fixes it:
+
+```
+--snip--  # omitted to save space
+>>> doc.paragraphs[1].runs[0].style = 'Quote Char'  # changed for python-docx 0.8.7
+>>> doc.paragraphs[1].runs[1].underline = True
+>>> doc.paragraphs[1].runs[3].underline = True
+>>> doc.save('restyled.docx')
+```
