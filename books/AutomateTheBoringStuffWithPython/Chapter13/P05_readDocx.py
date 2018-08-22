@@ -10,4 +10,6 @@ def getText(filename):
     fullText = []
     for para in doc.paragraphs:
         fullText.append(para.text)
+        #fullText.append(' ' + para.text)  # Alt: indent each paragraph
     return "\n".join(fullText)
+    #return "\n\n".join(fullText)  # Alt: double space between paragraphs
