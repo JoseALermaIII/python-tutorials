@@ -590,3 +590,20 @@ In Chapter 13, reference number 540.1, paragraph 22.164, the line:
 
 >We can see that it’s simple to divide a paragraph into runs and access each run individiaully.
 
+On reference number 546.9, paragraph 22.183, the codeblock:
+
+```
+➊ >>> doc.paragraphs[0].runs[0].add_break(docx.text.WD_BREAK.PAGE)
+   >>> doc.add_paragraph('This is on the second page!')
+   <docx.text.Paragraph object at 0x00000000037855F8>
+   >>> doc.save('twoPage.docx')
+```
+
+ought to be:
+
+```
+➊ >>> doc.paragraphs[0].runs[0].add_break(docx.enum.text.WD_BREAK.PAGE)  # changed
+   >>> doc.add_paragraph('This is on the second page!')
+   <docx.text.Paragraph object at 0x00000000037855F8>
+   >>> doc.save('twoPage.docx')
+```
