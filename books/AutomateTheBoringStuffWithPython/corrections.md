@@ -583,3 +583,10 @@ gives a `UserWarning: style lookup by style_id is deprecated. Use style name as 
 >>> doc.paragraphs[1].runs[3].underline = True
 >>> doc.save('restyled.docx')
 ```
+
+# Aug. 23, 2018 Update
+
+In Chapter 13, reference number 540.1, paragraph 22.164, the line:
+
+>We can see that it’s simple to divide a paragraph into runs and access each run individiaully.
+
