@@ -1,7 +1,7 @@
 # This program uses the python-docx module to manipulate Word documents
 #
 # Note:
-# - Example .docx files can be downloaded from http://nostarch.com/automatestuff/
+# - Example files can be downloaded from http://nostarch.com/automatestuff/
 
 
 import docx
