@@ -5,3 +5,15 @@
 #
 # Before deleting the original file, have the program attempt to read and decrypt the
 # file to ensure that it was encrypted correctly.
+
+# Get all PDF files in directory
+
+# Get password from user
+
+# Encrypt list of PDF files with password
+
+# Append suffix when saving encrypted file
+
+# Attempt to read and decrypt encrypted file
+
+# Delete original file
