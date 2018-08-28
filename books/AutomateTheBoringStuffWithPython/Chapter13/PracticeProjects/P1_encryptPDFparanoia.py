@@ -6,7 +6,22 @@
 # Before deleting the original file, have the program attempt to read and decrypt the
 # file to ensure that it was encrypted correctly.
 
-# Get all PDF files in directory
+import PyPDF4, os
+
+FOLDER = "../"
+
+# Get all PDF files in FOLDER
+files = []
+for folderName, subfolders, filenames in os.walk(FOLDER):
+    for filename in filenames:
+        # If file is in subdirectory, append backslash to folderName
+        if folderName.endswith('/'):
+            filepath = folderName + filename
+        else:
+            filepath = folderName + '/' + filename
+
+        if filename.lower().endswith(".pdf") and not PyPDF4.PdfFileReader(open(filepath, "rb")).isEncrypted:
+            files.append(filepath)
 
 # Get password from user
 
