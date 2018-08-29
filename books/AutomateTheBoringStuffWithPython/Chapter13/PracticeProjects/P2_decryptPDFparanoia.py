@@ -4,8 +4,10 @@
 # continue to the next PDF.
 
 import PyPDF4, os
+from PyPDF4.utils import PdfReadError
 
 FOLDER = "../"
+SUFFIX = "_encrypted.pdf"
 
 # Get all encrypted PDFs in FOLDER
 files = []
@@ -21,9 +23,31 @@ for folderName, subfolders, filenames in os.walk(FOLDER):
             files.append(filepath)
 
 # Get password from user
+password = input("Please input decryption password:\n")
 
 # Decrypt all PDFs with password
-
-# If incorrect password, print message and continue
-
-# Rename decrypted PDF by removing suffix
+for file in files:
+    pdfReader = PyPDF4.PdfFileReader(open(file, "rb"))
+    pdfReader.decrypt(password)
+    # If incorrect password, print message and continue to next PDF
+    try:
+        pdfReader.getPage(0)
+    except PdfReadError as err:
+        print("PdfReadError: %s" % err)
+        print("Skipping: %s" % file)
+        continue
+    else:
+        # Read decrypted PDF
+        pdfWriter = PyPDF4.PdfFileWriter()
+        for pageNum in range(pdfReader.numPages):
+            pdfWriter.addPage(pdfReader.getPage(pageNum))
+        # Save decrypted PDF by removing SUFFIX, if present
+        if file.lower().endswith(SUFFIX):
+            newfile = file[:-len(SUFFIX)] + ".pdf"
+        else:
+            newfile = file
+        if os.path.exists(newfile):
+            newfile = newfile[:-4] + "_decrypted.pdf"
+        resultPdf = open(newfile, "wb")
+        pdfWriter.write(resultPdf)
+        resultPdf.close()
