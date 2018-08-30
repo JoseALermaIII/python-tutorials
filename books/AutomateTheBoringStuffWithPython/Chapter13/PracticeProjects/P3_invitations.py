@@ -29,7 +29,7 @@ styles = document.styles
 style = styles.add_style("Script", WD_STYLE_TYPE.PARAGRAPH)
 font = style.font
 font.name = "MathJax_Caligraphic"  # Only script font in default Ubuntu 18.04
-font.size = Pt(20)
+font.size = Pt(14)
 font.all_caps = True  # Script effect only applies in caps for above font
 font.bold = True
 style.paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
@@ -38,7 +38,7 @@ style.paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
 style = styles.add_style("Name", WD_STYLE_TYPE.PARAGRAPH)
 font = style.font
 font.name = "Liberation Sans"  # Font in default Ubuntu 18.04
-font.size = Pt(18)
+font.size = Pt(20)
 font.bold = True
 style.paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
 
@@ -46,7 +46,7 @@ style.paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
 style = styles.add_style("Date", WD_STYLE_TYPE.PARAGRAPH)
 font = style.font
 font.name = "Liberation Sans"
-font.size = Pt(16)
+font.size = Pt(14)
 style.paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
 
 # Make each invitation
