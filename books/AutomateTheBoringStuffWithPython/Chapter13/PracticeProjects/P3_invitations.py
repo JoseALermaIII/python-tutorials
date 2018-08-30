@@ -6,3 +6,11 @@
 # Al Sweigart
 # RoboCop
 # Write a program that would generate a Word document with custom invitations
+
+# Get guest list
+
+# Create styles for invitations
+
+# Make each invitation
+
+# Save invitations
