@@ -12,6 +12,11 @@ from docx.enum.style import WD_STYLE_TYPE
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 from docx.shared import Pt
 
+INTRO = "It would be a pleasure to have the company of"
+ADDRESS = "at 11010 Memory Lane on the Evening of"
+DATE = "April 1st"
+TIME = "at 7 o'clock"
+
 # Get guest list
 with open("./guests.txt") as file:
     guests = file.read().splitlines()
@@ -45,5 +50,13 @@ font.size = Pt(16)
 style.paragraph_format.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
 
 # Make each invitation
+for guest in guests:
+    document.add_paragraph(INTRO, style="Script")
+    document.add_paragraph(guest, style="Name")
+    document.add_paragraph(ADDRESS, style="Script")
+    document.add_paragraph(DATE, style="Date")
+    document.add_paragraph(TIME, style="Script")
+    document.add_page_break()
 
 # Save invitations
+document.save("invitations.docx")
