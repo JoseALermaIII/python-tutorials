@@ -131,3 +131,4 @@ mcb
 /books/AutomateTheBoringStuffWithPython/Chapter13/*.pdf
 /books/AutomateTheBoringStuffWithPython/Chapter13/**/*.docx
 zophie.png
+/books/AutomateTheBoringStuffWithPython/Chapter13/PracticeProjects/dictionary.txt
