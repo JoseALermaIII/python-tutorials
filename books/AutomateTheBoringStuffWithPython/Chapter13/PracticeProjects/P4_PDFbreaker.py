@@ -7,8 +7,16 @@
 # this list, passing it to the decrypt() method. If this method returns the integer
 # 0, the password was wrong and your program should continue to the next password.
 # If decrypt() returns 1, then your program should break out of the loop and print
-# the hacked password. You should try both the uppercase and lower-case form of
+# the hacked password. You should try both the uppercase and lowercase form of
 # each word.
 #
 # Note:
 # - Dictionary text file can be downloaded from http://nostarch.com/automatestuff/
+
+# Get dictionary
+
+# Load encrypted PDF
+
+# Try each word in dictionary (upper and lower case)
+
+# Print password, if found
