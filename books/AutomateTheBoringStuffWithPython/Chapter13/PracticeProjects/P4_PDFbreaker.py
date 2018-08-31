@@ -9,3 +9,6 @@
 # If decrypt() returns 1, then your program should break out of the loop and print
 # the hacked password. You should try both the uppercase and lower-case form of
 # each word.
+#
+# Note:
+# - Dictionary text file can be downloaded from http://nostarch.com/automatestuff/
