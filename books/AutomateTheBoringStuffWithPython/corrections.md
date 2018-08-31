@@ -613,3 +613,31 @@ ought to be:
 In Chapter 13, reference number 552.0, paragraph 22.228, the line:
 
 >You should try both the uppercase and lower-case form of each word.
+
+In Chapter 14, reference number 561.2, paragraph 23.33, the codeblock:
+
+```
+   >>> import csv
+   >>> csvFile = open('example.tsv', 'w', newline='')
+➊ >>> csvWriter = csv.writer(csvFile, delimiter='\t', lineterminator='\n\n')
+   >>> csvWriter.writerow(['apples', 'oranges', 'grapes'])
+   24
+   >>> csvWriter.writerow(['eggs', 'bacon', 'ham'])
+   17
+   >>> csvWriter.writerow(['spam', 'spam', 'spam', 'spam', 'spam', 'spam'])
+   32
+```
+
+outputs:
+
+```
+   >>> import csv
+   >>> csvFile = open('example.tsv', 'w', newline='')
+➊ >>> csvWriter = csv.writer(csvFile, delimiter='\t', lineterminator='\n\n')
+   >>> csvWriter.writerow(['apples', 'oranges', 'grapes'])
+   23  # changed
+   >>> csvWriter.writerow(['eggs', 'bacon', 'ham'])
+   16  # changed
+   >>> csvWriter.writerow(['spam', 'spam', 'spam', 'spam', 'spam', 'spam'])
+   31  # changed
+```
