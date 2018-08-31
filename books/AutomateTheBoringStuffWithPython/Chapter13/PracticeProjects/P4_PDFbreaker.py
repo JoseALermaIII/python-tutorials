@@ -13,10 +13,27 @@
 # Note:
 # - Dictionary text file can be downloaded from http://nostarch.com/automatestuff/
 
+import PyPDF4
+
+FILE = "../allminutes_encrypted.pdf"
+
 # Get dictionary
+with open("dictionary.txt") as file:
+    words = file.read().splitlines()
 
 # Load encrypted PDF
+pdfReader = PyPDF4.PdfFileReader(open(FILE, "rb"))
+if not pdfReader.isEncrypted:
+    print("FileError: PDF is not encrypted")
+    raise RuntimeError
 
 # Try each word in dictionary (upper and lower case)
-
-# Print password, if found
+for word in words:
+    # Print password, if found
+    if pdfReader.decrypt(word) or pdfReader.decrypt(word.lower()):
+        print("The password is either %s or %s" % (word, word.lower()))
+        break
+    else:
+        continue
+if word == words[-1]:
+    print("Failed to break PDF.")
