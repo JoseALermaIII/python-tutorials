@@ -607,3 +607,9 @@ ought to be:
    <docx.text.Paragraph object at 0x00000000037855F8>
    >>> doc.save('twoPage.docx')
 ```
+
+# Aug. 31, 2018 Update
+
+In Chapter 13, reference number 552.0, paragraph 22.228, the line:
+
+>You should try both the uppercase and lower-case form of each word.
