@@ -696,3 +696,13 @@ This will overwrite the original file.
 
 I thought the original file won't be overwritten because the new file is in
 the `headerRemoved` folder?  TODO: Can someone please confirm?
+
+On reference number 575.4, paragraph 23.98, the link `http://api.openweathermap.org
+/data/2.5/forecast/daily?q=%3CLocation%3E&cnt=3` no longer works. The
+OpenWeatherMap.org API [now needs an API key.](https://openweathermap.org/appid) So,
+ [sign up](http://home.openweathermap.org/users/sign_up) if you _really_ want to 
+ run quickWeather.py.
+ 
+ Alternatively, the [Weather.gov API](https://www.weather.gov/documentation/services-web-api)
+ (United States only, at the moment) does not require an API key (only a User Agent),
+ but it will require one in the future.
