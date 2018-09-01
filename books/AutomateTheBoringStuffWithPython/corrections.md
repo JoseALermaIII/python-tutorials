@@ -641,3 +641,49 @@ outputs:
    >>> csvWriter.writerow(['spam', 'spam', 'spam', 'spam', 'spam', 'spam'])
    31  # changed
 ```
+
+# Sept. 1, 2018 Update:
+
+In Chapter 14, reference number 565.5, paragraph 23.54, the codeblock:
+
+```
+#! python3
+# removeCsvHeader.py - Removes the header from all CSV files in the current
+# working directory.
+
+--snip--
+# Read the CSV file in (skipping first row).
+csvRows = []
+csvFileObj = open(csvFilename)
+readerObj = csv.reader(csvFileObj)
+for row in readerObj:
+    if readerObj.line_num == 1:
+        continue    # skip first row
+    csvRows.append(row)
+csvFileObj.close()
+
+# TODO: Write out the CSV file.
+```
+
+needs to be indented to match the previous codeblock:
+
+```
+#! python3
+# removeCsvHeader.py - Removes the header from all CSV files in the current
+# working directory.
+
+    --snip--
+    print('Removing header from ' + csvFilename + '...')  # added
+    
+    # Read the CSV file in (skipping first row).
+    csvRows = []
+    csvFileObj = open(csvFilename)
+    readerObj = csv.reader(csvFileObj)
+    for row in readerObj:
+        if readerObj.line_num == 1:
+            continue    # skip first row
+        csvRows.append(row)
+    csvFileObj.close()
+
+# TODO: Write out the CSV file.
+```
