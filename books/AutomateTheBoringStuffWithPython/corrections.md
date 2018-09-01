@@ -687,3 +687,12 @@ needs to be indented to match the previous codeblock:
 
 # TODO: Write out the CSV file.
 ```
+
+On reference number 568.2, paragraph 23.58:
+
+>The CSV Writer object will write the list to a CSV file in headerRemoved
+using csvFilename (which we also used in the CSV reader).
+This will overwrite the original file.
+
+I thought the original file won't be overwritten because the new file is in
+the `headerRemoved` folder?  TODO: Can someone please confirm?
