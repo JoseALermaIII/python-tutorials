@@ -1,7 +1,7 @@
 #! python3
 # P05_quickWeather.py - Prints the weather for a location from the command line.
 
-import json, requests, sys, shelve, datetime, copy, gzip
+import json, requests, sys, shelve, datetime
 
 
 def getWeather(loc, apikey):
@@ -18,50 +18,38 @@ def getWeather(loc, apikey):
     return data
 
 
-def getLocationID(loc):
-    # TODO: download and parse city list
-    return cityID
-
-
 # Compute location from command line arguments.
 if len(sys.argv) < 2:
-    print('Usage: P05_quickWeather.py location')
+    print('Usage: P05_quickWeather.py city,country code')
     sys.exit()
 location = ' '.join(sys.argv[1:])
 
-# TODO: Convert location to location ID
-locID = getLocationID(location)
-
 # Get API Key from file
 with open("apikey.txt") as file:
-    key = file.read()
+    apiKey = file.read()
 
 # Open shelf to read data
-weatherShelf = shelve.open("weather", 'c')
+weatherShelf = shelve.open("weather")
 
 # Download and save data to shelf
 if not list(weatherShelf.keys()):  # Shelf empty, download data
-    weatherData = getWeather(locID, key)
-    weatherShelf = copy.deepcopy(weatherData)
-    weatherShelf.close()
+    weatherShelf["data"] = getWeather(location, apiKey)
 else:
     # Check for 10 minute interval between API requests
     now = datetime.datetime.now(tz=datetime.timezone.utc)
-    savedTime = weatherShelf["savedTime"]
+    savedTime = weatherShelf["data"]["savedTime"]
     timedelta = now - savedTime
     interval = 10 * 60  # 10 minutes to seconds
 
     if timedelta.total_seconds() < interval:
-        print("RequestError: Need to wait %s minutes. Using saved data" % ((interval - timedelta)/60))
-        weatherData = copy.deepcopy(weatherShelf)
-        weatherShelf.close()
+        print("RequestError: Need to wait %s minutes. Using saved data" % ((interval - timedelta.total_seconds())/60))
     else:
-        weatherData = getWeather(locID, key)
-        weatherShelf = copy.deepcopy(weatherData)
-        weatherShelf.close()
+        weatherShelf["data"] = getWeather(location, apiKey)
 
 # Print weather descriptions
-w = weatherData['list']
+w = weatherShelf["data"]['list']
+
+# FIXME: 5-day data in 3-hour intervals, currently prints the 3-hour intervals
 print('Current weather in %s:' % location)
 print(w[0]['weather'][0]['main'], '-', w[0]['weather'][0]['description'])
 print()
@@ -70,3 +58,5 @@ print(w[1]['weather'][0]['main'], '-', w[1]['weather'][0]['description'])
 print()
 print('Day after tomorrow:')
 print(w[2]['weather'][0]['main'], '-', w[2]['weather'][0]['description'])
+
+weatherShelf.close()
