@@ -1,24 +1,20 @@
 #! python3
 # P05_quickWeather.py - Prints the weather for a location from the command line.
 
-import json, requests, sys, shelve, datetime, copy
+import json, requests, sys, shelve, datetime, copy, gzip
 
 
-def getWeather(shelf, loc, apikey):
+def getWeather(loc, apikey):
     # Download the JSON data from OpenWeatherMap.org's API.
-    url = 'http://api.openweathermap.org/data/2.5/forecast?id=%s&APPID=%s' % (loc, apikey)
+    url = 'http://api.openweathermap.org/data/2.5/forecast?q=%s&APPID=%s' % (loc, apikey)
     response = requests.get(url)
     response.raise_for_status()
 
     # Load JSON data into a Python variable.
     data = json.loads(response.text)
 
-    # Save Data
-    shelf = copy.deepcopy(data)
-
     timeNow = datetime.datetime.now(tz=datetime.timezone.utc)
-    shelf["savedTime"] = timeNow
-    shelf.close()
+    data["savedTime"] = timeNow
     return data
 
 
@@ -45,7 +41,9 @@ weatherShelf = shelve.open("weather", 'c')
 
 # Download and save data to shelf
 if not list(weatherShelf.keys()):  # Shelf empty, download data
-    weatherData = getWeather(weatherShelf, locID, key)
+    weatherData = getWeather(locID, key)
+    weatherShelf = copy.deepcopy(weatherData)
+    weatherShelf.close()
 else:
     # Check for 10 minute interval between API requests
     now = datetime.datetime.now(tz=datetime.timezone.utc)
@@ -58,7 +56,9 @@ else:
         weatherData = copy.deepcopy(weatherShelf)
         weatherShelf.close()
     else:
-        weatherData = getWeather(weatherShelf, locID, key)
+        weatherData = getWeather(locID, key)
+        weatherShelf = copy.deepcopy(weatherData)
+        weatherShelf.close()
 
 # Print weather descriptions
 w = weatherData['list']
