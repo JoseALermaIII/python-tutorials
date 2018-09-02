@@ -1,7 +1,7 @@
 #! python3
 # P05_quickWeather.py - Prints the weather for a location from the command line.
 
-import json, requests, sys, shelve, datetime
+import json, requests, sys, shelve, datetime, copy
 
 
 def getWeather(shelf, loc, apikey):
@@ -14,8 +14,7 @@ def getWeather(shelf, loc, apikey):
     data = json.loads(response.text)
 
     # Save Data
-    for dataKey in data.keys():
-        shelf[dataKey] = data[dataKey]
+    shelf = copy.deepcopy(data)
 
     timeNow = datetime.datetime.now(tz=datetime.timezone.utc)
     shelf["savedTime"] = timeNow
@@ -56,7 +55,7 @@ else:
 
     if timedelta.total_seconds() < interval:
         print("RequestError: Need to wait %s minutes. Using saved data" % ((interval - timedelta)/60))
-        weatherData = weatherShelf
+        weatherData = copy.deepcopy(weatherShelf)
         weatherShelf.close()
     else:
         weatherData = getWeather(weatherShelf, locID, key)
