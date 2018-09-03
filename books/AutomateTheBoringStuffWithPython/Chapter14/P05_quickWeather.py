@@ -13,9 +13,19 @@ def getWeather(loc, apikey):
     # Load JSON data into a Python variable.
     data = json.loads(response.text)
 
-    timeNow = datetime.datetime.now(tz=datetime.timezone.utc)
-    data["savedTime"] = timeNow
+    now = datetime.datetime.now(tz=datetime.timezone.utc)
+    data["savedTime"] = now
     return data
+
+
+# datetime.date.fromisoformat implemented in python 3.7,
+# though not intended for arbitrary isoformat strings.
+# Currently using python 3.6, so change when updated
+def dateFromISOformat(datestring):
+    year = datestring[:4]
+    month = datestring[5:7]
+    day = datestring[8:]
+    return datetime.date(year=int(year), month=int(month), day=int(day))
 
 
 # Compute location from command line arguments.
@@ -36,9 +46,9 @@ if not list(weatherShelf.keys()):  # Shelf empty, download data
     weatherShelf["data"] = getWeather(location, apiKey)
 else:
     # Check for 10 minute interval between API requests
-    now = datetime.datetime.now(tz=datetime.timezone.utc)
+    timeNow = datetime.datetime.now(tz=datetime.timezone.utc)
     savedTime = weatherShelf["data"]["savedTime"]
-    timedelta = now - savedTime
+    timedelta = timeNow - savedTime
     interval = 10 * 60  # 10 minutes to seconds
 
     if timedelta.total_seconds() < interval:
@@ -48,15 +58,28 @@ else:
 
 # Print weather descriptions
 w = weatherShelf["data"]['list']
+count = int(weatherShelf["data"]["cnt"])
+tomorrowISOdate, dayAfterISOdate = None, None
 
-# FIXME: 5-day data in 3-hour intervals, currently prints the 3-hour intervals
-print('Current weather in %s:' % location)
-print(w[0]['weather'][0]['main'], '-', w[0]['weather'][0]['description'])
-print()
-print('Tomorrow:')
-print(w[1]['weather'][0]['main'], '-', w[1]['weather'][0]['description'])
-print()
-print('Day after tomorrow:')
-print(w[2]['weather'][0]['main'], '-', w[2]['weather'][0]['description'])
+for i in range(0, count):
+    currentISOdate = w[i]["dt_txt"][:10]
+    # Print current weather at i == 0
+    if i == 0:
+        print('Current weather in %s:' % location)
+        print(w[i]['weather'][0]['main'], '-', w[i]['weather'][0]['description'])
+        tomorrowISOdate = str(dateFromISOformat(currentISOdate) + datetime.timedelta(days=1))
+        print()
+    # If tomorrow date is current date, print tomorrow weather
+    elif tomorrowISOdate == currentISOdate:
+        print('Tomorrow:')
+        print(w[i]['weather'][0]['main'], '-', w[i]['weather'][0]['description'])
+        dayAfterISOdate = str(dateFromISOformat(currentISOdate) + datetime.timedelta(days=1))
+        tomorrowISOdate = None
+        print()
+    # If day after date is current date, print day after tomorrow weather
+    elif dayAfterISOdate == currentISOdate:
+        print('Day after tomorrow:')
+        print(w[i]['weather'][0]['main'], '-', w[i]['weather'][0]['description'])
+        break
 
 weatherShelf.close()
