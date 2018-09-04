@@ -707,11 +707,11 @@ OpenWeatherMap.org API [now needs an API key.](https://openweathermap.org/appid)
  (United States only, at the moment) does not require an API key (only a User Agent),
  but it will require one in the future.
  
- # Sept. 4, 2018 Update:
+# Sept. 4, 2018 Update:
  
- In Chapter 14, reference number 582.0, paragraph 23.130, the codeblock:
+In Chapter 14, reference number 582.0, paragraph 23.130, the codeblock:
  
- ```
+```
 for excelFile in os.listdir('.'):
     # Skip non-xlsx files, load the workbook object.
     for sheetName in wb.get_sheet_names():
@@ -731,7 +731,7 @@ for excelFile in os.listdir('.'):
             # Write the rowData list to the CSV file.
 
         csvFile.close()
- ```
+```
 
 should be:
 
