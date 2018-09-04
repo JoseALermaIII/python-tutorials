@@ -740,7 +740,7 @@ should be:
     # Skip non-xlsx files, load the workbook object.
     for sheetName in wb.sheetnames:  # changed
         # Loop through every sheet in the workbook.
-        sheet = wb['sheetName']  # changed
+        sheet = wb[sheetName]  # changed
 
         # Create the CSV filename from the Excel filename and sheet title.
         # Create the csv.writer object for this CSV file.
