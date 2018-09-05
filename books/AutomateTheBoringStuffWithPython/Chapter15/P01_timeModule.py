@@ -15,3 +15,10 @@ time.sleep(5)
 
 for i in range(30):  # 30 second timer that can be CTRL-C'd from within IDLE
     time.sleep(1)
+
+# Rounding Numbers
+now = time.time()
+print(now)
+print(round(now, 2))
+print(round(now, 4))
+print(round(now))
