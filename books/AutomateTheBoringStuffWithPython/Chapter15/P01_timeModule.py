@@ -3,3 +3,15 @@
 # The time.time() Function
 import time
 print(time.time())
+
+# The time.sleep() Function
+for i in range(3):
+    print('Tick')
+    time.sleep(1)
+    print('Tock')
+    time.sleep(1)
+
+time.sleep(5)
+
+for i in range(30):  # 30 second timer that can be CTRL-C'd from within IDLE
+    time.sleep(1)
