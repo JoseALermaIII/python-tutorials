@@ -5,8 +5,9 @@
 #  Note:
 #  - added cProfile for an execution profile. Does add overhead, so not suitable
 #  for benchmarking.
+#  - added timeit module for accurate execution timing
 
-import time, cProfile
+import time, cProfile, timeit
 
 
 def calcProd():
@@ -25,3 +26,7 @@ print('Took %s seconds to calculate.' % (endTime - startTime))
 time.sleep(1)
 
 cProfile.run('calcProd()')
+
+time.sleep(1)
+
+print(timeit.timeit('calcProd()', globals=globals()))  # doesn't finish - maxes out 2GB RAM
