@@ -756,3 +756,26 @@ should be:
 
         csvFile.close()
 ```
+
+# Sept. 5, 2018 Update:
+
+In Chapter 15, reference number 595.7, paragraph 24.42, the codeblock:
+
+```
+>>> datetime.datetime.fromtimestamp(1000000)
+datetime.datetime(1970, 1, 12, 5, 46, 40)
+>>> datetime.datetime.fromtimestamp(time.time())
+datetime.datetime(2015, 2, 27, 11, 13, 0, 604980)
+```
+
+might need to be:
+
+```
+>>> import time  # added
+>>> datetime.datetime.fromtimestamp(1000000)
+datetime.datetime(1970, 1, 12, 5, 46, 40)
+>>> datetime.datetime.fromtimestamp(time.time())
+datetime.datetime(2015, 2, 27, 11, 13, 0, 604980)
+```
+
+In case IDLE was closed to write the stopwatch.py program.
