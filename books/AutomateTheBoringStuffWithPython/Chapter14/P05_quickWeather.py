@@ -18,10 +18,6 @@ def getWeather(loc, apikey):
     return data
 
 
-def dateFromISOformat(datestring):
-    return datetime.datetime.strptime(datestring, '%Y-%m-%d %H:%M:%S')
-
-
 # Compute location from command line arguments.
 if len(sys.argv) < 2:
     print('Usage: P05_quickWeather.py city,country code')
@@ -55,25 +51,25 @@ else:
 # Print weather descriptions
 w = weatherShelf["data"]['list']
 count = int(weatherShelf["data"]["cnt"])
-tomorrowISOdate, dayAfterISOdate = None, None
+tomorrowDate, dayAfterDate = None, None
 
 for i in range(0, count):
-    currentISOdate = w[i]["dt_txt"]
+    currentDate = datetime.datetime.strptime(w[i]["dt_txt"][:10], '%Y-%m-%d')
     # Print current weather at i == 0
     if i == 0:
         print('Current weather in %s:' % location)
         print(w[i]['weather'][0]['main'], '-', w[i]['weather'][0]['description'])
-        tomorrowISOdate = str(dateFromISOformat(currentISOdate) + datetime.timedelta(days=1))
+        tomorrowDate = currentDate + datetime.timedelta(days=1)
+        dayAfterDate = currentDate + datetime.timedelta(days=2)
         print()
-    # If tomorrow date is current date, print tomorrow weather
-    elif tomorrowISOdate == currentISOdate:
+    # If current date is greater than tomorrow date, print tomorrow weather
+    elif currentDate > tomorrowDate:
         print('Tomorrow:')
         print(w[i]['weather'][0]['main'], '-', w[i]['weather'][0]['description'])
-        dayAfterISOdate = str(dateFromISOformat(currentISOdate) + datetime.timedelta(days=1))
-        tomorrowISOdate = None
+        tomorrowDate = currentDate + datetime.timedelta(days=7)
         print()
-    # If day after date is current date, print day after tomorrow weather
-    elif dayAfterISOdate == currentISOdate:
+    # If current date is greater than day after date, print day after tomorrow weather
+    elif currentDate > dayAfterDate:
         print('Day after tomorrow:')
         print(w[i]['weather'][0]['main'], '-', w[i]['weather'][0]['description'])
         break
