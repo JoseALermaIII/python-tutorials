@@ -789,3 +789,7 @@ In Chapter 15, reference number 598.0, paragraph 24.47, the str line in codebloc
    >>> str(delta)  # bold me, pls
    '11 days, 10:09:08'
 ```
+
+On reference number 599.5, paragraph 24.49, the line:
+
+>Finally, passing the timedelta object to str() returns a string clearly explaning the duration.
