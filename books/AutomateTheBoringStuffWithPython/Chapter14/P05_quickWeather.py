@@ -39,12 +39,12 @@ else:
     timeNow = datetime.datetime.now(tz=datetime.timezone.utc)
     savedTime = weatherShelf["data"]["savedTime"]
     timedelta = timeNow - savedTime
-    interval = 10 * 60  # 10 minutes to seconds
+    interval = datetime.timedelta(minutes=10)
 
-    if timedelta.total_seconds() < interval:
+    if timedelta < interval:
         city = weatherShelf["data"]["city"]
         print("RequestError: Need to wait %s minutes. Using saved data for: %s, %s" %
-              (round((interval - timedelta.total_seconds())/60, 2), city["name"], city["country"]))
+              (round((interval - timedelta).total_seconds()/60, 2), city["name"], city["country"]))
     else:
         weatherShelf["data"] = getWeather(location, apiKey)
 
