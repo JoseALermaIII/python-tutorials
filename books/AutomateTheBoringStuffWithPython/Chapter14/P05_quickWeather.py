@@ -44,7 +44,7 @@ else:
     if timedelta.total_seconds() < interval:
         city = weatherShelf["data"]["city"]
         print("RequestError: Need to wait %s minutes. Using saved data for: %s, %s" %
-              ((interval - timedelta.total_seconds())/60, city["name"], city["country"]))
+              (round((interval - timedelta.total_seconds())/60, 2), city["name"], city["country"]))
     else:
         weatherShelf["data"] = getWeather(location, apiKey)
 
