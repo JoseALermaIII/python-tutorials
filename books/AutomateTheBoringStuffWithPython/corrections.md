@@ -779,3 +779,13 @@ datetime.datetime(2015, 2, 27, 11, 13, 0, 604980)
 ```
 
 In case IDLE was closed to write the stopwatch.py program.
+
+# Sept. 6, 2018 Update:
+
+In Chapter 15, reference number 598.0, paragraph 24.47, the str line in codeblock needs bolding:
+
+```
+   --snip--  # omitted to save space
+   >>> str(delta)  # bold me, pls
+   '11 days, 10:09:08'
+```
