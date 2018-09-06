@@ -40,3 +40,8 @@ print(oct21st - (2 * aboutThirtyYears))
 halloween2016 = datetime.datetime(2016, 10, 31, 0, 0, 0)
 while datetime.datetime.now() < halloween2016:
     time.sleep(1)
+
+# Converting datetime Objects into Strings
+print(oct21st.strftime('%Y/%m/%d %H:%M:%S'))
+print(oct21st.strftime('%I:%M %p'))
+print(oct21st.strftime("%B of '%y"))
