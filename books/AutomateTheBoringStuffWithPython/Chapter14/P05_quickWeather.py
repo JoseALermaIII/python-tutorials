@@ -18,14 +18,8 @@ def getWeather(loc, apikey):
     return data
 
 
-# datetime.date.fromisoformat implemented in python 3.7,
-# though not intended for arbitrary isoformat strings.
-# Currently using python 3.6, so change when updated
 def dateFromISOformat(datestring):
-    year = datestring[:4]
-    month = datestring[5:7]
-    day = datestring[8:]
-    return datetime.date(year=int(year), month=int(month), day=int(day))
+    return datetime.datetime.strptime(datestring, '%Y-%m-%d %H:%M:%S')
 
 
 # Compute location from command line arguments.
@@ -64,7 +58,7 @@ count = int(weatherShelf["data"]["cnt"])
 tomorrowISOdate, dayAfterISOdate = None, None
 
 for i in range(0, count):
-    currentISOdate = w[i]["dt_txt"][:10]
+    currentISOdate = w[i]["dt_txt"]
     # Print current weather at i == 0
     if i == 0:
         print('Current weather in %s:' % location)
