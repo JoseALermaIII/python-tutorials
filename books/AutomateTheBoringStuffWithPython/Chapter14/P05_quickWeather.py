@@ -51,22 +51,22 @@ else:
 # Print weather descriptions
 w = weatherShelf["data"]['list']
 count = int(weatherShelf["data"]["cnt"])
-tomorrowDate, dayAfterDate = None, None
 
-for i in range(0, count):
+# Print current weather
+currentDate = datetime.datetime.strptime(w[0]["dt_txt"][:10], '%Y-%m-%d')
+print('Current weather in %s:' % location)
+print(w[0]['weather'][0]['main'], '-', w[0]['weather'][0]['description'])
+tomorrowDate = currentDate + datetime.timedelta(days=1)
+dayAfterDate = currentDate + datetime.timedelta(days=2)
+print()
+
+for i in range(1, count):
     currentDate = datetime.datetime.strptime(w[i]["dt_txt"][:10], '%Y-%m-%d')
-    # Print current weather at i == 0
-    if i == 0:
-        print('Current weather in %s:' % location)
-        print(w[i]['weather'][0]['main'], '-', w[i]['weather'][0]['description'])
-        tomorrowDate = currentDate + datetime.timedelta(days=1)
-        dayAfterDate = currentDate + datetime.timedelta(days=2)
-        print()
     # If current date is greater than tomorrow date, print tomorrow weather
-    elif currentDate > tomorrowDate:
+    if currentDate > tomorrowDate:
         print('Tomorrow:')
         print(w[i]['weather'][0]['main'], '-', w[i]['weather'][0]['description'])
-        tomorrowDate = currentDate + datetime.timedelta(days=7)
+        tomorrowDate = currentDate + datetime.timedelta(days=7)  # past the 5-day forecast
         print()
     # If current date is greater than day after date, print day after tomorrow weather
     elif currentDate > dayAfterDate:
