@@ -10,3 +10,8 @@ print(calcProc.poll())
 
 # Passing Command Line Arguments to Popen()
 subprocess.Popen(['/usr/bin/gedit', '/home/jose/Documents/Notepad.py'])  # Using Ubuntu 18.04
+
+# Running Other Python Scripts
+subprocess.Popen(['/usr/bin/python3',
+                  '/home/jose/PycharmProjects/python-tutorials/books/'
+                  'AutomateTheBoringStuffWithPython/Chapter01/P02_hello.py'])
