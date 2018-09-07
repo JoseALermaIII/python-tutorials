@@ -14,4 +14,4 @@ subprocess.Popen(['/usr/bin/gedit', '/home/jose/Documents/Notepad.py'])  # Using
 # Running Other Python Scripts
 subprocess.Popen(['/usr/bin/python3',
                   '/home/jose/PycharmProjects/python-tutorials/books/'
-                  'AutomateTheBoringStuffWithPython/Chapter01/P02_hello.py'])
+                  'AutomateTheBoringStuffWithPython/Chapter01/P02_hello.py']).communicate()
