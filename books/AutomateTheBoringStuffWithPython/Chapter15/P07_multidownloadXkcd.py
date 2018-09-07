@@ -19,7 +19,7 @@ def downloadXkcd(startComic, endComic):
         if comicElem == []:
             print('Could not find comic image.')
         else:
-            comicUrl = comicElem[0].get('src')
+            comicUrl = 'http:' + comicElem[0].get('src')
             # Download the image.
             print('Downloading image %s...' % comicUrl)
             res = requests.get(comicUrl)
