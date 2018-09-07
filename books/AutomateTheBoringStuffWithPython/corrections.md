@@ -800,3 +800,29 @@ In Chapter 15, reference number 612.3, paragraph 24.125, the line:
 
 >To make sure the keyword argument sep=' & ' gets passed to print() in the new thread, we pass kwargs={'sep': '& '} 
 to threading.Thread().
+
+On reference number 616.0, paragraph 24.136 (multidownloadXkcd.py), the codeblock:
+
+```
+           --snip-- # omitted
+           if comicElem == []:
+               print('Could not find comic image.')
+           else:
+➐             comicUrl = comicElem[0].get('src')
+               # Download the image.
+               print('Downloading image %s...' % (comicUrl))
+           --snip-- # omitted
+```
+
+should be:
+
+```
+           --snip-- # omitted
+           if comicElem == []:
+               print('Could not find comic image.')
+           else:
+➐             comicUrl = 'http:' + comicElem[0].get('src')  # changed
+               # Download the image.
+               print('Downloading image %s...' % (comicUrl))
+           --snip-- # omitted
+```
