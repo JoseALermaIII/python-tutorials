@@ -16,7 +16,7 @@ def downloadXkcd(startComic, endComic):
 
         # Find the URL of the comic image.
         comicElem = soup.select('#comic img')
-        if comicElem == []:
+        if not comicElem:
             print('Could not find comic image.')
         else:
             comicUrl = 'http:' + comicElem[0].get('src')
