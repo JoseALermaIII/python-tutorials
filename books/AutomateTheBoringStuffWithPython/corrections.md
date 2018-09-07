@@ -826,3 +826,20 @@ should be:
                print('Downloading image %s...' % (comicUrl))
            --snip-- # omitted
 ```
+
+On reference number 627.6, paragraph 24.161, the codeblock:
+
+```
+>>> subprocess.Popen(['C:\\python34\\python.exe', 'hello.py'])
+<subprocess.Popen object at 0x000000000331CF28>
+```
+
+might need to be:
+
+```
+>>> subprocess.Popen(['C:\\python34\\python.exe', 'hello.py']).communicate()  # changed
+<subprocess.Popen object at 0x000000000331CF28>
+```
+
+I could not get it to accept input without it in Ubuntu 18.04.  TODO: Can someone
+confirm they got it to work in Windows?
