@@ -4,6 +4,6 @@ import subprocess
 
 # Launching Other Programs from Python
 calcProc = subprocess.Popen('/usr/bin/gnome-calculator')
-print(calcProc.poll() == None)
+print(calcProc.poll() is None)
 print(calcProc.wait())
 print(calcProc.poll())
