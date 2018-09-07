@@ -793,3 +793,10 @@ In Chapter 15, reference number 598.0, paragraph 24.47, the str line in codebloc
 On reference number 599.5, paragraph 24.49, the line:
 
 >Finally, passing the timedelta object to str() returns a string clearly explaning the duration.
+
+# Sept. 7, 2018 Update:
+
+In Chapter 15, reference number 612.3, paragraph 24.125, the line:
+
+>To make sure the keyword argument sep=' & ' gets passed to print() in the new thread, we pass kwargs={'sep': '& '} 
+to threading.Thread().
