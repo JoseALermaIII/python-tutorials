@@ -53,9 +53,9 @@ w = weatherShelf["data"]['list']
 count = int(weatherShelf["data"]["cnt"])
 
 # Print current weather
-currentDate = datetime.datetime.strptime(w[0]["dt_txt"][:10], '%Y-%m-%d')
 print('Current weather in %s:' % location)
 print(w[0]['weather'][0]['main'], '-', w[0]['weather'][0]['description'])
+currentDate = datetime.datetime.strptime(w[0]["dt_txt"][:10], '%Y-%m-%d')
 tomorrowDate = currentDate + datetime.timedelta(days=1)
 dayAfterDate = currentDate + datetime.timedelta(days=2)
 print()
