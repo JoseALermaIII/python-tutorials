@@ -843,3 +843,30 @@ might need to be:
 
 I could not get it to accept input without it in Ubuntu 18.04.  TODO: Can someone
 confirm they got it to work in Windows?
+
+# Sept. 8, 2018 Update:
+
+In Chapter 15, reference number 631.7, paragraph 24.183 (countdown.py), the codeblock:
+
+```
+--snip--  # omitted
+➊ timeLeft = 60
+   while timeLeft > 0:
+➋     print(timeLeft, end='')
+➌     time.sleep(1)
+--snip--  # omitted
+```
+
+may need to be:
+
+```
+--snip--  # omitted
+➊ timeLeft = 60
+   while timeLeft > 0:
+➋     print(timeLeft)  # changed
+➌     time.sleep(1)
+--snip--  # omitted
+```
+
+It wouldn't print remaining time in Python 3.6.5 (Ubuntu 18.04) until the while loop finished.
+It seemed to wait until the line was done before printing it. TODO: Can someone else please confirm?
