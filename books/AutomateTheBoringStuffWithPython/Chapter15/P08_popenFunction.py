@@ -15,3 +15,9 @@ subprocess.Popen(['/usr/bin/gedit', '/home/jose/Documents/Notepad.py'])  # Using
 subprocess.Popen(['/usr/bin/python3',
                   '/home/jose/PycharmProjects/python-tutorials/books/'
                   'AutomateTheBoringStuffWithPython/Chapter01/P02_hello.py']).communicate()
+
+# Opening Files with Default Applications
+fileObj = open('hello.txt', 'w')
+fileObj.write('Hello world!')
+fileObj.close()
+subprocess.Popen(['see', 'hello.txt'])
