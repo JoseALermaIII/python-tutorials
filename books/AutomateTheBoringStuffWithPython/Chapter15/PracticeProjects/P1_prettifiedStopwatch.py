@@ -15,7 +15,7 @@
 # Next, use the pyperclip module introduced to copy the text output to the clipboard
 # so the user can quickly paste the output to a text file or email.
 
-import time
+import time, books.AutomateTheBoringStuffWithPython.Chapter08.pyperclip
 
 # Display the program's instructions
 print("Press ENTER to begin. Afterwards, press ENTER to 'click' the stopwatch. "
@@ -32,9 +32,11 @@ try:
         input()
         lapTime = round(time.time() - lastTime, 2)
         totalTime = round(time.time() - startTime, 2)
-        print('Lap #' + str(lapNum).rjust(2) + ':' +
-              str(totalTime).rjust(6) +
-              ' (' + str(lapTime).rjust(6) + ')', end='')
+
+        output = 'Lap #' + str(lapNum).rjust(2) + ':' + str(totalTime).rjust(6) + ' (' + str(lapTime).rjust(6) + ')'
+        print(output, end='')
+        books.AutomateTheBoringStuffWithPython.Chapter08.pyperclip.copy(output)  # copy to clipboard
+
         lapNum += 1
         lastTime = time.time()  # reset the last lap time
 except KeyboardInterrupt:
