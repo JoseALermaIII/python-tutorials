@@ -15,8 +15,8 @@ def downloadComic(soupObj, shelfObj, page):
     comicElem = soupObj.select('.comicimage')
     comicUrl = comicElem[0].get('src')
     print(f'Downloading image {comicUrl}...')
-    res = requests.get(comicUrl)
-    res.raise_for_status()
+    comicRes = requests.get(comicUrl)
+    comicRes.raise_for_status()
 
     # Save the comic to desktop.
     imageFile = open(os.path.join(os.path.expanduser('~/Desktop'), os.path.basename(comicUrl)), "wb")
