@@ -7,3 +7,13 @@
 # The Python program itself can download the comic and then copy it to your desktop
 # so that it is easy to find. This will free you from having to check the website
 # yourself to see whether it has updated.
+
+import os, requests, bs4, datetime, shelve
+
+# Download page
+
+# Compare page's timestamp to shelve's
+
+# Download comic to desktop
+
+# Repeat for next URL
