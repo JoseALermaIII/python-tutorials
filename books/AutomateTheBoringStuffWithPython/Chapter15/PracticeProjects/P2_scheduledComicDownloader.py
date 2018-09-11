@@ -32,7 +32,6 @@ def downloadComic(soupObj, shelfObj, page):
 url = 'http://www.lefthandedtoons.com/'
 comicShelf = shelve.open('comic')
 
-# TODO: fix logic flow - don't download page unless needed, compare timestamps sooner
 # TODO: add more URLs
 # Download page
 print(f'Downloading page {url}...')
@@ -49,18 +48,14 @@ else:
     comicTimestamp = comicTitleElem[0].getText()
     match = re.search('\w+ \d+, \d{4}', comicTimestamp)
     comicDate = datetime.datetime.strptime(match.group(), '%B %d, %Y').date()
-
-    if not list(comicShelf.keys()):  # Shelf empty, download comic
+    comicShelfKeys = list(comicShelf.keys())
+    if (not comicShelfKeys) or (url not in comicShelfKeys):  # Shelf empty or URL not in shelf, download comic
         downloadComic(soup, comicShelf, url)
     else:
-        if url not in list(comicShelf.keys()):  # URL not in shelf, download comic
+        shelfDate = comicShelf[url]
+        if comicDate > shelfDate:  # New comic available, download comic
             downloadComic(soup, comicShelf, url)
         else:
-            shelfDate = comicShelf[url]
-            if comicDate > shelfDate:  # Download new comic
-                downloadComic(soup, comicShelf, url)
-            else:
-                print("No new comic available :(")
-
+            print("No new comic available :(")
 
 comicShelf.close()
