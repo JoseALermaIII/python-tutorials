@@ -43,7 +43,7 @@ def save_comic(comic_url_obj, shelf_obj, url_obj):
         image_file.write(chunk)
     image_file.close()
 
-    now = datetime.datetime.now(tz=datetime.timezone.utc).date()
+    now = datetime.datetime.now().date()
     shelf_obj[url_obj] = now
     return None
 
