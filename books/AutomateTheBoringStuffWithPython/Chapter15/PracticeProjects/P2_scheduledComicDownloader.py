@@ -11,95 +11,78 @@
 import os, requests, bs4, datetime, shelve, re
 
 
-def downloadLeftComic(soupObj, shelfObj, page):
-    comicElem = soupObj.select('.comicimage')
-    comicUrl = comicElem[0].get('src')
-    print(f'Downloading image {comicUrl}...')
-    comicRes = requests.get(comicUrl)
-    comicRes.raise_for_status()
+def get_soup(url_obj):
+    print(f'Downloading page {url_obj}...')
+    res = requests.get(url_obj)
+    res.raise_for_status()
+    return bs4.BeautifulSoup(res.text, 'lxml')
 
-    # Save the comic to desktop.
-    imageFile = open(os.path.join(os.path.expanduser('~/Desktop'), os.path.basename(comicUrl)), "wb")
-    for chunk in comicRes.iter_content(100000):
-        imageFile.write(chunk)
-    imageFile.close()
 
-    now = datetime.datetime.now(tz=datetime.timezone.utc).date()
-    shelfObj[page] = now
+def compare_timestamps(timestamp_obj, comic_url_obj, shelf_obj, url_obj):
+    comic_date = datetime.datetime.strptime(timestamp_obj, '%B %d, %Y').date()
+    comic_shelf_keys = list(shelf_obj.keys())
+    if (not comic_shelf_keys) or (url_obj not in comic_shelf_keys):  # Shelf empty or URL not in shelf, download comic
+        save_comic(comic_url_obj, shelf_obj, url_obj)
+    else:
+        shelf_date = shelf_obj[url_obj]
+        if comic_date > shelf_date:  # New comic available, download comic
+            save_comic(comic_url_obj, shelf_obj, url_obj)
+        else:
+            print('No new comic available :(')
     return None
 
 
-def downloadButterComic(soupObj, shelfObj, page):
-    divElem = soupObj.find('div', attrs={'id': 'comic'})
-    comicUrl = divElem.find('img')['src']
-    print(f'Downloading image {comicUrl}...')
-    comicRes = requests.get(comicUrl)
-    comicRes.raise_for_status()
+def save_comic(comic_url_obj, shelf_obj, url_obj):
+    print(f'Downloading image {comic_url_obj}...')
+    comic_res = requests.get(comic_url_obj)
+    comic_res.raise_for_status()
 
     # Save the comic to desktop.
-    imageFile = open(os.path.join(os.path.expanduser('~/Desktop'), os.path.basename(comicUrl)), "wb")
-    for chunk in comicRes.iter_content(100000):
-        imageFile.write(chunk)
-    imageFile.close()
+    image_file = open(os.path.join(os.path.expanduser('~/Desktop'), os.path.basename(comic_url_obj)), "wb")
+    for chunk in comic_res.iter_content(100000):
+        image_file.write(chunk)
+    image_file.close()
 
     now = datetime.datetime.now(tz=datetime.timezone.utc).date()
-    shelfObj[page] = now
+    shelf_obj[url_obj] = now
     return None
 
 
+comic_shelf = shelve.open('comic')
+
+# Download page
 url = 'http://www.lefthandedtoons.com/'
-comicShelf = shelve.open('comic')
+soup = get_soup(url)
 
-# Download page
-print(f'Downloading page {url}...')
-res = requests.get(url)
-res.raise_for_status()
-
-soup = bs4.BeautifulSoup(res.text, 'lxml')
+# Get comic url in case it needs to be downloaded
+image_elem = soup.select('.comicimage')
+comic_url = image_elem[0].get('src')
 
 # Compare page's timestamp to shelve's
-comicTitleElem = soup.select('.comictitlearea')
-if not comicTitleElem:
+comic_title_elem = soup.select('.comictitlearea')
+if not comic_title_elem:
     print('Could not find comic timestamp.')
 else:
-    comicTimestamp = comicTitleElem[0].getText()
-    match = re.search('\w+ \d+, \d{4}', comicTimestamp)
-    comicDate = datetime.datetime.strptime(match.group(), '%B %d, %Y').date()
-    comicShelfKeys = list(comicShelf.keys())
-    if (not comicShelfKeys) or (url not in comicShelfKeys):  # Shelf empty or URL not in shelf, download comic
-        downloadLeftComic(soup, comicShelf, url)
-    else:
-        shelfDate = comicShelf[url]
-        if comicDate > shelfDate:  # New comic available, download comic
-            downloadLeftComic(soup, comicShelf, url)
-        else:
-            print('No new comic available :(')
-# TODO: refactor, most of below code is the same as above
+    title_text = comic_title_elem[0].getText()
+    match = re.search('\w+ \d+, \d{4}', title_text)
+    compare_timestamps(match.group(), comic_url, comic_shelf, url)
+
+# Download page
 url = 'http://buttersafe.com/'
-# Download page
-print(f'Downloading page {url}...')
-res = requests.get(url)
-res.raise_for_status()
+soup = get_soup(url)
 
-soup = bs4.BeautifulSoup(res.text, 'lxml')
+# Get comic url in case it needs to be downloaded
+div_elem = soup.find('div', attrs={'id': 'comic'})
+comic_url = div_elem.find('img')['src']
 
 # Compare page's timestamp to shelve's
-comicTitleElem = soup.select('#headernav-date')
-if not comicTitleElem:
+comic_header = soup.select('#headernav-date')
+if not comic_header:
     print('Could not find comic timestamp.')
 else:
-    comicTimestamp = comicTitleElem[0].getText()
-    match = re.search('(\w+), (\w+) (\d+).., (\d{4})', comicTimestamp)
-    result = f'{match.group(2)} {match.group(3)}, {match.group(4)}'
-    comicDate = datetime.datetime.strptime(result, '%B %d, %Y').date()
-    comicShelfKeys = list(comicShelf.keys())
-    if (not comicShelfKeys) or (url not in comicShelfKeys):  # Shelf empty or URL not in shelf, download comic
-        downloadButterComic(soup, comicShelf, url)
-    else:
-        shelfDate = comicShelf[url]
-        if comicDate > shelfDate:  # New comic available, download comic
-            downloadButterComic(soup, comicShelf, url)
-        else:
-            print('No new comic available :(')
+    header_text = comic_header[0].getText()
+    match = re.search('(\w+), (\w+) (\d+).., (\d{4})', header_text)
+    comic_timestamp = f'{match.group(2)} {match.group(3)}, {match.group(4)}'
+    compare_timestamps(comic_timestamp, comic_url, comic_shelf, url)
 
-comicShelf.close()
+comic_shelf.close()
