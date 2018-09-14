@@ -20,3 +20,9 @@ print(smtp_obj.ehlo())
 
 # Logging in to the SMTP Server
 print(smtp_obj.login(smtp_cfg[0], smtp_cfg[1]))
+
+# Sending an Email
+unsent = smtp_obj.sendmail(smtp_cfg[0], 'contact.me@JoseALerma.com',
+                           'Subject: Bot test.\nDear Myself, always remember that with great '
+                           'power comes great responsibility. Regards, You')
+print(unsent.keys())
