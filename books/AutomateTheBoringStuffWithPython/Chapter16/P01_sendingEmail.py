@@ -7,5 +7,8 @@ with open('smtp_info') as config:
     # smtp_cfg = [email, password, smtp server, port]
     smtp_cfg = config.read().splitlines()
 
-smtp_obj = smtplib.SMTP_SSL(smtp_cfg[2], smtp_cfg[3])
+smtp_obj = smtplib.SMTP_SSL(smtp_cfg[2], smtp_cfg[3])  # Using port 465
 print(type(smtp_obj))
+
+# Sending the SMTP "Hello" Message
+print(smtp_obj.ehlo())
