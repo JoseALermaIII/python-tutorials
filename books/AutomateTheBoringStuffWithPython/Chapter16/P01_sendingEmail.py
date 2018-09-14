@@ -23,8 +23,8 @@ print(smtp_obj.login(smtp_cfg[0], smtp_cfg[1]))
 
 # Sending an Email
 unsent = smtp_obj.sendmail(smtp_cfg[0], 'contact.me@JoseALerma.com',
-                           'Subject: Bot test.\nDear Myself,\nalways remember that with great '
-                           'power comes great responsibility.\nRegards, You')
+                           'Subject: Bot test.\nDear Myself,\nAlways remember that with great '
+                           'power comes great responsibility.\nRegards,\nYou')
 print(unsent.keys())
 
 # Disconnecting from the SMTP Server
