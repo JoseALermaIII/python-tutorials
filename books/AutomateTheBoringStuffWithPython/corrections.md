@@ -870,3 +870,12 @@ may need to be:
 
 It wouldn't print remaining time in Python 3.6.5 (Ubuntu 18.04) until the while loop finished.
 It seemed to wait until the line was done before printing it. TODO: Can someone else please confirm?
+
+# Sept. 14, 2018 Update:
+
+In Chapter 16, reference number 648.4, paragraph 25.52, the line:
+
+>Install imapclient and pyzmail from a Terminal window. Appendix A has steps on how to install third-party modules.
+
+I had to install `pyzmail36` (possibly because I'm using Python 3.6.5). The next codeblocks referencing `pyzmail`
+and Appendix A may have to be updated.
