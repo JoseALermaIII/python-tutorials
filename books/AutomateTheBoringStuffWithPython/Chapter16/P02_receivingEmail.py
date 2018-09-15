@@ -30,3 +30,9 @@ print(uids)
 # Increase size limit from 10,000 bytes to 10,000,000 bytes
 import imaplib
 imaplib._MAXLINE = 10000000
+
+# Fetching an Email and Marking it as Read
+raw_messages = imap_obj.fetch(uids, ['BODY[]'])
+pprint.pprint(raw_messages)
+
+#imap_obj.select_folder('INBOX', readonly=False)  # Allows marking as read when using fetch()
