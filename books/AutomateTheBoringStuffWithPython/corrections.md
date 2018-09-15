@@ -912,3 +912,7 @@ SEARCH: Unexpected string as search key: SINCE 01-Jan-2015 (0.001 + 0.088 + 0.08
 
 Alternatively, `imap_obj.search('SINCE "01-Jan-2015" NOT FROM "alice@exmaple.com"')` works, but isn't recommended
 according to the docs.
+
+On reference number 664.6, paragraph 25.141, the line `>>> message = 
+pyzmail.PyzMessage.factory(rawMessages[40041]['BODY[]'])` gave me a `KeyError` (even after using proper UIDs) that was
+only fixed by changing it to `>>> message = pyzmail.PyzMessage.factory(rawMessages[40041][b'BODY[]'])`
