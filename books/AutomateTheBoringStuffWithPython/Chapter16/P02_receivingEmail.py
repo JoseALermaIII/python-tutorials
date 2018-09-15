@@ -59,3 +59,6 @@ uids = imap_obj.search(['ON 15-Sep-2018'])
 print(uids)
 print(imap_obj.delete_messages(uids))
 print(imap_obj.expunge())
+
+# Disconnecting from the IMAP Server
+imap_obj.logout()
