@@ -16,3 +16,13 @@ imap_obj = imapclient.IMAPClient(imap_cfg[2], ssl=True)
 
 # Logging in to the IMAP Server
 print(imap_obj.login(imap_cfg[0], imap_cfg[1]))
+
+# Searching for Email
+import pprint  # Don't do this, imports should be at the top of the file
+pprint.pprint(imap_obj.list_folders())
+
+imap_obj.select_folder('INBOX', readonly=True)
+
+uids = imap_obj.search(['SINCE 01-Jan-2015', 'NOT FROM alice@exmaple.com'])
+
+print(uids)
