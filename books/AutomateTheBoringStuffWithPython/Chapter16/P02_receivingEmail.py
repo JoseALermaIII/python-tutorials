@@ -26,3 +26,7 @@ imap_obj.select_folder('INBOX', readonly=True)
 uids = imap_obj.search(['SINCE 01-Jan-2015', 'NOT FROM alice@exmaple.com'])
 
 print(uids)
+
+# Increase size limit from 10,000 bytes to 10,000,000 bytes
+import imaplib
+imaplib._MAXLINE = 10000000
