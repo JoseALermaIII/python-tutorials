@@ -39,7 +39,7 @@ pprint.pprint(raw_messages)
 
 # Getting Email Addresses from a Raw Message
 import pyzmail
-message = pyzmail.PyzMessage.factory(raw_messages[uids[0]]['BODY[]'])
+message = pyzmail.PyzMessage.factory(raw_messages[uids[0]][b'BODY[]'])
 
 print(message.get_subject())
 print(message.get_addresses('from'))
