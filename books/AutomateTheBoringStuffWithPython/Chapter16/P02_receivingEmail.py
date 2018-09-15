@@ -36,3 +36,13 @@ raw_messages = imap_obj.fetch(uids, ['BODY[]'])
 pprint.pprint(raw_messages)
 
 #imap_obj.select_folder('INBOX', readonly=False)  # Allows marking as read when using fetch()
+
+# Getting Email Addresses from a Raw Message
+import pyzmail
+message = pyzmail.PyzMessage.factory(raw_messages[uids[0]]['BODY[]'])
+
+print(message.get_subject())
+print(message.get_addresses('from'))
+print(message.get_addresses('to'))
+print(message.get_addresses('cc'))
+print(message.get_addresses('bcc'))
