@@ -877,5 +877,4 @@ In Chapter 16, reference number 648.4, paragraph 25.52, the line:
 
 >Install imapclient and pyzmail from a Terminal window. Appendix A has steps on how to install third-party modules.
 
-I had to install `pyzmail36` (possibly because I'm using Python 3.6.5). The next codeblocks referencing `pyzmail`
-and Appendix A may have to be updated.
+I had to install `pyzmail36` (possibly because I'm using Python 3.6.5). Appendix A may have to be updated.
