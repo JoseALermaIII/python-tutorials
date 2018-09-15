@@ -52,3 +52,10 @@ if message.text_part is not None:
     print(message.text_part.get_payload().decode(message.text_part.charset))
 if message.html_part is not None:
     print(message.html_part.get_payload().decode(message.html_part.charset))
+
+# Deleting Emails
+imap_obj.select_folder('INBOX', readonly=False)  # Allows deleting of emails
+uids = imap_obj.search(['ON 15-Sep-2018'])
+print(uids)
+print(imap_obj.delete_messages(uids))
+print(imap_obj.expunge())
