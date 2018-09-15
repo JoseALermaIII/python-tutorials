@@ -904,11 +904,11 @@ imapObj.search(['FROM', 'alice@example.com', 'FROM', 'bob@example.com']). Trick
 ```
 
 because [criteria should be a sequence of items.](https://imapclient.readthedocs.io/en/2.1.0/api.html#imapclient.IMAPClient.search)
-Plus, trying `imap_obj.search(['SINCE 01-Jan-2015', 'NOT FROM alice@exmaple.com'])` 
+Plus, trying `imapObj.search(['SINCE 01-Jan-2015', 'NOT FROM alice@exmaple.com'])` 
 outputs `imaplib.error: SEARCH command error: BAD [b'Error in IMAP command UID 
 SEARCH: Unexpected string as search key: SINCE 01-Jan-2015 (0.001 + 0.088 + 0.087 secs).']`
 
-Alternatively, `imap_obj.search('SINCE "01-Jan-2015" NOT FROM "alice@exmaple.com"')` works, but isn't recommended
+Alternatively, `imapObj.search('SINCE "01-Jan-2015" NOT FROM "alice@exmaple.com"')` works, but isn't recommended
 according to the docs.
 
 On reference number 664.6, paragraph 25.141, the line `>>> message = 
