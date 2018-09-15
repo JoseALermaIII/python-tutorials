@@ -23,7 +23,7 @@ pprint.pprint(imap_obj.list_folders())
 
 imap_obj.select_folder('INBOX', readonly=True)
 
-uids = imap_obj.search(['SINCE 01-Jan-2015', 'NOT FROM alice@exmaple.com'])
+uids = imap_obj.search(['SINCE', '01-Jan-2015', 'NOT', 'FROM', 'alice@exmaple.com'])
 
 print(uids)
 
@@ -55,7 +55,7 @@ if message.html_part is not None:
 
 # Deleting Emails
 imap_obj.select_folder('INBOX', readonly=False)  # Allows deleting of emails
-uids = imap_obj.search(['ON 15-Sep-2018'])
+uids = imap_obj.search(['ON', '15-Sep-2018'])
 print(uids)
 print(imap_obj.delete_messages(uids))
 print(imap_obj.expunge())
