@@ -914,3 +914,6 @@ according to the docs.
 On reference number 664.6, paragraph 25.141, the line `>>> message = 
 pyzmail.PyzMessage.factory(rawMessages[40041]['BODY[]'])` gave me a `KeyError` (even after using proper UIDs) that was
 only fixed by changing it to `>>> message = pyzmail.PyzMessage.factory(rawMessages[40041][b'BODY[]'])`
+
+On reference number 668.9, paragraph 25.148, the line `➋ >>> UIDs = imapObj.search(['ON 09-Jul-2015'])`
+should be `➋ >>> UIDs = imapObj.search(['ON', '09-Jul-2015'])`
