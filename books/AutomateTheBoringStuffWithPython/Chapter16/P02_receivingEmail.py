@@ -46,3 +46,9 @@ print(message.get_addresses('from'))
 print(message.get_addresses('to'))
 print(message.get_addresses('cc'))
 print(message.get_addresses('bcc'))
+
+# Getting the Body from a Raw Message
+if message.text_part is not None:
+    print(message.text_part.get_payload().decode(message.text_part.charset))
+if message.html_part is not None:
+    print(message.html_part.get_payload().decode(message.html_part.charset))
