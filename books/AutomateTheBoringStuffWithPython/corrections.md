@@ -884,7 +884,6 @@ I had to install `pyzmail36` (possibly because I'm using Python 3.6.5). Appendix
 In Chapter 16, reference number 658.7, paragraph 25.115, the lines:
 
 ```
-imapObj.search(['ALL']). Returns every message in the currently selected folder.
 imapObj.search(['ON 05-Jul-2015']). Returns every message sent on July 5, 2015.
 imapObj.search(['SINCE 01-Jan-2015', 'BEFORE 01-Feb-2015', 'UNSEEN']). Returns every message sent in January 2015 that is unread. (Note that this means on and after January 1 and up to but not including February 1.)
 imapObj.search(['SINCE 01-Jan-2015', 'FROM alice@example.com']). Returns every message from alice@example.com sent since the start of 2015.
@@ -896,7 +895,6 @@ imapObj.search(['FROM alice@example.com', 'FROM bob@example.com']). Trick examp
 should be:
 
 ```
-imapObj.search(['ALL']). Returns every message in the currently selected folder.
 imapObj.search(['ON', '05-Jul-2015']). Returns every message sent on July 5, 2015.
 imapObj.search(['SINCE', '01-Jan-2015', 'BEFORE', '01-Feb-2015', 'UNSEEN']). Returns every message sent in January 2015 that is unread. (Note that this means on and after January 1 and up to but not including February 1.)
 imapObj.search(['SINCE', '01-Jan-2015', 'FROM', 'alice@example.com']). Returns every message from alice@example.com sent since the start of 2015.
