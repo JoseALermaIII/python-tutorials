@@ -30,7 +30,8 @@ smtpObj.login(smtp_cfg[0], smtp_cfg[1])
 
 # Send out reminder emails.
 for name, email in unpaidMembers.items():
-    body = f"Subject: {latestMonth} dues unpaid.\nDear {name},\nRecords show that you have not paid dues for {latestMonth}. Please make this payment as soon as possible. Thank you!'"
+    body = "Subject: %s dues unpaid.\nDear %s,\nRecords show that you have not paid dues for %s. " \
+           "Please make this payment as soon as possible. Thank you!" % (latestMonth, name, latestMonth)
     print(f'Sending email to {email}...')
     sendmailStatus = smtpObj.sendmail(smtp_cfg[0], email, body)
 
