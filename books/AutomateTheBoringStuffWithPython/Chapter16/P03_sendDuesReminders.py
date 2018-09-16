@@ -7,11 +7,11 @@ import openpyxl, smtplib, sys
 wb = openpyxl.load_workbook('duesRecords.xlsx')
 sheet = wb.get_sheet_by_name('Sheet1')
 
-lastCol = sheet.get_highest_column()
+lastCol = sheet.max_column
 latestMonth = sheet.cell(row=1, column=lastCol).value
 
 # Check each member's payment status.
-for r in range(2, sheet.get_highest_row() + 1):
+for r in range(2, sheet.max_row + 1):
     payment = sheet.cell(row=r, column=lastCol).value
     if payment != 'paid':
         name = sheet.cell(row=r, column=1).value
