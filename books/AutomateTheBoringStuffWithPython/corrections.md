@@ -942,3 +942,9 @@ should be:
 
 On reference number 676.3, paragraph 25.170, the line `➊ for r in range(2, sheet.get_highest_row() + 1):`
 should be `➊ for r in range(2, sheet.max_row + 1):`
+
+On reference number 678.1, paragraph 25.174, the line `body = "Subject: %s dues unpaid.\nDear %s,\nRecords show that you have not
+   paid dues for %s. Please make this payment as soon as possible. Thank you!'" %
+   (latestMonth, name, latestMonth)` should be `body = "Subject: %s dues unpaid.\nDear %s,\nRecords show that you have not
+   paid dues for %s. Please make this payment as soon as possible. Thank you!" %
+   (latestMonth, name, latestMonth)`
