@@ -19,17 +19,21 @@ for r in range(2, sheet.get_highest_row() + 1):
         unpaidMembers[name] = email
 
 # Log in to email account.
-smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
+with open('smtp_info') as config:
+    # smtp_cfg = [email, password, smtp server, port]
+    smtp_cfg = config.read().splitlines()
+
+smtpObj = smtplib.SMTP_SSL(smtp_cfg[2], smtp_cfg[3])  # Using port 465
 smtpObj.ehlo()
 smtpObj.starttls()
-smtpObj.login(' my_email_address@gmail.com ', sys.argv[1])
+smtpObj.login(smtp_cfg[0], smtp_cfg[1])
 
 # Send out reminder emails.
 for name, email in upaidMembers.items():
     body = "Subject: %s dues unpaid.\nDear %s,\nRecords show that you have not paid dues for %s." \
            "Please make this payment as soon as possible. Thank you!'" % (latestMonth, name, latestMonth)
     print('Sending email to %s...' % email)
-    sendmailStatus = smtpObj.sendmail('my_email_address@gmail.com', email, body)
+    sendmailStatus = smtpObj.sendmail(smtp_cfg[0], email, body)
 
     if sendmailStatus != {}:
         print('There was a problem sending email to %s: %s' % (email, sendmailStatus))
