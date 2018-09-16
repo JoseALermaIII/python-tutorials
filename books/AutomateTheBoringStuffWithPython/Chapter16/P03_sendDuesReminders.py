@@ -11,6 +11,7 @@ lastCol = sheet.max_column
 latestMonth = sheet.cell(row=1, column=lastCol).value
 
 # Check each member's payment status.
+unpaidMembers = {}
 for r in range(2, sheet.max_row + 1):
     payment = sheet.cell(row=r, column=lastCol).value
     if payment != 'paid':
