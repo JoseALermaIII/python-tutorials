@@ -5,7 +5,7 @@ import openpyxl, smtplib, sys
 
 # Open the spreadsheet and get the latest dues status.
 wb = openpyxl.load_workbook('duesRecords.xlsx')
-sheet = wb.get_sheet_by_name('Sheet1')
+sheet = wb['Sheet1']
 
 lastCol = sheet.max_column
 latestMonth = sheet.cell(row=1, column=lastCol).value
