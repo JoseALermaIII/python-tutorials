@@ -917,3 +917,25 @@ only fixed by changing it to `>>> message = pyzmail.PyzMessage.factory(rawMessag
 
 On reference number 668.9, paragraph 25.148, the line `➋ >>> UIDs = imapObj.search(['ON 09-Jul-2015'])`
 should be `➋ >>> UIDs = imapObj.search(['ON', '09-Jul-2015'])`
+
+# Sept. 16, 2018 Updates:
+
+In Chapter 16, reference number 674.0, paragraph 25.168 (sendDuesReminders.py), the codeblock:
+
+```
+--snip--  # omitted
+➋ sheet = wb.get_sheet_by_name('Sheet1')
+
+➌ lastCol = sheet.get_highest_column()
+--snip--  # omitted
+```
+
+should be:
+
+```
+--snip--  # omitted
+➋ sheet = wb['Sheet1']  # changed
+
+➌ lastCol = sheet.max_column  # changed
+--snip--  # omitted
+```
