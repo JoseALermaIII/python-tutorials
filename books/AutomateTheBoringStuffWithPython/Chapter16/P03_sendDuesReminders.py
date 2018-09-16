@@ -1,7 +1,7 @@
 #! python3
 # P03_sendDuesReminders.py - Sends emails based on payment status in spreadsheet.
 
-import openpyxl, smtplib, sys
+import openpyxl, smtplib
 
 # Open the spreadsheet and get the latest dues status.
 wb = openpyxl.load_workbook('duesRecords.xlsx')
