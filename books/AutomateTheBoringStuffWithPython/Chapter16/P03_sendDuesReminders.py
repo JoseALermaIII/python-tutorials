@@ -26,7 +26,6 @@ with open('smtp_info') as config:
 
 smtpObj = smtplib.SMTP_SSL(smtp_cfg[2], smtp_cfg[3])  # Using port 465
 smtpObj.ehlo()
-smtpObj.starttls()
 smtpObj.login(smtp_cfg[0], smtp_cfg[1])
 
 # Send out reminder emails.
