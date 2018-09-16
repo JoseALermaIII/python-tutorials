@@ -1,5 +1,10 @@
 #! python3
 # P03_sendDuesReminders.py - Sends emails based on payment status in spreadsheet.
+#
+# Note:
+# - smtp_info file has each item on separate line
+# - email address used is specially created for this chapter
+# - use input() or sys.argv[1] for password to prevent storing in unencrypted file
 
 import openpyxl, smtplib
 
