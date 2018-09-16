@@ -939,3 +939,6 @@ should be:
 ➌ lastCol = sheet.max_column  # changed
 --snip--  # omitted
 ```
+
+On reference number 676.3, paragraph 25.170, the line `➊ for r in range(2, sheet.get_highest_row() + 1):`
+should be `➊ for r in range(2, sheet.max_row + 1):`
