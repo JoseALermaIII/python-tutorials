@@ -22,6 +22,6 @@ print(message.date_created)
 print(message.date_sent is None)
 
 print(message.sid)
-updatedMessage = twilioCli.messages.get(message.sid)
+updatedMessage = twilioCli.messages(message.sid).fetch()
 print(updatedMessage.status)
 print(updatedMessage.date_sent)
