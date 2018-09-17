@@ -28,18 +28,18 @@ for r in range(2, sheet.max_row + 1):
 # Log in to email account.
 with open('smtp_info') as config:
     # smtp_cfg = [email, password, smtp server, port]
-    smtp_cfg = config.read().splitlines()
+    myEmail, password, server, port = config.read().splitlines()
 
-smtpObj = smtplib.SMTP_SSL(smtp_cfg[2], smtp_cfg[3])  # Using port 465
+smtpObj = smtplib.SMTP_SSL(server, port)  # Using port 465
 smtpObj.ehlo()
-smtpObj.login(smtp_cfg[0], smtp_cfg[1])
+smtpObj.login(myEmail, password)
 
 # Send out reminder emails.
 for name, email in unpaidMembers.items():
     body = "Subject: %s dues unpaid.\nDear %s,\nRecords show that you have not paid dues for %s. " \
            "Please make this payment as soon as possible. Thank you!" % (latestMonth, name, latestMonth)
     print(f'Sending email to {email}...')
-    sendmailStatus = smtpObj.sendmail(smtp_cfg[0], email, body)
+    sendmailStatus = smtpObj.sendmail(myEmail, email, body)
 
     if sendmailStatus != {}:
         print(f'There was a problem sending email to {email}: {sendmailStatus}')
