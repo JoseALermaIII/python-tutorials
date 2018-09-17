@@ -978,3 +978,7 @@ should be:
 ```
 
 because `TwilioRestClient` has been depreciated (using twilio 6.16.4).
+
+On reference number 685.5, paragraph 25.195, the line `➊ >>> updatedMessage = twilioCli.messages.get(message.sid)`
+should be `➊ >>> updatedMessage = twilioCli.messages(message.sid).fetch()` because the attributes of `messages.get()`
+were changed.
