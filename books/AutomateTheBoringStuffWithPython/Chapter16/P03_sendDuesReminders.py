@@ -6,7 +6,7 @@
 # - email address used is specially created for this chapter
 # - use input() or sys.argv[1] for password to prevent storing in unencrypted file
 
-import openpyxl, smtplib
+import openpyxl, smtplib, datetime
 
 # Open the spreadsheet and get the latest dues status.
 wb = openpyxl.load_workbook('duesRecords.xlsx')
@@ -14,6 +14,7 @@ sheet = wb['Sheet1']
 
 lastCol = sheet.max_column
 latestMonth = sheet.cell(row=1, column=lastCol).value
+latestMonth = datetime.datetime.strftime(latestMonth, '%b %Y')  # added for LibreOffice 6.0.3.2
 
 # Check each member's payment status.
 unpaidMembers = {}
