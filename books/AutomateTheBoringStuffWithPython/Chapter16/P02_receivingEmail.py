@@ -9,13 +9,12 @@
 import imapclient
 
 with open('imap_info') as config:
-    # imap_cfg = [email, password, imap server, port]
-    imap_cfg = config.read().splitlines()
+    email, password, server, port = config.read().splitlines()
 
-imap_obj = imapclient.IMAPClient(imap_cfg[2], ssl=True)
+imap_obj = imapclient.IMAPClient(server, ssl=True)
 
 # Logging in to the IMAP Server
-print(imap_obj.login(imap_cfg[0], imap_cfg[1]))
+print(imap_obj.login(email, password))
 
 # Searching for Email
 import pprint  # Don't do this, imports should be at the top of the file
