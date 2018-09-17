@@ -958,3 +958,23 @@ On reference number 678.1, paragraph 25.174, the line `body = "Subject: %s dues 
    (latestMonth, name, latestMonth)` should be `body = "Subject: %s dues unpaid.\nDear %s,\nRecords show that you have not
    paid dues for %s. Please make this payment as soon as possible. Thank you!" %
    (latestMonth, name, latestMonth)`
+   
+# Sept. 17, 2018 Update:
+
+In Chapter 16, reference number 682.8, paragraph 25.190, the codeblock:
+
+```
+➊ >>> from twilio.rest import TwilioRestClient
+  --snip--  # omitted
+➋ >>> twilioCli = TwilioRestClient(accountSID, authToken)
+```
+
+should be:
+
+```
+➊ >>> from twilio.rest import Client  # changed
+  --snip--  # omitted
+➋ >>> twilioCli = Client(accountSID, authToken)  # changed
+```
+
+because `TwilioRestClient` has been depreciated (using twilio 6.16.4).
