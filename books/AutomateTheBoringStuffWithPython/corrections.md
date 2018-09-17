@@ -923,22 +923,32 @@ should be `➋ >>> UIDs = imapObj.search(['ON', '09-Jul-2015'])`
 In Chapter 16, reference number 674.0, paragraph 25.168 (sendDuesReminders.py), the codeblock:
 
 ```
+import openpyxl, smtplib, sys
+
 --snip--  # omitted
 ➋ sheet = wb.get_sheet_by_name('Sheet1')
 
 ➌ lastCol = sheet.get_highest_column()
+➍ latestMonth = sheet.cell(row=1, column=lastCol).value
 --snip--  # omitted
 ```
 
 should be:
 
 ```
+import openpyxl, smtplib, sys, datetime  # changed
+
 --snip--  # omitted
 ➋ sheet = wb['Sheet1']  # changed
 
 ➌ lastCol = sheet.max_column  # changed
+➍ latestMonth = sheet.cell(row=1, column=lastCol).value
+   latestMonth = datetime.datetime.strftime(latestMonth, '%b %Y')  # added for LibreOffice 6.0.3.2
 --snip--  # omitted
 ```
+
+_Sept. 17, 2018 Update_: In LibreOffice, `latestMonth = 2018-06-01 00:00:00`, so I had to use datetime to format
+it as `Jun 2018`. TODO: Can someone please confirm it works in Excel?
 
 On reference number 676.3, paragraph 25.170, the line `➊ for r in range(2, sheet.get_highest_row() + 1):`
 should be `➊ for r in range(2, sheet.max_row + 1):`
