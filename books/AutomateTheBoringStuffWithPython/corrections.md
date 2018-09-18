@@ -1006,3 +1006,7 @@ should be:
 ➋     twilioCli = Client(accountSID, authToken)  # changed
   --snip--  # omitted
 ```
+
+On paragraph 25.202, the line:
+>It then defined textmyself() to take on argument ➊, make a TwilioRestClient object ➋, 
+and call create() with the message you passed ➌.
