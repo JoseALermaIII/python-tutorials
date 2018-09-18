@@ -2,7 +2,7 @@
 # P05_textMyself.py - Defines the textmyself() function that texts a message
 # passed to it as a string.
 
-from twilio.rest import TwilioRestClient
+from twilio.rest import Client
 
 # Preset values:
 with open('twilio_info') as config:
@@ -10,6 +10,6 @@ with open('twilio_info') as config:
 
 
 def textmyself(message):
-    twilioCli = TwilioRestClient(accountSID, authToken)
+    twilioCli = Client(accountSID, authToken)
     twilioCli.messages.create(body=message, from_=twilioNumber, to=myNumber)
     return None
