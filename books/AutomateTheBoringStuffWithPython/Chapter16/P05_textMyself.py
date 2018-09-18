@@ -5,10 +5,8 @@
 from twilio.rest import TwilioRestClient
 
 # Preset values:
-accountSID = ''
-authToken = ''
-myNumber = ''
-twilioNumber = ''
+with open('twilio_info') as config:
+    accountSID, authToken, twilioNumber, myNumber = config.read().splitlines()
 
 
 def textmyself(message):
