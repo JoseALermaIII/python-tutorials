@@ -982,3 +982,27 @@ because `TwilioRestClient` has been depreciated (using twilio 6.16.4).
 On reference number 685.5, paragraph 25.195, the line `➊ >>> updatedMessage = twilioCli.messages.get(message.sid)`
 should be `➊ >>> updatedMessage = twilioCli.messages(message.sid).fetch()` because the attributes of `messages.get()`
 were changed.
+
+# Sept. 18, 2018 Update:
+
+In Chapter 16, reference number 687.8, paragraph 25.201 (textMyself.py), the codeblock:
+
+```
+  --snip--  # omitted
+  from twilio.rest import TwilioRestClient
+
+➊ def textmyself(message):
+➋     twilioCli = TwilioRestClient(accountSID, authToken)
+  --snip--  # omitted
+```
+
+should be:
+
+```
+  --snip--  # omitted
+  from twilio.rest import Client  # changed
+
+➊ def textmyself(message):
+➋     twilioCli = Client(accountSID, authToken)  # changed
+  --snip--  # omitted
+```
