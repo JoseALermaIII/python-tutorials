@@ -35,7 +35,7 @@ for row in range(2, sheet.max_row + 1):  # skip title row
     prev_chores.append(prev_chore)
 
 # Run weekly
-saved_time = sheet['E1'].value
+saved_time = sheet['E2'].value
 interval = datetime.timedelta(days=7)
 now = datetime.datetime.now()
 if saved_time is None:
@@ -46,7 +46,7 @@ if timedelta > now:
     print(f"RuntimeError: Need to wait {time_left} minutes before running again.")
     raise RuntimeError
 else:
-    sheet['E1'].value = now  # save to spreadsheet
+    sheet['E2'].value = now  # save to spreadsheet
 
 # Log in to email account.
 with open('../smtp_info') as config:
