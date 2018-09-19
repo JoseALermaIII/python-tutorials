@@ -36,10 +36,10 @@ for row in range(2, sheet.max_row + 1):  # skip title row
 
 # Run weekly
 saved_time = sheet['E1'].value
+interval = datetime.timedelta(days=7)
 now = datetime.datetime.now()
 if saved_time is None:
-    saved_time = now - datetime.timedelta(days=7)  # First run, so it's been a week
-interval = datetime.timedelta(days=7)
+    saved_time = now - interval  # First run, so it's been a week
 timedelta = saved_time + interval
 if timedelta > now:
     time_left = round((timedelta - now).total_seconds()/60, 2)
