@@ -7,3 +7,15 @@
 # they did last time.
 #
 # For another possible feature, schedule the program to run once a week automatically.
+
+import openpyxl, smtplib, datetime
+
+# Open the spreadsheet and get the lists of data.
+
+# Randomly assign chores
+
+# Keep track of chores assigned
+
+# Send emails
+
+# Run weekly
