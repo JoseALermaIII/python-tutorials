@@ -19,3 +19,9 @@ weather_element = soup.select('.myforecast-current')
 weather = weather_element[0].getText()
 
 # If raining, text cellphone
+tokens = ['rain', 't-storms']
+
+for token in tokens:
+    if token in weather.lower():
+        message = f'Bring an umbrella, there\'s {weather}'
+        textmyself(message)
