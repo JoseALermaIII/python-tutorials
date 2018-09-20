@@ -3,7 +3,8 @@
 # whether it’s raining that day. If so, have the program text you a reminder to pack
 # an umbrella before leaving the house.
 
-import requests, bs4, twilio
+import requests, bs4
+from books.AutomateTheBoringStuffWithPython.Chapter16.P05_textMyself import textmyself
 
 # Download weather url and soupify
 url = 'https://forecast.weather.gov/MapClick.php?lat=30.26759000000004&lon=-97.74298999999996'
