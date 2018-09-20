@@ -3,8 +3,16 @@
 # whether it’s raining that day. If so, have the program text you a reminder to pack
 # an umbrella before leaving the house.
 
-import requests, bs4
+import requests, bs4, datetime
 from books.AutomateTheBoringStuffWithPython.Chapter16.P05_textMyself import textmyself
+
+# Check for wake time
+time_now = datetime.datetime.now().time()
+wake_time = datetime.time(hour=5)
+
+if time_now < wake_time:
+    print(f'RuntimeError: can\'t run until {wake_time}')
+    raise RuntimeError
 
 # Download weather url and soupify
 url = 'https://forecast.weather.gov/MapClick.php?lat=30.26759000000004&lon=-97.74298999999996'
