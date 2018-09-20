@@ -14,5 +14,7 @@ res.raise_for_status()
 soup = bs4.BeautifulSoup(res.text, 'lxml')
 
 # Parse current weather from soup
+weather_element = soup.select('.myforecast-current')
+weather = weather_element[0].getText()
 
 # If raining, text cellphone
