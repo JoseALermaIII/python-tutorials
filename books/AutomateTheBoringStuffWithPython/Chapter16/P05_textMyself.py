@@ -5,7 +5,8 @@
 from twilio.rest import Client
 
 # Preset values:
-with open('twilio_info') as config:
+filepath = '/home/jose/PycharmProjects/python-tutorials/books/AutomateTheBoringStuffWithPython/Chapter16/twilio_info'
+with open(filepath) as config:
     accountSID, authToken, twilioNumber, myNumber = config.read().splitlines()
 
 
