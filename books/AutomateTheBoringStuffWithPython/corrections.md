@@ -1,6 +1,7 @@
 I don't expect to find many more, but I'll update this post if I do.
 
-**Note:** It's an EPUB copy, so I don't know where to get accurate publication date/time. Also, no page numbers, just reference numbers (refNum/949).
+**Note:** It's an EPUB copy, published: `2016-01-14T10:12:21-08:00` 
+Also, no page numbers, just reference numbers (refNum/949).
 
 In Chapter 10, on reference number 368.7, paragraph 19.30, the code block:
 
