@@ -30,6 +30,7 @@ def remember_umbrella():
         if token in weather.lower():
             message = f'Bring an umbrella, there\'s {weather.lower()}'
             textmyself(message)
+            break
     return None
 
 
