@@ -35,7 +35,7 @@ def remember_umbrella():
 
 
 def check_time(time_arg):
-    # Check for wake time
+    # Check for time_arg
     time_now = datetime.datetime.now().time()
 
     if time_now < time_arg:
