@@ -17,11 +17,9 @@ def check_time(time_arg):
     return True
 
 
-def remember_umbrella():
+def remember_umbrella(url_arg):
     # Download weather url and soupify
-    url = 'https://forecast.weather.gov/MapClick.php?lat=30.26759000000004&lon=-97.74298999999996'
-
-    res = requests.get(url)
+    res = requests.get(url_arg)
     res.raise_for_status()
 
     soup = bs4.BeautifulSoup(res.text, 'lxml')
@@ -44,8 +42,11 @@ def remember_umbrella():
 if __name__ == '__main__':
     import time
 
+    url = 'https://forecast.weather.gov/MapClick.php?lat=30.26759000000004&lon=-97.74298999999996'
     sleep_time = datetime.timedelta(minutes=5)
     wake_time = datetime.time(hour=5)
+
     while not check_time(wake_time):
         time.sleep(sleep_time.total_seconds())
-    remember_umbrella()
+
+    remember_umbrella(url)
