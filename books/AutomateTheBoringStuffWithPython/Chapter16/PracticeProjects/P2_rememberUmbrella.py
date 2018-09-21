@@ -58,6 +58,6 @@ def main():
     return None
 
 
-# If run directly (instead of imported) run main()
+# If run directly (instead of imported), run main()
 if __name__ == '__main__':
     main()
