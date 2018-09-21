@@ -7,16 +7,6 @@ import requests, bs4, datetime
 from books.AutomateTheBoringStuffWithPython.Chapter16.P05_textMyself import textmyself
 
 
-def check_time(time_arg):
-    # Check for wake time
-    time_now = datetime.datetime.now().time()
-
-    if time_now < time_arg:
-        print(f'RuntimeError: can\'t run until {time_arg}')
-        return False
-    return True
-
-
 def remember_umbrella(url_arg):
     # Download weather url and soupify
     res = requests.get(url_arg)
@@ -36,6 +26,16 @@ def remember_umbrella(url_arg):
             message = f'Bring an umbrella, there\'s {weather.lower()}'
             textmyself(message)
     return None
+
+
+def check_time(time_arg):
+    # Check for wake time
+    time_now = datetime.datetime.now().time()
+
+    if time_now < time_arg:
+        print(f'RuntimeError: can\'t run until {time_arg}')
+        return False
+    return True
 
 
 def main():
