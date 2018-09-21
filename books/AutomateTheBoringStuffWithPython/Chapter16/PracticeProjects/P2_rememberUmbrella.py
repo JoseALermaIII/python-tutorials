@@ -38,8 +38,8 @@ def remember_umbrella(url_arg):
     return None
 
 
-# If run directly (instead of imported) wait for wake time, then run
-if __name__ == '__main__':
+def main():
+    # Wait for wake_time, then run remember_umbrella()
     import time
 
     url = 'https://forecast.weather.gov/MapClick.php?lat=30.26759000000004&lon=-97.74298999999996'
@@ -50,3 +50,9 @@ if __name__ == '__main__':
         time.sleep(sleep_time.total_seconds())
 
     remember_umbrella(url)
+    return None
+
+
+# If run directly (instead of imported) run main()
+if __name__ == '__main__':
+    main()
