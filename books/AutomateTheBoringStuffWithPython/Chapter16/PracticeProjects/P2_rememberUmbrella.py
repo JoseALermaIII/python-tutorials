@@ -3,17 +3,16 @@
 # whether it’s raining that day. If so, have the program text you a reminder to pack
 # an umbrella before leaving the house.
 
-import requests, bs4, datetime, time
+import requests, bs4, datetime
 from books.AutomateTheBoringStuffWithPython.Chapter16.P05_textMyself import textmyself
 
 
-def check_time():
+def check_time(time_arg):
     # Check for wake time
     time_now = datetime.datetime.now().time()
-    wake_time = datetime.time(hour=5)
 
-    if time_now < wake_time:
-        print(f'RuntimeError: can\'t run until {wake_time}')
+    if time_now < time_arg:
+        print(f'RuntimeError: can\'t run until {time_arg}')
         return False
     return True
 
@@ -36,14 +35,17 @@ def remember_umbrella():
 
     for token in tokens:
         if token in weather.lower():
-            message = f'Bring an umbrella, there\'s {weather}'
+            message = f'Bring an umbrella, there\'s {weather.lower()}'
             textmyself(message)
     return None
 
 
 # If run directly (instead of imported) wait for wake time, then run
 if __name__ == '__main__':
+    import time
+
     sleep_time = datetime.timedelta(minutes=5)
-    while not check_time():
+    wake_time = datetime.time(hour=5)
+    while not check_time(wake_time):
         time.sleep(sleep_time.total_seconds())
     remember_umbrella()
