@@ -7,12 +7,16 @@ import requests, bs4, datetime
 from books.AutomateTheBoringStuffWithPython.Chapter16.P05_textMyself import textmyself
 
 
-def remember_umbrella(url_arg):
-    # Download weather url and soupify
+def get_soup(url_arg):
     res = requests.get(url_arg)
     res.raise_for_status()
 
-    soup = bs4.BeautifulSoup(res.text, 'lxml')
+    return bs4.BeautifulSoup(res.text, 'lxml')
+
+
+def remember_umbrella(url_arg):
+    # Download weather url and soupify
+    soup = get_soup(url_arg)
 
     # Parse current weather from soup
     weather_element = soup.select('.myforecast-current')
