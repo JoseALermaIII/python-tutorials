@@ -6,3 +6,16 @@
 #
 # Once you have a list of these URLs, you can use webbrowser.open() to automatically
 # open all of these links in a browser.
+
+import imapclient, bs4, webbrowser
+
+
+# Login to IMAP server
+
+# Get message and soupify
+
+# Check soup for unsubscribe links
+
+# Open link in browser
+
+# Log off
