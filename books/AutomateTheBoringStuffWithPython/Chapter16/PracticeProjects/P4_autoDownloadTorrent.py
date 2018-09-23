@@ -8,3 +8,28 @@
 # then launch qBittorrent to start downloading the file. This way, you can have your
 # home computer begin downloads while you’re away, and the (completely legal, not at
 # all piratical) download can be finished by the time you return home.
+
+import imapclient, subprocess, smtplib, logging, pyzmail
+
+# Wait 15 minutes
+import time
+
+# Login to IMAP server
+
+# Get emails and check subject line for command and password
+
+    # Look for torrent link in email body
+
+    # Send link to torrent client and send status email
+        # Login to SMTP server
+
+        # Compose and send email
+
+        # Delete completed command email
+
+    # Wait for torrent client to finish download and send status email
+        # Compose and send email
+
+        # Disconnect from SMTP server
+
+# Disconnect from IMAP server
