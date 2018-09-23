@@ -9,27 +9,105 @@
 # home computer begin downloads while you’re away, and the (completely legal, not at
 # all piratical) download can be finished by the time you return home.
 
-import imapclient, subprocess, smtplib, logging, pyzmail
+import imapclient, imaplib, subprocess, smtplib, logging, pyzmail, datetime, time, bs4
 
-# Wait 15 minutes
-import time
+# Setup logging
+logging.basicConfig(filename='p4Log.txt', level=logging.DEBUG,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+#logging.disable(logging.CRITICAL)  # Stop logging, comment out to debug
 
-# Login to IMAP server
+# Increase size limit from 10,000 bytes to 10,000,000 bytes
+imaplib._MAXLINE = 10000000
 
-# Get emails and check subject line for command and password
 
-    # Look for torrent link in email body
+# Wait for time_arg seconds
+def countdown(time_arg):
+    while time_arg > 0:
+        logging.debug(f'Time left: {time_arg}', end='')
+        time.sleep(1)
+        time_arg -= 1
+    return True
 
-    # Send link to torrent client and send status email
-        # Login to SMTP server
 
-        # Compose and send email
+def autodownload_torrent():
+    # Login to IMAP server
+    with open('../imap_info') as config:
+        email, password, server, port = config.read().splitlines()
 
-        # Delete completed command email
+    imap_obj = imapclient.IMAPClient(server, ssl=True)
 
-    # Wait for torrent client to finish download and send status email
-        # Compose and send email
+    imap_login = imap_obj.login(email, password)
+    logging.debug(f'IMAP login: {imap_login}')
 
-        # Disconnect from SMTP server
+    # Get emails from server
+    imap_obj.select_folder('INBOX', readonly=True)  # Don't mark as read or delete
+    uids = imap_obj.search(['SINCE', '21-Sep-2018'])
+    raw_messages = imap_obj.fetch(uids, ['BODY[]'])
 
-# Disconnect from IMAP server
+    for uid in uids:
+        message = pyzmail.PyzMessage.factory(raw_messages[uid][b'BODY[]'])
+        if message.html_part is not None:
+            # Check subject line for command and password
+            logging.info(f'Accessing "{message.get_subject()}" from: {message.get_address("from")}...')
+            # TODO: Parse command and password from subject line
+
+            # Soupify message
+            html = message.html_part.get_payload().decode(message.html_part.charset)
+            soup = bs4.BeautifulSoup(html, 'lxml')
+        else:
+            logging.error(f'RuntimeError: Email is not HTML. Skipping "{message.get_subject()}"'
+                          f'from: {message.get_address("from")}')
+            break
+
+        # Look for torrent link in email body
+        anchors = soup.select('a')
+        logging.debug(f'Anchor list: {anchors}')
+        for anchor in anchors:
+            url = anchor.get('href')
+            if url.endswith('.torrent'):
+                # Send link to torrent client and send status email
+                logging.info(f'Opening: {url}')
+                # TODO: Subprocess torrent client
+
+                # Login to SMTP server
+                with open('../smtp_info') as config:
+                    email, password, server, port = config.read().splitlines()
+
+                smtp_obj = smtplib.SMTP_SSL(server, port)  # Using port 465
+                logging.debug(f'SMTP EHLO: {smtp_obj.ehlo()}')
+
+                smtp_login = smtp_obj.login(email, password)
+                logging.debug(f'SMTP Login: {smtp_login}')
+
+                # TODO: Compose and send start email
+                logging.debug(f'Starting torrent...')
+
+                # TODO: Delete completed command email
+                logging.info(f'Deleting {message.get_subject()}...')
+
+                # TODO: Wait for torrent client to finish download and send status email
+
+                # TODO: Compose and send end email
+                logging.debug(f'Torrent finished...')
+
+                # Disconnect from SMTP server
+                smtp_logoff = smtp_obj.quit()
+                logging.debug(f'SMTP Logoff: {smtp_logoff}')
+    # Disconnect from IMAP server
+    imap_logoff = imap_obj.logout()
+    logging.debug(f'IMAP Logoff: {imap_logoff}')
+    return None
+
+
+def main():
+    logging.debug('Start of program')
+    wait_time = datetime.timedelta(minutes=15)
+    countdown(wait_time.total_seconds())
+    autodownload_torrent()
+    logging.debug('End of program')
+    return None
+
+
+# If run directly (instead of imported), run main()
+if __name__ == '__main__':
+    main()
