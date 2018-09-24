@@ -30,8 +30,8 @@ def remember_umbrella():
         if token in weather.lower():
             message = f'Bring an umbrella, there\'s {weather.lower()}'
             textmyself(message)
-            break
-    return None
+            return False
+    return True
 
 
 def check_time(time_arg):
@@ -55,7 +55,6 @@ def main():
         time.sleep(sleep_time.total_seconds())
 
     remember_umbrella()
-    return None
 
 
 # If run directly (instead of imported), run main()
