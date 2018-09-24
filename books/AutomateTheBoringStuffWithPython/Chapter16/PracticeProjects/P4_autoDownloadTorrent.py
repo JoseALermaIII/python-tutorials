@@ -73,7 +73,8 @@ def autodownload_torrent():
             if url.endswith('.torrent'):
                 # Send link to torrent client and send status email
                 logging.info(f'Opening: {url}')
-                # TODO: Subprocess torrent client
+                # Subprocess torrent client
+                torrent_proc = subprocess.Popen('/usr/bin/transmission-gtk', url)
 
                 # Login to SMTP server
                 with open('../smtp_info') as config:
