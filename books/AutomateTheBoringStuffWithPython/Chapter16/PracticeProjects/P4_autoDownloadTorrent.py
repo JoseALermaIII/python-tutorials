@@ -52,16 +52,17 @@ def autodownload_torrent():
 
     for uid in uids:
         message = pyzmail.PyzMessage.factory(raw_messages[uid][b'BODY[]'])
+        subject = message.get_subject()
         # Check subject line for command and password
-        if (message.html_part is not None) and ('torrent bot' and 'password' in message.get_subject().lower()):
-            logging.info(f'Accessing "{message.get_subject()}" from: {message.get_address("from")}...')
+        if (message.html_part is not None) and ('torrent bot' and 'password' in subject.lower()):
+            logging.info(f'Accessing "{subject}" from: {message.get_address("from")}...')
 
             # Soupify message
             html = message.html_part.get_payload().decode(message.html_part.charset)
             soup = bs4.BeautifulSoup(html, 'lxml')
         else:
             logging.error(f'RuntimeError: Email is not HTML, missing command, or password.'
-                          f'Skipping "{message.get_subject()}" from: {message.get_address("from")}')
+                          f'Skipping "{subject}" from: {message.get_address("from")}')
             break
 
         # Look for torrent link in email body
@@ -91,7 +92,7 @@ def autodownload_torrent():
                 email_myself(smtp_obj, email, message_send)
 
                 # Delete completed command email
-                logging.info(f'Deleting {message.get_subject()}...')
+                logging.info(f'Deleting {subject}...')
                 delete = imap_obj.delete_messages(uid)
                 logging.debug(f'Marked for deletion: {delete}')
                 deleted = imap_obj.expunge()
