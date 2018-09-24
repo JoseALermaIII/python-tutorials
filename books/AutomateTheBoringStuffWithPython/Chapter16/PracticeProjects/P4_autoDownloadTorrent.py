@@ -100,8 +100,11 @@ def autodownload_torrent():
 
                 # TODO: Wait for torrent client to finish download and send status email
 
-                # TODO: Compose and send end email
+                # Compose and send end email
                 logging.debug(f'Torrent finished...')
+                message_send = 'Subject: Finished torrent\nGreetings!\nI have finished downloading\n %s\n' \
+                               '\nRegards,\nTorrent Bot' % url
+                email_myself(smtp_obj, email, message_send)
 
                 # Disconnect from SMTP server
                 smtp_logoff = smtp_obj.quit()
