@@ -99,7 +99,11 @@ def autodownload_torrent():
                 deleted = imap_obj.expunge()
                 logging.debug(f'Deleted: {deleted}')
 
-                # TODO: Wait for torrent client to finish download and send status email
+                # Wait for torrent client to finish download
+                # TODO: Script to shutdown transmission client
+                torrent_proc.wait()
+                if not torrent_proc.poll():
+                    logging.error('Torrent client did not quit properly.')
 
                 # Compose and send end email
                 logging.debug(f'Torrent finished...')
