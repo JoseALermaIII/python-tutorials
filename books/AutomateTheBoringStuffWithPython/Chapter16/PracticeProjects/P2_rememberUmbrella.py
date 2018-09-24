@@ -25,15 +25,13 @@ def get_weather():
 
 
 def remember_umbrella(weather_arg):
-    # If raining, text cellphone
+    # Check weather_arg for rain
     tokens = ['rain', 't-storms']
 
     for token in tokens:
-        if token in weather.lower():
-            message = f'Bring an umbrella, there\'s {weather.lower()}'
-            textmyself(message)
-            return False
-    return True
+        if token in weather_arg.lower():
+            return True
+    return False
 
 
 def check_time(time_arg):
@@ -56,7 +54,12 @@ def main():
     while not check_time(wake_time):
         time.sleep(sleep_time.total_seconds())
 
-    remember_umbrella(get_weather())
+    weather = get_weather()
+
+    # If raining, text cellphone
+    if remember_umbrella(weather):
+        message = f'Bring an umbrella, there\'s {weather.lower()}'
+        textmyself(message)
 
 
 # If run directly (instead of imported), run main()
