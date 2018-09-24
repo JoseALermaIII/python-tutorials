@@ -46,7 +46,7 @@ def autodownload_torrent():
     logging.debug(f'IMAP login: {imap_login}')
 
     # Get emails from server
-    imap_obj.select_folder('INBOX', readonly=True)  # Don't mark as read or delete
+    imap_obj.select_folder('INBOX', readonly=False)  # Enable mark as read and delete
     uids = imap_obj.search(['SINCE', '21-Sep-2018'])
     raw_messages = imap_obj.fetch(uids, ['BODY[]'])
 
@@ -87,12 +87,16 @@ def autodownload_torrent():
 
                 # Compose and send start email
                 logging.debug(f'Starting torrent...')
-                message = 'Subject: Starting torrent\nGreetings!\nI have received instructions to download %s\n' \
-                          '\nRegards,\nTorrent Bot'
-                email_myself(smtp_obj, email, message)
+                message_send = 'Subject: Starting torrent\nGreetings!\nI have received instructions to download %s\n' \
+                               '\nRegards,\nTorrent Bot'
+                email_myself(smtp_obj, email, message_send)
 
-                # TODO: Delete completed command email
+                # Delete completed command email
                 logging.info(f'Deleting {message.get_subject()}...')
+                delete = imap_obj.delete_messages(uid)
+                logging.debug(f'Marked for deletion: {delete}')
+                deleted = imap_obj.expunge()
+                logging.debug(f'Deleted: {deleted}')
 
                 # TODO: Wait for torrent client to finish download and send status email
 
