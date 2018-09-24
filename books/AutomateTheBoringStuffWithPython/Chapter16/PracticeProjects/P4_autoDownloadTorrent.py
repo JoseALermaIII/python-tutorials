@@ -87,8 +87,8 @@ def autodownload_torrent():
 
                 # Compose and send start email
                 logging.debug(f'Starting torrent...')
-                message_send = 'Subject: Starting torrent\nGreetings!\nI have received instructions to download %s\n' \
-                               '\nRegards,\nTorrent Bot'
+                message_send = 'Subject: Starting torrent\nGreetings!\nI have received instructions to download\n %s\n' \
+                               '\nRegards,\nTorrent Bot' % url
                 email_myself(smtp_obj, email, message_send)
 
                 # Delete completed command email
