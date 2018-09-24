@@ -14,7 +14,7 @@ def get_soup(url_arg):
     return bs4.BeautifulSoup(res.text, 'lxml')
 
 
-def remember_umbrella():
+def get_weather():
     # Download weather url and soupify
     url = 'https://forecast.weather.gov/MapClick.php?lat=30.26759000000004&lon=-97.74298999999996'
     soup = get_soup(url)
@@ -22,7 +22,10 @@ def remember_umbrella():
     # Parse current weather from soup
     weather_element = soup.select('.myforecast-current')
     weather = weather_element[0].getText()
+    return weather
 
+
+def remember_umbrella(weather_arg):
     # If raining, text cellphone
     tokens = ['rain', 't-storms']
 
@@ -54,7 +57,7 @@ def main():
     while not check_time(wake_time):
         time.sleep(sleep_time.total_seconds())
 
-    remember_umbrella()
+    remember_umbrella(get_weather())
 
 
 # If run directly (instead of imported), run main()
