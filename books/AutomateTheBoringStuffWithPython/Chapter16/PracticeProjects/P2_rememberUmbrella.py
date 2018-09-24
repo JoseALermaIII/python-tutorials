@@ -21,8 +21,7 @@ def get_weather():
 
     # Parse current weather from soup
     weather_element = soup.select('.myforecast-current')
-    weather = weather_element[0].getText()
-    return weather
+    return weather_element[0].getText()
 
 
 def remember_umbrella(weather_arg):
