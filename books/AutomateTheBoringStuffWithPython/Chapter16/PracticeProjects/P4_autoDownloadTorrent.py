@@ -20,13 +20,19 @@ logging.basicConfig(filename='p4Log.txt', level=logging.DEBUG,
 imaplib._MAXLINE = 10000000
 
 
-# Wait for time_arg seconds
 def countdown(time_arg):
+    # Wait for time_arg seconds
     while time_arg > 0:
         logging.debug(f'Time left: {time_arg}', end='')
         time.sleep(1)
         time_arg -= 1
     return True
+
+
+def email_myself(smtp_arg, email_arg, message_arg):
+    unsent = smtp_arg.sendmail(email_arg, 'contact.me@JoseALerma.com', message_arg)
+    logging.debug(f'Unsent emails: {unsent}')
+    return unsent
 
 
 def autodownload_torrent():
@@ -79,8 +85,11 @@ def autodownload_torrent():
                 smtp_login = smtp_obj.login(email, password)
                 logging.debug(f'SMTP Login: {smtp_login}')
 
-                # TODO: Compose and send start email
+                # Compose and send start email
                 logging.debug(f'Starting torrent...')
+                message = 'Subject: Starting torrent\nGreetings!\nI have received instructions to download %s\n' \
+                          '\nRegards,\nTorrent Bot'
+                email_myself(smtp_obj, email, message)
 
                 # TODO: Delete completed command email
                 logging.info(f'Deleting {message.get_subject()}...')
