@@ -7,17 +7,13 @@ import requests, bs4, datetime
 from books.AutomateTheBoringStuffWithPython.Chapter16.P05_textMyself import textmyself
 
 
-def get_soup(url_arg):
-    res = requests.get(url_arg)
-    res.raise_for_status()
-
-    return bs4.BeautifulSoup(res.text, 'lxml')
-
-
 def get_weather():
     # Download weather url and soupify
     url = 'https://forecast.weather.gov/MapClick.php?lat=30.26759000000004&lon=-97.74298999999996'
-    soup = get_soup(url)
+    res = requests.get(url)
+    res.raise_for_status()
+
+    soup = bs4.BeautifulSoup(res.text, 'lxml')
 
     # Parse current weather from soup
     weather_element = soup.select('.myforecast-current')
@@ -45,7 +41,7 @@ def check_time(time_arg):
 
 
 def main():
-    # Wait for wake_time, then run remember_umbrella()
+    # Wait for wake_time
     import time
 
     sleep_time = datetime.timedelta(minutes=5)
@@ -54,6 +50,7 @@ def main():
     while not check_time(wake_time):
         time.sleep(sleep_time.total_seconds())
 
+    # Get current weather
     weather = get_weather()
 
     # If raining, text cellphone
