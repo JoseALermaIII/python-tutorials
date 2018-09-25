@@ -30,7 +30,6 @@ imaplib._MAXLINE = 10000000
 def countdown(time_arg):
     # Wait for time_arg seconds
     while time_arg > 0:
-        logging.debug(f'Time left: {time_arg}', end='')
         time.sleep(1)
         time_arg -= 1
     return True
@@ -67,59 +66,60 @@ def autodownload_torrent():
             # Soupify message
             html = message.html_part.get_payload().decode(message.html_part.charset)
             soup = bs4.BeautifulSoup(html, 'lxml')
+
+            # Look for torrent link in email body
+            anchors = soup.select('a')
+            logging.debug(f'Anchor list: {anchors}')
+            for anchor in anchors:
+                url = anchor.get('href')
+                if url.endswith('.torrent'):
+                    # Send link to torrent client and send status email
+                    logging.info(f'Opening: {url}')
+                    # Subprocess torrent client
+                    torrent_proc = subprocess.Popen('/usr/bin/transmission-gtk', url)
+
+                    # Login to SMTP server
+                    with open('../smtp_info') as config:
+                        email, password, server, port = config.read().splitlines()
+
+                    smtp_obj = smtplib.SMTP_SSL(server, port)  # Using port 465
+                    logging.debug(f'SMTP EHLO: {smtp_obj.ehlo()}')
+
+                    smtp_login = smtp_obj.login(email, password)
+                    logging.debug(f'SMTP Login: {smtp_login}')
+
+                    # Compose and send start email
+                    logging.debug(f'Starting torrent...')
+                    message_send = 'Subject: Starting torrent\nGreetings!\nI have received instructions ' \
+                                   'to download\n %s\n\nRegards,\nTorrent Bot' % url
+                    email_myself(smtp_obj, email, message_send)
+
+                    # Delete completed command email
+                    logging.info(f'Deleting {subject}...')
+                    delete = imap_obj.delete_messages(uid)
+                    logging.debug(f'Marked for deletion: {delete}')
+                    deleted = imap_obj.expunge()
+                    logging.debug(f'Deleted: {deleted}')
+
+                    # Wait for torrent client to finish download
+                    torrent_proc.wait()
+                    if not torrent_proc.poll():
+                        logging.error('Torrent client did not quit properly.')
+
+                    # Compose and send end email
+                    logging.debug(f'Torrent finished...')
+                    message_send = 'Subject: Finished torrent\nGreetings!\nI have finished downloading\n %s\n' \
+                                   '\nRegards,\nTorrent Bot' % url
+                    email_myself(smtp_obj, email, message_send)
+
+                    # Disconnect from SMTP server
+                    smtp_logoff = smtp_obj.quit()
+                    logging.debug(f'SMTP Logoff: {smtp_logoff}')
         else:
             logging.error(f'RuntimeError: Email is not HTML, missing command, or password.'
                           f'Skipping "{subject}" from: {message.get_address("from")}')
             break
 
-        # Look for torrent link in email body
-        anchors = soup.select('a')
-        logging.debug(f'Anchor list: {anchors}')
-        for anchor in anchors:
-            url = anchor.get('href')
-            if url.endswith('.torrent'):
-                # Send link to torrent client and send status email
-                logging.info(f'Opening: {url}')
-                # Subprocess torrent client
-                torrent_proc = subprocess.Popen('/usr/bin/transmission-gtk', url)
-
-                # Login to SMTP server
-                with open('../smtp_info') as config:
-                    email, password, server, port = config.read().splitlines()
-
-                smtp_obj = smtplib.SMTP_SSL(server, port)  # Using port 465
-                logging.debug(f'SMTP EHLO: {smtp_obj.ehlo()}')
-
-                smtp_login = smtp_obj.login(email, password)
-                logging.debug(f'SMTP Login: {smtp_login}')
-
-                # Compose and send start email
-                logging.debug(f'Starting torrent...')
-                message_send = 'Subject: Starting torrent\nGreetings!\nI have received instructions to download\n %s\n' \
-                               '\nRegards,\nTorrent Bot' % url
-                email_myself(smtp_obj, email, message_send)
-
-                # Delete completed command email
-                logging.info(f'Deleting {subject}...')
-                delete = imap_obj.delete_messages(uid)
-                logging.debug(f'Marked for deletion: {delete}')
-                deleted = imap_obj.expunge()
-                logging.debug(f'Deleted: {deleted}')
-
-                # Wait for torrent client to finish download
-                torrent_proc.wait()
-                if not torrent_proc.poll():
-                    logging.error('Torrent client did not quit properly.')
-
-                # Compose and send end email
-                logging.debug(f'Torrent finished...')
-                message_send = 'Subject: Finished torrent\nGreetings!\nI have finished downloading\n %s\n' \
-                               '\nRegards,\nTorrent Bot' % url
-                email_myself(smtp_obj, email, message_send)
-
-                # Disconnect from SMTP server
-                smtp_logoff = smtp_obj.quit()
-                logging.debug(f'SMTP Logoff: {smtp_logoff}')
     # Disconnect from IMAP server
     imap_logoff = imap_obj.logout()
     logging.debug(f'IMAP Logoff: {imap_logoff}')
@@ -128,7 +128,7 @@ def autodownload_torrent():
 
 def main():
     logging.debug('Start of program')
-    wait_time = datetime.timedelta(minutes=15)
+    wait_time = datetime.timedelta(minutes=1)
     countdown(wait_time.total_seconds())
     autodownload_torrent()
     logging.debug('End of program')
