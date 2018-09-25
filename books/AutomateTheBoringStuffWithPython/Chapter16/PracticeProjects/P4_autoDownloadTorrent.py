@@ -37,15 +37,9 @@ def countdown(time_arg):
     return True
 
 
-def email_myself(smtp_arg, email_arg, message_arg):
-    unsent = smtp_arg.sendmail(email_arg, 'contact.me@JoseALerma.com', message_arg)
-    logging.debug(f'Unsent emails: {unsent}')
-    return unsent
-
-
-def autodownload_torrent():
+def login_smtp(file_arg):
     # Login to SMTP server
-    with open('../smtp_info') as config:
+    with open(file_arg) as config:
         email, password, server, port = config.read().splitlines()
 
     smtp_obj = smtplib.SMTP_SSL(server, port)  # Using port 465
@@ -53,27 +47,37 @@ def autodownload_torrent():
 
     smtp_login = smtp_obj.login(email, password)
     logging.debug(f'SMTP Login: {smtp_login}')
+    return smtp_obj, email
 
+
+def login_imap(file_arg):
     # Login to IMAP server
-    with open('../imap_info') as config:
+    with open(file_arg) as config:
         email, password, server, port = config.read().splitlines()
 
     imap_obj = imapclient.IMAPClient(server, ssl=True)
 
     imap_login = imap_obj.login(email, password)
     logging.debug(f'IMAP login: {imap_login}')
+    return imap_obj
 
+
+def fetch_emails(imap_obj_arg):
     # Get emails from server
-    imap_obj.select_folder('INBOX', readonly=False)  # Enable mark as read and delete
+    imap_obj_arg.select_folder('INBOX', readonly=False)  # Enable mark as read and delete
     today = datetime.datetime.today()
     interval = datetime.timedelta(days=1)
     yesterday = (today - interval).strftime('%d-%b-%Y')
-    uids = imap_obj.search(['SINCE', yesterday])
+    uids = imap_obj_arg.search(['SINCE', yesterday])
     logging.debug(f'uids: {uids}')
-    raw_messages = imap_obj.fetch(uids, ['BODY[]'])
+    raw_messages = imap_obj_arg.fetch(uids, ['BODY[]'])
+    return uids, raw_messages
 
-    for uid in uids:
-        message = pyzmail.PyzMessage.factory(raw_messages[uid][b'BODY[]'])
+
+def fetch_torrents(uids_arg, raw_messages_arg):
+    urls = {}
+    for uid in uids_arg:
+        message = pyzmail.PyzMessage.factory(raw_messages_arg[uid][b'BODY[]'])
         subject = message.get_subject()
         logging.info(f'Current subject line: {subject}')
         # Check subject line for command and password
@@ -90,39 +94,61 @@ def autodownload_torrent():
             for anchor in anchors:
                 url = anchor.get('href')
                 if url.endswith('.torrent') or url.startswith('magnet:'):
-                    # Send link to torrent client and send status email
-                    logging.info(f'Opening: {url}')
-                    # Subprocess torrent client
-                    torrent_proc = subprocess.Popen(['/usr/bin/transmission-gtk', url])
-
-                    # Compose and send start email
-                    logging.info(f'Starting torrent...')
-                    message_send = 'Subject: Starting torrent\nGreetings!\nI have received instructions ' \
-                                   'to download\n %s\n\nRegards,\nTorrent Bot' % url
-                    email_myself(smtp_obj, email, message_send)
-
-                    # Wait for torrent client to finish download
-                    torrent_proc.wait()
-                    if torrent_proc.poll() is None:
-                        logging.error('Torrent client did not quit properly.')
-
-                    # Compose and send end email
-                    logging.info(f'Torrent finished...')
-                    message_send = 'Subject: Finished torrent\nGreetings!\nI have finished downloading\n %s\n' \
-                                   '\nRegards,\nTorrent Bot' % url
-                    email_myself(smtp_obj, email, message_send)
-
-                    # Delete completed command email
-                    logging.info(f'Deleting: {subject}...')
-                    delete = imap_obj.delete_messages(uid)
-                    logging.debug(f'Marked for deletion: {delete}')
-                    deleted = imap_obj.expunge()
-                    logging.debug(f'Deleted: {deleted}')
-
+                    urls[uid] = url
         else:
             logging.error(f'RuntimeError: Email is not HTML, missing command, or password.\n'
                           f'Skipping "{subject}" from: {message.get_address("from")}')
             continue
+    return urls
+
+
+def autodownload_torrent(url_arg):
+    # Send link to torrent client
+    logging.info(f'Opening: {url_arg}')
+    torrent_proc = subprocess.Popen(['/usr/bin/transmission-gtk', url_arg])
+
+    # Wait for torrent client to finish download
+    torrent_proc.wait()
+    if torrent_proc.poll() is None:
+        logging.error('Torrent client did not quit properly.')
+
+
+def main():
+    logging.info('Start of program')
+    wait_time = datetime.timedelta(minutes=15)
+    countdown(wait_time.total_seconds())
+
+    imap_obj = login_imap('../imap_info')
+    uids, raw_messages = fetch_emails(imap_obj)
+
+    urls = fetch_torrents(uids, raw_messages)
+
+    smtp_obj, email = login_smtp('../smtp_info')
+
+    for uid in urls.keys():
+        url = urls[uid]
+        # Compose and send start email
+        logging.info(f'Starting torrent...')
+        message = 'Subject: Starting torrent\nGreetings!\nI have received instructions ' \
+                  'to download\n %s\n\nRegards,\nTorrent Bot' % url
+        unsent = smtp_obj.sendmail(email, 'contact.me@JoseALerma.com', message)
+        logging.debug(f'Unsent emails: {unsent}')
+
+        autodownload_torrent(url)
+
+        # Compose and send end email
+        logging.info(f'Torrent finished...')
+        message = 'Subject: Finished torrent\nGreetings!\nI have finished downloading\n %s\n' \
+                  '\nRegards,\nTorrent Bot' % url
+        unsent = smtp_obj.sendmail(email, 'contact.me@JoseALerma.com', message)
+        logging.debug(f'Unsent emails: {unsent}')
+
+        # Delete completed command email
+        logging.info(f'Deleting: {uid}...')
+        delete = imap_obj.delete_messages(uid)
+        logging.debug(f'Marked for deletion: {delete}')
+        deleted = imap_obj.expunge()
+        logging.debug(f'Deleted: {deleted}')
 
     # Disconnect from SMTP server
     smtp_logoff = smtp_obj.quit()
@@ -131,13 +157,6 @@ def autodownload_torrent():
     # Disconnect from IMAP server
     imap_logoff = imap_obj.logout()
     logging.debug(f'IMAP Logoff: {imap_logoff}')
-
-
-def main():
-    logging.info('Start of program')
-    wait_time = datetime.timedelta(minutes=15)
-    countdown(wait_time.total_seconds())
-    autodownload_torrent()
     logging.info('End of program')
 
 
