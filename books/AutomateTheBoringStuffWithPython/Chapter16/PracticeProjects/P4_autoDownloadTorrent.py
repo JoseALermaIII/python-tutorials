@@ -135,7 +135,7 @@ def autodownload_torrent():
 
 def main():
     logging.info('Start of program')
-    wait_time = datetime.timedelta(seconds=15)
+    wait_time = datetime.timedelta(minutes=15)
     countdown(wait_time.total_seconds())
     autodownload_torrent()
     logging.info('End of program')
