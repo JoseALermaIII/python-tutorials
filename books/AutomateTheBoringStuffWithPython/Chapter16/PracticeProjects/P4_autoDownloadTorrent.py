@@ -29,9 +29,11 @@ imaplib._MAXLINE = 10000000
 
 def countdown(time_arg):
     # Wait for time_arg seconds
+    logging.debug('Start countdown')
     while time_arg > 0:
         time.sleep(1)
         time_arg -= 1
+    logging.debug('End countdown')
     return True
 
 
@@ -42,6 +44,16 @@ def email_myself(smtp_arg, email_arg, message_arg):
 
 
 def autodownload_torrent():
+    # Login to SMTP server
+    with open('../smtp_info') as config:
+        email, password, server, port = config.read().splitlines()
+
+    smtp_obj = smtplib.SMTP_SSL(server, port)  # Using port 465
+    logging.debug(f'SMTP EHLO: {smtp_obj.ehlo()}')
+
+    smtp_login = smtp_obj.login(email, password)
+    logging.debug(f'SMTP Login: {smtp_login}')
+
     # Login to IMAP server
     with open('../imap_info') as config:
         email, password, server, port = config.read().splitlines()
@@ -78,16 +90,6 @@ def autodownload_torrent():
                     # Subprocess torrent client
                     torrent_proc = subprocess.Popen('/usr/bin/transmission-gtk', url)
 
-                    # Login to SMTP server
-                    with open('../smtp_info') as config:
-                        email, password, server, port = config.read().splitlines()
-
-                    smtp_obj = smtplib.SMTP_SSL(server, port)  # Using port 465
-                    logging.debug(f'SMTP EHLO: {smtp_obj.ehlo()}')
-
-                    smtp_login = smtp_obj.login(email, password)
-                    logging.debug(f'SMTP Login: {smtp_login}')
-
                     # Compose and send start email
                     logging.debug(f'Starting torrent...')
                     message_send = 'Subject: Starting torrent\nGreetings!\nI have received instructions ' \
@@ -112,13 +114,14 @@ def autodownload_torrent():
                                    '\nRegards,\nTorrent Bot' % url
                     email_myself(smtp_obj, email, message_send)
 
-                    # Disconnect from SMTP server
-                    smtp_logoff = smtp_obj.quit()
-                    logging.debug(f'SMTP Logoff: {smtp_logoff}')
         else:
             logging.error(f'RuntimeError: Email is not HTML, missing command, or password.'
                           f'Skipping "{subject}" from: {message.get_address("from")}')
             break
+
+    # Disconnect from SMTP server
+    smtp_logoff = smtp_obj.quit()
+    logging.debug(f'SMTP Logoff: {smtp_logoff}')
 
     # Disconnect from IMAP server
     imap_logoff = imap_obj.logout()
