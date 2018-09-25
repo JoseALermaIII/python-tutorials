@@ -99,7 +99,7 @@ def autodownload_torrent():
 
                     # Wait for torrent client to finish download
                     torrent_proc.wait()
-                    if not torrent_proc.poll():
+                    if torrent_proc.poll() is None:
                         logging.error('Torrent client did not quit properly.')
 
                     # Compose and send end email
