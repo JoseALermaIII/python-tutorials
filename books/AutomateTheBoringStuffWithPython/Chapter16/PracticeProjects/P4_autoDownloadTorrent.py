@@ -85,11 +85,11 @@ def autodownload_torrent():
             logging.info(f'Anchor list: {anchors}')
             for anchor in anchors:
                 url = anchor.get('href')
-                if url.endswith('.torrent'):
+                if url.endswith('.torrent') or url.startswith('magnet:'):
                     # Send link to torrent client and send status email
                     logging.info(f'Opening: {url}')
                     # Subprocess torrent client
-                    torrent_proc = subprocess.Popen('/usr/bin/transmission-gtk', url)
+                    torrent_proc = subprocess.Popen(['/usr/bin/transmission-gtk', url])
 
                     # Compose and send start email
                     logging.info(f'Starting torrent...')
@@ -118,7 +118,7 @@ def autodownload_torrent():
         else:
             logging.error(f'RuntimeError: Email is not HTML, missing command, or password.'
                           f'Skipping "{subject}" from: {message.get_address("from")}')
-            break
+            continue
 
     # Disconnect from SMTP server
     smtp_logoff = smtp_obj.quit()
@@ -132,7 +132,7 @@ def autodownload_torrent():
 
 def main():
     logging.info('Start of program')
-    wait_time = datetime.timedelta(minutes=1)
+    wait_time = datetime.timedelta(seconds=10)
     countdown(wait_time.total_seconds())
     autodownload_torrent()
     logging.info('End of program')
