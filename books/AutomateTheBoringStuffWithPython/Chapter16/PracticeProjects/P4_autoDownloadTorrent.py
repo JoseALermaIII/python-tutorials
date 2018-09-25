@@ -8,6 +8,13 @@
 # then launch qBittorrent to start downloading the file. This way, you can have your
 # home computer begin downloads while you’re away, and the (completely legal, not at
 # all piratical) download can be finished by the time you return home.
+#
+# Note:
+# - Shutting down after downloading is considered "Hit 'n' run" and goes against torrenting
+#   - Consider setting up a seed ratio limit and let it stop sharing afterward
+# - Transmission torrent client is used since it is available in Ubuntu by default
+#   - A bash script is ultimately needed to shutdown Transmission
+#   - Remote access is needed to run the bash script (hint)
 
 import imapclient, imaplib, subprocess, smtplib, logging, pyzmail, datetime, time, bs4
 
@@ -100,7 +107,6 @@ def autodownload_torrent():
                 logging.debug(f'Deleted: {deleted}')
 
                 # Wait for torrent client to finish download
-                # TODO: Script to shutdown transmission client
                 torrent_proc.wait()
                 if not torrent_proc.poll():
                     logging.error('Torrent client did not quit properly.')
