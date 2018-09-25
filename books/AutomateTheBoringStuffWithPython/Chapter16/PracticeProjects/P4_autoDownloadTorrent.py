@@ -109,7 +109,7 @@ def autodownload_torrent():
                     email_myself(smtp_obj, email, message_send)
 
                     # Delete completed command email
-                    logging.info(f'Deleting {subject}...')
+                    logging.info(f'Deleting: {subject}...')
                     delete = imap_obj.delete_messages(uid)
                     logging.debug(f'Marked for deletion: {delete}')
                     deleted = imap_obj.expunge()
@@ -132,7 +132,7 @@ def autodownload_torrent():
 
 def main():
     logging.info('Start of program')
-    wait_time = datetime.timedelta(seconds=10)
+    wait_time = datetime.timedelta(minutes=15)
     countdown(wait_time.total_seconds())
     autodownload_torrent()
     logging.info('End of program')
