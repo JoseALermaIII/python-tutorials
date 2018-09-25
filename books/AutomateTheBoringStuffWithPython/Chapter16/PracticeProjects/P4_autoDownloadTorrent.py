@@ -19,7 +19,7 @@
 import imapclient, imaplib, subprocess, smtplib, logging, pyzmail, datetime, time, bs4
 
 # Setup logging
-logging.basicConfig(filename='p4Log.txt', level=logging.INFO,
+logging.basicConfig(filename='p4Log.txt', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 #logging.disable(logging.CRITICAL)  # Stop logging, comment out to debug
 
@@ -65,7 +65,11 @@ def autodownload_torrent():
 
     # Get emails from server
     imap_obj.select_folder('INBOX', readonly=False)  # Enable mark as read and delete
-    uids = imap_obj.search(['SINCE', '21-Sep-2018'])
+    today = datetime.datetime.today()
+    interval = datetime.timedelta(days=1)
+    yesterday = (today - interval).strftime('%d-%b-%Y')
+    uids = imap_obj.search(['SINCE', yesterday])
+    logging.debug(f'uids: {uids}')
     raw_messages = imap_obj.fetch(uids, ['BODY[]'])
 
     for uid in uids:
@@ -116,7 +120,7 @@ def autodownload_torrent():
                     logging.debug(f'Deleted: {deleted}')
 
         else:
-            logging.error(f'RuntimeError: Email is not HTML, missing command, or password.'
+            logging.error(f'RuntimeError: Email is not HTML, missing command, or password.\n'
                           f'Skipping "{subject}" from: {message.get_address("from")}')
             continue
 
@@ -131,7 +135,7 @@ def autodownload_torrent():
 
 def main():
     logging.info('Start of program')
-    wait_time = datetime.timedelta(minutes=15)
+    wait_time = datetime.timedelta(seconds=15)
     countdown(wait_time.total_seconds())
     autodownload_torrent()
     logging.info('End of program')
