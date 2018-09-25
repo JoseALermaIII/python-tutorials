@@ -127,7 +127,6 @@ def autodownload_torrent():
     # Disconnect from IMAP server
     imap_logoff = imap_obj.logout()
     logging.debug(f'IMAP Logoff: {imap_logoff}')
-    return None
 
 
 def main():
@@ -136,7 +135,6 @@ def main():
     countdown(wait_time.total_seconds())
     autodownload_torrent()
     logging.info('End of program')
-    return None
 
 
 # If run directly (instead of imported), run main()
