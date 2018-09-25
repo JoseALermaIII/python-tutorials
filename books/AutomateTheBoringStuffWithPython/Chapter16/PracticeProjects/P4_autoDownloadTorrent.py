@@ -97,13 +97,6 @@ def autodownload_torrent():
                                    'to download\n %s\n\nRegards,\nTorrent Bot' % url
                     email_myself(smtp_obj, email, message_send)
 
-                    # Delete completed command email
-                    logging.info(f'Deleting {subject}...')
-                    delete = imap_obj.delete_messages(uid)
-                    logging.debug(f'Marked for deletion: {delete}')
-                    deleted = imap_obj.expunge()
-                    logging.debug(f'Deleted: {deleted}')
-
                     # Wait for torrent client to finish download
                     torrent_proc.wait()
                     if not torrent_proc.poll():
@@ -114,6 +107,13 @@ def autodownload_torrent():
                     message_send = 'Subject: Finished torrent\nGreetings!\nI have finished downloading\n %s\n' \
                                    '\nRegards,\nTorrent Bot' % url
                     email_myself(smtp_obj, email, message_send)
+
+                    # Delete completed command email
+                    logging.info(f'Deleting {subject}...')
+                    delete = imap_obj.delete_messages(uid)
+                    logging.debug(f'Marked for deletion: {delete}')
+                    deleted = imap_obj.expunge()
+                    logging.debug(f'Deleted: {deleted}')
 
         else:
             logging.error(f'RuntimeError: Email is not HTML, missing command, or password.'
