@@ -19,7 +19,7 @@
 import imapclient, imaplib, subprocess, smtplib, logging, pyzmail, datetime, time, bs4
 
 # Setup logging
-logging.basicConfig(filename='p4Log.txt', level=logging.DEBUG,
+logging.basicConfig(filename='p4Log.txt', level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 #logging.disable(logging.CRITICAL)  # Stop logging, comment out to debug
 
@@ -29,11 +29,11 @@ imaplib._MAXLINE = 10000000
 
 def countdown(time_arg):
     # Wait for time_arg seconds
-    logging.debug('Start countdown')
+    logging.info('Start countdown')
     while time_arg > 0:
         time.sleep(1)
         time_arg -= 1
-    logging.debug('End countdown')
+    logging.info('End countdown')
     return True
 
 
@@ -71,6 +71,7 @@ def autodownload_torrent():
     for uid in uids:
         message = pyzmail.PyzMessage.factory(raw_messages[uid][b'BODY[]'])
         subject = message.get_subject()
+        logging.info(f'Current subject line: {subject}')
         # Check subject line for command and password
         if (message.html_part is not None) and ('torrent bot' and 'password' in subject.lower()):
             logging.info(f'Accessing "{subject}" from: {message.get_address("from")}...')
@@ -81,7 +82,7 @@ def autodownload_torrent():
 
             # Look for torrent link in email body
             anchors = soup.select('a')
-            logging.debug(f'Anchor list: {anchors}')
+            logging.info(f'Anchor list: {anchors}')
             for anchor in anchors:
                 url = anchor.get('href')
                 if url.endswith('.torrent'):
@@ -91,7 +92,7 @@ def autodownload_torrent():
                     torrent_proc = subprocess.Popen('/usr/bin/transmission-gtk', url)
 
                     # Compose and send start email
-                    logging.debug(f'Starting torrent...')
+                    logging.info(f'Starting torrent...')
                     message_send = 'Subject: Starting torrent\nGreetings!\nI have received instructions ' \
                                    'to download\n %s\n\nRegards,\nTorrent Bot' % url
                     email_myself(smtp_obj, email, message_send)
@@ -109,7 +110,7 @@ def autodownload_torrent():
                         logging.error('Torrent client did not quit properly.')
 
                     # Compose and send end email
-                    logging.debug(f'Torrent finished...')
+                    logging.info(f'Torrent finished...')
                     message_send = 'Subject: Finished torrent\nGreetings!\nI have finished downloading\n %s\n' \
                                    '\nRegards,\nTorrent Bot' % url
                     email_myself(smtp_obj, email, message_send)
@@ -130,11 +131,11 @@ def autodownload_torrent():
 
 
 def main():
-    logging.debug('Start of program')
+    logging.info('Start of program')
     wait_time = datetime.timedelta(minutes=1)
     countdown(wait_time.total_seconds())
     autodownload_torrent()
-    logging.debug('End of program')
+    logging.info('End of program')
     return None
 
 
