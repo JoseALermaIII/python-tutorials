@@ -144,7 +144,7 @@ def main():
         logging.debug(f'Unsent emails: {unsent}')
 
         # Delete completed command email
-        logging.info(f'Deleting UID: {uid}...')
+        logging.info(f'Deleting UID#{uid}...')
         delete = imap_obj.delete_messages(uid)
         logging.debug(f'Marked for deletion: {delete}')
         deleted = imap_obj.expunge()
