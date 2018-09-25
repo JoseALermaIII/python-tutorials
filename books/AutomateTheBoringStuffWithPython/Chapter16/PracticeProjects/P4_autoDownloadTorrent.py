@@ -69,7 +69,7 @@ def fetch_emails(imap_obj_arg):
     interval = datetime.timedelta(days=1)
     yesterday = (today - interval).strftime('%d-%b-%Y')
     uids = imap_obj_arg.search(['SINCE', yesterday])
-    logging.debug(f'uids: {uids}')
+    logging.debug(f'UIDs: {uids}')
     raw_messages = imap_obj_arg.fetch(uids, ['BODY[]'])
     return uids, raw_messages
 
@@ -82,7 +82,7 @@ def fetch_torrents(uids_arg, raw_messages_arg):
         logging.info(f'Current subject line: {subject}')
         # Check subject line for command and password
         if (message.html_part is not None) and ('torrent bot' and 'password' in subject.lower()):
-            logging.info(f'Accessing "{subject}" from: {message.get_address("from")}...')
+            logging.info(f'Accessing UID#{uid}: {subject} from: {message.get_address("from")}...')
 
             # Soupify message
             html = message.html_part.get_payload().decode(message.html_part.charset)
@@ -97,7 +97,7 @@ def fetch_torrents(uids_arg, raw_messages_arg):
                     urls[uid] = url
         else:
             logging.error(f'RuntimeError: Email is not HTML, missing command, or password.\n'
-                          f'Skipping "{subject}" from: {message.get_address("from")}')
+                          f'Skipping UID#{uid}: {subject} from: {message.get_address("from")}')
             continue
     return urls
 
@@ -144,7 +144,7 @@ def main():
         logging.debug(f'Unsent emails: {unsent}')
 
         # Delete completed command email
-        logging.info(f'Deleting: {uid}...')
+        logging.info(f'Deleting UID: {uid}...')
         delete = imap_obj.delete_messages(uid)
         logging.debug(f'Marked for deletion: {delete}')
         deleted = imap_obj.expunge()
