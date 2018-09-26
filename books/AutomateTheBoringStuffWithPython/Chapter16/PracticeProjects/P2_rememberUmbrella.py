@@ -7,10 +7,9 @@ import requests, bs4, datetime
 from books.AutomateTheBoringStuffWithPython.Chapter16.P05_textMyself import textmyself
 
 
-def get_weather():
-    # Download weather url and soupify
-    url = 'https://forecast.weather.gov/MapClick.php?lat=30.26759000000004&lon=-97.74298999999996'
-    res = requests.get(url)
+def get_weather(url_arg):
+    # Download url_arg and soupify
+    res = requests.get(url_arg)
     res.raise_for_status()
 
     soup = bs4.BeautifulSoup(res.text, 'lxml')
@@ -51,7 +50,8 @@ def main():
         time.sleep(sleep_time.total_seconds())
 
     # Get current weather
-    weather = get_weather()
+    url = 'https://forecast.weather.gov/MapClick.php?lat=30.26759000000004&lon=-97.74298999999996'
+    weather = get_weather(url)
 
     # If raining, text cellphone
     if remember_umbrella(weather):
