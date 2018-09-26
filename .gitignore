@@ -144,4 +144,5 @@ zophie.png
 /books/AutomateTheBoringStuffWithPython/Chapter15/PracticeProjects/comic
 /books/AutomateTheBoringStuffWithPython/Chapter16/*_info
 /books/AutomateTheBoringStuffWithPython/Chapter16/PracticeProjects/p4Log.txt
-/books/AutomateTheBoringStuffWithPython/Chapter17/zophie.jpg
+/books/AutomateTheBoringStuffWithPython/Chapter17/*.jpg
+/books/AutomateTheBoringStuffWithPython/Chapter17/*.png
