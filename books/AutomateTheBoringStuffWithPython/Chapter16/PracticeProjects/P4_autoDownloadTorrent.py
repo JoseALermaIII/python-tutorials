@@ -148,12 +148,14 @@ def main():
         unsent = smtp_obj.sendmail(email, 'contact.me@JoseALerma.com', message)
         logging.debug(f'Unsent emails: {unsent}')
 
-        # Delete completed command email
+        # Mark completed command email for deletion
         logging.info(f'Deleting UID#{uid}...')
         delete = imap_obj.delete_messages(uid)
         logging.debug(f'Marked for deletion: {delete}')
-        deleted = imap_obj.expunge()
-        logging.debug(f'Deleted: {deleted}')
+
+    # Delete marked emails
+    deleted = imap_obj.expunge()
+    logging.debug(f'Deleted: {deleted}')
 
     # Disconnect from SMTP server
     smtp_logoff = smtp_obj.quit()
