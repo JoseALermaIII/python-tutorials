@@ -41,3 +41,10 @@ for left in range(0, catImWidth, faceImWidth):
         print(left, top)
         catCopyTwo.paste(faceIm, (left, top))
 catCopyTwo.save('tiled.png')
+
+# Resizing an Image
+width, height = catIm.size
+quartersizedIm = catIm.resize((int(width / 2), int(height / 2)))
+quartersizedIm.save('quartersized.png')
+svelteIm = catIm.resize((width, height + 300))
+svelteIm.save('svelte.png')
