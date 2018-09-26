@@ -123,6 +123,11 @@ def main():
 
     urls = fetch_torrents(uids, raw_messages)
 
+    if urls == {} or uids == []:
+        logging.error('No torrents to download.')
+        print('No torrents to download.')
+        return False
+
     smtp_obj, email = login_smtp('../smtp_info')
 
     for uid in urls.keys():
