@@ -13,3 +13,8 @@ print(catIm.filename)
 print(catIm.format)
 print(catIm.format_description)
 catIm.save('zophie.jpg')
+
+im = Image.new('RGBA', (100, 200), 'purple')
+im.save('purpleImage.png')
+im2 = Image.new('RGBA', (20, 20))
+im2.save('transparentImage.png')
