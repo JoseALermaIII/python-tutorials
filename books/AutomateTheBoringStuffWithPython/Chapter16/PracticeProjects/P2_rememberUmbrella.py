@@ -4,7 +4,6 @@
 # an umbrella before leaving the house.
 
 import requests, bs4, datetime
-from books.AutomateTheBoringStuffWithPython.Chapter16.P05_textMyself import textmyself
 
 
 def get_weather(url_arg):
@@ -40,9 +39,10 @@ def check_time(time_arg):
 
 
 def main():
-    # Wait for wake_time
     import time
+    from books.AutomateTheBoringStuffWithPython.Chapter16.P05_textMyself import textmyself
 
+    # Wait for wake_time
     sleep_time = datetime.timedelta(minutes=5)
     wake_time = datetime.time(hour=5)
 
