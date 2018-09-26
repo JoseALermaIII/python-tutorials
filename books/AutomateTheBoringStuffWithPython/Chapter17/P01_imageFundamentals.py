@@ -1,4 +1,4 @@
-# This program uses the pillow module to manipulate digital images
+# This program uses the pillow module to represent RGBA values
 
 # Colors and RGBA Values
 from PIL import ImageColor
