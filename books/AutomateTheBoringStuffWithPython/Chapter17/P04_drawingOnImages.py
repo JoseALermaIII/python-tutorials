@@ -22,6 +22,6 @@ im = Image.new('RGBA', (200, 200), 'white')
 draw = ImageDraw.Draw(im)
 draw.text((20, 150), 'Hello', fill='purple')
 fontsFolder = '/usr/share/fonts/truetype'  # e.g. 'Library/Fonts' on OS X
-arialFont = ImageFont.truetype(os.path.join(fontsFolder, 'arial.ttf'), 32)
-draw.text((100, 150), 'Howdy', fill='gray', font=arialFont)
+liberationFont = ImageFont.truetype(os.path.join(fontsFolder, '/liberation/LiberationSerif-Regular.ttf'), 32)
+draw.text((100, 150), 'Howdy', fill='gray', font=liberationFont)
 im.save('text.png')
