@@ -1011,3 +1011,8 @@ should be:
 In paragraph 25.202, the line:
 >It then defined textmyself() to take on argument ➊, make a TwilioRestClient object ➋, 
 and call create() with the message you passed ➌.
+
+# Sept. 27, 2018 Update:
+
+In Chapter 17, reference number 724.1, paragraph 26.122, the line `➌     im = im.resize((width, height))`
+is over indented.
