@@ -1016,3 +1016,25 @@ and call create() with the message you passed ➌.
 
 In Chapter 17, reference number 724.1, paragraph 26.122, the line `➌     im = im.resize((width, height))`
 is over indented.
+
+On reference number 734.5, paragraph 26.163, the codeblock:
+
+```
+--snip--  # omitted
+>>> fontsFolder = 'FONT_FOLDER' # e.g. 'Library/Fonts'
+➍ >>> arialFont = ImageFont.truetype(os.path.join(fontsFolder, 'arial.ttf'), 32)
+➎ >>> draw.text((100, 150), 'Howdy', fill='gray', font=arialFont)
+--snip--  # omitted
+```
+
+will need to be changed for those on Ubuntu, specifically:
+
+```
+--snip--  # omitted
+>>> fontsFolder = '/usr/share/fonts/truetype' # e.g. 'Library/Fonts'  # modified
+➍ >>> liberationFont = ImageFont.truetype(os.path.join(fontsFolder, '/liberation/LiberationSerif-Regular.ttf'), 32)  # modified 
+➎ >>> draw.text((100, 150), 'Howdy', fill='gray', font=liberationFont)  # modified
+--snip--  # omitted
+```
+
+However, **everyone** will have to modify it for their system.
