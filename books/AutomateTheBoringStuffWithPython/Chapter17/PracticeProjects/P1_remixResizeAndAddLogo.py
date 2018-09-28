@@ -15,12 +15,11 @@
 import os
 from PIL import Image
 
-SQUARE_FIT_SIZE = 300
-LOGO_FILENAME = '../catlogo.png'
+LOGO_FILENAME = 'catlogo.png'
 EXTENSIONS = ['.png', '.jpg', '.gif', '.bmp']
 FOLDER = '../'
 
-logoIm = Image.open(LOGO_FILENAME)
+logoIm = Image.open(os.path.join(FOLDER, LOGO_FILENAME))
 logoWidth, logoHeight = logoIm.size
 
 os.makedirs(os.path.join(FOLDER, 'withLogo'), exist_ok=True)
@@ -32,19 +31,10 @@ for filename in os.listdir(FOLDER):
     im = Image.open(os.path.join(FOLDER, filename))
     width, height = im.size
 
-    # Check if image needs to be resized.
-    if width > SQUARE_FIT_SIZE and height > SQUARE_FIT_SIZE:
-        # Calculate the new width and height to resize to.
-        if width > height:
-            height = int((SQUARE_FIT_SIZE / width) * height)
-            width = SQUARE_FIT_SIZE
-        else:
-            width = int((SQUARE_FIT_SIZE / height) * width)
-            height = SQUARE_FIT_SIZE
-
-        # Resize the image.
-        print('Resizing %s...' % filename)
-        im = im.resize((width, height))
+    # Check if image is larger than logo
+    if not (width >= 2 * logoWidth and height >= 2 * logoHeight):
+        print('Skipping %s...' % filename)
+        continue
 
     # Add the logo.
     print('Adding logo to %s...\n' % filename)
