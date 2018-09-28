@@ -22,6 +22,7 @@ im = Image.new('RGBA', (200, 200), 'white')
 draw = ImageDraw.Draw(im)
 draw.text((20, 150), 'Hello', fill='purple')
 fontsFolder = '/usr/share/fonts/truetype'  # e.g. 'Library/Fonts' on OS X
-liberationFont = ImageFont.truetype(os.path.join(fontsFolder, '/liberation/LiberationSerif-Regular.ttf'), 32)
+liberationFont = ImageFont.truetype(os.path.join(fontsFolder, '/liberation/LiberationSerif-Regular.ttf')
+                                    , 32)  # where font size is in points and 1 point is 1/72 of an inch
 draw.text((100, 150), 'Howdy', fill='gray', font=liberationFont)
 im.save('text.png')
