@@ -1038,3 +1038,9 @@ will need to be changed for those on Ubuntu, specifically:
 ```
 
 However, **everyone** will have to modify it for their system.
+
+# Sept. 28, 2018 Update:
+
+In Chapter 17, reference number 738.6, paragraph 26.194, the line:
+
+> Other wise, it should skip adding the logo.
