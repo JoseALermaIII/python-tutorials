@@ -1076,3 +1076,6 @@ may need to be:
 > For each of the guests listed in the guests.txt file from the resources at
 http://nostarch.com/automatestuff/, generate an image file with the guest's name
 and some flowery decoration.
+
+I couldn't find the public domain flower image mentioned in the book, so I used 
+[this one](http://www.reusableart.com/flower-02.html).
