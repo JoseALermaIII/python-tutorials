@@ -1064,3 +1064,15 @@ may need to be:
 
 --snip--  # omitted
 ```
+
+On reference number 740.0, paragraph 26.200, the line:
+
+> For each of the guests listed in the guests.txt file from the resources at
+http://nostarch.com/automatestuff/, generate an image file with the guest name
+and some flowery decoration.
+
+may need to be:
+
+> For each of the guests listed in the guests.txt file from the resources at
+http://nostarch.com/automatestuff/, generate an image file with the guest's name
+and some flowery decoration.
