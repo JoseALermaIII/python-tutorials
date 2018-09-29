@@ -100,6 +100,7 @@ frankenstein*.txt
 # AutomateTheBoringStuffWithPython settings
 capitalsquiz*.txt
 mcb
+/books/AutomateTheBoringStuffWithPython/Chapter09/delicious/cats/zophie.jpg
 /books/AutomateTheBoringStuffWithPython/Chapter09/testdir/
 /books/AutomateTheBoringStuffWithPython/Chapter09/new.zip
 /books/AutomateTheBoringStuffWithPython/Chapter09/delicious_*.zip
