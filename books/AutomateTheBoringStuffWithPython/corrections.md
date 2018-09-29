@@ -1044,3 +1044,23 @@ However, **everyone** will have to modify it for their system.
 In Chapter 17, reference number 738.6, paragraph 26.194, the line:
 
 > Other wise, it should skip adding the logo.
+
+# Sept. 29, 2018 Update:
+
+In Chapter 17, reference number 739.4, paragraph 26.198, the codeblock:
+
+```
+#! python3 #
+Import modules and write comments to describe this program.
+
+--snip--  # omitted
+```
+
+may need to be:
+
+```
+#! python3
+# Import modules and write comments to describe this program.
+
+--snip--  # omitted
+```
