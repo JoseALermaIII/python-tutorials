@@ -27,7 +27,11 @@ with open(GUEST_FILE) as guest_list:
 
 
 for guest in guests:
-    # Add flowery decoration
+    # Make black 4x5-inch card with space for cutting
+    image = Image.new('RGBA', (298, 370), 'black')
+    width, height = image.size
+
+    # Open flowery decoration
     deco = Image.open(FLOWER_FILENAME)
     deco_width, deco_height = deco.size
 
@@ -53,6 +57,9 @@ for guest in guests:
     draw.text((int((deco_width - text_width) / 2), int((deco_height - text_height) / 2)), guest, fill='black'
               , font=font)
 
+    # Add modified decoration to background
+    image.paste(deco, (int((width - deco_width) / 2), int((height - deco_height) / 2)))
+
     # Save seating card
     filename = ''.join(filter(str.isalnum, guest)) + '.png'
-    deco.save(os.path.join(OUTPUT_FOLDER, filename))
+    image.save(os.path.join(OUTPUT_FOLDER, filename))
