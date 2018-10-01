@@ -27,10 +27,6 @@ with open(GUEST_FILE) as guest_list:
 
 
 for guest in guests:
-    # Make black 4x5-inch card with space for cutting
-    image = Image.new('RGBA', (298, 370), 'black')
-    width, height = image.size
-
     # Open flowery decoration
     deco = Image.open(FLOWER_FILENAME)
     deco_width, deco_height = deco.size
@@ -56,6 +52,10 @@ for guest in guests:
     font = ImageFont.truetype(os.path.join(FONTS_FOLDER, '/liberation/LiberationSerif-Regular.ttf'), 15)
     draw.text((int((deco_width - text_width) / 2), int((deco_height - text_height) / 2)), guest, fill='black'
               , font=font)
+
+    # Make black card with extra space for cutting
+    image = Image.new('RGBA', (deco_width + 10, deco_height + 10), 'black')
+    width, height = image.size
 
     # Add modified decoration to background
     image.paste(deco, (int((width - deco_width) / 2), int((height - deco_height) / 2)))
