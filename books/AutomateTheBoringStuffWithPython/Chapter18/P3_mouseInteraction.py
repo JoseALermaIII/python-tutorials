@@ -25,5 +25,5 @@ for i in range(200):
     numbers = numbers + str(i) + '\n'
 pyperclip.copy(numbers)  # 200 lines of numbers
 
-time.sleep(5)
+time.sleep(10)  # time to paste the lines in a text editor
 pyautogui.scroll(100)
