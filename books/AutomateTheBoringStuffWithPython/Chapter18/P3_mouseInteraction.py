@@ -1,6 +1,6 @@
 # This program uses the PyAutoGUI module to control mouse interaction
 
-import pyautogui
+import pyautogui, time
 
 # Clicking the Mouse
 # No delay, so don't blink
