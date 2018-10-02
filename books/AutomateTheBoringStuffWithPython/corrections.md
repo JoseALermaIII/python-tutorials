@@ -1084,4 +1084,5 @@ I couldn't find the public domain flower image mentioned in the book, so I used
 
 For Chapter 18, if running Ubuntu 18.04.1 in a VirtualBox virtual machine, mouse 
 integration needs to be turned off so that the `pyautogui` module can control the 
-mouse.
+mouse. Remember that the Host Key will need to be pressed to manually toggle 
+keyboard/mouse capture.
