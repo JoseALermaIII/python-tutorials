@@ -1079,3 +1079,9 @@ and some flowery decoration.
 
 I couldn't find the public domain flower image mentioned in the book, so I used 
 [this one](http://www.reusableart.com/flower-02.html).
+
+# Oct. 2, 2018 Update:
+
+For Chapter 18, if running Ubuntu 18.04.1 in a VirtualBox virtual machine, mouse 
+integration needs to be turned off so that the `pyautogui` module can control the 
+mouse.
