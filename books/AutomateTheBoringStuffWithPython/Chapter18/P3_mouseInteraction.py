@@ -15,3 +15,15 @@ pyautogui.mouseDown()  # pushes left button down at current location
 pyautogui.mouseUp()  # releases left button at current location
 
 pyautogui.doubleClick()  # double click left button
+
+# Scrolling the Mouse
+pyautogui.scroll(200)  # Units vary depending on OS and application
+
+import books.AutomateTheBoringStuffWithPython.Chapter08.pyperclip as pyperclip  # imports should be at top of file
+numbers = ''
+for i in range(200):
+    numbers = numbers + str(i) + '\n'
+pyperclip.copy(numbers)  # 200 lines of numbers
+
+time.sleep(5)
+pyautogui.scroll(100)
