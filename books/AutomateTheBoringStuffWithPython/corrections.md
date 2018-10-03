@@ -1086,3 +1086,45 @@ For Chapter 18, if running Ubuntu 18.04.1 in a VirtualBox virtual machine, mouse
 integration needs to be turned off so that the `pyautogui` module can control the 
 mouse. Remember that the Host Key will need to be pressed to manually toggle 
 keyboard/mouse capture.
+
+# Oct. 3, 2018 Update:
+
+In Chapter 18, reference number 764.0, paragraph 27.77, the codeblock:
+
+```
+#! python3
+# mouseNow.py - Displays the mouse cursor's current position.
+--snip--
+        positionStr = 'X: ' + str(x).rjust(4) + ' Y: ' + str(y).rjust(4)
+        pixelColor = pyautogui.screenshot().getpixel((x, y))
+        positionStr += ' RGB: (' + str(pixelColor[0]).rjust(3)
+        positionStr += ', ' + str(pixelColor[1]).rjust(3)
+        positionStr += ', ' + str(pixelColor[2]).rjust(3) + ')'
+        print(positionStr, end='')
+--snip--
+```
+
+may need to be:
+
+```
+#! python3
+# mouseNow.py - Displays the mouse cursor's current position.
+import pyautogui, os  # changed
+--snip--
+        positionStr = 'X: ' + str(x).rjust(4) + ' Y: ' + str(y).rjust(4)
+        pixelColor = pyautogui.screenshot().getpixel((x, y))
+        positionStr += ' RGB: (' + str(pixelColor[0]).rjust(3)
+        positionStr += ', ' + str(pixelColor[1]).rjust(3)
+        positionStr += ', ' + str(pixelColor[2]).rjust(3) + ')'
+        print(positionStr, end='')
+        print('\b' * len(positionStr), end='', flush=True)
+except KeyboardInterrupt:
+    files = os.listdir('./')  # added
+    for file in files:  # added
+        if file.startswith('.screenshot'):  # added
+            os.remove(os.path.join('./', file))  # added
+    print('\nDone.')
+```
+
+to cleanup all the `.screenshot###` files left behind in Ubuntu 18.04. This could 
+be because the exception handler doesn't give PyAutoGUI a chance to do it.
