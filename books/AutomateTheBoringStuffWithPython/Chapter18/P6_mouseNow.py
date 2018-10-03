@@ -1,6 +1,6 @@
 #! python3
 # P6_mouseNow.py - Displays the mouse cursor's current position and RGB color.
-import pyautogui
+import pyautogui, os
 
 print('Press Ctrl-C to quit.')
 try:
@@ -15,4 +15,9 @@ try:
         print(positionStr, end='')
         print('\b' * len(positionStr), end='', flush=True)
 except KeyboardInterrupt:
+    files = os.listdir('./')
+    print(files)
+    for file in files:
+        if file.startswith('.screenshot'):
+            os.remove(os.path.join('./', file))
     print('\nDone.')
