@@ -16,7 +16,6 @@ try:
         print('\b' * len(positionStr), end='', flush=True)
 except KeyboardInterrupt:
     files = os.listdir('./')
-    print(files)
     for file in files:
         if file.startswith('.screenshot'):
             os.remove(os.path.join('./', file))
