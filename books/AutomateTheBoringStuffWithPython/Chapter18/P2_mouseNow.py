@@ -1,5 +1,5 @@
 #! python3
-# mouseNow.py - Displays the mouse cursor's current position.
+# P2_mouseNow.py - Displays the mouse cursor's current position.
 import pyautogui
 
 print('Press Ctrl-C to quit.')
