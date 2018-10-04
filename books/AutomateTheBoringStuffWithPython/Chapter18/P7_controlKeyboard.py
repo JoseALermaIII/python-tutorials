@@ -8,3 +8,10 @@ pyautogui.typewrite('!dlrow olleH', 0.25)
 
 # Key Names
 pyautogui.typewrite(['enter', 'a', 'b', 'left', 'left', 'X', 'Y'])
+
+# Press and Release Keyboard Keys
+pyautogui.press('end')
+pyautogui.press('enter')
+pyautogui.keyDown('shift')
+pyautogui.press('4')
+pyautogui.keyUp('shift')
