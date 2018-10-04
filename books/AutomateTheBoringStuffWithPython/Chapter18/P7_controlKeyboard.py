@@ -5,3 +5,6 @@ import pyautogui
 pyautogui.click(100, 100)  # put file editor in focus
 pyautogui.typewrite('Hello world!')
 pyautogui.typewrite('!dlrow olleH', 0.25)
+
+# Key Names
+pyautogui.typewrite(['enter', 'a', 'b', 'left', 'left', 'X', 'Y'])
