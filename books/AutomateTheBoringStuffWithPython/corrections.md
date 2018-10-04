@@ -1128,3 +1128,9 @@ except KeyboardInterrupt:
 
 to cleanup all the `.screenshot###` files left behind in Ubuntu 18.04. This could 
 be because the exception handler doesn't give PyAutoGUI a chance to do it.
+
+# Oct. 4, 2018 Update:
+
+In Chapter 18, reference number 765.5, paragraph 27.81, the line:
+
+> ... replacing 'submit. png' with the filename of your screenshot:
