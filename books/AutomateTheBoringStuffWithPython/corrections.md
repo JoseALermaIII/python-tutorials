@@ -1159,3 +1159,7 @@ will affect the coordinates of the Submit button.
 On reference number 791.8, paragraph 27.213, the lines:
 
 > ... whether it has gotten **offtrack**. You can even give PyAutoGUI a **screen-shot** and ...
+
+On reference number 793.8, paragraph 27.236, the line:
+
+> Your program will have to take screen-shots to guide...
