@@ -1141,3 +1141,14 @@ In Chapter 18, reference number 781.5, paragraph 27.192, the line:
 
 > ... then mouse over the Name field to figure out its the 
 x- and y-coordinates.
+
+## Setting up formFiller.py coordinates
+
+To set up the coordinates for formFiller.py, you need to open a terminal
+window (or command prompt), run the mouseNow.py script, resize it to 
+something small, keep it in the foreground, and hover over the maximized 
+browser in the background as you note the mouseNow.py data. 
+
+As you enter data in the form, you may need to keep bringing back the 
+mouseNow.py window into the foreground. For some reason, that wasn't 
+explained clearly enough for me. 
