@@ -1134,3 +1134,10 @@ be because the exception handler doesn't give PyAutoGUI a chance to do it.
 In Chapter 18, reference number 765.5, paragraph 27.81, the line:
 
 > ... replacing 'submit. png' with the filename of your screenshot:
+
+# Oct. 7, 2018 Update:
+
+In Chapter 18, reference number 781.5, paragraph 27.192, the line:
+
+> ... then mouse over the Name field to figure out its the 
+x- and y-coordinates.
