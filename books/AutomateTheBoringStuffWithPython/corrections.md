@@ -1152,3 +1152,6 @@ browser in the background as you note the mouseNow.py data.
 As you enter data in the form, you may need to keep bringing back the 
 mouseNow.py window into the foreground. For some reason, that wasn't 
 explained clearly enough for me. 
+
+*Tip:* If "This is a required question" appears below the Name field, it 
+will affect the coordinates of the Submit button.
