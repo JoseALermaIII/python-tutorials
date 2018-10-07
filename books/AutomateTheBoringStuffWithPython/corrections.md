@@ -1155,3 +1155,7 @@ explained clearly enough for me.
 
 *Tip:* If "This is a required question" appears below the Name field, it 
 will affect the coordinates of the Submit button.
+
+On reference number 791.8, paragraph 27.213, the lines:
+
+> ... whether it has gotten **offtrack**. You can even give PyAutoGUI a **screen-shot** and ...
