@@ -8,8 +8,6 @@ Welcome to python-tutorials!
 
 **Persistent Python practice produces prodigious productivity.**
 
-
-
 Introduction
 ------------
 
@@ -21,13 +19,14 @@ For more thorough intros, get lost in `Python's Beginner's Guide <https://wiki.p
 `Wikipedia's Python page <https://en.wikipedia.org/wiki/Python_(programming_language)>`_ for a day or so and come back.
 
 *Looks up, then puts down Steam Controller*
+
 You're back? Alright, let's continue.
 
 Getting Started
 ---------------
 
 There are many ways to install and use Python depending on platform and :abbr:`IDE (Integrated Development Environment)`
- (if any). These docs cover the methods I frequently use.
+(if any). These docs cover the methods I frequently use.
 
 Windows
 ^^^^^^^
