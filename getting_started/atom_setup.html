@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Atom &mdash; python-tutorials 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Vim" href="vim_setup.html" />
+    <link rel="prev" title="Welcome to python-tutorials!" href="../index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Atom</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#windows-setup">Windows Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vim_setup.html">Vim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pycharm_setup.html">PyCharm</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">CrackingCodesWithPython</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Atom</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/getting_started/atom_setup.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="atom">
+<h1>Atom<a class="headerlink" href="#atom" title="Permalink to this headline">¶</a></h1>
+<p>From the <a class="reference external" href="https://atom.io/">Atom.io page</a>:</p>
+<blockquote>
+<div>Atom is a text editor that’s modern, approachable, yet hackable to the core—a tool you can customize to do anything
+but also use productively without ever touching a config file.</div></blockquote>
+<p>Personally, I <strong>have</strong> had to edit a config file to setup a proxy, so <abbr title="Your Mileage May Vary">YMMV</abbr>.</p>
+<p>Atom is also surprisingly full-featured (e.g. plugins, themes, file system browsing) given that it can be installed in
+a portable configuration and is multi-platform.</p>
+<div class="section" id="windows-setup">
+<h2>Windows Setup<a class="headerlink" href="#windows-setup" title="Permalink to this headline">¶</a></h2>
+<p>While Atom is multi-platform, I only use it on Windows.</p>
+<p>As aforementioned, I tend to use the <a class="reference external" href="https://github.com/atom/atom/releases">zipped Atom files</a> along with the
+<a class="reference external" href="http://portableapps.com/download">PortableApps.com Platform</a> to create a portable base environment. Next, I extract
+the zipped Atom files into <code class="docutils literal notranslate"><span class="pre">X:\PortableApps\Atom\</span></code>, as an example.</p>
+<p>Then, you’ll need to get the <a class="reference external" href="https://atom.io/packages/atom-runner">atom-runner package</a> so that you can run the
+Python programs with an <code class="docutils literal notranslate"><span class="pre">ALT</span> <span class="pre">+</span> <span class="pre">R</span></code> key combo. However, <code class="docutils literal notranslate"><span class="pre">atom-runner</span></code> will not work if you have to input data from
+terminal, so you will need either the built-in Command Prompt or a PA.com portable enhancement like
+<a class="reference external" href="http://portableapps.com/apps/utilities/console_portable">Console Portable</a>. When you first open Atom, an <code class="docutils literal notranslate"><span class="pre">.atom</span></code>
+folder will be created in <code class="docutils literal notranslate"><span class="pre">%USERPROFILE%</span></code>, this folder will need to be moved into <code class="docutils literal notranslate"><span class="pre">X:\PortableApps\</span></code> to keep your
+settings.</p>
+<p>As for Python, I get the <a class="reference external" href="https://www.python.org/downloads/windows/">embeddable zip files</a> and extract them into
+<code class="docutils literal notranslate"><span class="pre">X:\PortableApps\CommonFiles\python3\</span></code> to continue with the portable theme. If you want different versions of Python,
+you can make different folders e.g. <code class="docutils literal notranslate"><span class="pre">python2.7</span></code>, <code class="docutils literal notranslate"><span class="pre">python3.6</span></code>, <code class="docutils literal notranslate"><span class="pre">python3.5</span></code></p>
+<p>Finally, the easiest way to get Atom to find your portable Python installation is to use a shebang on the first line of
+code <code class="docutils literal notranslate"><span class="pre">#!</span> <span class="pre">X:\PortableApps\CommonFiles\python3\python.exe</span></code></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vim_setup.html" class="btn btn-neutral float-right" title="Vim" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Welcome to python-tutorials!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

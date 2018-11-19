@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>books.CrackingCodesWithPython.Chapter14.affineCipher &mdash; python-tutorials 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/atom_setup.html">Atom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/vim_setup.html">Vim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/pycharm_setup.html">PyCharm</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">CrackingCodesWithPython</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>books.CrackingCodesWithPython.Chapter14.affineCipher</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for books.CrackingCodesWithPython.Chapter14.affineCipher</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Affine Cipher</span>
+<span class="c1"># https://www.nostarch.com/crackingcodes/ (BSD Licensed)</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">books.CrackingCodesWithPython.pyperclip</span> <span class="k">import</span> <span class="n">copy</span>
+<span class="kn">from</span> <span class="nn">books.CrackingCodesWithPython.Chapter13.cryptomath</span> <span class="k">import</span> <span class="n">gcd</span><span class="p">,</span> <span class="n">findModInverse</span>
+<span class="n">SYMBOLS</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?.&#39;</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter14.html#books.CrackingCodesWithPython.Chapter14.affineCipher.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">myMessage</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;&quot;A computer would deserve to be called intelligent if it </span>
+<span class="s2">    could deceive a human into believing that it was human.&quot; -Alan Turing&quot;&quot;&quot;</span>
+    <span class="n">myKey</span> <span class="o">=</span> <span class="mi">2894</span>
+    <span class="n">myMode</span> <span class="o">=</span> <span class="s1">&#39;encrypt&#39;</span> <span class="c1"># Set to either &#39;encrypt&#39; or &#39;decrypt&#39;.</span>
+
+    <span class="k">if</span> <span class="n">myMode</span> <span class="o">==</span> <span class="s1">&#39;encrypt&#39;</span><span class="p">:</span>
+        <span class="n">translated</span> <span class="o">=</span> <span class="n">encryptMessage</span><span class="p">(</span><span class="n">myKey</span><span class="p">,</span> <span class="n">myMessage</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">myMode</span> <span class="o">==</span> <span class="s1">&#39;decrypt&#39;</span><span class="p">:</span>
+        <span class="n">translated</span> <span class="o">=</span> <span class="n">decryptMessage</span><span class="p">(</span><span class="n">myKey</span><span class="p">,</span> <span class="n">myMessage</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Key: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">myKey</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">ed text:&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">myMode</span><span class="o">.</span><span class="n">title</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">translated</span><span class="p">)</span>
+    <span class="n">copy</span><span class="p">(</span><span class="n">translated</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Full </span><span class="si">%s</span><span class="s1">ed text copied to clipboard.&#39;</span> <span class="o">%</span> <span class="n">myMode</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">myMode</span> <span class="o">==</span> <span class="s1">&#39;encrypt&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Decrypted text:&quot;</span><span class="p">)</span>
+        <span class="n">translated</span> <span class="o">=</span> <span class="n">decryptMessage</span><span class="p">(</span><span class="n">myKey</span><span class="p">,</span> <span class="n">translated</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">translated</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="getKeyParts"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter14.html#books.CrackingCodesWithPython.Chapter14.affineCipher.getKeyParts">[docs]</a><span class="k">def</span> <span class="nf">getKeyParts</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="n">keyA</span> <span class="o">=</span> <span class="n">key</span> <span class="o">//</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">)</span>
+    <span class="n">keyB</span> <span class="o">=</span> <span class="n">key</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">keyA</span><span class="p">,</span> <span class="n">keyB</span></div>
+
+
+<div class="viewcode-block" id="checkKeys"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter14.html#books.CrackingCodesWithPython.Chapter14.affineCipher.checkKeys">[docs]</a><span class="k">def</span> <span class="nf">checkKeys</span><span class="p">(</span><span class="n">keyA</span><span class="p">,</span> <span class="n">keyB</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">keyA</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;encrypt&#39;</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s1">&#39;Cipher is weak if key A is 1. Choose a different key.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">keyB</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;encrypt&#39;</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s1">&#39;Cipher is weak if key B is 0. Choose a different key.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">keyA</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">keyB</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">keyB</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s1">&#39;Key A must be greater than 0 and Key B must be between 0 and </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">gcd</span><span class="p">(</span><span class="n">keyA</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s1">&#39;Key A (</span><span class="si">%s</span><span class="s1">) and the symbol set size (</span><span class="si">%s</span><span class="s1">) are not relatively prime. Choose a different key.&#39;</span>
+                 <span class="o">%</span> <span class="p">(</span><span class="n">keyA</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">)))</span></div>
+
+
+<div class="viewcode-block" id="encryptMessage"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter14.html#books.CrackingCodesWithPython.Chapter14.affineCipher.encryptMessage">[docs]</a><span class="k">def</span> <span class="nf">encryptMessage</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+    <span class="n">keyA</span><span class="p">,</span> <span class="n">keyB</span> <span class="o">=</span> <span class="n">getKeyParts</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="n">checkKeys</span><span class="p">(</span><span class="n">keyA</span><span class="p">,</span> <span class="n">keyB</span><span class="p">,</span> <span class="s1">&#39;encrypt&#39;</span><span class="p">)</span>
+    <span class="n">ciphertext</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">message</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">SYMBOLS</span><span class="p">:</span>
+            <span class="c1"># Encrypt the symbol:</span>
+            <span class="n">symbolIndex</span> <span class="o">=</span> <span class="n">SYMBOLS</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+            <span class="n">ciphertext</span> <span class="o">+=</span> <span class="n">SYMBOLS</span><span class="p">[(</span><span class="n">symbolIndex</span> <span class="o">*</span> <span class="n">keyA</span> <span class="o">+</span> <span class="n">keyB</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ciphertext</span> <span class="o">+=</span> <span class="n">symbol</span>  <span class="c1"># Append the symbol without encrypting.</span>
+    <span class="k">return</span> <span class="n">ciphertext</span></div>
+
+
+<div class="viewcode-block" id="decryptMessage"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter14.html#books.CrackingCodesWithPython.Chapter14.affineCipher.decryptMessage">[docs]</a><span class="k">def</span> <span class="nf">decryptMessage</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+    <span class="n">keyA</span><span class="p">,</span> <span class="n">keyB</span> <span class="o">=</span> <span class="n">getKeyParts</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="n">checkKeys</span><span class="p">(</span><span class="n">keyA</span><span class="p">,</span> <span class="n">keyB</span><span class="p">,</span> <span class="s1">&#39;decrypt&#39;</span><span class="p">)</span>
+    <span class="n">plaintext</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">modInverseOfKeyA</span> <span class="o">=</span> <span class="n">findModInverse</span><span class="p">(</span><span class="n">keyA</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">message</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">SYMBOLS</span><span class="p">:</span>
+            <span class="c1"># Decrypt the symbol:</span>
+            <span class="n">symbolIndex</span> <span class="o">=</span> <span class="n">SYMBOLS</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+            <span class="n">plaintext</span> <span class="o">+=</span> <span class="n">SYMBOLS</span><span class="p">[(</span><span class="n">symbolIndex</span> <span class="o">-</span> <span class="n">keyB</span><span class="p">)</span> <span class="o">*</span> <span class="n">modInverseOfKeyA</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">)]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plaintext</span> <span class="o">+=</span> <span class="n">symbol</span>  <span class="c1"># Append the symbol without decrypting.</span>
+    <span class="k">return</span> <span class="n">plaintext</span></div>
+
+
+<div class="viewcode-block" id="getRandomKey"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter14.html#books.CrackingCodesWithPython.Chapter14.affineCipher.getRandomKey">[docs]</a><span class="k">def</span> <span class="nf">getRandomKey</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">keyA</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">))</span>
+        <span class="n">keyB</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">gcd</span><span class="p">(</span><span class="n">keyA</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">keyA</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">)</span> <span class="o">+</span> <span class="n">keyB</span></div>
+
+
+<span class="c1"># If affineCipher.py is run (instead of imported as a module), call</span>
+<span class="c1"># the main() function:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

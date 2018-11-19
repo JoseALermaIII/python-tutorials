@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>books.CrackingCodesWithPython.Chapter19.freqAnalysis &mdash; python-tutorials 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/atom_setup.html">Atom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/vim_setup.html">Vim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/pycharm_setup.html">PyCharm</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">CrackingCodesWithPython</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>books.CrackingCodesWithPython.Chapter19.freqAnalysis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for books.CrackingCodesWithPython.Chapter19.freqAnalysis</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Frequency Finder</span>
+<span class="c1"># https://www.nostarch.com/crackingcodes/ (BSD Licensed)</span>
+
+<span class="n">ETAOIN</span> <span class="o">=</span> <span class="s1">&#39;ETAOINSHRDLCUMWFGYPBVKJXQZ&#39;</span>
+<span class="n">LETTERS</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>
+
+
+<div class="viewcode-block" id="getLetterCount"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter19.html#books.CrackingCodesWithPython.Chapter19.freqAnalysis.getLetterCount">[docs]</a><span class="k">def</span> <span class="nf">getLetterCount</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="c1"># Returns a dictionary with keys of single letters and values of the</span>
+    <span class="c1"># count of how many times they appear in the message parameter:</span>
+    <span class="n">letterCount</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                   <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                   <span class="s1">&#39;O&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                   <span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">message</span><span class="o">.</span><span class="n">upper</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">LETTERS</span><span class="p">:</span>
+            <span class="n">letterCount</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">letterCount</span></div>
+
+
+<div class="viewcode-block" id="getItemAtIndexZero"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter19.html#books.CrackingCodesWithPython.Chapter19.freqAnalysis.getItemAtIndexZero">[docs]</a><span class="k">def</span> <span class="nf">getItemAtIndexZero</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="getFrequencyOrder"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter19.html#books.CrackingCodesWithPython.Chapter19.freqAnalysis.getFrequencyOrder">[docs]</a><span class="k">def</span> <span class="nf">getFrequencyOrder</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="c1"># Returns a string of the alphabet letters arranged in order of most</span>
+    <span class="c1"># frequently occurring in the message parameter.</span>
+
+    <span class="c1"># First, get a dictionary of each letter and its frequency count:</span>
+    <span class="n">letterToFreq</span> <span class="o">=</span> <span class="n">getLetterCount</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+    <span class="c1"># Second, make a dictionary of each frequency count to the letter(s)</span>
+    <span class="c1"># with that frequency:</span>
+    <span class="n">freqToLetter</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">LETTERS</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">letterToFreq</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">freqToLetter</span><span class="p">:</span>
+            <span class="n">freqToLetter</span><span class="p">[</span><span class="n">letterToFreq</span><span class="p">[</span><span class="n">letter</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="n">letter</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">freqToLetter</span><span class="p">[</span><span class="n">letterToFreq</span><span class="p">[</span><span class="n">letter</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+
+    <span class="c1"># Third, put each list of letters in reverse &quot;ETAOIN&quot; order, and then</span>
+    <span class="c1"># convert it to a string:</span>
+    <span class="k">for</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">freqToLetter</span><span class="p">:</span>
+        <span class="n">freqToLetter</span><span class="p">[</span><span class="n">freq</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">ETAOIN</span><span class="o">.</span><span class="n">find</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">freqToLetter</span><span class="p">[</span><span class="n">freq</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">freqToLetter</span><span class="p">[</span><span class="n">freq</span><span class="p">])</span>
+
+    <span class="c1"># Fourth, convert the freqToLetter dictionary to a list of</span>
+    <span class="c1"># tuple pairs (key, value), and then sort them:</span>
+    <span class="n">freqPairs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">freqToLetter</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+    <span class="n">freqPairs</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">getItemAtIndexZero</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Fifth, now that the letters are ordered by frequency, extract all</span>
+    <span class="c1"># the letters for the final string:</span>
+    <span class="n">freqOrder</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">freqPair</span> <span class="ow">in</span> <span class="n">freqPairs</span><span class="p">:</span>
+        <span class="n">freqOrder</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">freqPair</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">freqOrder</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="englishFreqMatchScore"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter19.html#books.CrackingCodesWithPython.Chapter19.freqAnalysis.englishFreqMatchScore">[docs]</a><span class="k">def</span> <span class="nf">englishFreqMatchScore</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="c1"># Return the number of matches that the string in the message</span>
+    <span class="c1"># parameter has when its letter frequency is compared to English</span>
+    <span class="c1"># letter frequency. A &quot;match&quot; is how many of its six most frequent</span>
+    <span class="c1"># and six least frequent letters are among the six most frequent and</span>
+    <span class="c1"># six least frequent letters for English.</span>
+    <span class="n">freqOrder</span> <span class="o">=</span> <span class="n">getFrequencyOrder</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+    <span class="n">matchScore</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># Find how many matches for the six most common letters there are:</span>
+    <span class="k">for</span> <span class="n">commonLetter</span> <span class="ow">in</span> <span class="n">ETAOIN</span><span class="p">[:</span><span class="mi">6</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">commonLetter</span> <span class="ow">in</span> <span class="n">freqOrder</span><span class="p">[:</span><span class="mi">6</span><span class="p">]:</span>
+            <span class="n">matchScore</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c1"># Find how many matches for the six least common letters there are:</span>
+    <span class="k">for</span> <span class="n">uncommonLetter</span> <span class="ow">in</span> <span class="n">ETAOIN</span><span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">:]:</span>
+        <span class="k">if</span> <span class="n">uncommonLetter</span> <span class="ow">in</span> <span class="n">freqOrder</span><span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">:]:</span>
+            <span class="n">matchScore</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">matchScore</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

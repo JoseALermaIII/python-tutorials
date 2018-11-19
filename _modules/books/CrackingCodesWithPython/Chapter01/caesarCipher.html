@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>books.CrackingCodesWithPython.Chapter01.caesarCipher &mdash; python-tutorials 1.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/atom_setup.html">Atom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/vim_setup.html">Vim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/pycharm_setup.html">PyCharm</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">CrackingCodesWithPython</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>books.CrackingCodesWithPython.Chapter01.caesarCipher</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for books.CrackingCodesWithPython.Chapter01.caesarCipher</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Caesar Cipher improved</span>
+<span class="c1"># Rewritten as function with wrapper functions for importing</span>
+<span class="c1"># SPOILERS: Chapter 5 (caesarCipher), Chapter 7 (functions)</span>
+
+<span class="kn">import</span> <span class="nn">books.CrackingCodesWithPython.Chapter01.config</span>
+
+
+<div class="viewcode-block" id="decryptMessage"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter01.html#books.CrackingCodesWithPython.Chapter01.caesarCipher.decryptMessage">[docs]</a><span class="k">def</span> <span class="nf">decryptMessage</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">caesarCipher</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="s2">&quot;decrypt&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="encryptMessage"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter01.html#books.CrackingCodesWithPython.Chapter01.caesarCipher.encryptMessage">[docs]</a><span class="k">def</span> <span class="nf">encryptMessage</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">caesarCipher</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="s2">&quot;encrypt&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="caesarCipher"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter01.html#books.CrackingCodesWithPython.Chapter01.caesarCipher.caesarCipher">[docs]</a><span class="k">def</span> <span class="nf">caesarCipher</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+
+    <span class="c1"># Store the encrypted/decrypted form of the message:</span>
+    <span class="n">translated</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">message</span><span class="p">:</span>
+        <span class="c1"># Note: Only symbols in the SYMBOLS string can be encrypted/decrypted.</span>
+        <span class="k">if</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">books</span><span class="o">.</span><span class="n">CrackingCodesWithPython</span><span class="o">.</span><span class="n">Chapter01</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">SYMBOLS</span><span class="p">:</span>
+            <span class="n">symbolIndex</span> <span class="o">=</span> <span class="n">books</span><span class="o">.</span><span class="n">CrackingCodesWithPython</span><span class="o">.</span><span class="n">Chapter01</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">SYMBOLS</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+
+            <span class="c1"># Perform encryption/decryption:</span>
+            <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;encrypt&#39;</span><span class="p">:</span>
+                <span class="n">translatedIndex</span> <span class="o">=</span> <span class="n">symbolIndex</span> <span class="o">+</span> <span class="n">key</span>
+            <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;decrypt&#39;</span><span class="p">:</span>
+                <span class="n">translatedIndex</span> <span class="o">=</span> <span class="n">symbolIndex</span> <span class="o">-</span> <span class="n">key</span>
+
+            <span class="c1"># Handle wraparound, if needed:</span>
+            <span class="k">if</span> <span class="n">translatedIndex</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">books</span><span class="o">.</span><span class="n">CrackingCodesWithPython</span><span class="o">.</span><span class="n">Chapter01</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">SYMBOLS</span><span class="p">):</span>
+                <span class="n">translatedIndex</span> <span class="o">-=</span> <span class="nb">len</span><span class="p">(</span><span class="n">books</span><span class="o">.</span><span class="n">CrackingCodesWithPython</span><span class="o">.</span><span class="n">Chapter01</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">SYMBOLS</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">translatedIndex</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">translatedIndex</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">books</span><span class="o">.</span><span class="n">CrackingCodesWithPython</span><span class="o">.</span><span class="n">Chapter01</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">SYMBOLS</span><span class="p">)</span>
+
+            <span class="n">translated</span> <span class="o">+=</span> <span class="n">books</span><span class="o">.</span><span class="n">CrackingCodesWithPython</span><span class="o">.</span><span class="n">Chapter01</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">SYMBOLS</span><span class="p">[</span><span class="n">translatedIndex</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Append the symbol without encrypting/decrypting:</span>
+            <span class="n">translated</span> <span class="o">+=</span> <span class="n">symbol</span>
+
+    <span class="k">return</span> <span class="n">translated</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
