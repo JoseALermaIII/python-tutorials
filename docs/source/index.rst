@@ -69,6 +69,19 @@ bad things.
    getting_started/pycharm_setup
 
 .. toctree::
+   :maxdepth: 3
+   :caption: Books
+
+   books/automate/automate.rst
+   books/cracking/cracking.rst
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Online Courses
+
+   udacity
+
+.. toctree::
    :maxdepth: 2
    :caption: Module Reference:
 
