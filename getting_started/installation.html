@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &mdash; python-tutorials 1.0.1 documentation</title>
+  <title>Installation &mdash; python-tutorials 1.0.2 documentation</title>
   
 
   
@@ -88,6 +88,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#linux">Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-documentation">Building Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#disclaimer">Disclaimer</a></li>
 </ul>
 </li>
@@ -99,6 +100,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../books/automate/automate.html">AutomateTheBoringStuffWithPython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../books/cracking/cracking.html">CrackingCodesWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../books/wikibook.html">wikibook</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Online Courses</span></p>
 <ul>
@@ -196,6 +198,39 @@ I prefer to run a Development VM of Linux on Windows. Excessive, yes, but taking
 reinstalling on VMs is easier than on physical machines.</p>
 <p>I’ve read that some python bots can be run on a Raspberry Pi. I would like to tinker with this concept a bit, but I am
 concerned that Raspberry Pis do not have enough RAM, so I will be sticking with VMs until I can get more tests done.</p>
+</div>
+<div class="section" id="building-documentation">
+<h2>Building Documentation<a class="headerlink" href="#building-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Building the documentation is <strong>not needed or recommended</strong> unless contributing to the documentation. The latest
+version of the documentation is available at <a class="reference external" href="https://josealermaiii.github.io/python-tutorials/">josealermaiii&#64;github.io/python-tutorials</a> or as a <a class="reference external" href="https://github.com/JoseALermaIII/python-tutorials/blob/master/manual.pdf">PDF in the source code</a>. You have been warned.</p>
+</div>
+<p>Building the docs requires a few more pip packages:</p>
+<ul class="simple">
+<li>sphinx</li>
+<li>sphinxcontrib-napoleon</li>
+<li>sphinx-rtd-theme</li>
+</ul>
+<p>Now, we can build the docs in HTML format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">absolute_path_here</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">tutorials</span><span class="o">/</span><span class="n">docs</span>
+<span class="n">make</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>This will save the docs website in <code class="docutils literal notranslate"><span class="pre">../../python-tutorials-docs/</span></code>.</p>
+<p>Building the PDF is even more involved. First, LaTeX must be installed on the OS. For example, in Ubuntu 18.04:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">texlive</span><span class="o">-</span><span class="n">latex</span><span class="o">-</span><span class="n">recommended</span> <span class="n">texlive</span><span class="o">-</span><span class="n">latex</span><span class="o">-</span><span class="n">extra</span> <span class="n">texlive</span><span class="o">-</span><span class="n">fonts</span><span class="o">-</span><span class="n">recommended</span> <span class="n">texlive</span><span class="o">-</span><span class="n">xetex</span>
+</pre></div>
+</div>
+<p>Installing these dependencies is not recommended, if not needed, because they require &gt; 330 MB of disk space.</p>
+<p>We also install XeLaTeX, <code class="docutils literal notranslate"><span class="pre">texlive-xetex</span></code>, because some of the book corrections contain code snippets with unicode
+characters that are not supported by the default LaTeX engine.</p>
+<p>Now, we can build the docs in PDF format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">absolute_path_here</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">tutorials</span><span class="o">/</span><span class="n">docs</span>
+<span class="n">make</span> <span class="n">latexpdf</span>
+</pre></div>
+</div>
+<p>This will save the doc’s PDF in <code class="docutils literal notranslate"><span class="pre">../manual.pdf</span></code>.</p>
 </div>
 <div class="section" id="disclaimer">
 <h2>Disclaimer<a class="headerlink" href="#disclaimer" title="Permalink to this headline">¶</a></h2>

@@ -38,6 +38,7 @@ You're back? Alright, let's continue.
 
    books/automate/automate.rst
    books/cracking/cracking.rst
+   books/wikibook
 
 .. toctree::
    :maxdepth: 3
