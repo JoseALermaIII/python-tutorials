@@ -9,4 +9,11 @@ def foo():
     print(spam)
 
 
-foo()  # mind == blown
+def main():
+    foo()  # mind == blown
+
+
+# If Question2.py is run (instead of imported as a module), call
+# the main() function:
+if __name__ == '__main__':
+    main()

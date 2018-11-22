@@ -35,6 +35,13 @@ def orTruthTable():
     return None
 
 
-notTruthTable()
-andTruthTable()
-orTruthTable()
+def main():
+    notTruthTable()
+    andTruthTable()
+    orTruthTable()
+
+
+# If Question3.py is run (instead of imported as a module), call
+# the main() function:
+if __name__ == '__main__':
+    main()

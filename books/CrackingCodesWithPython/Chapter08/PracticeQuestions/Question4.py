@@ -7,5 +7,13 @@ if _name_ == '_main_':
 if _main_ == '_name_':
 """
 
-# Answer with key = 9:
-answer = "Tr_=_h n _eia'' sm_:a:e_n _msi_awf ie_=n"
+
+def main():
+    # Answer with key = 9:
+    answer = "Tr_=_h n _eia'' sm_:a:e_n _msi_awf ie_=n"
+
+
+# If Question4.py is run (instead of imported as a module), call
+# the main() function:
+if __name__ == '__main__':
+    main()
