@@ -1,5 +1,10 @@
-# Encrypt the following with the transposition cipher (with paper and pencil, *cough*)
-# SPOILER for Chapter 9! (importing transpositionEncrypt)
+"""Chapter 7 Practice Question 1
+
+Encrypt the following with the transposition cipher (with paper and pencil, *cough*).
+
+Note:
+    Contains spoilers for Chapter 9 (importing transpositionEncrypt)
+"""
 
 from books.CrackingCodesWithPython.Chapter07.transpositionEncrypt import encryptMessage
 
