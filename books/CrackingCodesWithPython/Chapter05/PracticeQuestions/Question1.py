@@ -1,6 +1,10 @@
-# Using caesarCipher.py, encrypt the following sentences with the given keys
-# SPOILER for Chapter 7 (functions)
+""" Chapter 5 Practice Question 1
 
+Using caesarCipher.py, encrypt the following sentences with the given keys.
+
+Note:
+    Contains spoilers for Chapter 7 (functions)
+"""
 
 from books.CrackingCodesWithPython.Chapter01.caesarCipher import caesarCipher
 
