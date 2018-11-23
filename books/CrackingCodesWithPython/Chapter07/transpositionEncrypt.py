@@ -1,7 +1,13 @@
-# Transposition Cipher Encryption
-# https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""Transposition Cipher Encryption
+
+Demonstrates how to implement a transposition cipher.
+
+Note:
+    https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""
 
 from books.CrackingCodesWithPython.pyperclip import copy
+
 
 def main():
     myMessage = 'Common sense is not so common.'
@@ -18,7 +24,22 @@ def main():
     copy(ciphertext)
 
 
-def encryptMessage(key, message):
+def encryptMessage(key: int, message: str) -> str:
+    """Transposition Cipher Encrypt
+
+    Encrypts given message using a transposition cipher with given key.
+
+    Args:
+        key: Numeric key to encrypt with.
+        message: Message to encrypt.
+
+    Returns:
+        Message encrypted in a string.
+
+    Example:
+        >>> encryptMessage(9, 'Underneath a huge oak tree there was of swine a huge company,')
+        'Uhot  on ahoamdakef pe  r harhtesunnur wgyegewie,aeean t  sec'
+    """
     # Each string in ciphertext represents a column in the grid:
     ciphertext = [''] * key
 
