@@ -1,5 +1,7 @@
-# When you enter the following code into the interactive shell (*cough*), what does
-# each line print?
+"""Chapter 8 Practice Question 2
+
+When you enter the following code into the interactive shell (*cough*), what does each line print?
+"""
 
 import math
 
