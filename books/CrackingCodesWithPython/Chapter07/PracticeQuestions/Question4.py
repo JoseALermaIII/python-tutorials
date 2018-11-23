@@ -1,5 +1,10 @@
-# What value does each of the following expressions evaluate to?
-# aka "Lists are OP"
+"""Chapter 7 Practice Question 4
+
+What value does each of the following expressions evaluate to?
+
+Note:
+    aka "Lists are OP"
+"""
 
 
 def main():
