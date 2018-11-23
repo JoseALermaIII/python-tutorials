@@ -1,33 +1,44 @@
-# Caesar Cipher Hacker
-# https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""Caesar Cipher Hacker
 
-message = 'guv6Jv6Jz!J6rp5r7Jzr66ntrM'
-SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?.'
+Demonstrates how to implement a program that hacks a caesar cipher.
 
-# Loop through every possible key:
-for key in range(len(SYMBOLS)):
-    # It is important to set translated to the blank string so that the
-    # previous iteration's value for translated is cleared:
-    translated = ''
+Note:
+    https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""
 
-    # The rest of the program is almost the same as the Caesar program:
 
-    # Loop through each symbol in message:
-    for symbol in message:
-        if symbol in SYMBOLS:
-            symbolIndex = SYMBOLS.find(symbol)
-            translatedIndex = symbolIndex - key
+def main():
+    message = 'guv6Jv6Jz!J6rp5r7Jzr66ntrM'
+    SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?.'
 
-            # Handle the wraparound:
-            if translatedIndex < 0:
-                translatedIndex += len(SYMBOLS)
+    # Loop through every possible key:
+    for key in range(len(SYMBOLS)):
+        # It is important to set translated to the blank string so that the
+        # previous iteration's value for translated is cleared:
+        translated = ''
 
-            # Append the decrypted symbol:
-            translated += SYMBOLS[translatedIndex]
+        # The rest of the program is almost the same as the Caesar program:
 
-        else:
-            # Append the symbol without encrypting/decrypting:
-            translated += symbol
+        # Loop through each symbol in message:
+        for symbol in message:
+            if symbol in SYMBOLS:
+                symbolIndex = SYMBOLS.find(symbol)
+                translatedIndex = symbolIndex - key
 
-    # Display every possible decryption:
-    print('Key #%s: %s' % (key, translated))
+                # Handle the wraparound:
+                if translatedIndex < 0:
+                    translatedIndex += len(SYMBOLS)
+
+                # Append the decrypted symbol:
+                translated += SYMBOLS[translatedIndex]
+
+            else:
+                # Append the symbol without encrypting/decrypting:
+                translated += symbol
+
+        # Display every possible decryption:
+        print('Key #%s: %s' % (key, translated))
+
+
+if __name__ == '__main__':
+    main()
