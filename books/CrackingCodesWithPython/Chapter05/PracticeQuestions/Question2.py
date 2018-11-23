@@ -1,5 +1,10 @@
-# Using caesarCipher.py, decrypt the following ciphertexts with the given keys
-# SPOILERS for chapter 7 (functions)
+""" Chapter 5 Practice Question 2
+
+Using caesarCipher.py, decrypt the following ciphertexts with the given keys
+
+Note:
+    Contains spoilers for Chapter 7 (functions)
+"""
 
 import books.CrackingCodesWithPython.Chapter05.PracticeQuestions.Question1 as Question1
 
