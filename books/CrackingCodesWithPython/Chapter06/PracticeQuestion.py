@@ -1,7 +1,13 @@
-# Break the following ciphertext one line at a time because each line has a different key.
-# Remember to escape any quote characters
-# SPOILER for chapter 7 (functions)
+"""Chapter 6 Practice Questions
 
+Answers Chapter 6 Practice Questions via Python code.
+
+Break the following ciphertext one line at a time because each line has a different key.
+Remember to escape any quote characters
+
+Note:
+    Contains spoilers for chapter 7 (functions)
+"""
 
 from books.CrackingCodesWithPython.Chapter01.caesarHacker import hackCaesar
 
