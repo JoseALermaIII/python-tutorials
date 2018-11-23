@@ -1,7 +1,17 @@
-# Draw the complete truth tables for the and, or, and not operators
+"""Chapter 8 Practice Question 3
+
+Draw the complete truth tables for the and, or, and not operators.
+"""
 
 
-def notTruthTable():
+def notTruthTable() -> None:
+    """Not truth table.
+
+    Prints a truth table for the not operator.
+
+    Returns:
+         None. Only prints out a table.
+    """
     print(" _________________________\n",
           "|not A    | Evaluates to:|\n",
           "|_________|______________|\n",
@@ -11,7 +21,14 @@ def notTruthTable():
     return None
 
 
-def andTruthTable():
+def andTruthTable() -> None:
+    """And truth table.
+
+    Prints a truth table for the and operator.
+
+    Returns:
+         None. Only prints out a table.
+    """
     print(" _______________________________\n",
           "|A and B        | Evaluates to:|\n",
           "|_______________|______________|\n",
@@ -23,7 +40,14 @@ def andTruthTable():
     return None
 
 
-def orTruthTable():
+def orTruthTable() -> None:
+    """Or truth table.
+
+    Prints a truth table for the or operator.
+
+    Returns:
+         None. Only prints out a table.
+    """
     print(" ______________________________\n",
           "|A or B        | Evaluates to:|\n",
           "|______________|______________|\n",
