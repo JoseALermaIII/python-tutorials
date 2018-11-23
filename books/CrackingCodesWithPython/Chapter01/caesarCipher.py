@@ -6,7 +6,7 @@ Note:
     Contains spoilers from Chapter 5 (caesarCipher) and Chapter 7 (functions)
 """
 
-import books.CrackingCodesWithPython.Chapter01.config
+from books.CrackingCodesWithPython.Chapter01.config import SYMBOLS
 
 
 def decryptMessage(key: int, message: str) -> str:
@@ -62,8 +62,8 @@ def caesarCipher(key: int, message: str, mode: str) -> str:
 
     for symbol in message:
         # Note: Only symbols in the SYMBOLS string can be encrypted/decrypted.
-        if symbol in books.CrackingCodesWithPython.Chapter01.config.SYMBOLS:
-            symbolIndex = books.CrackingCodesWithPython.Chapter01.config.SYMBOLS.find(symbol)
+        if symbol in SYMBOLS:
+            symbolIndex = SYMBOLS.find(symbol)
 
             # Perform encryption/decryption:
             if mode == 'encrypt':
@@ -72,12 +72,12 @@ def caesarCipher(key: int, message: str, mode: str) -> str:
                 translatedIndex = symbolIndex - key
 
             # Handle wraparound, if needed:
-            if translatedIndex >= len(books.CrackingCodesWithPython.Chapter01.config.SYMBOLS):
-                translatedIndex -= len(books.CrackingCodesWithPython.Chapter01.config.SYMBOLS)
+            if translatedIndex >= len(SYMBOLS):
+                translatedIndex -= len(SYMBOLS)
             elif translatedIndex < 0:
-                translatedIndex += len(books.CrackingCodesWithPython.Chapter01.config.SYMBOLS)
+                translatedIndex += len(SYMBOLS)
 
-            translated += books.CrackingCodesWithPython.Chapter01.config.SYMBOLS[translatedIndex]
+            translated += SYMBOLS[translatedIndex]
         else:
             # Append the symbol without encrypting/decrypting:
             translated += symbol
