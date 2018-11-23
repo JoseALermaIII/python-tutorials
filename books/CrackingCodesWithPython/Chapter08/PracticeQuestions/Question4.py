@@ -1,10 +1,14 @@
-# Which of the following is correct?
+"""Chapter 8 Practice Question 4
 
-"""
-if __name__ == '__main__':
-if __main__ == '__name__':
-if _name_ == '_main_':
-if _main_ == '_name_':
+Which of the following is correct?
+
+    if __name__ == '__main__':
+    if __main__ == '__name__':
+    if _name_ == '_main_':
+    if _main_ == '_name_':
+
+Note:
+    answer variable needs to be decrypted with the specified key
 """
 
 
