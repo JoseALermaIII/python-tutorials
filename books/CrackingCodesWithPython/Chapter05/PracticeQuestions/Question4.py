@@ -1,4 +1,10 @@
-# What do the following pieces of code display on the screen?
+""" Chapter 5 Practice Question 4
+
+What do the following pieces of code display on the screen?
+
+Note:
+    Contains spoilers for Chapter 7 (functions)
+"""
 
 
 def main():
