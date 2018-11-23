@@ -1,6 +1,10 @@
-# Chapter 2 Practice Questions
-# To check these questions, they should be entered in IDLE; otherwise
-# print statements would be needed.
+"""Chapter 2 Practice Questions
+
+Answers Chapter 2 Practice Questions via Python code.
+
+Note:
+    To check these questions, they should be entered in IDLE; otherwise print statements would be needed.
+"""
 
 
 def main():
