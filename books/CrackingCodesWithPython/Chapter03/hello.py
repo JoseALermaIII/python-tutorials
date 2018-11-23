@@ -12,6 +12,13 @@ Note:
     https://www.gq.com/story/how-to-hack-an-election
 
 """
-print('Hello, world!')
-myName = input('What is your name?\n')
-print('It is good to meet you, ' + myName)
+
+
+def main():
+    print('Hello, world!')
+    myName = input('What is your name?\n')
+    print('It is good to meet you, ' + myName)
+
+
+if __name__ == '__main__':
+    main()
