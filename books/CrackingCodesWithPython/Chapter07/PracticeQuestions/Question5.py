@@ -1,5 +1,10 @@
-# What are the four augmented assignment operators?
-# Hint: Table 7-1 on pg 92
+"""Chapter 7 Practice Question 5
+
+What are the four augmented assignment operators?
+
+Note:
+    Hint: Table 7-1 on pg 92
+"""
 
 
 def main():
