@@ -1,11 +1,25 @@
-# Caesar Hacker improved
-# Rewritten as function for importing
-# SPOILERS: Chapter 6 (caesarHacker), Chapter 7 (functions)
+"""Caesar Hacker improved.
+
+Rewritten as function for importing.
+
+Note:
+    Contains spoilers from Chapter 6 (caesarHacker) and Chapter 7 (functions)
+"""
 
 import books.CrackingCodesWithPython.Chapter01.config
 
 
-def hackCaesar(message):
+def hackCaesar(message: str) -> str:
+    """Hacks caesar cipher.
+
+    Loops through and displays every possible key.
+
+    Args:
+        message: Message to be decrypted.
+
+    Returns:
+        Prints each decryption with every possible key.
+    """
 
     # Loop through every possible key:
     for key in range(len(books.CrackingCodesWithPython.Chapter01.config.SYMBOLS)):
