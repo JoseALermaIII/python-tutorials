@@ -1,19 +1,61 @@
-# Caesar Cipher improved
-# Rewritten as function with wrapper functions for importing
-# SPOILERS: Chapter 5 (caesarCipher), Chapter 7 (functions)
+"""Caesar Cipher improved.
+
+Rewritten as function with wrapper functions for importing.
+
+Note:
+    Contains spoilers from Chapter 5 (caesarCipher) and Chapter 7 (functions)
+"""
 
 import books.CrackingCodesWithPython.Chapter01.config
 
 
-def decryptMessage(key, message):
+def decryptMessage(key: int, message: str) -> str:
+    """Decrypts encrypted caesar cipher.
+
+    Wrapper function that calls caesarCipher() to decrypt given message with given key.
+
+    Args:
+        key: Key to use to decrypt message.
+        message: Message to decrypt.
+
+    Returns:
+        Returns decrypted string.
+    """
     return caesarCipher(key, message, "decrypt")
 
 
-def encryptMessage(key, message):
+def encryptMessage(key: int, message: str) -> str:
+    """Encrypts message with caesar cipher.
+
+    Wrapper function that calls caesarCipher() to encrypt given message with given key.
+
+    Args:
+        key: Key to use to encrypt message.
+        message: Message to encrypt.
+
+    Returns:
+        Returns encrypted string.
+    """
     return caesarCipher(key, message, "encrypt")
 
 
-def caesarCipher(key, message, mode):
+def caesarCipher(key: int, message: str, mode: str) -> str:
+    """Implement caesar cipher.
+
+    Encrypts or decrypts given message with given key depending on given mode.
+
+    Args:
+        key: Key to use for [de|en]cryption.
+        message: Message to encrypt/decrypt.
+        mode: Specifies encryption or decryption.
+
+    Returns:
+        translated: Encrypted/decrypted message string.
+
+    Example:
+        >>> caesarCipher(4, 'IMPIETY: YOUR IRREVERENCE TOWARD MY DEITY.', 'encrypt')
+        'MQTMIXc:AcSYVAMVVIZIVIRGIAXSaEVHAQcAHIMXcD'
+    """
 
     # Store the encrypted/decrypted form of the message:
     translated = ''
