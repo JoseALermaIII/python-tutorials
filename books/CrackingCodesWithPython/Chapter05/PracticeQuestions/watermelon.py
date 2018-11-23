@@ -1,8 +1,20 @@
-# Demonstration for Question3
-# SPOILER for Chapter 7 (functions)
+""" Watermelon.py
+
+Demonstration for Question3.py
+
+Note:
+    Contains spoilers for Chapter 7 (functions)
+"""
 
 
-def nutrition():
+def nutrition() -> None:
+    """Watermelon nutrition info.
+
+    Contains nutrition facts of a serving of watermelon.
+
+    Returns:
+      Prints a series of strings containing the nutrition facts of a serving of watermelon.
+    """
     print("Serving: About 2 cups, diced (280g)\n",
           "___________________________________\n",
           "Calories: 80\n",
