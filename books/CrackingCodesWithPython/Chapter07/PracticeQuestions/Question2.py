@@ -1,9 +1,19 @@
-# Is each spam a global or local variable?
+"""Chapter 7 Practice Question 2
+
+Is each spam a global or local variable?
+"""
 
 spam = 42  # global/local
 
 
-def foo():
+def foo() -> None:
+    """Prints spam.
+
+    Prints the contents of the spam variable.
+
+    Returns:
+        Prints spam variable.
+    """
     global spam
     spam = 99  # global/local
     print(spam)
