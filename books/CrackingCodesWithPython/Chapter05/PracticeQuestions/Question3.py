@@ -1,4 +1,10 @@
-# Which Python instruction would import a module named watermelon.py?
+""" Chapter 5 Practice Question 3
+
+Which Python instruction would import a module named watermelon.py?
+
+Note:
+    Contains spoilers for Chapter 7 (functions)
+"""
 
 import books.CrackingCodesWithPython.Chapter05.PracticeQuestions.watermelon as watermelon
 
