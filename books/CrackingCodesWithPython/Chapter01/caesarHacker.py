@@ -9,7 +9,7 @@ Note:
 from books.CrackingCodesWithPython.Chapter01.config import SYMBOLS
 
 
-def hackCaesar(message: str) -> str:
+def hackCaesar(message: str) -> None:
     """Hacks caesar cipher.
 
     Loops through and displays every possible key.
