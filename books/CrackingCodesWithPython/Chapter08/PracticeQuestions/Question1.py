@@ -1,4 +1,10 @@
-# Using paper and pencil (*cough*), decrypt the following messages with the key 9.
+"""Chapter 8 Practice Question 1
+
+Using paper and pencil (*cough*), decrypt the following messages with the key 9.
+
+Note:
+    Contains spoilers for Chapter 9 (importing transpositionDecrypt)
+"""
 
 from books.CrackingCodesWithPython.Chapter08.transpositionDecrypt import decryptMessage
 
