@@ -6,7 +6,7 @@ Note:
     Contains spoilers from Chapter 6 (caesarHacker) and Chapter 7 (functions)
 """
 
-import books.CrackingCodesWithPython.Chapter01.config
+from books.CrackingCodesWithPython.Chapter01.config import SYMBOLS
 
 
 def hackCaesar(message: str) -> str:
@@ -22,7 +22,7 @@ def hackCaesar(message: str) -> str:
     """
 
     # Loop through every possible key:
-    for key in range(len(books.CrackingCodesWithPython.Chapter01.config.SYMBOLS)):
+    for key in range(len(SYMBOLS)):
         # It is important to set translated to the blank string so that the
         # previous iteration's value for translated is cleared:
         translated = ''
@@ -31,16 +31,16 @@ def hackCaesar(message: str) -> str:
 
         # Loop through each symbol in message:
         for symbol in message:
-            if symbol in books.CrackingCodesWithPython.Chapter01.config.SYMBOLS:
-                symbolIndex = books.CrackingCodesWithPython.Chapter01.config.SYMBOLS.find(symbol)
+            if symbol in SYMBOLS:
+                symbolIndex = SYMBOLS.find(symbol)
                 translatedIndex = symbolIndex - key
 
                 # Handle the wraparound:
                 if translatedIndex < 0:
-                    translatedIndex += len(books.CrackingCodesWithPython.Chapter01.config.SYMBOLS)
+                    translatedIndex += len(SYMBOLS)
 
                 # Append the decrypted symbol:
-                translated += books.CrackingCodesWithPython.Chapter01.config.SYMBOLS[translatedIndex]
+                translated += SYMBOLS[translatedIndex]
 
             else:
                 # Append the symbol without encrypting/decrypting:
