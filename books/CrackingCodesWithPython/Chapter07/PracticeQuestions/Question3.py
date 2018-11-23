@@ -1,5 +1,10 @@
-# What value does each of the following expressions evaluate to?
-# aka "The power of lists"
+"""Chapter 7 Practice Question 3
+
+What value does each of the following expressions evaluate to?
+
+Note:
+    aka "The power of lists"
+"""
 
 
 def main():
