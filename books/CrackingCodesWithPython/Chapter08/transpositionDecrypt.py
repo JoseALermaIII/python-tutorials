@@ -1,8 +1,14 @@
-# Transposition Cipher Decryption
-# https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""Transposition Cipher Decryption
+
+Decrypts transposition cipher messages.
+
+Note:
+    https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""
 
 import math
 from books.CrackingCodesWithPython.pyperclip import copy
+
 
 def main():
     myMessage = "Cenoonommstmme oo snnio. s s c"
@@ -17,7 +23,18 @@ def main():
     copy(plaintext)
 
 
-def decryptMessage(key, message):
+def decryptMessage(key: int, message: str) -> str:
+    """Decrypt transposition cipher.
+
+    Decrypts transposition cipher messages with given key.
+
+    Args:
+        key: Numeric key to use for decryption.
+        message: Message string to decrypt.
+
+    Returns:
+        Decrypted message in a string.
+    """
     # The transposition decrypt function will simulate the "columns" and
     # "rows" of the grid that the plaintext is written on by using a list
     # of strings. First, we need to calculate a few values.
