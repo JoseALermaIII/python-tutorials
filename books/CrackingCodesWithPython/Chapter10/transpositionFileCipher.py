@@ -1,5 +1,10 @@
-# Transposition Cipher Encrypt/Decrypt File
-# https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""Transposition Cipher Encrypt/Decrypt File
+
+Implements a transposition cipher that can encrypt/decrypt a file.
+
+Note:
+    https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""
 
 import time
 import os
