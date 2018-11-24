@@ -1,5 +1,10 @@
-# Transposition Cipher Test
-# https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""Transposition Cipher Test
+
+Demonstrates a unit test for the transposition encrypt and decrypt functions.
+
+Note:
+    https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""
 
 import random
 import sys
