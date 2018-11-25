@@ -1,5 +1,21 @@
-# Simple Substitution Cipher
-# https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""Simple Substitution Cipher
+
+Provides functions that implement a substitution cipher.
+
+Attributes:
+    LETTERS (str): String containing uppercase latin letters.
+
+Example:
+    >>> import books.CrackingCodesWithPython.Chapter16.simpleSubCipher as simpleSubCipher
+    >>> key = simpleSubCipher.getRandomKey()  # key = 'VIAXLGJBKSZDUTRPYCEWNFHOMQ', in this example
+    >>> message = 'You\\'d be surprised what you can live through.'
+    >>> simpleSubCipher.encryptMessage(key, message)
+    "Mrn'x il encpckelx hbvw mrn avt dkfl wbcrnjb"
+
+Note:
+    * https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+
+"""
 
 from books.CrackingCodesWithPython.pyperclip import copy
 import sys
@@ -37,7 +53,17 @@ slightest evidence. The origin of myths is explained in this way.
         print(decryptMessage(myKey, translated))
 
 
-def keyIsValid(key):
+def keyIsValid(key: str) -> bool:
+    """Checks key for validity.
+
+    Ensures key contains all letters in LETTERS.
+
+    Args:
+        key: String containing key used to encrypt with substitution cipher.
+
+    Returns:
+        True if key and LETTERS match, False otherwise.
+    """
     keyList = list(key)
     lettersList = list(LETTERS)
     keyList.sort()
@@ -46,15 +72,49 @@ def keyIsValid(key):
     return keyList == lettersList
 
 
-def encryptMessage(key, message):
+def encryptMessage(key: str, message: str) -> str:
+    """Substitution Cipher Encrypt
+
+    Wrapper function that encrypts given message with the given key using the substitution cipher.
+
+    Args:
+        key: String containing key used to encrypt with substitution cipher.
+        message: String containing message to encrypt.
+
+    Returns:
+        Encrypted message.
+    """
     return translateMessage(key, message, 'encrypt')
 
 
-def decryptMessage(key, message):
+def decryptMessage(key: str, message: str) -> str:
+    """Substitution Cipher Decrypt
+
+    Wrapper function that decrypts given substitution cipher encrypted message with the given key.
+
+    Args:
+        key: String containing key used to decrypt substitution cipher.
+        message: String containing message to decrypt.
+
+    Returns:
+        Decrypted message.
+    """
     return translateMessage(key, message, 'decrypt')
 
 
-def translateMessage(key, message, mode):
+def translateMessage(key: str, message: str, mode: str) -> str:
+    """Substitution Cipher
+
+    Implements a substitution cipher that can encrypt or decrypt messages depending on the given mode.
+
+    Args:
+        key: String containing key used to decrypt/encrypt messages.
+        message: String containing message to decrypt/encrypt.
+        mode: String specifying whether to 'encrypt' or 'decrypt'.
+
+    Returns:
+        Encrypted or decrypted message.
+    """
     translated = ''
     charsA = LETTERS
     charsB = key
@@ -79,7 +139,14 @@ def translateMessage(key, message, mode):
     return translated
 
 
-def getRandomKey():
+def getRandomKey() -> str:
+    """Substitution cipher key generator
+
+    Generates a random key that can be used with the substitution cipher.
+
+    Returns:
+        String with a random, valid key.
+    """
     key = list(LETTERS)
     random.shuffle(key)
     return ''.join(key)
