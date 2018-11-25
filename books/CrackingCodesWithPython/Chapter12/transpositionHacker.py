@@ -27,7 +27,7 @@ def main():
         copy(hackedMessage)
 
 
-def hackTransposition(message: str) -> None:
+def hackTransposition(message: str):
     """Hacks transposition cipher encrypted messages
 
     Brute-forces a given encrypted message by looping through all the keys, checking if the result is English, and
@@ -37,8 +37,8 @@ def hackTransposition(message: str) -> None:
         message: String with message to brute-force.
 
     Returns:
-        None. Prints out possible results and prompts user for confirmation. If confirmed, prints out full decrypted
-        message.
+        Prints out possible results and prompts user for confirmation. If confirmed, prints out and returns
+        full decrypted message, otherwise returns None.
 
     """
     print('Hacking...')
