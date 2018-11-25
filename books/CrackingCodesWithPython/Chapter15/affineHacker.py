@@ -1,5 +1,14 @@
-# Affine Cipher Hacker
-# https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""Affine Cipher Hacker
+
+Implements a function that can hack an affine cipher encrypted message.
+
+Attributes:
+    SILENT_MODE (bool): Specifies whether to print all key attempts.
+
+Note:
+    * https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+
+"""
 
 from books.CrackingCodesWithPython.pyperclip import copy
 from books.CrackingCodesWithPython.Chapter14.affineCipher import decryptMessage, SYMBOLS, getKeyParts
@@ -27,7 +36,20 @@ ADQALQG93!xQxaGaAfaQ1QX3o1RQARL9Qda!AafARuQLX1LQALQI1iQX3o1RN"Q-5!1RQP36ARu"""
         print('Failed to hack encryption.')
 
 
-def hackAffine(message):
+def hackAffine(message: str):
+    """Hacks affine cipher encrypted messages
+
+    Brute-forces a given encrypted message by looping through all the keys, checking if the result is English, and
+    prompting the user for confirmation of decryption.
+
+    Args:
+        message: String with message to brute-force.
+
+    Returns:
+        Prints out possible results and prompts user for confirmation. If confirmed, prints out and returns
+        full decrypted message, otherwise returns None.
+
+    """
     print('Hacking...')
 
     # Python programs can be stopped at any time by pressing Ctrl-C (on
