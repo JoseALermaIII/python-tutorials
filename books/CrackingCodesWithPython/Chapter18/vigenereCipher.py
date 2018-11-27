@@ -1,9 +1,26 @@
-# Vigenère Cipher (Polyalphabetic Substitution Cipher)
-# https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""Vigenère Cipher (Polyalphabetic Substitution Cipher)
+
+Provides functions that implement a Vigenère cipher.
+
+Attributes:
+    LETTERS (str): String containing uppercase latin letters.
+
+Example:
+    >>> import books.CrackingCodesWithPython.Chapter18.vigenereCipher as vigenereCipher
+    >>> key = 'supercalifragilisticexpialidocious'
+    >>> message = 'A soul shines brightest when it stands alongside the darkness. -Anon, probably'
+    >>> vigenereCipher.encryptMessage(key, message)
+    'S mdyc uhtvjj bxqrplxav aetv ie awoplg udghvwzfe epj uaxsymkl. -Ipsk, ezomieza'
+
+Note:
+    * https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+
+"""
 
 from books.CrackingCodesWithPython.pyperclip import copy
 
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
 
 def main():
     # This text can be downloaded from https://www.nostarch.com/crackingcodes/:
@@ -27,15 +44,49 @@ def main():
         print(decryptMessage(myKey, translated))
 
 
-def encryptMessage(key, message):
+def encryptMessage(key: str, message: str) -> str:
+    """Vigenère cipher encryption
+
+    Wrapper function that encrypts given message with given key using the Vigenère cipher.
+
+    Args:
+        key: String encryption key to encrypt with Vigenère cipher.
+        message: Message string to encrypt.
+
+    Returns:
+        Encrypted message string.
+    """
     return translateMessage(key, message, 'encrypt')
 
 
-def decryptMessage(key, message):
+def decryptMessage(key: str, message: str) -> str:
+    """Vigenère cipher decryption
+
+    Wrapper function that decrypts given message with given key using the Vigenère cipher.
+
+    Args:
+        key: String decryption key to encrypt with Vigenère cipher.
+        message: Message string to decrypt.
+
+    Returns:
+        Decrypted message string.
+    """
     return translateMessage(key, message, 'decrypt')
 
 
-def translateMessage(key, message, mode):
+def translateMessage(key: str, message: str, mode: str) -> str:
+    """Vigenère cipher
+
+    Implements a Vigenère cipher that can encrypt or decrypt messages depending on the given mode.
+
+    Args:
+        key: String containing key used to decrypt/encrypt messages.
+        message: String containing message to decrypt/encrypt.
+        mode: String specifying whether to 'encrypt' or 'decrypt'.
+
+    Returns:
+        Encrypted or decrypted message.
+    """
     translated = []  # Stores the encrypted/decrypted message string.
 
     keyIndex = 0
