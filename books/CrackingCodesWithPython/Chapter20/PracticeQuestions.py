@@ -1,4 +1,7 @@
-# Chapter 20 Practice Questions
+"""Chapter 20 Practice Questions
+
+Answers Chapter 20 Practice Questions via Python code.
+"""
 
 
 def main():
