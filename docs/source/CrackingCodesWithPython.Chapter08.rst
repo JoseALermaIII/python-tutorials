@@ -1,6 +1,13 @@
 CrackingCodesWithPython.Chapter08 package
 =========================================
 
+Subpackages
+-----------
+
+.. toctree::
+
+    CrackingCodesWithPython.Chapter08.PracticeQuestions
+
 Submodules
 ----------
 

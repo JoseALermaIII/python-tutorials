@@ -1,6 +1,13 @@
 CrackingCodesWithPython.Chapter07 package
 =========================================
 
+Subpackages
+-----------
+
+.. toctree::
+
+    CrackingCodesWithPython.Chapter07.PracticeQuestions
+
 Submodules
 ----------
 
