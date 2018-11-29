@@ -112,8 +112,9 @@ def englishFreqMatchScore(message: str) -> int:
 
     Note:
         * A "match" is how many of its six most frequent and six least frequent letters are among the six
-        most frequent and six least frequent letters for English.
+          most frequent and six least frequent letters for English.
         * A "perfect score" is 12
+
     """
     freqOrder = getFrequencyOrder(message)
 
