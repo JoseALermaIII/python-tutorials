@@ -1,5 +1,15 @@
-# Public Key Generator
-# https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""Public Key Generator
+
+Implements series of functions capable of creating a `textbook RSA`_ public/private keypair and saves them to text
+files.
+
+Note:
+    * https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+    * 'Textbook/Plain' RSA keys are not secure and should not be used to encrypt sensitive data.
+
+.. _textbook RSA:
+    https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Attacks_against_plain_RSA
+"""
 
 import random, sys, os
 from books.CrackingCodesWithPython.Chapter13.cryptomath import gcd, findModInverse
@@ -13,8 +23,17 @@ def main():
     print('Key files made.')
 
 
-def generateKey(keySize):
-    # Creates public/private keys keySize bits in size.
+def generateKey(keySize: int) -> tuple:
+    """Generate public/private keypair
+
+    Creates public/private keys keySize bits in size.
+
+    Args:
+         keySize: Bit size to make public/private keys.
+
+    Returns:
+        Tuples containing the public and private keypair split into their two halves.
+    """
     p = 0
     q = 0
     # Step 1: Create two prime numbers, p and q. Calculate n = p * q:
@@ -45,11 +64,24 @@ def generateKey(keySize):
     return publicKey, privateKey
 
 
-def makeKeyFiles(name, keySize):
-    # Creates two files 'x_pubkey.txt' and 'x_privkey.txt' (where x
-    # is the value in name) with the n,e and d,e integers written in
-    # them, delimited by a comma.
+def makeKeyFiles(name: str, keySize: int) -> None:
+    """Make key files
 
+    Creates two files 'x_pubkey.txt' and 'x_privkey.txt' (where x
+    is the value in name) with the n,e and d,e integers written in
+    them, delimited by a comma.
+
+    Args:
+         name: Name to append to public/private key files.
+         keySize: Bit size to make public/private keys.
+
+    Returns:
+        None. Key files are created in current working directory.
+
+    Note:
+        * Checks if key files with given name already exist and exits with warning if so.
+
+    """
     # Our safety check will prevent us from overwriting our old key files:
     if os.path.exists('%s_pubkey.txt' % name) or os.path.exists('%s_privkey.txt' % name):
         sys.exit('WARNING: The file %s_pubkey.txt or %s_privkey.txt already exists!'
