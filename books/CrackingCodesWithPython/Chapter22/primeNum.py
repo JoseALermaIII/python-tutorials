@@ -1,14 +1,32 @@
-# Prime Number Sieve
-# https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""Prime Number Sieve
+
+Implements a series of functions that determine if a given number is prime.
+
+Attributes:
+    LOW_PRIMES (list): List containing prime numbers <= 100 (aka 'low primes').
+
+Note:
+    * https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+
+"""
 
 import math, random
 
 
-def isPrimeTrialDiv(num):
-    # Returns True if num is a prime number, otherwise False.
+def isPrimeTrialDiv(num: int) -> bool:
+    """Is prime trial division
 
-    # Uses the trial division algorithm for testing primality.
+    Uses the `trial division`_ algorithm for testing if a given number is prime.
 
+    Args:
+         num: Integer to determine if prime.
+
+    Returns:
+        True if num is a prime number, otherwise False.
+
+    .. _trial division:
+        https://en.wikipedia.org/wiki/Trial_division
+    """
     # All numbers less than 2 are not prime:
     if num < 2:
         return False
@@ -20,10 +38,20 @@ def isPrimeTrialDiv(num):
     return True
 
 
-def primeSieve(sieveSize):
-    # Returns a list of prime numbers calculated using
-    # the Sieve of Eratosthenes algorithm.
+def primeSieve(sieveSize: int) -> list:
+    """Prime sieve
 
+    Calculates prime numbers using the `Sieve of Eratosthenes`_ algorithm.
+
+    Args:
+        sieveSize: Largest number to check if prime starting from zero.
+
+    Returns:
+        List containing prime numbers from 0 to given number.
+
+    .. _Sieve of Eratosthenes:
+        https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+    """
     sieve = [True] * sieveSize
     sieve[0] = False  # Zero and one are not prime numbers.
     sieve[1] = False
@@ -44,8 +72,20 @@ def primeSieve(sieveSize):
     return primes
 
 
-def rabinMiller(num):
-    # Returns True if num is a prime number.
+def rabinMiller(num: int) -> bool:
+    """Rabin-Miller primality test
+
+    Uses the `Rabin-Miller`_ primality test to test if a given number is prime.
+
+    Args:
+         num: Number to check if prime.
+
+    Returns:
+        True if num is prime, False otherwise.
+
+    .. _Rabin-Miller:
+        https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test
+    """
     if num % 2 == 0 or num < 2:
         return False  # Rabin-Miller doesn't work on even integers.
     if num == 3:
@@ -77,9 +117,21 @@ def rabinMiller(num):
 LOW_PRIMES = primeSieve(100)
 
 
-def isPrime(num):
-    # Return True if num is a prime number. This function does a quicker
-    # prime number check before calling rabinMiller().
+def isPrime(num: int) -> bool:
+    """Is prime
+
+    This function checks divisibility by LOW_PRIMES before calling
+    :func:`~books.CrackingCodesWithPython.Chapter22.primeNum.rabinMiller`.
+
+    Args:
+         num: Integer to check if prime.
+
+    Returns:
+        True if num is prime, False otherwise.
+
+    Note:
+        * If a number is divisible by a low prime number, it is not prime.
+    """
     if num < 2:
         return False  # 0, 1, and negative numbers are not prime.
 
@@ -95,8 +147,20 @@ def isPrime(num):
     return rabinMiller(num)
 
 
-def generateLargePrime(keysize=1024):
-    # Return a random prime number that is keysize bits in size:
+def generateLargePrime(keysize: int=1024) -> int:
+    """Generate large prime number
+
+    Generates random numbers of given bit size until one is prime.
+
+    Args:
+         keysize: Number of bits prime number should be.
+
+    Returns:
+        Random prime number that is keysize bits in size.
+
+    Note:
+        * keysize defaults to 1024 bits.
+    """
     while True:
         num = random.randrange(2**(keysize-1), 2**keysize)
         if isPrime(num):
