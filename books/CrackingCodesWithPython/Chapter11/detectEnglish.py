@@ -89,7 +89,7 @@ def removeNonLetters(message: str) -> str:
     return ''.join(lettersOnly)
 
 
-def isEnglish(message: str, wordPercentage:int=20, letterPercentage:int=85) -> bool:
+def isEnglish(message: str, wordPercentage: int=20, letterPercentage: int=85) -> bool:
     """Determines whether message is English
 
     Using given word percentage and letter percentage, determines if a given message is in the English language.
