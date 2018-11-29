@@ -1,5 +1,18 @@
-# Vigenère Cipher Hacker
-# https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""Vigenère Cipher Hacker
+
+Implements a series of functions that can hack a Vigenère cipher encrypted message by brute-forcing key lengths.
+
+Attributes:
+    LETTERS (str): String with uppercase latin letters.
+    MAX_KEY_LENGTH (int): Will not attempt keys longer than this.
+    NUM_MOST_FREQ_LETTERS (int): Attempt this many letters per subkey.
+    SILENT_MODE (bool): If set to True, program doesn't print anything.
+    NONLETTERS_PATTERN (_sre.SRE_Pattern): Regular expression object representing all non-letter characters.
+
+Note:
+    * https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+
+"""
 
 import itertools
 import re
@@ -29,11 +42,21 @@ def main():
         print('Failed to hack encryption.')
 
 
-def findRepeatSequencesSpacings(message):
-    # Goes through the message and finds any 3- to 5-letter sequences
-    # that are repeated. Returns a dict with the keys of the sequence and
-    # values of a list of spacings (num of letters between the repeats).
+def findRepeatSequencesSpacings(message: str) -> dict:
+    """Find spacing between repeat sequences
 
+    Goes through the message and finds any 3- to 5-letter sequences
+    that are repeated. Then counts the number of letters between the
+    repeated sequences.
+
+    Args:
+         message: String with message to find repeat sequence spacing.
+
+    Returns:
+        Dictionary with the keys of the sequence and
+        values of a list of spacings (num of letters between the repeats).
+
+    """
     # Use a regular expression to remove non-letters from the message:
     message = NONLETTERS_PATTERN.sub('', message.upper())
 
@@ -57,11 +80,22 @@ def findRepeatSequencesSpacings(message):
     return seqSpacings
 
 
-def getUsefulFactors(num):
-    # Returns a list of useful factors of num. By "useful" we mean factors
-    # less than MAX_KEY_LENGTH + 1 and not 1. For example,
-    # getUsefulFactors(144) returns [2, 3, 4, 6, 8, 9, 12, 16].
+def getUsefulFactors(num: int) -> list:
+    """Get useful factors
 
+    Returns a list of useful factors of num. By "useful" we mean factors
+    less than MAX_KEY_LENGTH + 1 and not 1.
+
+    Args:
+        num: Integer to get useful factors of.
+
+    Returns:
+        List of useful factors, if found, empty list otherwise.
+
+    Example:
+        >>> getUsefulFactors(144)
+        [2, 3, 4, 6, 8, 9, 12, 16]
+    """
     if num < 2:
         return []  # Numbers less than 2 have no useful factors.
 
@@ -78,11 +112,33 @@ def getUsefulFactors(num):
     return list(set(factors))  # Remove duplicate factors.
 
 
-def getItemAtIndexOne(x):
+def getItemAtIndexOne(x: tuple) -> int:
+    """Get item at index one
+
+    Helper function that returns the second element of given tuple.
+
+    Args:
+        x: Tuple with integers as values.
+
+    Returns:
+        Second element of x.
+    """
     return x[1]
 
 
-def getMostCommonFactors(seqFactors):
+def getMostCommonFactors(seqFactors: dict) -> list:
+    """Get most common factors
+
+    Counts how often each factor in the seqFactors dictionary occurs and returns a list of tuples with each factor
+    and its count.
+
+    Args:
+         seqFactors: Dictionary with 3- to 5- letter sequences as keys and the factors of the spacings between them
+            as values.
+
+    Returns:
+        A list of tuples of each factor and its count.
+    """
     # First, get a count of how many times a factor occurs in seqFactors:
     factorCounts = {}  # Key is a factor; value is how often it occurs.
 
@@ -112,7 +168,20 @@ def getMostCommonFactors(seqFactors):
     return factorsByCount
 
 
-def kasiskiExamination(ciphertext):
+def kasiskiExamination(ciphertext: str) -> list:
+    """Kasiski Examination
+
+    Uses `Kasiski Examination`_ to determine the likely length of the key used to encrypt the given ciphertext.
+
+    Args:
+        ciphertext: String containing encrypted message.
+
+    Returns:
+        List of likely key lengths used to encrypt message.
+
+    .. _Kasiski Examination:
+        https://en.wikipedia.org/wiki/Kasiski_examination
+    """
     # Find out the sequences of 3 to 5 letters that occur multiple times
     # in the ciphertext. repeatedSeqSpacings has a value like
     # {'EXG': [192], 'NAF': [339, 972, 633], ... }:
@@ -138,13 +207,29 @@ def kasiskiExamination(ciphertext):
     return allLikelyKeyLengths
 
 
-def getNthSubkeysLetters(nth, keyLength, message):
-    # Returns every nth letter for each keyLength set of letters in text.
-    # E.g. getNthSubkeysLetters(1, 3, 'ABCABCABC') returns 'AAA'
-    #      getNthSubkeysLetters(2, 3, 'ABCABCABC') returns 'BBB'
-    #      getNthSubkeysLetters(3, 3, 'ABCABCABC') returns 'CCC'
-    #      getNthSubkeysLetters(1, 5, 'ABCDEFGHI') returns 'AF'
+def getNthSubkeysLetters(nth: int, keyLength: int, message: str) -> str:
+    """Get nth subkeys letters
 
+    Gets every nth letter for each set of letters of a given length in a given text.
+
+    Args:
+        nth: Integer representing desired letter in message (similar to an index number).
+        keyLength: Integer representing length of key to use (spacing between nth letters).
+        message: String containing text to extract subkey letters from.
+
+    Returns:
+        String with every nth letter for each specified key length.
+
+    Examples:
+        >>> getNthSubkeysLetters(1, 3, 'ABCABCABC')
+        'AAA'
+        >>> getNthSubkeysLetters(2, 3, 'ABCABCABC')
+        'BBB'
+        >>> getNthSubkeysLetters(3, 3, 'ABCABCABC')
+        'CCC'
+        >>> getNthSubkeysLetters(1, 5, 'ABCDEFGHI')
+        'AF'
+    """
     # Use a regular expression to remove non-letters from the message:
     message = NONLETTERS_PATTERN.sub('', message)
 
@@ -156,7 +241,23 @@ def getNthSubkeysLetters(nth, keyLength, message):
     return ''.join(letters)
 
 
-def attemptHackWithKeyLength(ciphertext, mostLikelyKeyLength):
+def attemptHackWithKeyLength(ciphertext: str, mostLikelyKeyLength: int):
+    """Attempt hack with key length
+
+    Brute-forces ciphertext using every key of a given length, checks if decrypted message is
+    English with the :func:`~books.CrackingCodesWithPython.Chapter11.detectEnglish.isEnglish` module, and prompts user
+    for confirmation by displaying first 200 characters.
+
+    Args:
+        ciphertext: String with encrypted message.
+        mostLikelyKeyLength: Integer representing the length of the key used to encrypt message.
+
+    Returns:
+        Decrypted message, if confirmed, None otherwise.
+
+    Note:
+        * Key length is not limited to likely key lengths from :func:`~kasiskiExamination`.
+    """
     # Determine the most likely letters for each letter in the key:
     ciphertextUp = ciphertext.upper()
     # allFreqScores is a list of mostLikelyKeyLength number of lists.
@@ -224,7 +325,18 @@ def attemptHackWithKeyLength(ciphertext, mostLikelyKeyLength):
     return None
 
 
-def hackVigenere(ciphertext):
+def hackVigenere(ciphertext: str):
+    """Hack vigenere
+
+    Hacks Vigenère cipher encrypted message using likely key lengths, otherwise all possible key lengths.
+
+    Args:
+         ciphertext: String containing Vigenère cipher encrypted message.
+
+    Returns:
+        Decrypted message, if confirmed, None otherwise.
+
+    """
     # First, we need to do Kasiski examination to figure out what the
     # length of the ciphertext's encryption key is:
     allLikelyKeyLengths = kasiskiExamination(ciphertext)
