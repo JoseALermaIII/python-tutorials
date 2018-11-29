@@ -83,6 +83,10 @@ def rabinMiller(num: int) -> bool:
     Returns:
         True if num is prime, False otherwise.
 
+    Note:
+        * The Rabin-Miller primality test relies on unproven assumptions, therefore it can return false positives when
+          given a pseudoprime.
+
     .. _Rabin-Miller:
         https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test
     """
