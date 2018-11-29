@@ -1,4 +1,7 @@
-# Chapter 21 Practice Questions
+"""Chapter 21 Practice Questions
+
+Answers Chapter 21 Practice Questions via Python code.
+"""
 
 from books.CrackingCodesWithPython.Chapter18.vigenereCipher import decryptMessage
 
