@@ -15,8 +15,9 @@ Usage:
 
 On Windows, no additional modules are needed.
 On Mac, the pyobjc module is used, falling back to the pbcopy and pbpaste cli
-    commands. (These commands should come with OS X.).
-On Linux, install xclip or xsel via package manager. For example, in Debian:
+commands. (These commands should come with OS X.).
+On Linux, install xclip or xsel via package manager. For example, in Debian::
+
     sudo apt-get install xclip
     sudo apt-get install xsel
 
@@ -39,6 +40,7 @@ Security Note: This module runs programs with these names:
     - xsel
     - klipper
     - qdbus
+
 A malicious user could rename or add programs with these names, tricking
 Pyperclip into running them with whatever permissions the Python process has.
 
@@ -523,6 +525,7 @@ def set_clipboard(clipboard):
     Explicitly sets the clipboard mechanism. The "clipboard mechanism" is how
     the copy() and paste() functions interact with the operating system to
     implement the copy/paste feature. The clipboard parameter must be one of:
+
         - pbcopy
         - pbobjc (default on Mac OS X)
         - gtk
@@ -532,6 +535,7 @@ def set_clipboard(clipboard):
         - klipper
         - windows (default on Windows)
         - no (this is what is set when no clipboard mechanism can be found)
+
     '''
     global copy, paste
 
