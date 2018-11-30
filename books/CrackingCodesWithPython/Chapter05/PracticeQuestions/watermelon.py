@@ -1,6 +1,6 @@
 """ Watermelon.py
 
-Demonstration for Question3.py
+Demonstration for :py:mod:`CrackingCodesWithPython.Chapter05.PracticeQuestions.Question3`
 
 Note:
     Contains spoilers for Chapter 7 (functions)
