@@ -1,5 +1,21 @@
-# Public Key Cipher
-# https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+"""Public Key Cipher
+
+Implements a series of functions capable of encrypting and decrypting with `textbook RSA`_ public/private keypairs.
+
+Attributes:
+    SYMBOLS (str): String with all characters to be encrypted/decrypted.
+    PUBLIC_KEY_PATH (str): String with absolute location of public key file.
+    PRIVATE_KEY_PATH (str): String with absolute location of private key file.
+
+Note:
+    * https://www.nostarch.com/crackingcodes/ (BSD Licensed)
+    * The public and private keys are created by the
+      :py:mod:`CrackingCodesWithPython.Chapter23.makePublicPrivateKeys` module.
+    * 'Textbook/Plain' RSA keys are not secure and should not be used to encrypt sensitive data.
+
+.. _textbook RSA:
+    https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Attacks_against_plain_RSA
+"""
 
 import sys, math
 
@@ -16,7 +32,7 @@ def main():
     # Runs a test that encrypts a message to a file or decrypts a message
     # from a file.
     filename = 'encrypted_file.txt' # The file to write to/read from.
-    mode = 'encrypt' # Set to either 'encrypt' or 'decrypt'.
+    mode = 'encrypt'  # Set to either 'encrypt' or 'decrypt'.
 
     if mode == 'encrypt':
         message = 'Journalists belong in the gutter because that is where the ruling classes throw their guilty secrets. Gerald Priestland. The Founding Fathers gave the free press the protection it must have to bare the secrets of government and inform the people. Hugo Black.'
@@ -41,8 +57,22 @@ def main():
         print(readFromFileAndDecrypt(filename, privKeyFilename))
 
 
-def getBlocksFromText(message, blockSize):
-    # Converts a string message to a list of block integers.
+def getBlocksFromText(message: str, blockSize: int) -> list:
+    """Get blocks from text
+
+    Converts a string message to a list of block integers.
+
+    Args:
+         message: String containing message to convert into blocks of integers.
+         blockSize: Size of each block of integers.
+
+    Returns:
+        List with blocks of integers of the given size.
+
+    Note:
+        * If a character in the message is not in SYMBOLS, program exits with an error.
+
+    """
     for character in message:
         if character not in SYMBOLS:
             print('ERROR: The symbol set does not have the character %s' % character)
@@ -57,10 +87,23 @@ def getBlocksFromText(message, blockSize):
     return blockInts
 
 
-def getTextFromBlocks(blockInts, messageLength, blockSize):
-    # Converts a list of block integers to the original message string.
-    # The original message length is needed to properly convert the last
-    # block integer.
+def getTextFromBlocks(blockInts: list, messageLength: int, blockSize: int) -> str:
+    """Get text from blocks
+
+    Converts a list of block integers to the original message string.
+
+    Args:
+        blockInts: List of block integers of specified size.
+        messageLength: Length of the original message.
+        blockSize: Bit size of each block of integers.
+
+    Returns:
+        Original message string before block integer conversion.
+
+    Note:
+        * The original message length is needed to properly convert the last block integer.
+
+    """
     message = []
     for blockInt in blockInts:
         blockMessage = []
@@ -75,9 +118,22 @@ def getTextFromBlocks(blockInts, messageLength, blockSize):
     return ''.join(message)
 
 
-def encryptMessage(message, key, blockSize):
-    # Converts the message string into a list of block integers, and then
-    # encrypts each block integer. Pass the PUBLIC key to encrypt.
+def encryptMessage(message: str, key: tuple, blockSize: int) -> list:
+    """Encrypt message
+
+    Converts the message string into a list of block integers, and then encrypts each block integer.
+
+    Args:
+        message: String containing message to encrypt with PUBLIC key.
+        key: Tuple with PUBLIC key used for encryption.
+        blockSize: Bit size of block integers (usually specified in the PUBLIC key file).
+
+    Returns:
+        List of block integers encrypted with PUBLIC key.
+
+    Note:
+        * Ensure to pass the PUBLIC key to encrypt.
+    """
     encryptedBlocks = []
     n, e = key
 
@@ -87,10 +143,25 @@ def encryptMessage(message, key, blockSize):
     return encryptedBlocks
 
 
-def decryptMessage(encryptedBlocks, messageLength, key, blockSize):
-    # Decrypts a list of encrypted block ints into the original message
-    # string. The original message length is required to properly decrypt
-    # the last block. Be sure to pass the PRIVATE key to decrypt.
+def decryptMessage(encryptedBlocks: list, messageLength: int, key: tuple, blockSize: int) -> str:
+    """Decrypt Message
+
+    Decrypts a list of encrypted block integers into the original message string.
+
+    Args:
+         encryptedBlocks: List containing block integers encrypted with PUBLIC key.
+         messageLength: Length of the original message.
+         key: Tuple with PRIVATE key used to decryption.
+         blockSize: Bit size of block integers (usually specified in PRIVATE key file).
+
+    Returns:
+        Original message before block integer conversion and PUBLIC key encryption.
+
+    Notes:
+        * The original message length is required to properly decrypt the last block.
+        * Ensure to pass the PRIVATE key to decrypt.
+
+    """
     decryptedBlocks = []
     n, d = key
     for block in encryptedBlocks:
@@ -99,9 +170,18 @@ def decryptMessage(encryptedBlocks, messageLength, key, blockSize):
     return getTextFromBlocks(decryptedBlocks, messageLength, blockSize)
 
 
-def readKeyFile(keyFilename):
-    # Given the filename of a file that contains a public or private key,
-    # return the key as a (n,e) or (n,d) tuple value.
+def readKeyFile(keyFilename: str) -> tuple:
+    """Read key from key file
+
+    Reads the given public/private key file and returns the key.
+
+    Args:
+        keyFilename: String containing absolute path to public/private key file.
+
+    Returns:
+        The key as a (n,e) or (n,d) tuple value.
+    """
+
     fo = open(keyFilename)
     content = fo.read()
     fo.close()
@@ -109,9 +189,21 @@ def readKeyFile(keyFilename):
     return int(keySize), int(n), int(EorD)
 
 
-def encryptAndWriteToFile(messageFilename, keyFilename, message, blockSize=None):
-    # Using a key from a keyfile, encrypt the message and save it to a
-    # file. Returns the encrypted message string.
+def encryptAndWriteToFile(messageFilename: str, keyFilename: str, message: str, blockSize: int=None) -> str:
+    """Encrypt and write to file
+
+    Using a key from a keyfile, encrypt the message and save it to a file.
+
+    Args:
+        messageFilename: String containing name of file to save encrypted message to.
+        keyFilename: String containing absolute file path of PUBLIC key file.
+        message: String containing message to encrypt and save.
+        blockSize: Bit size of blocks of integers used to convert and encrypt message (usually specified in
+            PUBLIC key file).
+
+    Returns:
+        Encrypted message string.
+    """
     keySize, n, e = readKeyFile(keyFilename)
     if blockSize is None:
         # If blockSize isn't given, set it to the largest size allowed by the key size and symbol set size.
@@ -136,9 +228,21 @@ def encryptAndWriteToFile(messageFilename, keyFilename, message, blockSize=None)
     return encryptedContent
 
 
-def readFromFileAndDecrypt(messageFilename, keyFilename):
-    # Using a key from a key file, read an encrypted message from a file
-    # and then decrypt it. Returns the decrypted message string.
+def readFromFileAndDecrypt(messageFilename: str, keyFilename: str) -> str:
+    """Read from file and decrypt
+
+    Using a key from a key file, read an encrypted message from a file and then decrypt it.
+
+    Args:
+        messageFilename: String containing name of file with encrypted message saved to it.
+        keyFilename: String containing absolute file path of PRIVATE key file.
+
+    Returns:
+        Decrypted message string.
+
+    Note:
+        * Checks block size in key file and exits with error if too large.
+    """
     keySize, n, d = readKeyFile(keyFilename)
 
     # Read in the message length and the encrypted message from the file:
