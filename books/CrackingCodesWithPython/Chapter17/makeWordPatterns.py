@@ -1,8 +1,8 @@
 """Make wordPatterns.py file
 
-Creates wordPatterns.py based on the words in our dictionary text file, dictionary.txt.
-A word pattern assigns a number to each letter in a word, then generates a pattern representation of that word
-based on the number assigned to each letter.
+Creates :py:mod:`CrackingCodesWithPython.Chapter17.wordPatterns` based on the words in our dictionary text file,
+dictionary.txt. A word pattern assigns a number to each letter in a word, then generates a pattern representation of
+that word based on the number assigned to each letter.
 
 Attributes:
     DICTIONARY_FILE (str): String containing absolute path to dictionary.txt file.
