@@ -2,17 +2,18 @@
 
 Answers Chapter 1 Practice Questions via Python code.
 
-Note:
-    Contains spoilers from Chapter 5 (caesar cipher), Chapter 6 (caesar hacker), and Chapter 7 (functions)
-    Corrections submitted for Questions 1, 3, 4, and 5
+Notes:
+    * Contains spoilers from Chapter 5 (caesar cipher), Chapter 6 (caesar hacker), and Chapter 7 (functions)
+    * Corrections submitted for Questions 1, 3, 4, and 5
+
 """
+
+from books.CrackingCodesWithPython.Chapter01.caesarCipher import decryptMessage, encryptMessage
+from books.CrackingCodesWithPython.Chapter01.caesarHacker import hackCaesar
+import books.CrackingCodesWithPython.Chapter01.config
 
 
 def main():
-    from books.CrackingCodesWithPython.Chapter01.caesarCipher import decryptMessage, encryptMessage
-    from books.CrackingCodesWithPython.Chapter01.caesarHacker import hackCaesar
-    import books.CrackingCodesWithPython.Chapter01.config
-
     # Every possible symbol that can be encrypted (if encrypting by hand):
     books.CrackingCodesWithPython.Chapter01.config.SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
