@@ -1,0 +1,1321 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AutomateTheBoringStuffWithPython Corrections &mdash; python-tutorials 1.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="CrackingCodesWithPython" href="../cracking/cracking.html" />
+    <link rel="prev" title="AutomateTheBoringStuffWithPython" href="automate.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/atom_setup.html">Atom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/vim_setup.html">Vim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/pycharm_setup.html">PyCharm</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="automate.html">AutomateTheBoringStuffWithPython</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">AutomateTheBoringStuffWithPython Corrections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#july-23-2018-update">July 23, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aug-5-2018-update">Aug. 5, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aug-6-2018-update">Aug. 6, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aug-7-2018-update">Aug. 7, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aug-8-2018-update">Aug. 8, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aug-11-2018-update">Aug. 11, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aug-12-2018-update">Aug. 12, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aug-13-2018-update">Aug. 13, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aug-17-2018-update">Aug. 17, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aug-19-2018-update">Aug. 19, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aug-21-2018-update">Aug. 21, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aug-22-2018-update">Aug. 22, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aug-23-2018-update">Aug. 23, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aug-31-2018-update">Aug. 31, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sept-1-2018-update">Sept. 1, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sept-4-2018-update">Sept. 4, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sept-5-2018-update">Sept. 5, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sept-6-2018-update">Sept. 6, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sept-7-2018-update">Sept. 7, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sept-8-2018-update">Sept. 8, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sept-14-2018-update">Sept. 14, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sept-15-2018-update">Sept. 15, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sept-16-2018-updates">Sept. 16, 2018 Updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sept-17-2018-update">Sept. 17, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sept-18-2018-update">Sept. 18, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sept-27-2018-update">Sept. 27, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sept-28-2018-update">Sept. 28, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sept-29-2018-update">Sept. 29, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#oct-2-2018-update">Oct. 2, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#oct-3-2018-update">Oct. 3, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#oct-4-2018-update">Oct. 4, 2018 Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#oct-7-2018-update">Oct. 7, 2018 Update</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setting-up-formfiller-py-coordinates">Setting up formFiller.py coordinates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cracking/cracking.html">CrackingCodesWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="automate.html">AutomateTheBoringStuffWithPython</a> &raquo;</li>
+        
+      <li>AutomateTheBoringStuffWithPython Corrections</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/books/automate/corrections.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="automatetheboringstuffwithpython-corrections">
+<h1>AutomateTheBoringStuffWithPython Corrections<a class="headerlink" href="#automatetheboringstuffwithpython-corrections" title="Permalink to this headline">¶</a></h1>
+<p>I don’t expect to find many more, but I’ll update this post if I do.</p>
+<p><strong>Note:</strong> It’s an EPUB copy, published: <cite>2016-01-14T10:12:21-08:00</cite>
+Also, no page numbers, just reference numbers (refNum/949).</p>
+<p>In Chapter 10, on reference number 368.7, paragraph 19.30, the code block:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">podBayDoorStatus</span> <span class="o">=</span> <span class="s1">&#39;open&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">podBayDoorStatus</span> <span class="o">==</span> <span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="s1">&#39;The pod bay doors need to be &quot;open&quot;.&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">podBayDoorStatus</span> <span class="o">=</span> <span class="s1">&#39;I</span><span class="se">\&#39;</span><span class="s1">m sorry, Dave. I</span><span class="se">\&#39;</span><span class="s1">m afraid I can&#39;</span><span class="n">t</span> <span class="n">do</span> <span class="n">that</span><span class="o">.</span><span class="s1">&#39;&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">podBayDoorStatus</span> <span class="o">==</span> <span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="s1">&#39;The pod bay doors need to be &quot;open&quot;.&#39;</span>
+</pre></div>
+</div>
+<p>should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">podBayDoorStatus</span> <span class="o">=</span> <span class="s1">&#39;open&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">podBayDoorStatus</span> <span class="o">==</span> <span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="s1">&#39;The pod bay doors need to be &quot;open&quot;.&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">podBayDoorStatus</span> <span class="o">=</span> <span class="s1">&#39;I</span><span class="se">\&#39;</span><span class="s1">m sorry, Dave. I</span><span class="se">\&#39;</span><span class="s1">m afraid I can</span><span class="se">\&#39;</span><span class="s1">t do that.&#39;</span>  <span class="c1"># Changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">podBayDoorStatus</span> <span class="o">==</span> <span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="s1">&#39;The pod bay doors need to be &quot;open&quot;.&#39;</span>
+</pre></div>
+</div>
+<div class="section" id="july-23-2018-update">
+<h2>July 23, 2018 Update<a class="headerlink" href="#july-23-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 11, on reference number 447.4, paragraph 20.247, the code block:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://inventwithpython.com&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">elem</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_class_name</span><span class="p">(</span><span class="s1">&#39;bookcover&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found &lt;</span><span class="si">%s</span><span class="s1">&gt; element with that class name!&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">tag_name</span><span class="p">))</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Was not able to find an element with that name.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>outputs <cite>Was not able to find an element with that name.</cite></p>
+<p>The following does give the intended output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
+<span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+<span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://inventwithpython.com&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">elem</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_class_name</span><span class="p">(</span><span class="s1">&#39;card-img-top&#39;</span><span class="p">)</span>  <span class="c1"># changed</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found &lt;</span><span class="si">%s</span><span class="s1">&gt; element with that class name!&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">tag_name</span><span class="p">))</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Was not able to find an element with that name.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>On reference number 448.7, paragraph 20.249, the code block:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://inventwithpython.com&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linkElem</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_link_text</span><span class="p">(</span><span class="s1">&#39;Read It Online&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">linkElem</span><span class="p">)</span>
+<span class="go">&lt;class &#39;selenium.webdriver.remote.webelement.WebElement&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linkElem</span><span class="o">.</span><span class="n">click</span><span class="p">()</span> <span class="c1"># follows the &quot;Read It Online&quot; link</span>
+</pre></div>
+</div>
+<p>should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Firefox</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://inventwithpython.com&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linkElem</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_link_text</span><span class="p">(</span><span class="s1">&#39;Read Online for Free&#39;</span><span class="p">)</span>  <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">linkElem</span><span class="p">)</span>
+<span class="go">&lt;class &#39;selenium.webdriver.remote.webelement.WebElement&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linkElem</span><span class="o">.</span><span class="n">click</span><span class="p">()</span> <span class="c1"># follows the &quot;Read Online for Free&quot; link  # changed</span>
+</pre></div>
+</div>
+<p>On reference number 449.3, paragraph 20.252, the line:</p>
+<blockquote>
+<div>As long as Gmail hasn’t changed the id of the Username and Password text fields since this book was published…</div></blockquote>
+<p>“Gmail” should be “Yahoo Mail” because of line <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">browser.get('https://mail.yahoo.com')</span></code> in the code block</p>
+</div>
+<div class="section" id="aug-5-2018-update">
+<h2>Aug. 5, 2018 Update<a class="headerlink" href="#aug-5-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 12, on reference number 459.8, paragraph 21.47, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; wb.get_sheet_names()
+[&#39;Sheet1&#39;, &#39;Sheet2&#39;, &#39;Sheet3&#39;]
+&gt;&gt;&gt; sheet = wb.get_sheet_by_name(&#39;Sheet3&#39;)
+&gt;&gt;&gt; sheet
+&lt;Worksheet &quot;Sheet3&quot;&gt;
+&gt;&gt;&gt; type(sheet) &lt;class &#39;openpyxl.worksheet.worksheet.Worksheet&#39;&gt;
+&gt;&gt;&gt; sheet.title
+&#39;Sheet3&#39;
+&gt;&gt;&gt; anotherSheet = wb.get_active_sheet()
+</pre></div>
+</div>
+<p>should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; wb.sheetnames  # changed
+[&#39;Sheet1&#39;, &#39;Sheet2&#39;, &#39;Sheet3&#39;]
+&gt;&gt;&gt; sheet = wb[&#39;Sheet3&#39;]  # changed
+&gt;&gt;&gt; sheet
+&lt;Worksheet &quot;Sheet3&quot;&gt;
+&gt;&gt;&gt; type(sheet) &lt;class &#39;openpyxl.worksheet.worksheet.Worksheet&#39;&gt;
+&gt;&gt;&gt; sheet.title
+&#39;Sheet3&#39;
+&gt;&gt;&gt; anotherSheet = wb.active  # changed
+</pre></div>
+</div>
+<p>because those methods are now depreciated (using <code class="docutils literal notranslate"><span class="pre">OpenPyXL</span> <span class="pre">2.5.5</span></code>).</p>
+</div>
+<div class="section" id="aug-6-2018-update">
+<h2>Aug. 6, 2018 Update<a class="headerlink" href="#aug-6-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 12, on reference number 463.0, paragraph 21.56, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_by_name</span><span class="p">(</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="o">.</span><span class="n">get_highest_row</span><span class="p">()</span>
+<span class="go">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="o">.</span><span class="n">get_highest_column</span><span class="p">()</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<p>should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="p">[</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">]</span>  <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="o">.</span><span class="n">max_row</span>  <span class="c1"># changed</span>
+<span class="go">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="o">.</span><span class="n">max_column</span>  <span class="c1"># changed</span>
+<span class="go">3</span>
+</pre></div>
+</div>
+<p>because those methods are also depreciated.</p>
+<p>On reference number 463.6, paragraph 21.58, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">openpyxl.cell</span> <span class="k">import</span> <span class="n">get_column_letter</span><span class="p">,</span> <span class="n">column_index_from_string</span>
+<span class="go">--snip--  # omitted to save space</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_by_name</span><span class="p">(</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_column_letter</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">get_highest_column</span><span class="p">())</span>
+<span class="go">&#39;C&#39;</span>
+</pre></div>
+</div>
+<p>should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">openpyxl.utils</span> <span class="k">import</span> <span class="n">get_column_letter</span><span class="p">,</span> <span class="n">column_index_from_string</span>  <span class="c1"># changed</span>
+<span class="go">--snip-- # omitted to save space</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="p">[</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">]</span>  <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_column_letter</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">max_column</span><span class="p">)</span>  <span class="c1"># changed</span>
+<span class="go">&#39;C&#39;</span>
+</pre></div>
+</div>
+<p>because the functions were relocated and methods depreciated. The lines with <code class="docutils literal notranslate"><span class="pre">openpyxl.cell</span></code> in the paragraphs above
+and below should also be changed. In paragraph 21.59, the line “method like get_highest_column() to get an integer”
+should be changed to “property like max_column to get an integer.”</p>
+</div>
+<div class="section" id="aug-7-2018-update">
+<h2>Aug. 7, 2018 Update<a class="headerlink" href="#aug-7-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 12, on reference number 465.0, paragraph 21.60 is another <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">sheet</span> <span class="pre">=</span> <span class="pre">wb.get_sheet_by_name('Sheet1')</span></code>
+that ought to be <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">sheet</span> <span class="pre">=</span> <span class="pre">wb['Sheet1']</span></code>.</p>
+<p>On reference number 466.8, paragraph 21.64, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">snip</span><span class="o">--</span>  <span class="c1"># omitted to save space</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">get_active_sheet</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sheet</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">(</span><span class="o">&lt;</span><span class="n">Cell</span> <span class="n">Sheet1</span><span class="o">.</span><span class="n">B1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Cell</span> <span class="n">Sheet1</span><span class="o">.</span><span class="n">B2</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Cell</span> <span class="n">Sheet1</span><span class="o">.</span><span class="n">B3</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Cell</span> <span class="n">Sheet1</span><span class="o">.</span><span class="n">B4</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="o">&lt;</span><span class="n">Cell</span> <span class="n">Sheet1</span><span class="o">.</span><span class="n">B5</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Cell</span> <span class="n">Sheet1</span><span class="o">.</span><span class="n">B6</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Cell</span> <span class="n">Sheet1</span><span class="o">.</span><span class="n">B7</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">cellObj</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">cellObj</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>outputs <code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">'generator'</span> <span class="pre">object</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">subscriptable</span></code></p>
+<p>The best way to fix it is <a class="reference external" href="https://stackoverflow.com/a/42604017">debatable</a>, but the easiest was to use the <code class="docutils literal notranslate"><span class="pre">list</span></code>
+function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">snip</span><span class="o">--</span>  <span class="c1"># omitted to save space</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">active</span>  <span class="c1"># changed</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">columns</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># changed</span>
+<span class="p">(</span><span class="o">&lt;</span><span class="n">Cell</span> <span class="n">Sheet1</span><span class="o">.</span><span class="n">B1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Cell</span> <span class="n">Sheet1</span><span class="o">.</span><span class="n">B2</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Cell</span> <span class="n">Sheet1</span><span class="o">.</span><span class="n">B3</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Cell</span> <span class="n">Sheet1</span><span class="o">.</span><span class="n">B4</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="o">&lt;</span><span class="n">Cell</span> <span class="n">Sheet1</span><span class="o">.</span><span class="n">B5</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Cell</span> <span class="n">Sheet1</span><span class="o">.</span><span class="n">B6</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Cell</span> <span class="n">Sheet1</span><span class="o">.</span><span class="n">B7</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">cellObj</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">columns</span><span class="p">)[</span><span class="mi">1</span><span class="p">]:</span>  <span class="c1"># changed</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">cellObj</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>On reference number 468.0, paragraph 21.67 the list item
+<code class="docutils literal notranslate"><span class="pre">4.</span> <span class="pre">Call</span> <span class="pre">the</span> <span class="pre">get_active_sheet()</span> <span class="pre">or</span> <span class="pre">get_sheet_by_name()</span> <span class="pre">workbook</span> <span class="pre">method.</span></code> ought to be something like
+<code class="docutils literal notranslate"><span class="pre">4.</span> <span class="pre">Use</span> <span class="pre">the</span> <span class="pre">.active</span> <span class="pre">property</span> <span class="pre">or</span> <span class="pre">the</span> <span class="pre">[&quot;UseThisSheet&quot;]</span> <span class="pre">workbook</span> <span class="pre">key.</span></code></p>
+<p>On reference number 470.6, paragraph 21.90 the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>--snip--  # omitted to save space
+➌ sheet = wb.get_sheet_by_name(&#39;Population by Census Tract&#39;)
+   countyData = {}
+
+   # TODO: Fill in countyData with each county&#39;s population and tracts.
+   print(&#39;Reading rows...&#39;)
+➍ for row in range(2, sheet.get_highest_row() + 1):
+--snip-- # omitted to save space
+</pre></div>
+</div>
+<p>ought to be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>--snip--  # omitted to save space
+➌ sheet = wb[&#39;Population by Census Tract&#39;]  # changed
+   countyData = {}
+
+   # TODO: Fill in countyData with each county&#39;s population and tracts.
+   print(&#39;Reading rows...&#39;)
+➍ for row in range(2, sheet.max_row + 1):  # changed
+</pre></div>
+</div>
+<p>because of depreciated methods. The codeblock on paragraph 21.96 ought to be updated as well.</p>
+</div>
+<div class="section" id="aug-8-2018-update">
+<h2>Aug. 8, 2018 Update<a class="headerlink" href="#aug-8-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 12, on reference number 477.4, paragraph 21.111, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()</span>
+<span class="go">[&#39;Sheet&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">get_active_sheet</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="o">.</span><span class="n">title</span>
+<span class="go">&#39;Sheet&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Spam Bacon Eggs Sheet&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>ought to be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">sheetnames</span>  <span class="c1"># changed</span>
+<span class="go">[&#39;Sheet&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">active</span>  <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="o">.</span><span class="n">title</span>
+<span class="go">&#39;Sheet&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Spam Bacon Eggs Sheet&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">sheetnames</span>  <span class="c1"># changed</span>
+</pre></div>
+</div>
+<p>In paragraph 21.113 (codeblock directly below) another <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">sheet</span> <span class="pre">=</span> <span class="pre">wb.get_active_sheet()</span></code> ought to be
+<code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">sheet</span> <span class="pre">=</span> <span class="pre">wb.active</span></code>.</p>
+<p>On reference number 478.6, paragraph 21.116, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()</span>
+<span class="go">[&#39;Sheet&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">create_sheet</span><span class="p">()</span>
+<span class="go">&lt;Worksheet &quot;Sheet1&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()</span>
+<span class="go">[&#39;Sheet&#39;, &#39;Sheet1&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">create_sheet</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;First Sheet&#39;</span><span class="p">)</span>
+<span class="go">&lt;Worksheet &quot;First Sheet&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()</span>
+<span class="go">[&#39;First Sheet&#39;, &#39;Sheet&#39;, &#39;Sheet1&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">create_sheet</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Middle Sheet&#39;</span><span class="p">)</span>
+<span class="go">&lt;Worksheet &quot;Middle Sheet&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()</span>
+<span class="go">[&#39;First Sheet&#39;, &#39;Sheet&#39;, &#39;Middle Sheet&#39;, &#39;Sheet1&#39;]</span>
+</pre></div>
+</div>
+<p>ought to be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">sheetnames</span>  <span class="c1"># changed</span>
+<span class="go">[&#39;Sheet&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">create_sheet</span><span class="p">()</span>
+<span class="go">&lt;Worksheet &quot;Sheet1&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">sheetnames</span>  <span class="c1"># changed</span>
+<span class="go">[&#39;Sheet&#39;, &#39;Sheet1&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">create_sheet</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;First Sheet&#39;</span><span class="p">)</span>
+<span class="go">&lt;Worksheet &quot;First Sheet&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">sheetnames</span>  <span class="c1"># changed</span>
+<span class="go">[&#39;First Sheet&#39;, &#39;Sheet&#39;, &#39;Sheet1&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">create_sheet</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Middle Sheet&#39;</span><span class="p">)</span>
+<span class="go">&lt;Worksheet &quot;Middle Sheet&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">sheetnames</span>  <span class="c1"># changed</span>
+</pre></div>
+</div>
+<p>In paragraph 21.118 (codeblock directly below):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()</span>
+<span class="go">[&#39;First Sheet&#39;, &#39;Sheet&#39;, &#39;Middle Sheet&#39;, &#39;Sheet1&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">remove_sheet</span><span class="p">(</span><span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_by_name</span><span class="p">(</span><span class="s1">&#39;Middle Sheet&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">remove_sheet</span><span class="p">(</span><span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_by_name</span><span class="p">(</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>ought to be</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">sheetnames</span>  <span class="c1"># changed</span>
+<span class="go">[&#39;First Sheet&#39;, &#39;Sheet&#39;, &#39;Middle Sheet&#39;, &#39;Sheet1&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">wb</span><span class="p">[</span><span class="s1">&#39;Middle Sheet&#39;</span><span class="p">])</span>  <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">wb</span><span class="p">[</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">])</span>  <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">sheetnames</span>  <span class="c1"># changed</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="aug-11-2018-update">
+<h2>Aug. 11, 2018 Update<a class="headerlink" href="#aug-11-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In paragraph 21.121 (codeblock directly below), and on reference number 483.6, paragraph 21.144 (updateProduce.py) are
+more <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">sheet</span> <span class="pre">=</span> <span class="pre">wb.get_sheet_by_name('Sheet')</span></code> that should be <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">sheet</span> <span class="pre">=</span> <span class="pre">wb['Sheet']</span></code>.</p>
+<p>On reference number 484.8, paragraph 21.146 (updateProduce.py), the line
+<code class="docutils literal notranslate"><span class="pre">➊</span> <span class="pre">for</span> <span class="pre">rowNum</span> <span class="pre">in</span> <span class="pre">range(2,</span> <span class="pre">sheet.get_highest_row()):</span> <span class="pre">#</span> <span class="pre">skip</span> <span class="pre">the</span> <span class="pre">first</span> <span class="pre">row</span></code> ought to be
+<code class="docutils literal notranslate"><span class="pre">➊</span> <span class="pre">for</span> <span class="pre">rowNum</span> <span class="pre">in</span> <span class="pre">range(2,</span> <span class="pre">sheet.max_row):</span> <span class="pre">#</span> <span class="pre">skip</span> <span class="pre">the</span> <span class="pre">first</span> <span class="pre">row</span></code>.</p>
+<p>On reference number 486.5, paragraph 21.158, the line:</p>
+<blockquote>
+<div>To customize font styles in cells, important, import the Font() and Style() functions from the openpyxl.styles module.</div></blockquote>
+<p>Unless, of course, that’s an intended pun.</p>
+<p>On reference number 486.8, paragraph 21.158, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   &gt;&gt;&gt; import openpyxl
+   &gt;&gt;&gt; from openpyxl.styles import Font, Style
+   &gt;&gt;&gt; wb = openpyxl.Workbook()
+   &gt;&gt;&gt; sheet = wb.get_sheet_by_name(&#39;Sheet&#39;)
+➊ &gt;&gt;&gt; italic24Font = Font(size=24, italic=True)
+➋ &gt;&gt;&gt; styleObj = Style(font=italic24Font)
+➌ &gt;&gt;&gt; sheet[&#39;A1&#39;].style = styleObj
+   &gt;&gt;&gt; sheet[&#39;A1&#39;] = &#39;Hello world!&#39;
+   &gt;&gt;&gt; wb.save(&#39;styled.xlsx&#39;)
+</pre></div>
+</div>
+<p>should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   &gt;&gt;&gt; import openpyxl
+   &gt;&gt;&gt; from openpyxl.styles import Font, NamedStyle  # changed
+   &gt;&gt;&gt; wb = openpyxl.Workbook()
+   &gt;&gt;&gt; sheet = wb[&#39;Sheet&#39;]  # changed
+➊ &gt;&gt;&gt; italic24Font = NamedStyle(name=&quot;italic24Font&quot;)  # changed
+➋ &gt;&gt;&gt; italic24Font.font = Font(size=24, italic=True)  # changed
+➌ &gt;&gt;&gt; sheet[&#39;A1&#39;].style = italic24Font  # changed
+   &gt;&gt;&gt; sheet[&#39;A1&#39;] = &#39;Hello world!&#39;
+   &gt;&gt;&gt; wb.save(&#39;styled.xlsx&#39;)
+</pre></div>
+</div>
+<p>because the <code class="docutils literal notranslate"><span class="pre">Style</span></code> class is now depreciated.</p>
+</div>
+<div class="section" id="aug-12-2018-update">
+<h2>Aug. 12, 2018 Update<a class="headerlink" href="#aug-12-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 12, on reference number 488.9, paragraph 21.178, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">openpyxl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">openpyxl.styles</span> <span class="k">import</span> <span class="n">Font</span><span class="p">,</span> <span class="n">Style</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_by_name</span><span class="p">(</span><span class="s1">&#39;Sheet&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fontObj1</span> <span class="o">=</span> <span class="n">Font</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Times New Roman&#39;</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">styleObj1</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="n">fontObj1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="p">[</span><span class="s1">&#39;A1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">style</span><span class="o">/</span><span class="n">styleObj</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="p">[</span><span class="s1">&#39;A1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Bold Times New Roman&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fontObj2</span> <span class="o">=</span> <span class="n">Font</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">italic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">styleObj2</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="n">fontObj2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="p">[</span><span class="s1">&#39;B3&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">style</span><span class="o">/</span><span class="n">styleObj</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="p">[</span><span class="s1">&#39;B3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;24 pt Italic&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;styles.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">openpyxl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">openpyxl.styles</span> <span class="k">import</span> <span class="n">Font</span><span class="p">,</span> <span class="n">NamedStyle</span>  <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="p">[</span><span class="s1">&#39;Sheet&#39;</span><span class="p">]</span>  <span class="c1"># changed</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fontObj1</span> <span class="o">=</span> <span class="n">Font</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Times New Roman&#39;</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">styleObj1</span> <span class="o">=</span> <span class="n">NamedStyle</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;styleObj1&quot;</span><span class="p">)</span>  <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">styleObj1</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="n">fontObj1</span>  <span class="c1"># added</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="p">[</span><span class="s1">&#39;A1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">styleObj1</span>  <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="p">[</span><span class="s1">&#39;A1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Bold Times New Roman&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fontObj2</span> <span class="o">=</span> <span class="n">Font</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">italic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">styleObj2</span> <span class="o">=</span> <span class="n">NamedStyle</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;StyleObj2&quot;</span><span class="p">)</span>  <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">styleObj2</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="n">fontObj2</span>  <span class="c1"># added</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="p">[</span><span class="s1">&#39;B3&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">styleObj2</span> <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="p">[</span><span class="s1">&#39;B3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;24 pt Italic&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;styles.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="aug-13-2018-update">
+<h2>Aug. 13, 2018 Update<a class="headerlink" href="#aug-13-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 12, reference number 491.5, paragraphs 21.185 and 21.187 are more <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">sheet</span> <span class="pre">=</span> <span class="pre">wb.get_active_sheet()</span></code> that
+should be <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">sheet</span> <span class="pre">=</span> <span class="pre">wb.active</span></code>. However, the formula evaluation doesn’t work for me:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">openpyxl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wbFormulas</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="s1">&#39;writeFormula.xlsx&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span> <span class="o">=</span> <span class="n">wbFormulas</span><span class="o">.</span><span class="n">active</span>  <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="p">[</span><span class="s1">&#39;A3&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+<span class="go">&#39;=SUM(A1:A2)&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">wbDataOnly</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="s1">&#39;writeFormula.xlsx&#39;</span><span class="p">,</span> <span class="n">data_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span> <span class="o">=</span> <span class="n">wbDataOnly</span><span class="o">.</span><span class="n">active</span>  <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="p">[</span><span class="s1">&#39;A3&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>  <span class="c1"># not working with LibreOffice 6.0.3.2</span>
+<span class="go">500</span>
+</pre></div>
+</div>
+<p>From what I’ve researched on <a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/usage.html#read-an-existing-workbook">openpyxl.load_workbook()</a>,</p>
+<blockquote>
+<div><strong>data_only</strong> controls whether cells with formulae have either the formula (default) or the value stored the last time
+Excel read the sheet.</div></blockquote>
+<p>TODO: can someone else confirm with another LibreOffice version?</p>
+<p>Reference numbers 493.3, 495.0, 496.2, and 497.6 have more  <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">sheet</span> <span class="pre">=</span> <span class="pre">wb.get_active_sheet()</span></code> that should be
+<code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">sheet</span> <span class="pre">=</span> <span class="pre">wb.active</span></code>.</p>
+</div>
+<div class="section" id="aug-17-2018-update">
+<h2>Aug. 17, 2018 Update<a class="headerlink" href="#aug-17-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 12, reference number 500.4, paragraph 21.234, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">openpyxl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">get_active_sheet</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>         <span class="c1"># create some data in column A</span>
+<span class="go">        sheet[&#39;A&#39; + str(i)] = i</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">refObj</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">charts</span><span class="o">.</span><span class="n">Reference</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seriesObj</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">charts</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">refObj</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;First series&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chartObj</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">charts</span><span class="o">.</span><span class="n">BarChart</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chartObj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seriesObj</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chartObj</span><span class="o">.</span><span class="n">drawing</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="mi">50</span>       <span class="c1"># set the position</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chartObj</span><span class="o">.</span><span class="n">drawing</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chartObj</span><span class="o">.</span><span class="n">drawing</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">300</span>    <span class="c1"># set the size</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chartObj</span><span class="o">.</span><span class="n">drawing</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">200</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="o">.</span><span class="n">add_chart</span><span class="p">(</span><span class="n">chartObj</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;sampleChart.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>works slightly better as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">openpyxl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">active</span>  <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>         <span class="c1"># create some data in column A</span>
+<span class="go">        sheet[&#39;A&#39; + str(i)] = i</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">refObj</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">Reference</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">min_row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">min_col</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_row</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_col</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># changed</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seriesObj</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">refObj</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;First series&#39;</span><span class="p">)</span>  <span class="c1"># changed FIXME: Chart layout is wrong (LibreOffice 6.0.3.2)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chartObj</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">BarChart</span><span class="p">()</span>  <span class="c1"># changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chartObj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seriesObj</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chartObj</span><span class="o">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="s2">&quot;B3&quot;</span>  <span class="c1"># set the position; changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chartObj</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="mf">7.94</span>  <span class="c1"># set the size (in centimeters, where 1 cm = 37.8 pixels); changed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chartObj</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mf">5.29</span>  <span class="c1"># changed</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sheet</span><span class="o">.</span><span class="n">add_chart</span><span class="p">(</span><span class="n">chartObj</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;sampleChart.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>but the layout of the chart is all wrong. TODO: can someone else confirm it works in Excel?</p>
+</div>
+<div class="section" id="aug-19-2018-update">
+<h2>Aug. 19, 2018 Update<a class="headerlink" href="#aug-19-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 13 (I made it! Woot!), reference number 511.7, paragraph 22.13, the line:</p>
+<blockquote>
+<div>PyPDF2 uses a zero-based index for getting pages: The first page is page 0, the second is Introduction, and so on.</div></blockquote>
+<p>“Introduction” links to the introduction of the book. Maybe “page 1” was auto-referenced?</p>
+<p>On reference number 513.2, paragraph 22.15, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>➌ &gt;&gt;&gt; pdfReader.decrypt(&#39;rosebud&#39;)
+   1
+   &gt;&gt;&gt; pageObj = pdfReader.getPage(0)
+</pre></div>
+</div>
+<p>gave me an <code class="docutils literal notranslate"><span class="pre">IndexError</span></code>, but the following works:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   &gt;&gt;&gt; pdfReader = PyPDF2.PdfFileReader(open(&quot;encrypted.pdf&quot;, &quot;rb&quot;))  # added
+➌ &gt;&gt;&gt; pdfReader.decrypt(&#39;rosebud&#39;)
+   1
+   &gt;&gt;&gt; pageObj = pdfReader.getPage(0)
+</pre></div>
+</div>
+</div>
+<div class="section" id="aug-21-2018-update">
+<h2>Aug. 21, 2018 Update<a class="headerlink" href="#aug-21-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 13, reference number 524.8, paragraph 22.60, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   #! python3
+   # combinePdfs.py - Combines all the PDFs in the current working directory into
+   # into a single PDF
+
+   import PyPDF2, os
+
+   # Get all the PDF filenames.
+   pdfFiles = []
+   for filename in os.listdir(&#39;.&#39;):
+       if filename.endswith(&#39;.pdf&#39;):
+➋         pdfFiles.append(filename)
+➌ pdfFiles.sort(key = str.lower)
+</pre></div>
+</div>
+<p>should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   #! python3
+   # combinePdfs.py - Combines all the PDFs in the current working directory into
+   # a single PDF  # changed
+
+   import PyPDF2, os
+
+   # Get all the PDF filenames.
+   pdfFiles = []
+   for filename in os.listdir(&#39;.&#39;):
+       if filename.endswith(&#39;.pdf&#39;):
+➋         pdfFiles.append(filename)
+➌ pdfFiles.sort(key=str.lower)  # changed
+</pre></div>
+</div>
+</div>
+<div class="section" id="aug-22-2018-update">
+<h2>Aug. 22, 2018 Update<a class="headerlink" href="#aug-22-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 13, reference number 531.0, paragraph 22.79, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>➎ &gt;&gt;&gt; len(doc.paragraphs[1].runs)
+   4
+➏ &gt;&gt;&gt; doc.paragraphs[1].runs[0].text
+   &#39;A plain paragraph with some &#39;
+➐ &gt;&gt;&gt; doc.paragraphs[1].runs[1].text
+   &#39;bold&#39;
+➑ &gt;&gt;&gt; doc.paragraphs[1].runs[2].text
+   &#39; and some &#39;
+➒ &gt;&gt;&gt; doc.paragraphs[1].runs[3].text
+   &#39;italic&#39;
+</pre></div>
+</div>
+<p>outputs the following in <code class="docutils literal notranslate"><span class="pre">LibreOffice</span> <span class="pre">6.0.3.2</span></code> with <code class="docutils literal notranslate"><span class="pre">Python-Docx</span> <span class="pre">0.8.7</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>➎ &gt;&gt;&gt; len(doc.paragraphs[1].runs)
+   5    # changed
+➏ &gt;&gt;&gt; doc.paragraphs[1].runs[0].text
+   &#39;A plain paragraph with&#39;     # changed
+➐ &gt;&gt;&gt; doc.paragraphs[1].runs[1].text
+   &#39; some &#39; # changed
+➑ &gt;&gt;&gt; doc.paragraphs[1].runs[2].text
+   &#39;bold&#39;   # changed
+➒ &gt;&gt;&gt; doc.paragraphs[1].runs[3].text
+   &#39; and some &#39;     # changed
+  &gt;&gt;&gt; doc.paragraphs[1].runs[4].text    # added
+   &#39;italic&#39;
+</pre></div>
+</div>
+<p>TODO: can someone confirm in Word on Windows?</p>
+<p>On reference number 540.1, paragraph 22.163, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">snip</span><span class="o">--</span>  <span class="c1"># omitted to save space</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">doc</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">runs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;QuoteChar&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">doc</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">runs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">underline</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">doc</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">runs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">underline</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">doc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;restyled.docx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>gives a
+<code class="docutils literal notranslate"><span class="pre">UserWarning:</span> <span class="pre">style</span> <span class="pre">lookup</span> <span class="pre">by</span> <span class="pre">style_id</span> <span class="pre">is</span> <span class="pre">deprecated.</span> <span class="pre">Use</span> <span class="pre">style</span> <span class="pre">name</span> <span class="pre">as</span> <span class="pre">key</span> <span class="pre">instead.return</span>
+<span class="pre">self._get_style_id_from_style(self[style_name],</span> <span class="pre">style_type)</span></code> but the following fixes it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">snip</span><span class="o">--</span>  <span class="c1"># omitted to save space</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">doc</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">runs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;Quote Char&#39;</span>  <span class="c1"># changed for python-docx 0.8.7</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">doc</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">runs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">underline</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">doc</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">runs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">underline</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">doc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;restyled.docx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="aug-23-2018-update">
+<h2>Aug. 23, 2018 Update<a class="headerlink" href="#aug-23-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 13, reference number 540.1, paragraph 22.164, the line:</p>
+<blockquote>
+<div>We can see that it’s simple to divide a paragraph into runs and access each run individiaully.</div></blockquote>
+<p>On reference number 546.9, paragraph 22.183, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>➊ &gt;&gt;&gt; doc.paragraphs[0].runs[0].add_break(docx.text.WD_BREAK.PAGE)
+   &gt;&gt;&gt; doc.add_paragraph(&#39;This is on the second page!&#39;)
+   &lt;docx.text.Paragraph object at 0x00000000037855F8&gt;
+   &gt;&gt;&gt; doc.save(&#39;twoPage.docx&#39;)
+</pre></div>
+</div>
+<p>ought to be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>➊ &gt;&gt;&gt; doc.paragraphs[0].runs[0].add_break(docx.enum.text.WD_BREAK.PAGE)  # changed
+   &gt;&gt;&gt; doc.add_paragraph(&#39;This is on the second page!&#39;)
+   &lt;docx.text.Paragraph object at 0x00000000037855F8&gt;
+   &gt;&gt;&gt; doc.save(&#39;twoPage.docx&#39;)
+</pre></div>
+</div>
+</div>
+<div class="section" id="aug-31-2018-update">
+<h2>Aug. 31, 2018 Update<a class="headerlink" href="#aug-31-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 13, reference number 552.0, paragraph 22.228, the line:</p>
+<blockquote>
+<div>You should try both the uppercase and <strong>lower-case</strong> form of each word.</div></blockquote>
+<p>In Chapter 14, reference number 561.2, paragraph 23.33, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   &gt;&gt;&gt; import csv
+   &gt;&gt;&gt; csvFile = open(&#39;example.tsv&#39;, &#39;w&#39;, newline=&#39;&#39;)
+➊ &gt;&gt;&gt; csvWriter = csv.writer(csvFile, delimiter=&#39;\t&#39;, lineterminator=&#39;\n\n&#39;)
+   &gt;&gt;&gt; csvWriter.writerow([&#39;apples&#39;, &#39;oranges&#39;, &#39;grapes&#39;])
+   24
+   &gt;&gt;&gt; csvWriter.writerow([&#39;eggs&#39;, &#39;bacon&#39;, &#39;ham&#39;])
+   17
+   &gt;&gt;&gt; csvWriter.writerow([&#39;spam&#39;, &#39;spam&#39;, &#39;spam&#39;, &#39;spam&#39;, &#39;spam&#39;, &#39;spam&#39;])
+   32
+</pre></div>
+</div>
+<p>outputs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   &gt;&gt;&gt; import csv
+   &gt;&gt;&gt; csvFile = open(&#39;example.tsv&#39;, &#39;w&#39;, newline=&#39;&#39;)
+➊ &gt;&gt;&gt; csvWriter = csv.writer(csvFile, delimiter=&#39;\t&#39;, lineterminator=&#39;\n\n&#39;)
+   &gt;&gt;&gt; csvWriter.writerow([&#39;apples&#39;, &#39;oranges&#39;, &#39;grapes&#39;])
+   23  # changed
+   &gt;&gt;&gt; csvWriter.writerow([&#39;eggs&#39;, &#39;bacon&#39;, &#39;ham&#39;])
+   16  # changed
+   &gt;&gt;&gt; csvWriter.writerow([&#39;spam&#39;, &#39;spam&#39;, &#39;spam&#39;, &#39;spam&#39;, &#39;spam&#39;, &#39;spam&#39;])
+   31  # changed
+</pre></div>
+</div>
+</div>
+<div class="section" id="sept-1-2018-update">
+<h2>Sept. 1, 2018 Update<a class="headerlink" href="#sept-1-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 14, reference number 565.5, paragraph 23.54, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#! python3</span>
+<span class="c1"># removeCsvHeader.py - Removes the header from all CSV files in the current</span>
+<span class="c1"># working directory.</span>
+
+<span class="o">--</span><span class="n">snip</span><span class="o">--</span>
+<span class="c1"># Read the CSV file in (skipping first row).</span>
+<span class="n">csvRows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">csvFileObj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csvFilename</span><span class="p">)</span>
+<span class="n">readerObj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">csvFileObj</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">readerObj</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">readerObj</span><span class="o">.</span><span class="n">line_num</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">continue</span>    <span class="c1"># skip first row</span>
+    <span class="n">csvRows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="n">csvFileObj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># TODO: Write out the CSV file.</span>
+</pre></div>
+</div>
+<p>needs to be indented to match the previous codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#! python3</span>
+<span class="c1"># removeCsvHeader.py - Removes the header from all CSV files in the current</span>
+<span class="c1"># working directory.</span>
+
+    <span class="o">--</span><span class="n">snip</span><span class="o">--</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Removing header from &#39;</span> <span class="o">+</span> <span class="n">csvFilename</span> <span class="o">+</span> <span class="s1">&#39;...&#39;</span><span class="p">)</span>  <span class="c1"># added</span>
+
+    <span class="c1"># Read the CSV file in (skipping first row).</span>
+    <span class="n">csvRows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">csvFileObj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csvFilename</span><span class="p">)</span>
+    <span class="n">readerObj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">csvFileObj</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">readerObj</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">readerObj</span><span class="o">.</span><span class="n">line_num</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">continue</span>    <span class="c1"># skip first row</span>
+        <span class="n">csvRows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="n">csvFileObj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># TODO: Write out the CSV file.</span>
+</pre></div>
+</div>
+<p>On reference number 568.2, paragraph 23.58:</p>
+<blockquote>
+<div>The CSV Writer object will write the list to a CSV file in headerRemoved using csvFilename (which we also used in the
+CSV reader). This will overwrite the original file.</div></blockquote>
+<p>I thought the original file won’t be overwritten because the new file is in
+the <code class="docutils literal notranslate"><span class="pre">headerRemoved</span></code> folder?  TODO: Can someone please confirm?</p>
+<p>On reference number 575.4, paragraph 23.98, the link <code class="docutils literal notranslate"><span class="pre">http://api.openweathermap.org</span>
+<span class="pre">/data/2.5/forecast/daily?q=%3CLocation%3E&amp;cnt=3</span></code> no longer works. The
+OpenWeatherMap.org API <a class="reference external" href="https://openweathermap.org/appid">now needs an API key.</a> So,
+<a class="reference external" href="http://home.openweathermap.org/users/sign_up">sign up</a> if you <em>really</em> want to
+run quickWeather.py.</p>
+<p>Alternatively, the <a class="reference external" href="https://www.weather.gov/documentation/services-web-api">Weather.gov API</a>
+(United States only, at the moment) does not require an API key (only a User Agent),
+but it will require one in the future.</p>
+</div>
+<div class="section" id="sept-4-2018-update">
+<h2>Sept. 4, 2018 Update<a class="headerlink" href="#sept-4-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 14, reference number 582.0, paragraph 23.130, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">excelFile</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
+    <span class="c1"># Skip non-xlsx files, load the workbook object.</span>
+    <span class="k">for</span> <span class="n">sheetName</span> <span class="ow">in</span> <span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_names</span><span class="p">():</span>
+        <span class="c1"># Loop through every sheet in the workbook.</span>
+        <span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">get_sheet_by_name</span><span class="p">(</span><span class="n">sheetName</span><span class="p">)</span>
+
+        <span class="c1"># Create the CSV filename from the Excel filename and sheet title.</span>
+        <span class="c1"># Create the csv.writer object for this CSV file.</span>
+
+        <span class="c1"># Loop through every row in the sheet.</span>
+        <span class="k">for</span> <span class="n">rowNum</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_highest_row</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">rowData</span> <span class="o">=</span> <span class="p">[]</span>    <span class="c1"># append each cell to this list</span>
+            <span class="c1"># Loop through each cell in the row.</span>
+            <span class="k">for</span> <span class="n">colNum</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_highest_column</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="c1"># Append each cell&#39;s data to rowData.</span>
+
+            <span class="c1"># Write the rowData list to the CSV file.</span>
+
+        <span class="n">csvFile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">excelFile</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
+   <span class="c1"># Skip non-xlsx files, load the workbook object.</span>
+   <span class="k">for</span> <span class="n">sheetName</span> <span class="ow">in</span> <span class="n">wb</span><span class="o">.</span><span class="n">sheetnames</span><span class="p">:</span>  <span class="c1"># changed</span>
+       <span class="c1"># Loop through every sheet in the workbook.</span>
+       <span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="p">[</span><span class="n">sheetName</span><span class="p">]</span>  <span class="c1"># changed</span>
+
+       <span class="c1"># Create the CSV filename from the Excel filename and sheet title.</span>
+       <span class="c1"># Create the csv.writer object for this CSV file.</span>
+
+       <span class="c1"># Loop through every row in the sheet.</span>
+       <span class="k">for</span> <span class="n">rowNum</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">max_row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>  <span class="c1"># changed</span>
+           <span class="n">rowData</span> <span class="o">=</span> <span class="p">[]</span>    <span class="c1"># append each cell to this list</span>
+           <span class="c1"># Loop through each cell in the row.</span>
+           <span class="k">for</span> <span class="n">colNum</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sheet</span><span class="o">.</span><span class="n">max_column</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>  <span class="c1"># changed</span>
+               <span class="c1"># Append each cell&#39;s data to rowData.</span>
+
+           <span class="c1"># Write the rowData list to the CSV file.</span>
+
+       <span class="n">csvFile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sept-5-2018-update">
+<h2>Sept. 5, 2018 Update<a class="headerlink" href="#sept-5-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 15, reference number 595.7, paragraph 24.42, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+<span class="go">datetime.datetime(1970, 1, 12, 5, 46, 40)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+<span class="go">datetime.datetime(2015, 2, 27, 11, 13, 0, 604980)</span>
+</pre></div>
+</div>
+<p>might need to be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">time</span>  <span class="c1"># added</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+<span class="go">datetime.datetime(1970, 1, 12, 5, 46, 40)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+<span class="go">datetime.datetime(2015, 2, 27, 11, 13, 0, 604980)</span>
+</pre></div>
+</div>
+<p>In case IDLE was closed to write the stopwatch.py program.</p>
+</div>
+<div class="section" id="sept-6-2018-update">
+<h2>Sept. 6, 2018 Update<a class="headerlink" href="#sept-6-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 15, reference number 598.0, paragraph 24.47, the str line in codeblock needs bolding:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">snip</span><span class="o">--</span>  <span class="c1"># omitted to save space</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">str</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span>  <span class="c1"># bold me, pls</span>
+<span class="s1">&#39;11 days, 10:09:08&#39;</span>
+</pre></div>
+</div>
+<p>On reference number 599.5, paragraph 24.49, the line:</p>
+<blockquote>
+<div>Finally, passing the timedelta object to str() returns a string clearly explaning the duration.</div></blockquote>
+</div>
+<div class="section" id="sept-7-2018-update">
+<h2>Sept. 7, 2018 Update<a class="headerlink" href="#sept-7-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 15, reference number 612.3, paragraph 24.125, the line:</p>
+<blockquote>
+<div>To make sure the keyword argument sep=’ &amp; ‘ gets passed to print() in the new thread, we pass kwargs={‘sep’: ‘&amp; ‘}
+to threading.Thread().</div></blockquote>
+<p>On reference number 616.0, paragraph 24.136 (multidownloadXkcd.py), the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>           --snip-- # omitted
+           if comicElem == []:
+               print(&#39;Could not find comic image.&#39;)
+           else:
+➐             comicUrl = comicElem[0].get(&#39;src&#39;)
+               # Download the image.
+               print(&#39;Downloading image %s...&#39; % (comicUrl))
+           --snip-- # omitted
+</pre></div>
+</div>
+<p>should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>           --snip-- # omitted
+           if comicElem == []:
+               print(&#39;Could not find comic image.&#39;)
+           else:
+➐             comicUrl = &#39;http:&#39; + comicElem[0].get(&#39;src&#39;)  # changed
+               # Download the image.
+               print(&#39;Downloading image %s...&#39; % (comicUrl))
+           --snip-- # omitted
+</pre></div>
+</div>
+<p>On reference number 627.6, paragraph 24.161, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">python34</span><span class="se">\\</span><span class="s1">python.exe&#39;</span><span class="p">,</span> <span class="s1">&#39;hello.py&#39;</span><span class="p">])</span>
+<span class="go">&lt;subprocess.Popen object at 0x000000000331CF28&gt;</span>
+</pre></div>
+</div>
+<p>might need to be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">python34</span><span class="se">\\</span><span class="s1">python.exe&#39;</span><span class="p">,</span> <span class="s1">&#39;hello.py&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>  <span class="c1"># changed</span>
+<span class="go">&lt;subprocess.Popen object at 0x000000000331CF28&gt;</span>
+</pre></div>
+</div>
+<p>I could not get it to accept input without it in <code class="docutils literal notranslate"><span class="pre">Ubuntu</span> <span class="pre">18.04</span></code>.  TODO: Can someone confirm they got it to work in
+Windows?</p>
+</div>
+<div class="section" id="sept-8-2018-update">
+<h2>Sept. 8, 2018 Update<a class="headerlink" href="#sept-8-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 15, reference number 631.7, paragraph 24.183 (countdown.py), the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>--snip--  # omitted
+➊ timeLeft = 60
+   while timeLeft &gt; 0:
+➋     print(timeLeft, end=&#39;&#39;)
+➌     time.sleep(1)
+--snip--  # omitted
+</pre></div>
+</div>
+<p>may need to be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>--snip--  # omitted
+➊ timeLeft = 60
+   while timeLeft &gt; 0:
+➋     print(timeLeft)  # changed
+➌     time.sleep(1)
+--snip--  # omitted
+</pre></div>
+</div>
+<p>It wouldn’t print remaining time in <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.6.5</span> <span class="pre">(Ubuntu</span> <span class="pre">18.04)</span></code> until the while loop finished. It seemed to wait
+until the line was done before printing it. TODO: Can someone else please confirm?</p>
+</div>
+<div class="section" id="sept-14-2018-update">
+<h2>Sept. 14, 2018 Update<a class="headerlink" href="#sept-14-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 16, reference number 648.4, paragraph 25.52, the line:</p>
+<blockquote>
+<div>Install imapclient and pyzmail from a Terminal window. Appendix A has steps on how to install third-party modules.</div></blockquote>
+<p>I had to install <code class="docutils literal notranslate"><span class="pre">pyzmail36</span></code> (possibly because I’m using <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.6.5</span></code>). Appendix A may have to be updated.</p>
+</div>
+<div class="section" id="sept-15-2018-update">
+<h2>Sept. 15, 2018 Update<a class="headerlink" href="#sept-15-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 16, reference number 658.7, paragraph 25.115, the lines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>imapObj.search([&#39;ON 05-Jul-2015&#39;]). Returns every message sent on July 5, 2015.
+imapObj.search([&#39;SINCE 01-Jan-2015&#39;, &#39;BEFORE 01-Feb-2015&#39;, &#39;UNSEEN&#39;]). Returns every message sent in January 2015
+that is unread. (Note that this means on and after January 1 and up to but not including February 1.)
+imapObj.search([&#39;SINCE 01-Jan-2015&#39;, &#39;FROM alice@example.com&#39;]). Returns every message from alice@example.com sent
+                                                                 since the start of 2015.
+imapObj.search([&#39;SINCE 01-Jan-2015&#39;, &#39;NOT FROM alice@example.com&#39;]). Returns every message sent from everyone except
+                                                                     alice@example.com since the start of 2015.
+imapObj.search([&#39;OR FROM alice@example.com FROM bob@example.com&#39;]). Returns every message ever sent from
+                                                                    alice@example.com or bob@example.com.
+imapObj.search([&#39;FROM alice@example.com&#39;, &#39;FROM bob@example.com&#39;]). Trick example! This search will never return
+                                                                    any messages, because messages must match all
+                                                                    search keywords. Since there can be only one
+                                                                    “from” address, it is impossible for a message
+                                                                    to be from both alice@example.com and
+                                                                    bob@example.com.
+</pre></div>
+</div>
+<p>should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>imapObj.search([&#39;ON&#39;, &#39;05-Jul-2015&#39;]). Returns every message sent on July 5, 2015.
+imapObj.search([&#39;SINCE&#39;, &#39;01-Jan-2015&#39;, &#39;BEFORE&#39;, &#39;01-Feb-2015&#39;, &#39;UNSEEN&#39;]). Returns every message sent in January
+                                                                             2015 that is unread. (Note that this
+                                                                             means on and after January 1 and up to
+                                                                             but not including February 1.)
+imapObj.search([&#39;SINCE&#39;, &#39;01-Jan-2015&#39;, &#39;FROM&#39;, &#39;alice@example.com&#39;]). Returns every message from alice@example.com
+                                                                       sent since the start of 2015.
+imapObj.search([&#39;SINCE&#39;, &#39;01-Jan-2015&#39;, &#39;NOT&#39;, &#39;FROM&#39;, &#39;alice@example.com&#39;]). Returns every message sent from
+                                                                              everyone except alice@example.com
+                                                                              since the start of 2015.
+imapObj.search([&#39;OR&#39;, &#39;FROM&#39;, &#39;alice@example.com&#39;, &#39;FROM&#39;, &#39;bob@example.com&#39;]). Returns every message ever sent
+                                                                                from alice@example.com or
+                                                                                bob@example.com.
+imapObj.search([&#39;FROM&#39;, &#39;alice@example.com&#39;, &#39;FROM&#39;, &#39;bob@example.com&#39;]). Trick example! This search will never
+                                                                          return any messages, because messages
+                                                                          must match all search keywords. Since
+                                                                          there can be only one “from” address, it
+                                                                          is impossible for a message to be from
+                                                                          both alice@example.com and
+                                                                          bob@example.com.
+</pre></div>
+</div>
+<p>because <a class="reference external" href="https://imapclient.readthedocs.io/en/2.1.0/api.html#imapclient.IMAPClient.search">criteria should be a sequence of items.</a>
+Plus, trying <code class="docutils literal notranslate"><span class="pre">imapObj.search(['SINCE</span> <span class="pre">01-Jan-2015',</span> <span class="pre">'NOT</span> <span class="pre">FROM</span> <span class="pre">alice&#64;exmaple.com'])</span></code>
+outputs <code class="docutils literal notranslate"><span class="pre">imaplib.error:</span> <span class="pre">SEARCH</span> <span class="pre">command</span> <span class="pre">error:</span> <span class="pre">BAD</span> <span class="pre">[b'Error</span> <span class="pre">in</span> <span class="pre">IMAP</span> <span class="pre">command</span> <span class="pre">UID</span>
+<span class="pre">SEARCH:</span> <span class="pre">Unexpected</span> <span class="pre">string</span> <span class="pre">as</span> <span class="pre">search</span> <span class="pre">key:</span> <span class="pre">SINCE</span> <span class="pre">01-Jan-2015</span> <span class="pre">(0.001</span> <span class="pre">+</span> <span class="pre">0.088</span> <span class="pre">+</span> <span class="pre">0.087</span> <span class="pre">secs).']</span></code></p>
+<p>Alternatively, <code class="docutils literal notranslate"><span class="pre">imapObj.search('SINCE</span> <span class="pre">&quot;01-Jan-2015&quot;</span> <span class="pre">NOT</span> <span class="pre">FROM</span> <span class="pre">&quot;alice&#64;exmaple.com&quot;')</span></code> works, but isn’t recommended
+according to the docs.</p>
+<p>On reference number 664.6, paragraph 25.141, the line <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">message</span> <span class="pre">=</span>
+<span class="pre">pyzmail.PyzMessage.factory(rawMessages[40041]['BODY[]'])</span></code> gave me a <code class="docutils literal notranslate"><span class="pre">KeyError</span></code> (even after using proper UIDs) that
+was only fixed by changing it to <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">message</span> <span class="pre">=</span> <span class="pre">pyzmail.PyzMessage.factory(rawMessages[40041][b'BODY[]'])</span></code></p>
+<p>On reference number 668.9, paragraph 25.148, the line <code class="docutils literal notranslate"><span class="pre">➋</span> <span class="pre">&gt;&gt;&gt;</span> <span class="pre">UIDs</span> <span class="pre">=</span> <span class="pre">imapObj.search(['ON</span> <span class="pre">09-Jul-2015'])</span></code>
+should be <code class="docutils literal notranslate"><span class="pre">➋</span> <span class="pre">&gt;&gt;&gt;</span> <span class="pre">UIDs</span> <span class="pre">=</span> <span class="pre">imapObj.search(['ON',</span> <span class="pre">'09-Jul-2015'])</span></code></p>
+</div>
+<div class="section" id="sept-16-2018-updates">
+<h2>Sept. 16, 2018 Updates<a class="headerlink" href="#sept-16-2018-updates" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 16, reference number 674.0, paragraph 25.168 (sendDuesReminders.py), the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import openpyxl, smtplib, sys
+
+--snip--  # omitted
+➋ sheet = wb.get_sheet_by_name(&#39;Sheet1&#39;)
+
+➌ lastCol = sheet.get_highest_column()
+➍ latestMonth = sheet.cell(row=1, column=lastCol).value
+--snip--  # omitted
+</pre></div>
+</div>
+<p>should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import openpyxl, smtplib, sys, datetime  # changed
+
+--snip--  # omitted
+➋ sheet = wb[&#39;Sheet1&#39;]  # changed
+
+➌ lastCol = sheet.max_column  # changed
+➍ latestMonth = sheet.cell(row=1, column=lastCol).value
+   latestMonth = datetime.datetime.strftime(latestMonth, &#39;%b %Y&#39;)  # added for LibreOffice 6.0.3.2
+--snip--  # omitted
+</pre></div>
+</div>
+<p><em>Sept. 17, 2018 Update:</em> In LibreOffice, <code class="docutils literal notranslate"><span class="pre">latestMonth</span> <span class="pre">=</span> <span class="pre">2018-06-01</span> <span class="pre">00:00:00</span></code>, so I had to use datetime to format
+it as <code class="docutils literal notranslate"><span class="pre">Jun</span> <span class="pre">2018</span></code>. TODO: Can someone please confirm it works in Excel?</p>
+<p>On reference number 676.3, paragraph 25.170, the line <code class="docutils literal notranslate"><span class="pre">➊</span> <span class="pre">for</span> <span class="pre">r</span> <span class="pre">in</span> <span class="pre">range(2,</span> <span class="pre">sheet.get_highest_row()</span> <span class="pre">+</span> <span class="pre">1):</span></code>
+should be <code class="docutils literal notranslate"><span class="pre">➊</span> <span class="pre">for</span> <span class="pre">r</span> <span class="pre">in</span> <span class="pre">range(2,</span> <span class="pre">sheet.max_row</span> <span class="pre">+</span> <span class="pre">1):</span></code></p>
+<p>On reference number 678.1, paragraph 25.174, the line <code class="docutils literal notranslate"><span class="pre">body</span> <span class="pre">=</span> <span class="pre">&quot;Subject:</span> <span class="pre">%s</span> <span class="pre">dues</span> <span class="pre">unpaid.\nDear</span> <span class="pre">%s,\nRecords</span> <span class="pre">show</span> <span class="pre">that</span>
+<span class="pre">you</span> <span class="pre">have</span> <span class="pre">not</span> <span class="pre">paid</span> <span class="pre">dues</span> <span class="pre">for</span> <span class="pre">%s.</span> <span class="pre">Please</span> <span class="pre">make</span> <span class="pre">this</span> <span class="pre">payment</span> <span class="pre">as</span> <span class="pre">soon</span> <span class="pre">as</span> <span class="pre">possible.</span> <span class="pre">Thank</span> <span class="pre">you!'&quot;</span> <span class="pre">%</span> <span class="pre">(latestMonth,</span> <span class="pre">name,</span>
+<span class="pre">latestMonth)</span></code> should be <code class="docutils literal notranslate"><span class="pre">body</span> <span class="pre">=</span> <span class="pre">&quot;Subject:</span> <span class="pre">%s</span> <span class="pre">dues</span> <span class="pre">unpaid.\nDear</span> <span class="pre">%s,\nRecords</span> <span class="pre">show</span> <span class="pre">that</span> <span class="pre">you</span> <span class="pre">have</span> <span class="pre">not</span> <span class="pre">paid</span> <span class="pre">dues</span> <span class="pre">for</span> <span class="pre">%s.</span>
+<span class="pre">Please</span> <span class="pre">make</span> <span class="pre">this</span> <span class="pre">payment</span> <span class="pre">as</span> <span class="pre">soon</span> <span class="pre">as</span> <span class="pre">possible.</span> <span class="pre">Thank</span> <span class="pre">you!&quot;</span> <span class="pre">%</span> <span class="pre">(latestMonth,</span> <span class="pre">name,</span> <span class="pre">latestMonth)</span></code></p>
+</div>
+<div class="section" id="sept-17-2018-update">
+<h2>Sept. 17, 2018 Update<a class="headerlink" href="#sept-17-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 16, reference number 682.8, paragraph 25.190, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>➊ &gt;&gt;&gt; from twilio.rest import TwilioRestClient
+  --snip--  # omitted
+➋ &gt;&gt;&gt; twilioCli = TwilioRestClient(accountSID, authToken)
+</pre></div>
+</div>
+<p>should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>➊ &gt;&gt;&gt; from twilio.rest import Client  # changed
+  --snip--  # omitted
+➋ &gt;&gt;&gt; twilioCli = Client(accountSID, authToken)  # changed
+</pre></div>
+</div>
+<p>because <code class="docutils literal notranslate"><span class="pre">TwilioRestClient</span></code> has been depreciated (using <code class="docutils literal notranslate"><span class="pre">twilio</span> <span class="pre">6.16.4</span></code>).</p>
+<p>On reference number 685.5, paragraph 25.195, the line <code class="docutils literal notranslate"><span class="pre">➊</span> <span class="pre">&gt;&gt;&gt;</span> <span class="pre">updatedMessage</span> <span class="pre">=</span> <span class="pre">twilioCli.messages.get(message.sid)</span></code>
+should be <code class="docutils literal notranslate"><span class="pre">➊</span> <span class="pre">&gt;&gt;&gt;</span> <span class="pre">updatedMessage</span> <span class="pre">=</span> <span class="pre">twilioCli.messages(message.sid).fetch()</span></code> because the attributes of
+<code class="docutils literal notranslate"><span class="pre">messages.get()</span></code> were changed.</p>
+</div>
+<div class="section" id="sept-18-2018-update">
+<h2>Sept. 18, 2018 Update<a class="headerlink" href="#sept-18-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 16, reference number 687.8, paragraph 25.201 (textMyself.py), the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  --snip--  # omitted
+  from twilio.rest import TwilioRestClient
+
+➊ def textmyself(message):
+➋     twilioCli = TwilioRestClient(accountSID, authToken)
+  --snip--  # omitted
+</pre></div>
+</div>
+<p>should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  --snip--  # omitted
+  from twilio.rest import Client  # changed
+
+➊ def textmyself(message):
+➋     twilioCli = Client(accountSID, authToken)  # changed
+  --snip--  # omitted
+</pre></div>
+</div>
+<p>In paragraph 25.202, the line:</p>
+<blockquote>
+<div>It then defined textmyself() to take <strong>on</strong> argument ➊, make a TwilioRestClient object ➋, and call create() with the
+message you passed ➌.</div></blockquote>
+</div>
+<div class="section" id="sept-27-2018-update">
+<h2>Sept. 27, 2018 Update<a class="headerlink" href="#sept-27-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 17, reference number 724.1, paragraph 26.122, the line <code class="docutils literal notranslate"><span class="pre">➌</span>&#160;&#160;&#160;&#160; <span class="pre">im</span> <span class="pre">=</span> <span class="pre">im.resize((width,</span> <span class="pre">height))</span></code>
+is over indented.</p>
+<p>On reference number 734.5, paragraph 26.163, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>--snip--  # omitted
+&gt;&gt;&gt; fontsFolder = &#39;FONT_FOLDER&#39; # e.g. &#39;Library/Fonts&#39;
+➍ &gt;&gt;&gt; arialFont = ImageFont.truetype(os.path.join(fontsFolder, &#39;arial.ttf&#39;), 32)
+➎ &gt;&gt;&gt; draw.text((100, 150), &#39;Howdy&#39;, fill=&#39;gray&#39;, font=arialFont)
+--snip--  # omitted
+</pre></div>
+</div>
+<p>will need to be changed for those on Ubuntu, specifically:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>--snip--  # omitted
+&gt;&gt;&gt; fontsFolder = &#39;/usr/share/fonts/truetype&#39; # e.g. &#39;Library/Fonts&#39;  # modified
+➍ &gt;&gt;&gt; liberationFont = ImageFont.truetype(os.path.join(fontsFolder, &#39;/liberation/LiberationSerif-Regular.ttf&#39;), 32)  # modified
+➎ &gt;&gt;&gt; draw.text((100, 150), &#39;Howdy&#39;, fill=&#39;gray&#39;, font=liberationFont)  # modified
+--snip--  # omitted
+</pre></div>
+</div>
+<p>However, <strong>everyone</strong> will have to modify it for their system.</p>
+</div>
+<div class="section" id="sept-28-2018-update">
+<h2>Sept. 28, 2018 Update<a class="headerlink" href="#sept-28-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 17, reference number 738.6, paragraph 26.194, the line:</p>
+<blockquote>
+<div><strong>Other wise</strong>, it should skip adding the logo.</div></blockquote>
+</div>
+<div class="section" id="sept-29-2018-update">
+<h2>Sept. 29, 2018 Update<a class="headerlink" href="#sept-29-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 17, reference number 739.4, paragraph 26.198, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#! python3 #</span>
+<span class="n">Import</span> <span class="n">modules</span> <span class="ow">and</span> <span class="n">write</span> <span class="n">comments</span> <span class="n">to</span> <span class="n">describe</span> <span class="n">this</span> <span class="n">program</span><span class="o">.</span>
+
+<span class="o">--</span><span class="n">snip</span><span class="o">--</span>  <span class="c1"># omitted</span>
+</pre></div>
+</div>
+<p>may need to be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#! python3</span>
+<span class="c1"># Import modules and write comments to describe this program.</span>
+
+<span class="o">--</span><span class="n">snip</span><span class="o">--</span>  <span class="c1"># omitted</span>
+</pre></div>
+</div>
+<p>On reference number 740.0, paragraph 26.200, the line:</p>
+<blockquote>
+<div>For each of the guests listed in the guests.txt file from the resources at <a class="reference external" href="http://nostarch.com/automatestuff/">http://nostarch.com/automatestuff/</a>,
+generate an image file with the guest name and some flowery decoration.</div></blockquote>
+<p>may need to be:</p>
+<blockquote>
+<div>For each of the guests listed in the guests.txt file from the resources at <a class="reference external" href="http://nostarch.com/automatestuff/">http://nostarch.com/automatestuff/</a>,
+generate an image file with the <strong>guest’s</strong> name and some flowery decoration.</div></blockquote>
+<p>I couldn’t find the public domain flower image mentioned in the book, so I used <a class="reference external" href="http://www.reusableart.com/flower-02.html">this one</a>.</p>
+</div>
+<div class="section" id="oct-2-2018-update">
+<h2>Oct. 2, 2018 Update<a class="headerlink" href="#oct-2-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>For Chapter 18, if running <code class="docutils literal notranslate"><span class="pre">Ubuntu</span> <span class="pre">18.04.1</span></code> in a VirtualBox virtual machine, mouse integration needs to be turned off
+so that the <code class="docutils literal notranslate"><span class="pre">pyautogui</span></code> module can control the mouse. Remember that the Host Key will need to be pressed to manually
+toggle keyboard/mouse capture.</p>
+</div>
+<div class="section" id="oct-3-2018-update">
+<h2>Oct. 3, 2018 Update<a class="headerlink" href="#oct-3-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 18, reference number 764.0, paragraph 27.77, the codeblock:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#! python3</span>
+<span class="c1"># mouseNow.py - Displays the mouse cursor&#39;s current position.</span>
+<span class="o">--</span><span class="n">snip</span><span class="o">--</span>
+        <span class="n">positionStr</span> <span class="o">=</span> <span class="s1">&#39;X: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; Y: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">pixelColor</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">screenshot</span><span class="p">()</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+        <span class="n">positionStr</span> <span class="o">+=</span> <span class="s1">&#39; RGB: (&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixelColor</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">positionStr</span> <span class="o">+=</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixelColor</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">positionStr</span> <span class="o">+=</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixelColor</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">positionStr</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="o">--</span><span class="n">snip</span><span class="o">--</span>
+</pre></div>
+</div>
+<p>may need to be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#! python3</span>
+<span class="c1"># mouseNow.py - Displays the mouse cursor&#39;s current position.</span>
+<span class="kn">import</span> <span class="nn">pyautogui</span><span class="o">,</span> <span class="nn">os</span>  <span class="c1"># changed</span>
+<span class="o">--</span><span class="n">snip</span><span class="o">--</span>
+        <span class="n">positionStr</span> <span class="o">=</span> <span class="s1">&#39;X: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; Y: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">pixelColor</span> <span class="o">=</span> <span class="n">pyautogui</span><span class="o">.</span><span class="n">screenshot</span><span class="p">()</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+        <span class="n">positionStr</span> <span class="o">+=</span> <span class="s1">&#39; RGB: (&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixelColor</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">positionStr</span> <span class="o">+=</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixelColor</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">positionStr</span> <span class="o">+=</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">pixelColor</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">positionStr</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\b</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">positionStr</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>  <span class="c1"># added</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>  <span class="c1"># added</span>
+        <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;.screenshot&#39;</span><span class="p">):</span>  <span class="c1"># added</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;./&#39;</span><span class="p">,</span> <span class="n">file</span><span class="p">))</span>  <span class="c1"># added</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Done.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>to cleanup all the <code class="docutils literal notranslate"><span class="pre">.screenshot###</span></code> files left behind in <code class="docutils literal notranslate"><span class="pre">Ubuntu</span> <span class="pre">18.04</span></code>. This could be because the exception
+handler doesn’t give <code class="docutils literal notranslate"><span class="pre">PyAutoGUI</span></code> a chance to do it.</p>
+</div>
+<div class="section" id="oct-4-2018-update">
+<h2>Oct. 4, 2018 Update<a class="headerlink" href="#oct-4-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 18, reference number 765.5, paragraph 27.81, the line:</p>
+<blockquote>
+<div>… replacing <strong>‘submit. png’</strong> with the filename of your screenshot:</div></blockquote>
+</div>
+<div class="section" id="oct-7-2018-update">
+<h2>Oct. 7, 2018 Update<a class="headerlink" href="#oct-7-2018-update" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter 18, reference number 781.5, paragraph 27.192, the line:</p>
+<blockquote>
+<div>… then mouse over the Name field to figure out its <strong>the</strong> x- and y-coordinates.</div></blockquote>
+<div class="section" id="setting-up-formfiller-py-coordinates">
+<h3>Setting up formFiller.py coordinates<a class="headerlink" href="#setting-up-formfiller-py-coordinates" title="Permalink to this headline">¶</a></h3>
+<p>To set up the coordinates for formFiller.py, you need to open a terminal window (or command prompt), run the
+mouseNow.py script, resize it to something small, keep it in the foreground, and hover over the maximized browser in
+the background as you note the mouseNow.py data.</p>
+<p>As you enter data in the form, you may need to keep bringing back the mouseNow.py window into the foreground. For some
+reason, that wasn’t explained clearly enough for me.</p>
+<p><em>Tip:</em> If “This is a required question” appears below the <strong>Name</strong> field, it will affect the coordinates of the
+<strong>Submit</strong> button.</p>
+<p>On reference number 791.8, paragraph 27.213, the lines:</p>
+<blockquote>
+<div>… whether it has gotten <strong>offtrack</strong>. You can even give PyAutoGUI a <strong>screen-shot</strong> and …</div></blockquote>
+<p>On reference number 793.8, paragraph 27.236, the line:</p>
+<blockquote>
+<div>Your program will have to take <strong>screen-shots</strong> to guide…</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../cracking/cracking.html" class="btn btn-neutral float-right" title="CrackingCodesWithPython" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="automate.html" class="btn btn-neutral" title="AutomateTheBoringStuffWithPython" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
