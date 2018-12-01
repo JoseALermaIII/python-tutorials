@@ -7,7 +7,7 @@ Attributes:
     MAX_KEY_LENGTH (int): Will not attempt keys longer than this.
     NUM_MOST_FREQ_LETTERS (int): Attempt this many letters per subkey.
     SILENT_MODE (bool): If set to True, program doesn't print anything.
-    NONLETTERS_PATTERN (_sre.SRE_Pattern): Regular expression object representing all non-letter characters.
+    NONLETTERS_PATTERN (re._sre.SRE_Pattern): Regular expression object representing all non-letter characters.
 
 Note:
     * https://www.nostarch.com/crackingcodes/ (BSD Licensed)
