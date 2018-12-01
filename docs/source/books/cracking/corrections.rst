@@ -2,4 +2,4 @@
 CrackingCodesWithPython Corrections
 ***********************************
 
-.. include:: ../../../../books/CrackingCodesWithPython/corrections.rst
+.. include:: ../../../../pythontutorials/books/CrackingCodesWithPython/corrections.rst

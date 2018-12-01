@@ -2,4 +2,4 @@
 AutomateTheBoringStuffWithPython Corrections
 ********************************************
 
-.. include:: ../../../../books/AutomateTheBoringStuffWithPython/corrections.rst
+.. include:: ../../../../pythontutorials/books/AutomateTheBoringStuffWithPython/corrections.rst

@@ -1,1 +1,1 @@
-.. include:: ../../../books/wikibook/README.rst
+.. include:: ../../../pythontutorials/books/wikibook/README.rst

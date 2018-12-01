@@ -1,1 +1,1 @@
-.. include:: ../../Udacity/README.rst
+.. include:: ../../pythontutorials/Udacity/README.rst
