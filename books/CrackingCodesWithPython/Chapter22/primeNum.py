@@ -75,7 +75,7 @@ def primeSieve(sieveSize: int) -> list:
 def rabinMiller(num: int) -> bool:
     """Rabin-Miller primality test
 
-    Uses the `Rabin-Miller`_ primality test to test if a given number is prime.
+    Uses the `Rabin-Miller`_ primality test to check if a given number is prime.
 
     Args:
          num: Number to check if prime.
