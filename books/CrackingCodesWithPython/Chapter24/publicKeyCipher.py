@@ -146,7 +146,7 @@ def encryptMessage(message: str, key: tuple, blockSize: int) -> list:
 def decryptMessage(encryptedBlocks: list, messageLength: int, key: tuple, blockSize: int) -> str:
     """Decrypt Message
 
-    Decrypts a list of encrypted block integers into the original message string.
+    Decrypts a list of encrypted block integers back to the original message string.
 
     Args:
          encryptedBlocks: List containing block integers encrypted with PUBLIC key.
