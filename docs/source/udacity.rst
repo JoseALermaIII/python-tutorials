@@ -1,1 +1,0 @@
-.. include:: ../../Udacity/README.rst
