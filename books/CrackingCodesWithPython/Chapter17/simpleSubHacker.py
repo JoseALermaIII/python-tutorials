@@ -4,7 +4,7 @@ Implements a function that can hack a substitution cipher encrypted message.
 
 Attributes:
     LETTERS (str): String containing uppercase latin letters.
-    nonLettersOrSpacePattern (_sre.SRE_Pattern): Regular expression object representing all non-letter
+    nonLettersOrSpacePattern (re._sre.SRE_Pattern): Regular expression object representing all non-letter
         characters and space.
 
 Note:
