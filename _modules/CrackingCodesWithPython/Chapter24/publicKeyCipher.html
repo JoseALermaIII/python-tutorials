@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CrackingCodesWithPython.Chapter24.publicKeyCipher &mdash; python-tutorials 1.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/atom_setup.html">Atom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/vim_setup.html">Vim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/pycharm_setup.html">PyCharm</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/automate/automate.html">AutomateTheBoringStuffWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/cracking/cracking.html">CrackingCodesWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>CrackingCodesWithPython.Chapter24.publicKeyCipher</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for CrackingCodesWithPython.Chapter24.publicKeyCipher</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Public Key Cipher</span>
+
+<span class="sd">Implements a series of functions capable of encrypting and decrypting with `textbook RSA`_ public/private keypairs.</span>
+
+<span class="sd">Attributes:</span>
+<span class="sd">    SYMBOLS (str): String with all characters to be encrypted/decrypted.</span>
+<span class="sd">    PUBLIC_KEY_PATH (str): String with absolute location of public key file.</span>
+<span class="sd">    PRIVATE_KEY_PATH (str): String with absolute location of private key file.</span>
+
+<span class="sd">Note:</span>
+<span class="sd">    * https://www.nostarch.com/crackingcodes/ (BSD Licensed)</span>
+<span class="sd">    * The public and private keys are created by the</span>
+<span class="sd">      :py:mod:`CrackingCodesWithPython.Chapter23.makePublicPrivateKeys` module.</span>
+<span class="sd">    * &#39;Textbook/Plain&#39; RSA keys are not secure and should not be used to encrypt sensitive data.</span>
+
+<span class="sd">.. _textbook RSA:</span>
+<span class="sd">    https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Attacks_against_plain_RSA</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">math</span>
+
+<span class="c1"># The public and private keys for this program are created by</span>
+<span class="c1"># the makePublicPrivateKeys.py program.</span>
+<span class="c1"># This program must be run in the same folder as the key files.</span>
+
+<span class="n">SYMBOLS</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?.&#39;</span>
+<span class="n">PUBLIC_KEY_PATH</span> <span class="o">=</span> <span class="s2">&quot;/home/jose/PycharmProjects/python-tutorials/pythontutorials/books/CrackingCodesWithPython/Chapter23/al_sweigart_pubkey.txt&quot;</span>
+<span class="n">PRIVATE_KEY_PATH</span><span class="o">=</span> <span class="s2">&quot;/home/jose/PycharmProjects/python-tutorials/pythontutorials/books/CrackingCodesWithPython/Chapter23/al_sweigart_privkey.txt&quot;</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter24.html#CrackingCodesWithPython.Chapter24.publicKeyCipher.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Runs a test that encrypts a message to a file or decrypts a message</span>
+    <span class="c1"># from a file.</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;encrypted_file.txt&#39;</span> <span class="c1"># The file to write to/read from.</span>
+    <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;encrypt&#39;</span>  <span class="c1"># Set to either &#39;encrypt&#39; or &#39;decrypt&#39;.</span>
+
+    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;encrypt&#39;</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Journalists belong in the gutter because that is where the ruling classes throw their guilty secrets. Gerald Priestland. The Founding Fathers gave the free press the protection it must have to bare the secrets of government and inform the people. Hugo Black.&#39;</span>
+        <span class="n">pubKeyFilename</span> <span class="o">=</span> <span class="n">PUBLIC_KEY_PATH</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Encrypting and writing to </span><span class="si">%s</span><span class="s1">...&#39;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="n">encryptedText</span> <span class="o">=</span> <span class="n">encryptAndWriteToFile</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">pubKeyFilename</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Encrypted text:&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">encryptedText</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;decrypt&#39;</span><span class="p">:</span>
+        <span class="n">privKeyFilename</span> <span class="o">=</span> <span class="n">PRIVATE_KEY_PATH</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reading from </span><span class="si">%s</span><span class="s1"> and decrypting...&#39;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="n">decryptedText</span> <span class="o">=</span> <span class="n">readFromFileAndDecrypt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">privKeyFilename</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Decrypted text:&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">decryptedText</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;encrypt&quot;</span><span class="p">:</span>
+        <span class="n">privKeyFilename</span> <span class="o">=</span> <span class="n">PRIVATE_KEY_PATH</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Decrypted text: &quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">readFromFileAndDecrypt</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">privKeyFilename</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="getBlocksFromText"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter24.html#CrackingCodesWithPython.Chapter24.publicKeyCipher.getBlocksFromText">[docs]</a><span class="k">def</span> <span class="nf">getBlocksFromText</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">blockSize</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Get blocks from text</span>
+
+<span class="sd">    Converts a string message to a list of block integers.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">         message: String containing message to convert into blocks of integers.</span>
+<span class="sd">         blockSize: Size of each block of integers.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List with blocks of integers of the given size.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        * If a character in the message is not in SYMBOLS, program exits with an error.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">character</span> <span class="ow">in</span> <span class="n">message</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">character</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">SYMBOLS</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ERROR: The symbol set does not have the character </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">character</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+    <span class="n">blockInts</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">blockStart</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">),</span> <span class="n">blockSize</span><span class="p">):</span>
+        <span class="c1"># Calculate the block integer for this block of text:</span>
+        <span class="n">blockInt</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">blockStart</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">blockStart</span> <span class="o">+</span> <span class="n">blockSize</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">))):</span>
+            <span class="n">blockInt</span> <span class="o">+=</span> <span class="p">(</span><span class="n">SYMBOLS</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">message</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="n">blockSize</span><span class="p">))</span>
+        <span class="n">blockInts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">blockInt</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">blockInts</span></div>
+
+
+<div class="viewcode-block" id="getTextFromBlocks"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter24.html#CrackingCodesWithPython.Chapter24.publicKeyCipher.getTextFromBlocks">[docs]</a><span class="k">def</span> <span class="nf">getTextFromBlocks</span><span class="p">(</span><span class="n">blockInts</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">messageLength</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">blockSize</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Get text from blocks</span>
+
+<span class="sd">    Converts a list of block integers to the original message string.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        blockInts: List of block integers of specified size.</span>
+<span class="sd">        messageLength: Length of the original message.</span>
+<span class="sd">        blockSize: Bit size of each block of integers.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Original message string before block integer conversion.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        * The original message length is needed to properly convert the last block integer.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">blockInt</span> <span class="ow">in</span> <span class="n">blockInts</span><span class="p">:</span>
+        <span class="n">blockMessage</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">blockSize</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">messageLength</span><span class="p">:</span>
+                <span class="c1"># Decode the message string for the 128 (or whatever</span>
+                <span class="c1"># blockSize is set to) characters from this block integer:</span>
+                <span class="n">charIndex</span> <span class="o">=</span> <span class="n">blockInt</span> <span class="o">//</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">)</span> <span class="o">**</span> <span class="n">i</span><span class="p">)</span>
+                <span class="n">blockInt</span> <span class="o">=</span> <span class="n">blockInt</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">)</span> <span class="o">**</span> <span class="n">i</span><span class="p">)</span>
+                <span class="n">blockMessage</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">SYMBOLS</span><span class="p">[</span><span class="n">charIndex</span><span class="p">])</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">blockMessage</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="encryptMessage"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter24.html#CrackingCodesWithPython.Chapter24.publicKeyCipher.encryptMessage">[docs]</a><span class="k">def</span> <span class="nf">encryptMessage</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">blockSize</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Encrypt message</span>
+
+<span class="sd">    Converts the message string into a list of block integers, and then encrypts each block integer.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        message: String containing message to encrypt with PUBLIC key.</span>
+<span class="sd">        key: Tuple with PUBLIC key used for encryption.</span>
+<span class="sd">        blockSize: Bit size of block integers (usually specified in the PUBLIC key file).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of block integers encrypted with PUBLIC key.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        * Ensure to pass the PUBLIC key to encrypt.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">encryptedBlocks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">key</span>
+
+    <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">getBlocksFromText</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">blockSize</span><span class="p">):</span>
+        <span class="c1"># ciphertext = plaintext ^ e mod n</span>
+        <span class="n">encryptedBlocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">encryptedBlocks</span></div>
+
+
+<div class="viewcode-block" id="decryptMessage"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter24.html#CrackingCodesWithPython.Chapter24.publicKeyCipher.decryptMessage">[docs]</a><span class="k">def</span> <span class="nf">decryptMessage</span><span class="p">(</span><span class="n">encryptedBlocks</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">messageLength</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">blockSize</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Decrypt Message</span>
+
+<span class="sd">    Decrypts a list of encrypted block integers back to the original message string.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">         encryptedBlocks: List containing block integers encrypted with PUBLIC key.</span>
+<span class="sd">         messageLength: Length of the original message.</span>
+<span class="sd">         key: Tuple with PRIVATE key used to decryption.</span>
+<span class="sd">         blockSize: Bit size of block integers (usually specified in PRIVATE key file).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Original message before block integer conversion and PUBLIC key encryption.</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        * The original message length is required to properly decrypt the last block.</span>
+<span class="sd">        * Ensure to pass the PRIVATE key to decrypt.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">decryptedBlocks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">key</span>
+    <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">encryptedBlocks</span><span class="p">:</span>
+        <span class="c1"># plaintext = ciphertext ^ d mod n</span>
+        <span class="n">decryptedBlocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">getTextFromBlocks</span><span class="p">(</span><span class="n">decryptedBlocks</span><span class="p">,</span> <span class="n">messageLength</span><span class="p">,</span> <span class="n">blockSize</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="readKeyFile"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter24.html#CrackingCodesWithPython.Chapter24.publicKeyCipher.readKeyFile">[docs]</a><span class="k">def</span> <span class="nf">readKeyFile</span><span class="p">(</span><span class="n">keyFilename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Read key from key file</span>
+
+<span class="sd">    Reads the given public/private key file and returns the key.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        keyFilename: String containing absolute path to public/private key file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The key as a (n,e) or (n,d) tuple value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">fo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">keyFilename</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">fo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">keySize</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">EorD</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">keySize</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">EorD</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="encryptAndWriteToFile"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter24.html#CrackingCodesWithPython.Chapter24.publicKeyCipher.encryptAndWriteToFile">[docs]</a><span class="k">def</span> <span class="nf">encryptAndWriteToFile</span><span class="p">(</span><span class="n">messageFilename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">keyFilename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">blockSize</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Encrypt and write to file</span>
+
+<span class="sd">    Using a key from a keyfile, encrypt the message and save it to a file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        messageFilename: String containing name of file to save encrypted message to.</span>
+<span class="sd">        keyFilename: String containing absolute file path of PUBLIC key file.</span>
+<span class="sd">        message: String containing message to encrypt and save.</span>
+<span class="sd">        blockSize: Bit size of blocks of integers used to convert and encrypt message (usually specified in</span>
+<span class="sd">            PUBLIC key file).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Encrypted message string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">keySize</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">readKeyFile</span><span class="p">(</span><span class="n">keyFilename</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">blockSize</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># If blockSize isn&#39;t given, set it to the largest size allowed by the key size and symbol set size.</span>
+        <span class="n">blockSize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">keySize</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">)))</span>
+    <span class="c1"># Check that the key size is large enough for the block size:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">keySize</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="n">blockSize</span><span class="p">):</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s1">&#39;ERROR: Block size is too large for the key and symbol set size. Did you specify the correct key file and encrypted file?&#39;</span><span class="p">)</span>
+    <span class="c1"># Encrypt the message:</span>
+    <span class="n">encryptedBlocks</span> <span class="o">=</span> <span class="n">encryptMessage</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="n">blockSize</span><span class="p">)</span>
+
+    <span class="c1"># Convert the large int values to one string value:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">encryptedBlocks</span><span class="p">)):</span>
+        <span class="n">encryptedBlocks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">encryptedBlocks</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">encryptedContent</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">encryptedBlocks</span><span class="p">)</span>
+
+    <span class="c1"># Write out the encrypted string to the output file:</span>
+    <span class="n">encryptedContent</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">),</span> <span class="n">blockSize</span><span class="p">,</span> <span class="n">encryptedContent</span><span class="p">)</span>
+    <span class="n">fo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">messageFilename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+    <span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">encryptedContent</span><span class="p">)</span>
+    <span class="n">fo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="c1"># Also return the encrypted string:</span>
+    <span class="k">return</span> <span class="n">encryptedContent</span></div>
+
+
+<div class="viewcode-block" id="readFromFileAndDecrypt"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter24.html#CrackingCodesWithPython.Chapter24.publicKeyCipher.readFromFileAndDecrypt">[docs]</a><span class="k">def</span> <span class="nf">readFromFileAndDecrypt</span><span class="p">(</span><span class="n">messageFilename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">keyFilename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Read from file and decrypt</span>
+
+<span class="sd">    Using a key from a key file, read an encrypted message from a file and then decrypt it.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        messageFilename: String containing name of file with encrypted message saved to it.</span>
+<span class="sd">        keyFilename: String containing absolute file path of PRIVATE key file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Decrypted message string.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        * Checks block size in key file and exits with error if too large.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">keySize</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">readKeyFile</span><span class="p">(</span><span class="n">keyFilename</span><span class="p">)</span>
+
+    <span class="c1"># Read in the message length and the encrypted message from the file:</span>
+    <span class="n">fo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">messageFilename</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">messageLength</span><span class="p">,</span> <span class="n">blockSize</span><span class="p">,</span> <span class="n">encryptedMessage</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="n">messageLength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">messageLength</span><span class="p">)</span>
+    <span class="n">blockSize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">blockSize</span><span class="p">)</span>
+
+    <span class="c1"># Check that key size is large enough for the block size:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">keySize</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">SYMBOLS</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="n">blockSize</span><span class="p">):</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s1">&#39;ERROR: Block size is too large for the key and symbol set size. Did you specify the correct key file and encrypted file?&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Convert the encrypted message into large int values:</span>
+    <span class="n">encryptedBlocks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">block</span> <span class="ow">in</span> <span class="n">encryptedMessage</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">):</span>
+        <span class="n">encryptedBlocks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">block</span><span class="p">))</span>
+
+    <span class="c1"># Decrypt the large int values:</span>
+    <span class="k">return</span> <span class="n">decryptMessage</span><span class="p">(</span><span class="n">encryptedBlocks</span><span class="p">,</span> <span class="n">messageLength</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">blockSize</span><span class="p">)</span></div>
+
+
+<span class="c1"># If publicKeyCipher.py is run (instead of imported as a module), call</span>
+<span class="c1"># the main() function.</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

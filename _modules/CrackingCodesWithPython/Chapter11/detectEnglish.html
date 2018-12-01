@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CrackingCodesWithPython.Chapter11.detectEnglish &mdash; python-tutorials 1.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/atom_setup.html">Atom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/vim_setup.html">Vim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/pycharm_setup.html">PyCharm</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/automate/automate.html">AutomateTheBoringStuffWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/cracking/cracking.html">CrackingCodesWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>CrackingCodesWithPython.Chapter11.detectEnglish</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for CrackingCodesWithPython.Chapter11.detectEnglish</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Detect English Module</span>
+
+<span class="sd">Provides functions to determine whether a given string is in the English language.</span>
+
+<span class="sd">Attributes:</span>
+<span class="sd">    UPPERLETTERS (str): String containing all latin-based letters in uppercase.</span>
+<span class="sd">    LETTERS_AND_SPACE (str): String containing upper and lowercase letters as well as space, newline, and tab.</span>
+<span class="sd">    DICTIONARY_FILE (str): String containing absolute path of dictionary.txt file.</span>
+<span class="sd">    ENGLISH_WORDS (dict): Dictionary containing all words from dictionary.txt as keys.</span>
+
+<span class="sd">Example:</span>
+<span class="sd">    &gt;&gt;&gt; import pythontutorials.books.CrackingCodesWithPython.Chapter11.detectEnglish as detectEnglish</span>
+<span class="sd">    &gt;&gt;&gt; someString = &#39;Enthusiasm is contagious. Not having enthusiasm is also contagious.&#39;</span>
+<span class="sd">    &gt;&gt;&gt; detectEnglish.isEnglish(someString)  # Returns True or False</span>
+<span class="sd">    True</span>
+
+<span class="sd">Note:</span>
+<span class="sd">    * https://www.nostarch.com/crackingcodes/ (BSD Licensed)</span>
+<span class="sd">    * There must be a &quot;dictionary.txt&quot; file in this directory with all</span>
+<span class="sd">      English words in it, one word per line. You can download this from</span>
+<span class="sd">      https://www.nostarch.com/crackingcodes/.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">UPPERLETTERS</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>
+<span class="n">LETTERS_AND_SPACE</span> <span class="o">=</span> <span class="n">UPPERLETTERS</span> <span class="o">+</span> <span class="n">UPPERLETTERS</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39; </span><span class="se">\t\n</span><span class="s1">&#39;</span>
+<span class="n">DICTIONARY_FILE</span> <span class="o">=</span> <span class="s1">&#39;/home/jose/PycharmProjects/python-tutorials/pythontutorials/books/CrackingCodesWithPython/Chapter11/dictionary.txt&#39;</span>
+
+
+<div class="viewcode-block" id="loadDictionary"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter11.html#CrackingCodesWithPython.Chapter11.detectEnglish.loadDictionary">[docs]</a><span class="k">def</span> <span class="nf">loadDictionary</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Load dictionary file</span>
+
+<span class="sd">    Loads dictionary.txt file and creates a dictionary with all words as keys.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary with all words in dictionary.txt as keys.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dictionaryFile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">DICTIONARY_FILE</span><span class="p">)</span>
+    <span class="n">englishWords</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">dictionaryFile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
+        <span class="n">englishWords</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">dictionaryFile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">englishWords</span></div>
+
+
+<span class="n">ENGLISH_WORDS</span> <span class="o">=</span> <span class="n">loadDictionary</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="getEnglishCount"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter11.html#CrackingCodesWithPython.Chapter11.detectEnglish.getEnglishCount">[docs]</a><span class="k">def</span> <span class="nf">getEnglishCount</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Get count of English words</span>
+
+<span class="sd">    For given message, counts number of words in English</span>
+<span class="sd">    dictionary and returns ratio of English words out of total words.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        message: String with message to check for English words.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">         Ratio of number of English words / total number of words.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">removeNonLetters</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="n">possibleWords</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">possibleWords</span><span class="p">:</span>  <span class="c1"># Given [] = False, if possibleWords = [] then if not possibleWords = True</span>
+        <span class="k">return</span> <span class="mf">0.0</span>  <span class="c1"># No words at all, so return 0.0</span>
+
+    <span class="n">matches</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">possibleWords</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">ENGLISH_WORDS</span><span class="p">:</span>
+            <span class="n">matches</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">matches</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">possibleWords</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="removeNonLetters"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter11.html#CrackingCodesWithPython.Chapter11.detectEnglish.removeNonLetters">[docs]</a><span class="k">def</span> <span class="nf">removeNonLetters</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Removes non-letters</span>
+
+<span class="sd">    Removes non-letter characters from given message.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        message: String with message to remove non-letter characters from.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        New string with non-letter characters removed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lettersOnly</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">message</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">LETTERS_AND_SPACE</span><span class="p">:</span>
+            <span class="n">lettersOnly</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lettersOnly</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="isEnglish"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter11.html#CrackingCodesWithPython.Chapter11.detectEnglish.isEnglish">[docs]</a><span class="k">def</span> <span class="nf">isEnglish</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wordPercentage</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">letterPercentage</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">85</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Determines whether message is English</span>
+
+<span class="sd">    Using given word percentage and letter percentage, determines if a given message is in the English language.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        message: String containing message to determine if it is English.</span>
+<span class="sd">        wordPercentage: Integer representing percentage of words in message that must be English.</span>
+<span class="sd">        letterPercentage: Integer representing percentage of characters in message that must be letters or spaces.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        True if message is in English language, False otherwise.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        * By default, 20% of the words must exist in the dictionary file, and</span>
+<span class="sd">          85% of all the characters in the message must be letters or spaces</span>
+<span class="sd">          (not punctuation or numbers).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wordsMatch</span> <span class="o">=</span> <span class="n">getEnglishCount</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">&gt;=</span> <span class="n">wordPercentage</span>
+    <span class="n">numLetters</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">removeNonLetters</span><span class="p">(</span><span class="n">message</span><span class="p">))</span>
+    <span class="n">messageLettersPercentage</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">numLetters</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="n">lettersMatch</span> <span class="o">=</span> <span class="n">messageLettersPercentage</span> <span class="o">&gt;=</span> <span class="n">letterPercentage</span>
+    <span class="k">return</span> <span class="n">wordsMatch</span> <span class="ow">and</span> <span class="n">lettersMatch</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

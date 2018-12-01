@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>books.CrackingCodesWithPython.Chapter17.simpleSubHacker &mdash; python-tutorials 1.0.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/atom_setup.html">Atom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/vim_setup.html">Vim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/pycharm_setup.html">PyCharm</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/automate/automate.html">AutomateTheBoringStuffWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/cracking/cracking.html">CrackingCodesWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">CrackingCodesWithPython</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>books.CrackingCodesWithPython.Chapter17.simpleSubHacker</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for books.CrackingCodesWithPython.Chapter17.simpleSubHacker</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Simple Substitution Cipher Hacker</span>
+<span class="c1"># https://www.nostarch.com/crackingcodes/ (BSD Licensed)</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">books.CrackingCodesWithPython.pyperclip</span>
+<span class="kn">from</span> <span class="nn">books.CrackingCodesWithPython.Chapter16.simpleSubCipher</span> <span class="k">import</span> <span class="n">decryptMessage</span>
+<span class="kn">from</span> <span class="nn">books.CrackingCodesWithPython.Chapter17.wordPatterns</span> <span class="k">import</span> <span class="n">allPatterns</span>
+<span class="kn">from</span> <span class="nn">books.CrackingCodesWithPython.Chapter17.makeWordPatterns</span> <span class="k">import</span> <span class="n">getWordPattern</span>
+
+
+<span class="n">LETTERS</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>
+<span class="n">nonLettersOrSpacePattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[^A-Z\s]&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter17.html#books.CrackingCodesWithPython.Chapter17.simpleSubHacker.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Sy l nlx sr pyyacao l ylwj eiswi upar lulsxrj isr</span>
+<span class="s2">sxrjsxwjr, ia esmm rwctjsxsza sj wmpramh, lxo txmarr jia aqsoaxwa</span>
+<span class="s2">sr pqaceiamnsxu, ia esmm caytra jp famsaqa sj. Sy, px jia pjiac</span>
+<span class="s2">ilxo, ia sr pyyacao rpnajisxu eiswi lyypcor l calrpx ypc lwjsxu sx</span>
+<span class="s2">lwwpcolxwa jp isr sxrjsxwjr, ia esmm lwwabj sj aqax px jia</span>
+<span class="s2">rmsuijarj aqsoaxwa. Jia pcsusx py nhjir sr agbmlsxao sx jisr elh.</span>
+<span class="s2">-Facjclxo Ctrramm&quot;&quot;&quot;</span>
+
+    <span class="c1"># Determine the possible valid ciphertext translations:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hacking...&#39;</span><span class="p">)</span>
+    <span class="n">letterMapping</span> <span class="o">=</span> <span class="n">hackSimpleSub</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+    <span class="c1"># Display the results to the user:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mapping:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">letterMapping</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Original ciphertext:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Copying hacked message to clipboard:&#39;</span><span class="p">)</span>
+    <span class="n">hackedMessage</span> <span class="o">=</span> <span class="n">decryptWithCipherletterMapping</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">letterMapping</span><span class="p">)</span>
+    <span class="n">books</span><span class="o">.</span><span class="n">CrackingCodesWithPython</span><span class="o">.</span><span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">hackedMessage</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">hackedMessage</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="getBlankCipherletterMapping"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter17.html#books.CrackingCodesWithPython.Chapter17.simpleSubHacker.getBlankCipherletterMapping">[docs]</a><span class="k">def</span> <span class="nf">getBlankCipherletterMapping</span><span class="p">():</span>
+    <span class="c1"># Returns a dictionary value that is a blank cipherletter mapping:</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;J&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;O&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;Q&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;U&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;Z&#39;</span><span class="p">:</span> <span class="p">[]}</span></div>
+
+
+<div class="viewcode-block" id="addLettersToMapping"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter17.html#books.CrackingCodesWithPython.Chapter17.simpleSubHacker.addLettersToMapping">[docs]</a><span class="k">def</span> <span class="nf">addLettersToMapping</span><span class="p">(</span><span class="n">letterMapping</span><span class="p">,</span> <span class="n">cipherword</span><span class="p">,</span> <span class="n">candidate</span><span class="p">):</span>
+    <span class="c1"># The letterMapping parameter takes a dictionary value that</span>
+    <span class="c1"># stores a cipherletter mapping, which is copied by the function.</span>
+    <span class="c1"># The cipherword parameter is a string value of the ciphertext word.</span>
+    <span class="c1"># The candidate parameter is a possible English word that the</span>
+    <span class="c1"># cipherword could decrypt to.</span>
+
+    <span class="c1"># This function adds the letters in the candidate as potential</span>
+    <span class="c1"># decryption letters for the cipherletters in the cipherletter</span>
+    <span class="c1"># mapping.</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cipherword</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">candidate</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">letterMapping</span><span class="p">[</span><span class="n">cipherword</span><span class="p">[</span><span class="n">i</span><span class="p">]]:</span>
+            <span class="n">letterMapping</span><span class="p">[</span><span class="n">cipherword</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidate</span><span class="p">[</span><span class="n">i</span><span class="p">])</span></div>
+
+
+
+<div class="viewcode-block" id="intersectMappings"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter17.html#books.CrackingCodesWithPython.Chapter17.simpleSubHacker.intersectMappings">[docs]</a><span class="k">def</span> <span class="nf">intersectMappings</span><span class="p">(</span><span class="n">mapA</span><span class="p">,</span> <span class="n">mapB</span><span class="p">):</span>
+    <span class="c1"># To intersect two maps, create a blank map and then add only the</span>
+    <span class="c1"># potential decryption letters if they exist in BOTH maps:</span>
+    <span class="n">intersectedMapping</span> <span class="o">=</span> <span class="n">getBlankCipherletterMapping</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">LETTERS</span><span class="p">:</span>
+
+        <span class="c1"># An empty list means &quot;any letter is possible&quot;. In this case just</span>
+        <span class="c1"># copy the other map entirely:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">mapA</span><span class="p">[</span><span class="n">letter</span><span class="p">]:</span>
+            <span class="n">intersectedMapping</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">mapB</span><span class="p">[</span><span class="n">letter</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">mapB</span><span class="p">[</span><span class="n">letter</span><span class="p">]:</span>
+            <span class="n">intersectedMapping</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">mapA</span><span class="p">[</span><span class="n">letter</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># If a letter in mapA[letter] exists in mapB[letter],</span>
+            <span class="c1"># add that letter to intersectedMapping[letter]:</span>
+            <span class="k">for</span> <span class="n">mappedLetter</span> <span class="ow">in</span> <span class="n">mapA</span><span class="p">[</span><span class="n">letter</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">mappedLetter</span> <span class="ow">in</span> <span class="n">mapB</span><span class="p">[</span><span class="n">letter</span><span class="p">]:</span>
+                    <span class="n">intersectedMapping</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mappedLetter</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">intersectedMapping</span></div>
+
+
+<div class="viewcode-block" id="removeSolvedLettersFromMapping"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter17.html#books.CrackingCodesWithPython.Chapter17.simpleSubHacker.removeSolvedLettersFromMapping">[docs]</a><span class="k">def</span> <span class="nf">removeSolvedLettersFromMapping</span><span class="p">(</span><span class="n">letterMapping</span><span class="p">):</span>
+    <span class="c1"># Cipherletters in the mapping that map to only one letter are</span>
+    <span class="c1"># &quot;solved&quot; and can be removed from the other letters.</span>
+    <span class="c1"># For example, if &#39;A&#39; maps to potential letters [&#39;M&#39;, &#39;N&#39;] and &#39;B&#39;</span>
+    <span class="c1"># maps to [&#39;N&#39;], then we know that &#39;B&#39; must map to &#39;N&#39;, so we can</span>
+    <span class="c1"># remove &#39;N&#39; from the list of what &#39;A&#39; could map to. So &#39;A&#39; then maps</span>
+    <span class="c1"># to [&#39;M&#39;]. Note that now that &#39;A&#39; maps to only one letter, we can</span>
+    <span class="c1"># remove &#39;M&#39; from the list of letters for every other letter.</span>
+    <span class="c1"># (This is why there is a loop that keeps reducing the map.)</span>
+
+    <span class="n">loopAgain</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">while</span> <span class="n">loopAgain</span><span class="p">:</span>
+        <span class="c1"># First assume that we will not loop again:</span>
+        <span class="n">loopAgain</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># solvedLetters will be a list of uppercase letters that have one</span>
+        <span class="c1"># and only one possible mapping in letterMapping:</span>
+        <span class="n">solvedLetters</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">cipherletter</span> <span class="ow">in</span> <span class="n">LETTERS</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">letterMapping</span><span class="p">[</span><span class="n">cipherletter</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">solvedLetters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">letterMapping</span><span class="p">[</span><span class="n">cipherletter</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="c1"># If a letter is solved, then it cannot possibly be a potential</span>
+        <span class="c1"># decryption letter for a different ciphertext letter, so we</span>
+        <span class="c1"># should remove it from those other lists:</span>
+        <span class="k">for</span> <span class="n">cipherletter</span> <span class="ow">in</span> <span class="n">LETTERS</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">solvedLetters</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">letterMapping</span><span class="p">[</span><span class="n">cipherletter</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">letterMapping</span><span class="p">[</span><span class="n">cipherletter</span><span class="p">]:</span>
+                        <span class="n">letterMapping</span><span class="p">[</span><span class="n">cipherletter</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">letterMapping</span><span class="p">[</span><span class="n">cipherletter</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                            <span class="c1"># A new letter is now solved, so loop again:</span>
+                            <span class="n">loopAgain</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">letterMapping</span></div>
+
+
+<div class="viewcode-block" id="hackSimpleSub"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter17.html#books.CrackingCodesWithPython.Chapter17.simpleSubHacker.hackSimpleSub">[docs]</a><span class="k">def</span> <span class="nf">hackSimpleSub</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="n">intersectedMap</span> <span class="o">=</span> <span class="n">getBlankCipherletterMapping</span><span class="p">()</span>
+    <span class="n">cipherwordList</span> <span class="o">=</span> <span class="n">nonLettersOrSpacePattern</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">cipherword</span> <span class="ow">in</span> <span class="n">cipherwordList</span><span class="p">:</span>
+        <span class="c1"># Get a new cipherletter mapping for each ciphertext word:</span>
+        <span class="n">candidateMap</span> <span class="o">=</span> <span class="n">getBlankCipherletterMapping</span><span class="p">()</span>
+
+        <span class="n">wordPattern</span> <span class="o">=</span> <span class="n">getWordPattern</span><span class="p">(</span><span class="n">cipherword</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">wordPattern</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allPatterns</span><span class="p">:</span>
+            <span class="k">continue</span>  <span class="c1"># This word was not in our dictionary, so continue.</span>
+
+        <span class="c1"># Add the letters of each candidate to the mapping:</span>
+        <span class="k">for</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">allPatterns</span><span class="p">[</span><span class="n">wordPattern</span><span class="p">]:</span>
+            <span class="n">addLettersToMapping</span><span class="p">(</span><span class="n">candidateMap</span><span class="p">,</span> <span class="n">cipherword</span><span class="p">,</span> <span class="n">candidate</span><span class="p">)</span>
+
+        <span class="c1"># Intersect the new mapping with the existing intersected mapping:</span>
+        <span class="n">intersectedMap</span> <span class="o">=</span> <span class="n">intersectMappings</span><span class="p">(</span><span class="n">intersectedMap</span><span class="p">,</span> <span class="n">candidateMap</span><span class="p">)</span>
+
+    <span class="c1"># Remove any solved letters from the other lists:</span>
+    <span class="k">return</span> <span class="n">removeSolvedLettersFromMapping</span><span class="p">(</span><span class="n">intersectedMap</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="decryptWithCipherletterMapping"><a class="viewcode-back" href="../../../../books.CrackingCodesWithPython.Chapter17.html#books.CrackingCodesWithPython.Chapter17.simpleSubHacker.decryptWithCipherletterMapping">[docs]</a><span class="k">def</span> <span class="nf">decryptWithCipherletterMapping</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">,</span> <span class="n">letterMapping</span><span class="p">):</span>
+    <span class="c1"># Return a string of the ciphertext decrypted with the letter mapping,</span>
+    <span class="c1"># with any ambiguous decrypted letters replaced with an underscore.</span>
+
+    <span class="c1"># First create a simple sub key from the letterMapping mapping:</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">LETTERS</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">cipherletter</span> <span class="ow">in</span> <span class="n">LETTERS</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">letterMapping</span><span class="p">[</span><span class="n">cipherletter</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># If there&#39;s only one letter, add it to the key:</span>
+            <span class="n">keyIndex</span> <span class="o">=</span> <span class="n">LETTERS</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">letterMapping</span><span class="p">[</span><span class="n">cipherletter</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">key</span><span class="p">[</span><span class="n">keyIndex</span><span class="p">]</span> <span class="o">=</span> <span class="n">cipherletter</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ciphertext</span> <span class="o">=</span> <span class="n">ciphertext</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">cipherletter</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+            <span class="n">ciphertext</span> <span class="o">=</span> <span class="n">ciphertext</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">cipherletter</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="c1"># With the key we&#39;ve created, decrypt the ciphertext:</span>
+    <span class="k">return</span> <span class="n">decryptMessage</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">ciphertext</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

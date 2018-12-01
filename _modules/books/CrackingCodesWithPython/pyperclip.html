@@ -1,0 +1,831 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>books.CrackingCodesWithPython.pyperclip &mdash; python-tutorials 1.0.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/atom_setup.html">Atom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/vim_setup.html">Vim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/pycharm_setup.html">PyCharm</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/automate/automate.html">AutomateTheBoringStuffWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/cracking/cracking.html">CrackingCodesWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">CrackingCodesWithPython</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>books.CrackingCodesWithPython.pyperclip</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for books.CrackingCodesWithPython.pyperclip</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Pyperclip</span>
+
+<span class="sd">A cross-platform clipboard module for Python, with copy &amp; paste functions for plain text.</span>
+<span class="sd">By Al Sweigart al@inventwithpython.com</span>
+<span class="sd">BSD License</span>
+
+<span class="sd">Usage:</span>
+<span class="sd">  import pyperclip</span>
+<span class="sd">  pyperclip.copy(&#39;The text to be copied to the clipboard.&#39;)</span>
+<span class="sd">  spam = pyperclip.paste()</span>
+
+<span class="sd">  if not pyperclip.is_available():</span>
+<span class="sd">    print(&quot;Copy functionality unavailable!&quot;)</span>
+
+<span class="sd">On Windows, no additional modules are needed.</span>
+<span class="sd">On Mac, the pyobjc module is used, falling back to the pbcopy and pbpaste cli</span>
+<span class="sd">    commands. (These commands should come with OS X.).</span>
+<span class="sd">On Linux, install xclip or xsel via package manager. For example, in Debian:</span>
+<span class="sd">    sudo apt-get install xclip</span>
+<span class="sd">    sudo apt-get install xsel</span>
+
+<span class="sd">Otherwise on Linux, you will need the gtk or PyQt5/PyQt4 modules installed.</span>
+
+<span class="sd">gtk and PyQt4 modules are not available for Python 3,</span>
+<span class="sd">and this module does not work with PyGObject yet.</span>
+
+<span class="sd">Note: There seem sto be a way to get gtk on Python 3, according to:</span>
+<span class="sd">    https://askubuntu.com/questions/697397/python3-is-not-supporting-gtk-module</span>
+
+<span class="sd">Cygwin is currently not supported.</span>
+
+<span class="sd">Security Note: This module runs programs with these names:</span>
+<span class="sd">    - which</span>
+<span class="sd">    - where</span>
+<span class="sd">    - pbcopy</span>
+<span class="sd">    - pbpaste</span>
+<span class="sd">    - xclip</span>
+<span class="sd">    - xsel</span>
+<span class="sd">    - klipper</span>
+<span class="sd">    - qdbus</span>
+<span class="sd">A malicious user could rename or add programs with these names, tricking</span>
+<span class="sd">Pyperclip into running them with whatever permissions the Python process has.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.6.0&#39;</span>
+
+<span class="kn">import</span> <span class="nn">contextlib</span>
+<span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">platform</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">ctypes</span> <span class="k">import</span> <span class="n">c_size_t</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">,</span> <span class="n">c_wchar_p</span><span class="p">,</span> <span class="n">get_errno</span><span class="p">,</span> <span class="n">c_wchar</span>
+
+
+<span class="c1"># `import PyQt4` sys.exit()s if DISPLAY is not in the environment.</span>
+<span class="c1"># Thus, we need to detect the presence of $DISPLAY manually</span>
+<span class="c1"># and not load PyQt4 if it is absent.</span>
+<span class="n">HAS_DISPLAY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DISPLAY&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="n">EXCEPT_MSG</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Pyperclip could not find a copy/paste mechanism for your system.</span>
+<span class="s2">    For more information, please visit https://pyperclip.readthedocs.io/en/latest/introduction.html#not-implemented-error &quot;&quot;&quot;</span>
+
+<span class="n">PY2</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>
+
+<span class="n">STR_OR_UNICODE</span> <span class="o">=</span> <span class="n">unicode</span> <span class="k">if</span> <span class="n">PY2</span> <span class="k">else</span> <span class="nb">str</span>
+
+<span class="n">ENCODING</span> <span class="o">=</span> <span class="s1">&#39;utf-8&#39;</span>
+
+<span class="c1"># The &quot;which&quot; unix command finds where a command is.</span>
+<span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Windows&#39;</span><span class="p">:</span>
+    <span class="n">WHICH_CMD</span> <span class="o">=</span> <span class="s1">&#39;where&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">WHICH_CMD</span> <span class="o">=</span> <span class="s1">&#39;which&#39;</span>
+
+<span class="k">def</span> <span class="nf">_executable_exists</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="n">WHICH_CMD</span><span class="p">,</span> <span class="n">name</span><span class="p">],</span>
+                           <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+
+
+<span class="c1"># Exceptions</span>
+<span class="k">class</span> <span class="nc">PyperclipException</span><span class="p">(</span><span class="ne">RuntimeError</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">PyperclipWindowsException</span><span class="p">(</span><span class="n">PyperclipException</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="n">message</span> <span class="o">+=</span> <span class="s2">&quot; (</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">WinError</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PyperclipWindowsException</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+
+<span class="k">def</span> <span class="nf">init_osx_pbcopy_clipboard</span><span class="p">():</span>
+
+    <span class="k">def</span> <span class="nf">copy_osx_pbcopy</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s1">&#39;pbcopy&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">],</span>
+                             <span class="n">stdin</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">close_fds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">ENCODING</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">paste_osx_pbcopy</span><span class="p">():</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s1">&#39;pbpaste&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">],</span>
+                             <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">close_fds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">ENCODING</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">copy_osx_pbcopy</span><span class="p">,</span> <span class="n">paste_osx_pbcopy</span>
+
+
+<span class="k">def</span> <span class="nf">init_osx_pyobjc_clipboard</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">copy_osx_pyobjc</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Copy string argument to clipboard&#39;&#39;&#39;</span>
+        <span class="n">newStr</span> <span class="o">=</span> <span class="n">Foundation</span><span class="o">.</span><span class="n">NSString</span><span class="o">.</span><span class="n">stringWithString_</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">nsstring</span><span class="p">()</span>
+        <span class="n">newData</span> <span class="o">=</span> <span class="n">newStr</span><span class="o">.</span><span class="n">dataUsingEncoding_</span><span class="p">(</span><span class="n">Foundation</span><span class="o">.</span><span class="n">NSUTF8StringEncoding</span><span class="p">)</span>
+        <span class="n">board</span> <span class="o">=</span> <span class="n">AppKit</span><span class="o">.</span><span class="n">NSPasteboard</span><span class="o">.</span><span class="n">generalPasteboard</span><span class="p">()</span>
+        <span class="n">board</span><span class="o">.</span><span class="n">declareTypes_owner_</span><span class="p">([</span><span class="n">AppKit</span><span class="o">.</span><span class="n">NSStringPboardType</span><span class="p">],</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">board</span><span class="o">.</span><span class="n">setData_forType_</span><span class="p">(</span><span class="n">newData</span><span class="p">,</span> <span class="n">AppKit</span><span class="o">.</span><span class="n">NSStringPboardType</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">paste_osx_pyobjc</span><span class="p">():</span>
+        <span class="s2">&quot;Returns contents of clipboard&quot;</span>
+        <span class="n">board</span> <span class="o">=</span> <span class="n">AppKit</span><span class="o">.</span><span class="n">NSPasteboard</span><span class="o">.</span><span class="n">generalPasteboard</span><span class="p">()</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">board</span><span class="o">.</span><span class="n">stringForType_</span><span class="p">(</span><span class="n">AppKit</span><span class="o">.</span><span class="n">NSStringPboardType</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">content</span>
+
+    <span class="k">return</span> <span class="n">copy_osx_pyobjc</span><span class="p">,</span> <span class="n">paste_osx_pyobjc</span>
+
+
+<span class="k">def</span> <span class="nf">init_gtk_clipboard</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">gtk</span>
+    <span class="kn">import</span> <span class="nn">gtk</span>
+
+    <span class="k">def</span> <span class="nf">copy_gtk</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+        <span class="k">global</span> <span class="n">cb</span>
+        <span class="n">cb</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Clipboard</span><span class="p">()</span>
+        <span class="n">cb</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">cb</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">paste_gtk</span><span class="p">():</span>
+        <span class="n">clipboardContents</span> <span class="o">=</span> <span class="n">gtk</span><span class="o">.</span><span class="n">Clipboard</span><span class="p">()</span><span class="o">.</span><span class="n">wait_for_text</span><span class="p">()</span>
+        <span class="c1"># for python 2, returns None if the clipboard is blank.</span>
+        <span class="k">if</span> <span class="n">clipboardContents</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">clipboardContents</span>
+
+    <span class="k">return</span> <span class="n">copy_gtk</span><span class="p">,</span> <span class="n">paste_gtk</span>
+
+
+<span class="k">def</span> <span class="nf">init_qt_clipboard</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">QApplication</span>
+    <span class="c1"># $DISPLAY should exist</span>
+
+    <span class="c1"># Try to import from qtpy, but if that fails try PyQt5 then PyQt4</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">qtpy.QtWidgets</span> <span class="k">import</span> <span class="n">QApplication</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="k">import</span> <span class="n">QApplication</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">PyQt4.QtGui</span> <span class="k">import</span> <span class="n">QApplication</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">app</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">([])</span>
+
+    <span class="k">def</span> <span class="nf">copy_qt</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+        <span class="n">cb</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">clipboard</span><span class="p">()</span>
+        <span class="n">cb</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">paste_qt</span><span class="p">():</span>
+        <span class="n">cb</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">clipboard</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">STR_OR_UNICODE</span><span class="p">(</span><span class="n">cb</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">copy_qt</span><span class="p">,</span> <span class="n">paste_qt</span>
+
+
+<span class="k">def</span> <span class="nf">init_xclip_clipboard</span><span class="p">():</span>
+    <span class="n">DEFAULT_SELECTION</span><span class="o">=</span><span class="s1">&#39;c&#39;</span>
+    <span class="n">PRIMARY_SELECTION</span><span class="o">=</span><span class="s1">&#39;p&#39;</span>
+
+    <span class="k">def</span> <span class="nf">copy_xclip</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">primary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">selection</span><span class="o">=</span><span class="n">DEFAULT_SELECTION</span>
+        <span class="k">if</span> <span class="n">primary</span><span class="p">:</span>
+            <span class="n">selection</span><span class="o">=</span><span class="n">PRIMARY_SELECTION</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s1">&#39;xclip&#39;</span><span class="p">,</span> <span class="s1">&#39;-selection&#39;</span><span class="p">,</span> <span class="n">selection</span><span class="p">],</span>
+                             <span class="n">stdin</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">close_fds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">ENCODING</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">paste_xclip</span><span class="p">(</span><span class="n">primary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">selection</span><span class="o">=</span><span class="n">DEFAULT_SELECTION</span>
+        <span class="k">if</span> <span class="n">primary</span><span class="p">:</span>
+            <span class="n">selection</span><span class="o">=</span><span class="n">PRIMARY_SELECTION</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s1">&#39;xclip&#39;</span><span class="p">,</span> <span class="s1">&#39;-selection&#39;</span><span class="p">,</span> <span class="n">selection</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">],</span>
+                             <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+                             <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+                             <span class="n">close_fds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+        <span class="c1"># Intentionally ignore extraneous output on stderr when clipboard is empty</span>
+        <span class="k">return</span> <span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">ENCODING</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">copy_xclip</span><span class="p">,</span> <span class="n">paste_xclip</span>
+
+
+<span class="k">def</span> <span class="nf">init_xsel_clipboard</span><span class="p">():</span>
+    <span class="n">DEFAULT_SELECTION</span><span class="o">=</span><span class="s1">&#39;-b&#39;</span>
+    <span class="n">PRIMARY_SELECTION</span><span class="o">=</span><span class="s1">&#39;-p&#39;</span>
+
+    <span class="k">def</span> <span class="nf">copy_xsel</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">primary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">selection_flag</span> <span class="o">=</span> <span class="n">DEFAULT_SELECTION</span>
+        <span class="k">if</span> <span class="n">primary</span><span class="p">:</span>
+            <span class="n">selection_flag</span> <span class="o">=</span> <span class="n">PRIMARY_SELECTION</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s1">&#39;xsel&#39;</span><span class="p">,</span> <span class="n">selection_flag</span><span class="p">,</span> <span class="s1">&#39;-i&#39;</span><span class="p">],</span>
+                             <span class="n">stdin</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">close_fds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">ENCODING</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">paste_xsel</span><span class="p">(</span><span class="n">primary</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">selection_flag</span> <span class="o">=</span> <span class="n">DEFAULT_SELECTION</span>
+        <span class="k">if</span> <span class="n">primary</span><span class="p">:</span>
+            <span class="n">selection_flag</span> <span class="o">=</span> <span class="n">PRIMARY_SELECTION</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s1">&#39;xsel&#39;</span><span class="p">,</span> <span class="n">selection_flag</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">],</span>
+                             <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">close_fds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">ENCODING</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">copy_xsel</span><span class="p">,</span> <span class="n">paste_xsel</span>
+
+
+<span class="k">def</span> <span class="nf">init_klipper_clipboard</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">copy_klipper</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;qdbus&#39;</span><span class="p">,</span> <span class="s1">&#39;org.kde.klipper&#39;</span><span class="p">,</span> <span class="s1">&#39;/klipper&#39;</span><span class="p">,</span> <span class="s1">&#39;setClipboardContents&#39;</span><span class="p">,</span>
+             <span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">ENCODING</span><span class="p">)],</span>
+            <span class="n">stdin</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">close_fds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">paste_klipper</span><span class="p">():</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
+            <span class="p">[</span><span class="s1">&#39;qdbus&#39;</span><span class="p">,</span> <span class="s1">&#39;org.kde.klipper&#39;</span><span class="p">,</span> <span class="s1">&#39;/klipper&#39;</span><span class="p">,</span> <span class="s1">&#39;getClipboardContents&#39;</span><span class="p">],</span>
+            <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">close_fds</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+
+        <span class="c1"># Workaround for https://bugs.kde.org/show_bug.cgi?id=342874</span>
+        <span class="c1"># TODO: https://github.com/asweigart/pyperclip/issues/43</span>
+        <span class="n">clipboardContents</span> <span class="o">=</span> <span class="n">stdout</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">ENCODING</span><span class="p">)</span>
+        <span class="c1"># even if blank, Klipper will append a newline at the end</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">clipboardContents</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="c1"># make sure that newline is there</span>
+        <span class="k">assert</span> <span class="n">clipboardContents</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">clipboardContents</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
+            <span class="n">clipboardContents</span> <span class="o">=</span> <span class="n">clipboardContents</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">clipboardContents</span>
+
+    <span class="k">return</span> <span class="n">copy_klipper</span><span class="p">,</span> <span class="n">paste_klipper</span>
+
+
+<span class="k">def</span> <span class="nf">init_dev_clipboard_clipboard</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">copy_dev_clipboard</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">text</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Pyperclip cannot copy a blank string to the clipboard on Cygwin. This is effectively a no-op.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Pyperclip cannot handle </span><span class="se">\\</span><span class="s1">r characters on Cygwin.&#39;</span><span class="p">)</span>
+
+        <span class="n">fo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/dev/clipboard&#39;</span><span class="p">,</span> <span class="s1">&#39;wt&#39;</span><span class="p">)</span>
+        <span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">fo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">paste_dev_clipboard</span><span class="p">():</span>
+        <span class="n">fo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/dev/clipboard&#39;</span><span class="p">,</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">fo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">content</span>
+
+    <span class="k">return</span> <span class="n">copy_dev_clipboard</span><span class="p">,</span> <span class="n">paste_dev_clipboard</span>
+
+
+<span class="k">def</span> <span class="nf">init_no_clipboard</span><span class="p">():</span>
+    <span class="k">class</span> <span class="nc">ClipboardUnavailable</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+        <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">PyperclipException</span><span class="p">(</span><span class="n">EXCEPT_MSG</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">PY2</span><span class="p">:</span>
+            <span class="k">def</span> <span class="nf">__nonzero__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">def</span> <span class="nf">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="n">ClipboardUnavailable</span><span class="p">(),</span> <span class="n">ClipboardUnavailable</span><span class="p">()</span>
+
+
+
+
+<span class="c1"># Windows-related clipboard functions:</span>
+<span class="k">class</span> <span class="nc">CheckedCall</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CheckedCall</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span> <span class="ow">and</span> <span class="n">get_errno</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">PyperclipWindowsException</span><span class="p">(</span><span class="s2">&quot;Error calling &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="k">def</span> <span class="nf">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">init_windows_clipboard</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">HGLOBAL</span><span class="p">,</span> <span class="n">LPVOID</span><span class="p">,</span> <span class="n">DWORD</span><span class="p">,</span> <span class="n">LPCSTR</span><span class="p">,</span> <span class="n">INT</span><span class="p">,</span> <span class="n">HWND</span><span class="p">,</span> <span class="n">HINSTANCE</span><span class="p">,</span> <span class="n">HMENU</span><span class="p">,</span> <span class="n">BOOL</span><span class="p">,</span> <span class="n">UINT</span><span class="p">,</span> <span class="n">HANDLE</span>
+    <span class="kn">from</span> <span class="nn">ctypes.wintypes</span> <span class="k">import</span> <span class="p">(</span><span class="n">HGLOBAL</span><span class="p">,</span> <span class="n">LPVOID</span><span class="p">,</span> <span class="n">DWORD</span><span class="p">,</span> <span class="n">LPCSTR</span><span class="p">,</span> <span class="n">INT</span><span class="p">,</span> <span class="n">HWND</span><span class="p">,</span>
+                                 <span class="n">HINSTANCE</span><span class="p">,</span> <span class="n">HMENU</span><span class="p">,</span> <span class="n">BOOL</span><span class="p">,</span> <span class="n">UINT</span><span class="p">,</span> <span class="n">HANDLE</span><span class="p">)</span>
+
+    <span class="n">windll</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">windll</span>
+    <span class="n">msvcrt</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="s1">&#39;msvcrt&#39;</span><span class="p">)</span>
+
+    <span class="n">safeCreateWindowExA</span> <span class="o">=</span> <span class="n">CheckedCall</span><span class="p">(</span><span class="n">windll</span><span class="o">.</span><span class="n">user32</span><span class="o">.</span><span class="n">CreateWindowExA</span><span class="p">)</span>
+    <span class="n">safeCreateWindowExA</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">DWORD</span><span class="p">,</span> <span class="n">LPCSTR</span><span class="p">,</span> <span class="n">LPCSTR</span><span class="p">,</span> <span class="n">DWORD</span><span class="p">,</span> <span class="n">INT</span><span class="p">,</span> <span class="n">INT</span><span class="p">,</span>
+                                    <span class="n">INT</span><span class="p">,</span> <span class="n">INT</span><span class="p">,</span> <span class="n">HWND</span><span class="p">,</span> <span class="n">HMENU</span><span class="p">,</span> <span class="n">HINSTANCE</span><span class="p">,</span> <span class="n">LPVOID</span><span class="p">]</span>
+    <span class="n">safeCreateWindowExA</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">HWND</span>
+
+    <span class="n">safeDestroyWindow</span> <span class="o">=</span> <span class="n">CheckedCall</span><span class="p">(</span><span class="n">windll</span><span class="o">.</span><span class="n">user32</span><span class="o">.</span><span class="n">DestroyWindow</span><span class="p">)</span>
+    <span class="n">safeDestroyWindow</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">HWND</span><span class="p">]</span>
+    <span class="n">safeDestroyWindow</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">BOOL</span>
+
+    <span class="n">OpenClipboard</span> <span class="o">=</span> <span class="n">windll</span><span class="o">.</span><span class="n">user32</span><span class="o">.</span><span class="n">OpenClipboard</span>
+    <span class="n">OpenClipboard</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">HWND</span><span class="p">]</span>
+    <span class="n">OpenClipboard</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">BOOL</span>
+
+    <span class="n">safeCloseClipboard</span> <span class="o">=</span> <span class="n">CheckedCall</span><span class="p">(</span><span class="n">windll</span><span class="o">.</span><span class="n">user32</span><span class="o">.</span><span class="n">CloseClipboard</span><span class="p">)</span>
+    <span class="n">safeCloseClipboard</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">safeCloseClipboard</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">BOOL</span>
+
+    <span class="n">safeEmptyClipboard</span> <span class="o">=</span> <span class="n">CheckedCall</span><span class="p">(</span><span class="n">windll</span><span class="o">.</span><span class="n">user32</span><span class="o">.</span><span class="n">EmptyClipboard</span><span class="p">)</span>
+    <span class="n">safeEmptyClipboard</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">safeEmptyClipboard</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">BOOL</span>
+
+    <span class="n">safeGetClipboardData</span> <span class="o">=</span> <span class="n">CheckedCall</span><span class="p">(</span><span class="n">windll</span><span class="o">.</span><span class="n">user32</span><span class="o">.</span><span class="n">GetClipboardData</span><span class="p">)</span>
+    <span class="n">safeGetClipboardData</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">UINT</span><span class="p">]</span>
+    <span class="n">safeGetClipboardData</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">HANDLE</span>
+
+    <span class="n">safeSetClipboardData</span> <span class="o">=</span> <span class="n">CheckedCall</span><span class="p">(</span><span class="n">windll</span><span class="o">.</span><span class="n">user32</span><span class="o">.</span><span class="n">SetClipboardData</span><span class="p">)</span>
+    <span class="n">safeSetClipboardData</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">UINT</span><span class="p">,</span> <span class="n">HANDLE</span><span class="p">]</span>
+    <span class="n">safeSetClipboardData</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">HANDLE</span>
+
+    <span class="n">safeGlobalAlloc</span> <span class="o">=</span> <span class="n">CheckedCall</span><span class="p">(</span><span class="n">windll</span><span class="o">.</span><span class="n">kernel32</span><span class="o">.</span><span class="n">GlobalAlloc</span><span class="p">)</span>
+    <span class="n">safeGlobalAlloc</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">UINT</span><span class="p">,</span> <span class="n">c_size_t</span><span class="p">]</span>
+    <span class="n">safeGlobalAlloc</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">HGLOBAL</span>
+
+    <span class="n">safeGlobalLock</span> <span class="o">=</span> <span class="n">CheckedCall</span><span class="p">(</span><span class="n">windll</span><span class="o">.</span><span class="n">kernel32</span><span class="o">.</span><span class="n">GlobalLock</span><span class="p">)</span>
+    <span class="n">safeGlobalLock</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">HGLOBAL</span><span class="p">]</span>
+    <span class="n">safeGlobalLock</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">LPVOID</span>
+
+    <span class="n">safeGlobalUnlock</span> <span class="o">=</span> <span class="n">CheckedCall</span><span class="p">(</span><span class="n">windll</span><span class="o">.</span><span class="n">kernel32</span><span class="o">.</span><span class="n">GlobalUnlock</span><span class="p">)</span>
+    <span class="n">safeGlobalUnlock</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">HGLOBAL</span><span class="p">]</span>
+    <span class="n">safeGlobalUnlock</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">BOOL</span>
+
+    <span class="n">wcslen</span> <span class="o">=</span> <span class="n">CheckedCall</span><span class="p">(</span><span class="n">msvcrt</span><span class="o">.</span><span class="n">wcslen</span><span class="p">)</span>
+    <span class="n">wcslen</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">c_wchar_p</span><span class="p">]</span>
+    <span class="n">wcslen</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">UINT</span>
+
+    <span class="n">GMEM_MOVEABLE</span> <span class="o">=</span> <span class="mh">0x0002</span>
+    <span class="n">CF_UNICODETEXT</span> <span class="o">=</span> <span class="mi">13</span>
+
+    <span class="nd">@contextlib</span><span class="o">.</span><span class="n">contextmanager</span>
+    <span class="k">def</span> <span class="nf">window</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Context that provides a valid Windows hwnd.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># we really just need the hwnd, so setting &quot;STATIC&quot;</span>
+        <span class="c1"># as predefined lpClass is just fine.</span>
+        <span class="n">hwnd</span> <span class="o">=</span> <span class="n">safeCreateWindowExA</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;STATIC&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                   <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">hwnd</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">safeDestroyWindow</span><span class="p">(</span><span class="n">hwnd</span><span class="p">)</span>
+
+    <span class="nd">@contextlib</span><span class="o">.</span><span class="n">contextmanager</span>
+    <span class="k">def</span> <span class="nf">clipboard</span><span class="p">(</span><span class="n">hwnd</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Context manager that opens the clipboard and prevents</span>
+<span class="sd">        other applications from modifying the clipboard content.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># We may not get the clipboard handle immediately because</span>
+        <span class="c1"># some other application is accessing it (?)</span>
+        <span class="c1"># We try for at least 500ms to get the clipboard.</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.5</span>
+        <span class="n">success</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">while</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">:</span>
+            <span class="n">success</span> <span class="o">=</span> <span class="n">OpenClipboard</span><span class="p">(</span><span class="n">hwnd</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">PyperclipWindowsException</span><span class="p">(</span><span class="s2">&quot;Error calling OpenClipboard&quot;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">yield</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">safeCloseClipboard</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">copy_windows</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+        <span class="c1"># This function is heavily based on</span>
+        <span class="c1"># http://msdn.com/ms649016#_win32_Copying_Information_to_the_Clipboard</span>
+        <span class="k">with</span> <span class="n">window</span><span class="p">()</span> <span class="k">as</span> <span class="n">hwnd</span><span class="p">:</span>
+            <span class="c1"># http://msdn.com/ms649048</span>
+            <span class="c1"># If an application calls OpenClipboard with hwnd set to NULL,</span>
+            <span class="c1"># EmptyClipboard sets the clipboard owner to NULL;</span>
+            <span class="c1"># this causes SetClipboardData to fail.</span>
+            <span class="c1"># =&gt; We need a valid hwnd to copy something.</span>
+            <span class="k">with</span> <span class="n">clipboard</span><span class="p">(</span><span class="n">hwnd</span><span class="p">):</span>
+                <span class="n">safeEmptyClipboard</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="n">text</span><span class="p">:</span>
+                    <span class="c1"># http://msdn.com/ms649051</span>
+                    <span class="c1"># If the hMem parameter identifies a memory object,</span>
+                    <span class="c1"># the object must have been allocated using the</span>
+                    <span class="c1"># function with the GMEM_MOVEABLE flag.</span>
+                    <span class="n">count</span> <span class="o">=</span> <span class="n">wcslen</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="n">handle</span> <span class="o">=</span> <span class="n">safeGlobalAlloc</span><span class="p">(</span><span class="n">GMEM_MOVEABLE</span><span class="p">,</span>
+                                             <span class="n">count</span> <span class="o">*</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">c_wchar</span><span class="p">))</span>
+                    <span class="n">locked_handle</span> <span class="o">=</span> <span class="n">safeGlobalLock</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+
+                    <span class="n">ctypes</span><span class="o">.</span><span class="n">memmove</span><span class="p">(</span><span class="n">c_wchar_p</span><span class="p">(</span><span class="n">locked_handle</span><span class="p">),</span> <span class="n">c_wchar_p</span><span class="p">(</span><span class="n">text</span><span class="p">),</span> <span class="n">count</span> <span class="o">*</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">c_wchar</span><span class="p">))</span>
+
+                    <span class="n">safeGlobalUnlock</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+                    <span class="n">safeSetClipboardData</span><span class="p">(</span><span class="n">CF_UNICODETEXT</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">paste_windows</span><span class="p">():</span>
+        <span class="k">with</span> <span class="n">clipboard</span><span class="p">(</span><span class="kc">None</span><span class="p">):</span>
+            <span class="n">handle</span> <span class="o">=</span> <span class="n">safeGetClipboardData</span><span class="p">(</span><span class="n">CF_UNICODETEXT</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">handle</span><span class="p">:</span>
+                <span class="c1"># GetClipboardData may return NULL with errno == NO_ERROR</span>
+                <span class="c1"># if the clipboard is empty.</span>
+                <span class="c1"># (Also, it may return a handle to an empty buffer,</span>
+                <span class="c1"># but technically that&#39;s not empty)</span>
+                <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">return</span> <span class="n">c_wchar_p</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="k">return</span> <span class="n">copy_windows</span><span class="p">,</span> <span class="n">paste_windows</span>
+
+
+
+
+<span class="c1"># Automatic detection of clipboard mechanisms and importing is done in deteremine_clipboard():</span>
+<div class="viewcode-block" id="determine_clipboard"><a class="viewcode-back" href="../../../books.CrackingCodesWithPython.html#books.CrackingCodesWithPython.pyperclip.determine_clipboard">[docs]</a><span class="k">def</span> <span class="nf">determine_clipboard</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Determine the OS/platform and set the copy() and paste() functions</span>
+<span class="sd">    accordingly.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">global</span> <span class="n">Foundation</span><span class="p">,</span> <span class="n">AppKit</span><span class="p">,</span> <span class="n">gtk</span><span class="p">,</span> <span class="n">qtpy</span><span class="p">,</span> <span class="n">PyQt4</span><span class="p">,</span> <span class="n">PyQt5</span>
+
+    <span class="c1"># Setup for the CYGWIN platform:</span>
+    <span class="k">if</span> <span class="s1">&#39;cygwin&#39;</span> <span class="ow">in</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span> <span class="c1"># Cygwin has a variety of values returned by platform.system(), such as &#39;CYGWIN_NT-6.1&#39;</span>
+        <span class="c1"># FIXME: pyperclip currently does not support Cygwin,</span>
+        <span class="c1"># see https://github.com/asweigart/pyperclip/issues/55</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;/dev/clipboard&#39;</span><span class="p">):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Pyperclip</span><span class="se">\&#39;</span><span class="s1">s support for Cygwin is not perfect, see https://github.com/asweigart/pyperclip/issues/55&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">init_dev_clipboard_clipboard</span><span class="p">()</span>
+
+    <span class="c1"># Setup for the WINDOWS platform:</span>
+    <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;nt&#39;</span> <span class="ow">or</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Windows&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">init_windows_clipboard</span><span class="p">()</span>
+
+    <span class="c1"># Setup for the MAC OS X platform:</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;mac&#39;</span> <span class="ow">or</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">Foundation</span>  <span class="c1"># check if pyobjc is installed</span>
+            <span class="kn">import</span> <span class="nn">AppKit</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">init_osx_pbcopy_clipboard</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">init_osx_pyobjc_clipboard</span><span class="p">()</span>
+
+    <span class="c1"># Setup for the LINUX platform:</span>
+    <span class="k">if</span> <span class="n">HAS_DISPLAY</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">gtk</span>  <span class="c1"># check if gtk is installed</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="k">pass</span> <span class="c1"># We want to fail fast for all non-ImportError exceptions.</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">init_gtk_clipboard</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">_executable_exists</span><span class="p">(</span><span class="s2">&quot;xclip&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">init_xclip_clipboard</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">_executable_exists</span><span class="p">(</span><span class="s2">&quot;xsel&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">init_xsel_clipboard</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">_executable_exists</span><span class="p">(</span><span class="s2">&quot;klipper&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">_executable_exists</span><span class="p">(</span><span class="s2">&quot;qdbus&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">init_klipper_clipboard</span><span class="p">()</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># qtpy is a small abstraction layer that lets you write applications using a single api call to either PyQt or PySide.</span>
+            <span class="c1"># https://pypi.python.org/pypi/QtPy</span>
+            <span class="kn">import</span> <span class="nn">qtpy</span>  <span class="c1"># check if qtpy is installed</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="c1"># If qtpy isn&#39;t installed, fall back on importing PyQt4.</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="kn">import</span> <span class="nn">PyQt5</span>  <span class="c1"># check if PyQt5 is installed</span>
+            <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="kn">import</span> <span class="nn">PyQt4</span>  <span class="c1"># check if PyQt4 is installed</span>
+                <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+                    <span class="k">pass</span> <span class="c1"># We want to fail fast for all non-ImportError exceptions.</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">init_qt_clipboard</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">init_qt_clipboard</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">init_qt_clipboard</span><span class="p">()</span>
+
+
+    <span class="k">return</span> <span class="n">init_no_clipboard</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="set_clipboard"><a class="viewcode-back" href="../../../books.CrackingCodesWithPython.html#books.CrackingCodesWithPython.pyperclip.set_clipboard">[docs]</a><span class="k">def</span> <span class="nf">set_clipboard</span><span class="p">(</span><span class="n">clipboard</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Explicitly sets the clipboard mechanism. The &quot;clipboard mechanism&quot; is how</span>
+<span class="sd">    the copy() and paste() functions interact with the operating system to</span>
+<span class="sd">    implement the copy/paste feature. The clipboard parameter must be one of:</span>
+<span class="sd">        - pbcopy</span>
+<span class="sd">        - pbobjc (default on Mac OS X)</span>
+<span class="sd">        - gtk</span>
+<span class="sd">        - qt</span>
+<span class="sd">        - xclip</span>
+<span class="sd">        - xsel</span>
+<span class="sd">        - klipper</span>
+<span class="sd">        - windows (default on Windows)</span>
+<span class="sd">        - no (this is what is set when no clipboard mechanism can be found)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">global</span> <span class="n">copy</span><span class="p">,</span> <span class="n">paste</span>
+
+    <span class="n">clipboard_types</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;pbcopy&#39;</span><span class="p">:</span> <span class="n">init_osx_pbcopy_clipboard</span><span class="p">,</span>
+                       <span class="s1">&#39;pyobjc&#39;</span><span class="p">:</span> <span class="n">init_osx_pyobjc_clipboard</span><span class="p">,</span>
+                       <span class="s1">&#39;gtk&#39;</span><span class="p">:</span> <span class="n">init_gtk_clipboard</span><span class="p">,</span>
+                       <span class="s1">&#39;qt&#39;</span><span class="p">:</span> <span class="n">init_qt_clipboard</span><span class="p">,</span> <span class="c1"># TODO - split this into &#39;qtpy&#39;, &#39;pyqt4&#39;, and &#39;pyqt5&#39;</span>
+                       <span class="s1">&#39;xclip&#39;</span><span class="p">:</span> <span class="n">init_xclip_clipboard</span><span class="p">,</span>
+                       <span class="s1">&#39;xsel&#39;</span><span class="p">:</span> <span class="n">init_xsel_clipboard</span><span class="p">,</span>
+                       <span class="s1">&#39;klipper&#39;</span><span class="p">:</span> <span class="n">init_klipper_clipboard</span><span class="p">,</span>
+                       <span class="s1">&#39;windows&#39;</span><span class="p">:</span> <span class="n">init_windows_clipboard</span><span class="p">,</span>
+                       <span class="s1">&#39;no&#39;</span><span class="p">:</span> <span class="n">init_no_clipboard</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">clipboard</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">clipboard_types</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Argument must be one of </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">repr</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">clipboard_types</span><span class="o">.</span><span class="n">keys</span><span class="p">()])))</span>
+
+    <span class="c1"># Sets pyperclip&#39;s copy() and paste() functions:</span>
+    <span class="n">copy</span><span class="p">,</span> <span class="n">paste</span> <span class="o">=</span> <span class="n">clipboard_types</span><span class="p">[</span><span class="n">clipboard</span><span class="p">]()</span></div>
+
+
+<span class="k">def</span> <span class="nf">lazy_load_stub_copy</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    A stub function for copy(), which will load the real copy() function when</span>
+<span class="sd">    called so that the real copy() function is used for later calls.</span>
+
+<span class="sd">    This allows users to import pyperclip without having determine_clipboard()</span>
+<span class="sd">    automatically run, which will automatically select a clipboard mechanism.</span>
+<span class="sd">    This could be a problem if it selects, say, the memory-heavy PyQt4 module</span>
+<span class="sd">    but the user was just going to immediately call set_clipboard() to use a</span>
+<span class="sd">    different clipboard mechanism.</span>
+
+<span class="sd">    The lazy loading this stub function implements gives the user a chance to</span>
+<span class="sd">    call set_clipboard() to pick another clipboard mechanism. Or, if the user</span>
+<span class="sd">    simply calls copy() or paste() without calling set_clipboard() first,</span>
+<span class="sd">    will fall back on whatever clipboard mechanism that determine_clipboard()</span>
+<span class="sd">    automatically chooses.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">global</span> <span class="n">copy</span><span class="p">,</span> <span class="n">paste</span>
+    <span class="n">copy</span><span class="p">,</span> <span class="n">paste</span> <span class="o">=</span> <span class="n">determine_clipboard</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">copy</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">lazy_load_stub_paste</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    A stub function for paste(), which will load the real paste() function when</span>
+<span class="sd">    called so that the real paste() function is used for later calls.</span>
+
+<span class="sd">    This allows users to import pyperclip without having determine_clipboard()</span>
+<span class="sd">    automatically run, which will automatically select a clipboard mechanism.</span>
+<span class="sd">    This could be a problem if it selects, say, the memory-heavy PyQt4 module</span>
+<span class="sd">    but the user was just going to immediately call set_clipboard() to use a</span>
+<span class="sd">    different clipboard mechanism.</span>
+
+<span class="sd">    The lazy loading this stub function implements gives the user a chance to</span>
+<span class="sd">    call set_clipboard() to pick another clipboard mechanism. Or, if the user</span>
+<span class="sd">    simply calls copy() or paste() without calling set_clipboard() first,</span>
+<span class="sd">    will fall back on whatever clipboard mechanism that determine_clipboard()</span>
+<span class="sd">    automatically chooses.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">global</span> <span class="n">copy</span><span class="p">,</span> <span class="n">paste</span>
+    <span class="n">copy</span><span class="p">,</span> <span class="n">paste</span> <span class="o">=</span> <span class="n">determine_clipboard</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">paste</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">is_available</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">copy</span> <span class="o">!=</span> <span class="n">lazy_load_stub_copy</span> <span class="ow">and</span> <span class="n">paste</span> <span class="o">!=</span> <span class="n">lazy_load_stub_paste</span>
+
+
+<span class="c1"># Initially, copy() and paste() are set to lazy loading wrappers which will</span>
+<span class="c1"># set `copy` and `paste` to real functions the first time they&#39;re used, unless</span>
+<span class="c1"># set_clipboard() or determine_clipboard() is called first.</span>
+<span class="n">copy</span><span class="p">,</span> <span class="n">paste</span> <span class="o">=</span> <span class="n">lazy_load_stub_copy</span><span class="p">,</span> <span class="n">lazy_load_stub_paste</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;copy&#39;</span><span class="p">,</span> <span class="s1">&#39;paste&#39;</span><span class="p">,</span> <span class="s1">&#39;set_clipboard&#39;</span><span class="p">,</span> <span class="s1">&#39;determine_clipboard&#39;</span><span class="p">]</span>
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
