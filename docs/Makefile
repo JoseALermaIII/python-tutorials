@@ -22,7 +22,8 @@ help:
 	
 # Instructions to make the pdf with latexpdf
 latexpdf: 
-	$(SPHINXBUILD) -b latex ./source $(PDFBUILDDIR)/latex 
+	$(SPHINXBUILD) -b latex ./source $(PDFBUILDDIR)/latex
+	touch $(PDFBUILDDIR)/latex/python-tutorials.ind
 	@echo "Running LaTeX files through pdflatex..." 
 	make -C $(PDFBUILDDIR)/latex all-pdf 
 	cp $(PDFBUILDDIR)/latex/*.pdf $(PDF) 

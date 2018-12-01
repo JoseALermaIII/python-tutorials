@@ -28,14 +28,6 @@ CrackingCodesWithPython.Chapter01.caesarHacker module
     :undoc-members:
     :show-inheritance:
 
-CrackingCodesWithPython.Chapter01.config module
------------------------------------------------
-
-.. automodule:: CrackingCodesWithPython.Chapter01.config
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 
 Module contents
 ---------------
