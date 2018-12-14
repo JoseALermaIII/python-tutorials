@@ -19,7 +19,7 @@ def decryptMessage(key: int, message: str) -> str:
         message: Message to decrypt.
 
     Returns:
-        Returns decrypted string.
+        Decrypted message string.
     """
     return caesarCipher(key, message, "decrypt")
 
@@ -34,7 +34,7 @@ def encryptMessage(key: int, message: str) -> str:
         message: Message to encrypt.
 
     Returns:
-        Returns encrypted string.
+        Encrypted message string.
     """
     return caesarCipher(key, message, "encrypt")
 
@@ -50,9 +50,10 @@ def caesarCipher(key: int, message: str, mode: str) -> str:
         mode: Specifies encryption or decryption.
 
     Returns:
-        translated: Encrypted/decrypted message string.
+        Encrypted/decrypted message string.
 
     Example:
+        >>> from pythontutorials.books.CrackingCodesWithPython.Chapter01.caesarCipher import caesarCipher
         >>> caesarCipher(4, 'IMPIETY: YOUR IRREVERENCE TOWARD MY DEITY.', 'encrypt')
         'MQTMIXc:AcSYVAMVVIZIVIRGIAXSaEVHAQcAHIMXcD'
     """
