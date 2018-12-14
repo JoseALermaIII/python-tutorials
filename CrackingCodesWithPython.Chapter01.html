@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CrackingCodesWithPython.Chapter01 package &mdash; python-tutorials 1.1.0 documentation</title>
+  <title>CrackingCodesWithPython.Chapter01 package &mdash; python-tutorials 1.1.1 documentation</title>
   
 
   
@@ -253,16 +253,14 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Encrypted/decrypted message string.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">translated</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Encrypted/decrypted message string.</p>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Example</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">caesarCipher</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;IMPIETY: YOUR IRREVERENCE TOWARD MY DEITY.&#39;</span><span class="p">,</span> <span class="s1">&#39;encrypt&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pythontutorials.books.CrackingCodesWithPython.Chapter01.caesarCipher</span> <span class="k">import</span> <span class="n">caesarCipher</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">caesarCipher</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;IMPIETY: YOUR IRREVERENCE TOWARD MY DEITY.&#39;</span><span class="p">,</span> <span class="s1">&#39;encrypt&#39;</span><span class="p">)</span>
 <span class="go">&#39;MQTMIXc:AcSYVAMVVIZIVIRGIAXSaEVHAQcAHIMXcD&#39;</span>
 </pre></div>
 </div>
@@ -283,7 +281,7 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Returns decrypted string.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Decrypted message string.</p>
 </td>
 </tr>
 </tbody>
@@ -305,7 +303,7 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Returns encrypted string.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Encrypted message string.</p>
 </td>
 </tr>
 </tbody>
@@ -339,13 +337,13 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-CrackingCodesWithPython.Chapter01.config">
-<span id="crackingcodeswithpython-chapter01-config-module"></span><h2>CrackingCodesWithPython.Chapter01.config module<a class="headerlink" href="#module-CrackingCodesWithPython.Chapter01.config" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-CrackingCodesWithPython.Chapter01.constants">
+<span id="crackingcodeswithpython-chapter01-constants-module"></span><h2>CrackingCodesWithPython.Chapter01.constants module<a class="headerlink" href="#module-CrackingCodesWithPython.Chapter01.constants" title="Permalink to this headline">¶</a></h2>
 <p>Configuration file with global variables.</p>
 <p>Mainly contains definition of every possible encryptable symbol.</p>
 <dl class="attribute">
-<dt id="CrackingCodesWithPython.Chapter01.config.SYMBOLS">
-<code class="descclassname">CrackingCodesWithPython.Chapter01.config.</code><code class="descname">SYMBOLS</code><a class="headerlink" href="#CrackingCodesWithPython.Chapter01.config.SYMBOLS" title="Permalink to this definition">¶</a></dt>
+<dt id="CrackingCodesWithPython.Chapter01.constants.SYMBOLS">
+<code class="descclassname">CrackingCodesWithPython.Chapter01.constants.</code><code class="descname">SYMBOLS</code><a class="headerlink" href="#CrackingCodesWithPython.Chapter01.constants.SYMBOLS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Every possible symbol that can be encrypted.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CrackingCodesWithPython.Chapter01.PracticeQuestions &mdash; python-tutorials 1.1.0 documentation</title>
+  <title>CrackingCodesWithPython.Chapter01.PracticeQuestions &mdash; python-tutorials 1.1.1 documentation</title>
   
 
   
@@ -84,9 +84,6 @@
               <p class="caption"><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/atom_setup.html">Atom</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/vim_setup.html">Vim</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/pycharm_setup.html">PyCharm</a></li>
 </ul>
 <p class="caption"><span class="caption-text">books</span></p>
 <ul>
@@ -179,12 +176,12 @@
 
 <span class="kn">from</span> <span class="nn">pythontutorials.books.CrackingCodesWithPython.Chapter01.caesarCipher</span> <span class="k">import</span> <span class="n">decryptMessage</span><span class="p">,</span> <span class="n">encryptMessage</span>
 <span class="kn">from</span> <span class="nn">pythontutorials.books.CrackingCodesWithPython.Chapter01.caesarHacker</span> <span class="k">import</span> <span class="n">hackCaesar</span>
-<span class="kn">import</span> <span class="nn">pythontutorials.books.CrackingCodesWithPython.Chapter01.config</span>
+<span class="kn">import</span> <span class="nn">pythontutorials.books.CrackingCodesWithPython.Chapter01.constants</span>
 
 
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter01.html#CrackingCodesWithPython.Chapter01.PracticeQuestions.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="c1"># Every possible symbol that can be encrypted (if encrypting by hand):</span>
-    <span class="n">books</span><span class="o">.</span><span class="n">CrackingCodesWithPython</span><span class="o">.</span><span class="n">Chapter01</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">SYMBOLS</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>
+    <span class="n">pythontutorials</span><span class="o">.</span><span class="n">books</span><span class="o">.</span><span class="n">CrackingCodesWithPython</span><span class="o">.</span><span class="n">Chapter01</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">SYMBOLS</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>
 
     <span class="c1"># 1. Encrypt the following entries from Ambrose Bierce&#39;s The Devil&#39;s Dictionary</span>
     <span class="c1">#    with the given keys:</span>

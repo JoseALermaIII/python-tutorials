@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CrackingCodesWithPython.Chapter01.caesarCipher &mdash; python-tutorials 1.1.0 documentation</title>
+  <title>CrackingCodesWithPython.Chapter01.caesarCipher &mdash; python-tutorials 1.1.1 documentation</title>
   
 
   
@@ -84,9 +84,6 @@
               <p class="caption"><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/atom_setup.html">Atom</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/vim_setup.html">Vim</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/pycharm_setup.html">PyCharm</a></li>
 </ul>
 <p class="caption"><span class="caption-text">books</span></p>
 <ul>
@@ -175,7 +172,7 @@
 <span class="sd">    Contains spoilers from Chapter 5 (caesarCipher) and Chapter 7 (functions)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">pythontutorials.books.CrackingCodesWithPython.Chapter01.config</span> <span class="k">import</span> <span class="n">SYMBOLS</span>
+<span class="kn">from</span> <span class="nn">pythontutorials.books.CrackingCodesWithPython.Chapter01.constants</span> <span class="k">import</span> <span class="n">SYMBOLS</span>
 
 
 <div class="viewcode-block" id="decryptMessage"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter01.html#CrackingCodesWithPython.Chapter01.caesarCipher.decryptMessage">[docs]</a><span class="k">def</span> <span class="nf">decryptMessage</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -188,7 +185,7 @@
 <span class="sd">        message: Message to decrypt.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        Returns decrypted string.</span>
+<span class="sd">        Decrypted message string.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">caesarCipher</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="s2">&quot;decrypt&quot;</span><span class="p">)</span></div>
 
@@ -203,7 +200,7 @@
 <span class="sd">        message: Message to encrypt.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        Returns encrypted string.</span>
+<span class="sd">        Encrypted message string.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">caesarCipher</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="s2">&quot;encrypt&quot;</span><span class="p">)</span></div>
 
@@ -219,9 +216,10 @@
 <span class="sd">        mode: Specifies encryption or decryption.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        translated: Encrypted/decrypted message string.</span>
+<span class="sd">        Encrypted/decrypted message string.</span>
 
 <span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; from pythontutorials.books.CrackingCodesWithPython.Chapter01.caesarCipher import caesarCipher</span>
 <span class="sd">        &gt;&gt;&gt; caesarCipher(4, &#39;IMPIETY: YOUR IRREVERENCE TOWARD MY DEITY.&#39;, &#39;encrypt&#39;)</span>
 <span class="sd">        &#39;MQTMIXc:AcSYVAMVVIZIVIRGIAXSaEVHAQcAHIMXcD&#39;</span>
 <span class="sd">    &quot;&quot;&quot;</span>

@@ -28,9 +28,6 @@ You're back? Alright, let's continue.
    :caption: Getting Started
 
    getting_started/installation
-   getting_started/atom_setup
-   getting_started/vim_setup
-   getting_started/pycharm_setup
 
 .. toctree::
    :maxdepth: 3

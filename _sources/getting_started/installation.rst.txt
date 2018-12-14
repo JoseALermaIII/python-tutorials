@@ -14,6 +14,11 @@ setup is extensible and full-featured.
 I have Pycharm on a Windows 10 Technical Preview :abbr:`VM (Virtual Machine)`, and it works well, but is quite bloated
 for a Windows VM running in Windows (Windows-ception?).
 
+.. toctree::
+    :maxdepth: 2
+
+    atom_setup
+
 Linux
 -----
 
@@ -27,6 +32,18 @@ reinstalling on VMs is easier than on physical machines.
 
 I've read that some python bots can be run on a Raspberry Pi. I would like to tinker with this concept a bit, but I am
 concerned that Raspberry Pis do not have enough RAM, so I will be sticking with VMs until I can get more tests done.
+
+.. toctree::
+    :maxdepth: 3
+    :caption: Vim
+
+    vim_setup
+
+.. toctree::
+    :maxdepth: 3
+    :caption: PyCharm
+
+    pycharm_setup
 
 Building Documentation
 ----------------------
@@ -74,3 +91,4 @@ Though covered by the MIT License, I reiterate: executable programs written from
 bad things.
 
   Read and understand all code you copy and paste before running it.
+

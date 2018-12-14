@@ -28,10 +28,10 @@ CrackingCodesWithPython.Chapter01.caesarHacker module
     :undoc-members:
     :show-inheritance:
 
-CrackingCodesWithPython.Chapter01.config module
------------------------------------------------
+CrackingCodesWithPython.Chapter01.constants module
+--------------------------------------------------
 
-.. automodule:: CrackingCodesWithPython.Chapter01.config
+.. automodule:: CrackingCodesWithPython.Chapter01.constants
     :members:
     :undoc-members:
     :show-inheritance:
