@@ -10,12 +10,12 @@ Notes:
 
 from pythontutorials.books.CrackingCodesWithPython.Chapter01.caesarCipher import decryptMessage, encryptMessage
 from pythontutorials.books.CrackingCodesWithPython.Chapter01.caesarHacker import hackCaesar
-import pythontutorials.books.CrackingCodesWithPython.Chapter01.config
+import pythontutorials.books.CrackingCodesWithPython.Chapter01.constants
 
 
 def main():
     # Every possible symbol that can be encrypted (if encrypting by hand):
-    books.CrackingCodesWithPython.Chapter01.config.SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    pythontutorials.books.CrackingCodesWithPython.Chapter01.constants.SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
     # 1. Encrypt the following entries from Ambrose Bierce's The Devil's Dictionary
     #    with the given keys:

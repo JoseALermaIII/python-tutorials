@@ -6,7 +6,7 @@ Note:
     Contains spoilers from Chapter 5 (caesarCipher) and Chapter 7 (functions)
 """
 
-from pythontutorials.books.CrackingCodesWithPython.Chapter01.config import SYMBOLS
+from pythontutorials.books.CrackingCodesWithPython.Chapter01.constants import SYMBOLS
 
 
 def decryptMessage(key: int, message: str) -> str:
