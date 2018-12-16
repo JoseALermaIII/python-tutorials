@@ -1,8 +1,21 @@
-# This program answers your questions
-import random
+"""Magic 8 ball
+
+This program answers your questions with a function that knows all.
+
+"""
 
 
-def getAnswer(answerNumber):
+def getAnswer(answerNumber: int) -> str:
+    """Get answer
+
+    Uses `if` ... `elif` sequence to return a response based on an inputted number.
+
+    Args:
+        answerNumber: Any integer between 1 and 9.
+
+    Returns:
+        String containing a response based on the given number.
+    """
     if answerNumber == 1:
         return 'It is certain'
     elif answerNumber == 2:
@@ -23,6 +36,12 @@ def getAnswer(answerNumber):
         return 'Very doubtful'
 
 
-r = random.randint(1, 9)
-fortune = getAnswer(r)
-print(fortune)  # equivalent: print(getAnswer(random.randint(1, 9)))
+def main():
+    import random
+    r = random.randint(1, 9)
+    fortune = getAnswer(r)
+    print(fortune)  # equivalent: print(getAnswer(random.randint(1, 9)))
+
+
+if __name__ == '__main__':
+    main()
