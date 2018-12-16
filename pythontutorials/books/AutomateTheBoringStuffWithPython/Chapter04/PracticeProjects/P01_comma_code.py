@@ -1,19 +1,37 @@
-# This program converts a list to a comma separated string
-#
-# Write a function that takes a list value as an argument and returns a string
-# with all the items separated by a comma and a space, with and inserted before
-# the last item.
-#
-# Say you have a list value like this:
-# spam = ['apples', 'bananas', 'tofu', 'cats']
-# For example, passing the previous spam list to the function would return
-# 'apples, bananas, tofu, and cats'. But your function should be able to work
-# with any list value passed to it.
+"""Comma code
+
+This program converts a list to a comma separated string.
+
+Write a function, :meth:`to_string` that takes a list value as an argument and
+returns a string with all the items separated by a comma and a space, with `and`
+inserted before the last item.
+
+Example:
+    >>> from pythontutorials.books.AutomateTheBoringStuffWithPython.Chapter04.PracticeProjects.P01_comma_code import to_string
+    >>> spam = ['apples', 'bananas', 'tofu', 'cats']
+    >>> to_string(spam)
+    'apples, bananas, tofu, and cats'
+
+But your function should be able to work with any list value passed to it.
+
+"""
+
 import copy
 
 
-def to_string(input_list):
-    temp_list = copy.copy(input_list)  # Don't modify input_list
+def to_string(input_list: list) -> str:
+    """To string
+
+    Converts elements in :obj:`list` to comma-separated :obj:`str`.
+
+    Args:
+        input_list: List to convert into a string.
+
+    Returns:
+        String with each element in the list separated by a comma and a
+        space with `and` inserted before the last element.
+    """
+    temp_list = copy.copy(input_list)  #: Don't modify input_list
     temp_list.insert(-1, "and ")
     for index in range(0, len(temp_list) - 2):
         temp_list[index] += ', '
