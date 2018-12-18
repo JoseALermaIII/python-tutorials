@@ -7,7 +7,7 @@
 # As an added challenge, write another program that can insert gaps into numbered
 # files so that a new file can be added.
 
-from pythontutorials.books.AutomateTheBoringStuffWithPython.Ch09.Projects.P3_fillGaps \
+from pythontutorials.books.AutomateTheBoringStuff.Ch09.Projects.P3_fillGaps \
     import is_sequence, get_filenames, get_numbers
 
 import os

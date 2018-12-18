@@ -2,7 +2,7 @@
 # P6_bulletPointAdder.py - Adds Wikipedia bullet points to the start
 # of each line of text on the clipboard
 
-import pythontutorials.books.AutomateTheBoringStuffWithPython.Ch08.pyperclip as pyperclip
+import pythontutorials.books.AutomateTheBoringStuff.Ch08.pyperclip as pyperclip
 
 text = pyperclip.paste
 
