@@ -1,5 +1,5 @@
 #! python3
-# P03_removeCsvHeader.py - Removes the header from all CSV files in the current
+# P3_removeCsvHeader.py - Removes the header from all CSV files in the current
 # working directory.
 
 import csv, os

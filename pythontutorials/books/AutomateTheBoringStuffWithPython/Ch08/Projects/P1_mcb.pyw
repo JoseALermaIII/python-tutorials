@@ -1,10 +1,10 @@
 #! python3
-# P01_mcb.pyw - Saves and loads pieces of text to the clipboard.
-# Usage: py.exe P01_mcb.pyw save <keyword> - Saves clipboard to keyword.
-#        py.exe P01_mcb.pyw delete <keyword> - Deletes keyword from database.
-#        py.exe P01_mcb.pyw <keyword> - Loads keyword to clipboard.
-#        py.exe P01_mcb.pyw list - Loads all keywords to clipboard.
-#        py.exe P01_mcb.pyw delete - Deletes all keywords from database.
+# P1_mcb.pyw - Saves and loads pieces of text to the clipboard.
+# Usage: py.exe P1_mcb.pyw save <keyword> - Saves clipboard to keyword.
+#        py.exe P1_mcb.pyw delete <keyword> - Deletes keyword from database.
+#        py.exe P1_mcb.pyw <keyword> - Loads keyword to clipboard.
+#        py.exe P1_mcb.pyw list - Loads all keywords to clipboard.
+#        py.exe P1_mcb.pyw delete - Deletes all keywords from database.
 #
 # Extend the multiclipboard program in this chapter so that it has a delete <keyword>
 # command line argument that will delete a keyword from the shelf. Then add a delete

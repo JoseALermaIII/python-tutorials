@@ -1,5 +1,5 @@
 #! python3
-#  P02_calcProd.py - Uses the time module to profile a function that calculates
+#  P2_calcProd.py - Uses the time module to profile a function that calculates
 #  the product of the first 100,000 numbers.
 #
 #  Note:

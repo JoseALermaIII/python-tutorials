@@ -1,8 +1,8 @@
 #! python3
-# P02_mcb.pyw - Saves and loads pieces of text to the clipboard.
-# Usage: py.exe P02_mcb.pyw save <keyword> - Saves clipboard to keyword.
-#        py.exe P02_mcb.pyw <keyword> - Loads keyword to clipboard.
-#        py.exe P02_mcb.pyw list - Loads all keywords to clipboard.
+# P2_mcb.pyw - Saves and loads pieces of text to the clipboard.
+# Usage: py.exe P2_mcb.pyw save <keyword> - Saves clipboard to keyword.
+#        py.exe P2_mcb.pyw <keyword> - Loads keyword to clipboard.
+#        py.exe P2_mcb.pyw list - Loads all keywords to clipboard.
 
 import shelve, pyperclip, sys
 

@@ -1,5 +1,5 @@
 #! python3
-# P05_textMyself.py - Defines the textmyself() function that texts a message
+# P5_textMyself.py - Defines the textmyself() function that texts a message
 # passed to it as a string.
 
 from twilio.rest import Client

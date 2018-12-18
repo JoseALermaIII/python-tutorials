@@ -93,6 +93,6 @@ def main():
     return None
 
 
-# If P03_fillGaps.py is run instead of imported, run main():
+# If P3_fillGaps.py is run instead of imported, run main():
 if __name__ == "__main__":
     main()

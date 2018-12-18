@@ -81,7 +81,7 @@ def main():
     print(int(7.7) + 1)
 
 
-# If P01_basics.py is run (instead of imported as a module), call
+# If P1_basics.py is run (instead of imported as a module), call
 # the main() function:
 if __name__ == '__main__':
     main()

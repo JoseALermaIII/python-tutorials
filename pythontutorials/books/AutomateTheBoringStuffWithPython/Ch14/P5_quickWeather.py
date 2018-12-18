@@ -1,5 +1,5 @@
 #! python3
-# P05_quickWeather.py - Prints the weather for a location from the command line.
+# P5_quickWeather.py - Prints the weather for a location from the command line.
 
 import json, requests, sys, shelve, datetime
 
@@ -20,7 +20,7 @@ def getWeather(loc, apikey):
 
 # Compute location from command line arguments.
 if len(sys.argv) < 2:
-    print('Usage: P05_quickWeather.py city,country code')
+    print('Usage: P5_quickWeather.py city,country code')
     sys.exit()
 location = ' '.join(sys.argv[1:])
 

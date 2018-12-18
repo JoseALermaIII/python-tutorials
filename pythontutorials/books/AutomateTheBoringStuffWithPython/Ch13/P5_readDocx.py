@@ -1,5 +1,5 @@
 #! python3
-# P05_readDocx.py - Accepts a filename of a .docx file and returns a single
+# P5_readDocx.py - Accepts a filename of a .docx file and returns a single
 # string value of its text.
 #
 # Note:

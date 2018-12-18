@@ -17,7 +17,7 @@ def main():
     print('You will be ' + str(int(myAge) + 1) + ' in a year.')
 
 
-# If P02_hello.py is run (instead of imported as a module), call
+# If P2_hello.py is run (instead of imported as a module), call
 # the main() function:
 if __name__ == '__main__':
     main()

@@ -1,5 +1,5 @@
 #! python3
-# P07_multidownloadXkcd.py - Downloads XKCD comics using multiple threads.
+# P7_multidownloadXkcd.py - Downloads XKCD comics using multiple threads.
 
 import requests, os, bs4, threading
 os.makedirs('xkcd', exist_ok=True)  # store comics in ./xkcd

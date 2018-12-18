@@ -1,5 +1,5 @@
 #! python3
-# P02_readCensusExcel.py - Tabulates population and number of census tracts for
+# P2_readCensusExcel.py - Tabulates population and number of census tracts for
 # each county.
 #
 # Note:

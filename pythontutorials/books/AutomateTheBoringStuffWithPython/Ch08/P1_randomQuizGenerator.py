@@ -1,5 +1,5 @@
 #! python 3
-# P01_randomQuizGenerator.py - Creates quizzes with questions and answers in
+# P1_randomQuizGenerator.py - Creates quizzes with questions and answers in
 # random order, along with the answer key.
 
 import random

@@ -12,7 +12,7 @@ In the except clause, print a message to the user saying they must enter an inte
 
 
 def main():
-    from .P01_makeCollatzSeq import collatz
+    from .P1_makeCollatzSeq import collatz
 
     try:
         n = int(input("Input a number: "))

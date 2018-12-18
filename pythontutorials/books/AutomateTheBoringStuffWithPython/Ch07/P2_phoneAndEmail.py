@@ -1,5 +1,5 @@
 #! python3
-# P02_phoneAndEmail.py - Finds phone numbers and email addresses on the clipboard
+# P2_phoneAndEmail.py - Finds phone numbers and email addresses on the clipboard
 
 import pythontutorials.books.CrackingCodesWithPython.pyperclip, re
 

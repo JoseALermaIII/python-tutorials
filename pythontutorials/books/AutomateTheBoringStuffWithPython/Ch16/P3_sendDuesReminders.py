@@ -1,5 +1,5 @@
 #! python3
-# P03_sendDuesReminders.py - Sends emails based on payment status in spreadsheet.
+# P3_sendDuesReminders.py - Sends emails based on payment status in spreadsheet.
 #
 # Note:
 # - smtp_info file has each item on separate line

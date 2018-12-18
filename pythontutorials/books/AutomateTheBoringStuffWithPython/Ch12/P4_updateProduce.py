@@ -1,5 +1,5 @@
 #! python3
-# P04_updateProduce.py - Corrects costs in produce sales spreadsheet.
+# P4_updateProduce.py - Corrects costs in produce sales spreadsheet.
 #
 # Note:
 # - The produceSales.xlsx workbook can be downloaded from
