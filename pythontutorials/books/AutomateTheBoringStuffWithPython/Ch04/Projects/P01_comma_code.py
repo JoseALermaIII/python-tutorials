@@ -7,7 +7,7 @@ returns a string with all the items separated by a comma and a space, with `and`
 inserted before the last item.
 
 Example:
-    >>> from pythontutorials.books.AutomateTheBoringStuffWithPython.Ch04.PracticeProjects.P01_comma_code import to_string
+    >>> from pythontutorials.books.AutomateTheBoringStuffWithPython.Ch04.Projects.P01_comma_code import to_string
     >>> spam = ['apples', 'bananas', 'tofu', 'cats']
     >>> to_string(spam)
     'apples, bananas, tofu, and cats'
