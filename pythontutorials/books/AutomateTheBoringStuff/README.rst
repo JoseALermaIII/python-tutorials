@@ -1,5 +1,5 @@
-AutomateTheBoringStuffWithPython
-================================
+AutomateTheBoringStuff
+======================
 
 You'll be seeing a lot of `Al Sweigart <https://twitter.com/AlSweigart>`_'s books because he provides them for free
 online at `his website <http://inventwithpython.com/>`_. Please consider donating to show your support.
