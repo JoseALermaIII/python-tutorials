@@ -15,7 +15,7 @@
 import os
 from PIL import Image, ImageFont, ImageDraw
 
-GUEST_FILE = '../../Chapter13/PracticeProjects/guests.txt'
+GUEST_FILE = '../../Ch13/PracticeProjects/guests.txt'
 FLOWER_FILENAME = 'flower-02.png'
 OUTPUT_FOLDER = 'seatingCards'
 FONTS_FOLDER = '/usr/share/fonts/truetype'

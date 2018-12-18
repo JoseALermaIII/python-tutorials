@@ -5,7 +5,7 @@ PASSWORDS = {'email': 'F7minlBDDuvMJuxESSKHFhTxFtjVB6',
              'luggage': '12345'}
 
 import sys
-import pythontutorials.books.AutomateTheBoringStuffWithPython.Chapter08.pyperclip as pyperclip
+import pythontutorials.books.AutomateTheBoringStuffWithPython.Ch08.pyperclip as pyperclip
 if len(sys.argv) < 2:
     print('Usage: python P05_pw.py [account] - copy account password')
     sys.exit()

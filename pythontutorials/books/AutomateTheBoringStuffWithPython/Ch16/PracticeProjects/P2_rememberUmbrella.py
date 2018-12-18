@@ -40,7 +40,7 @@ def check_time(time_arg):
 
 def main():
     import time
-    from pythontutorials.books.AutomateTheBoringStuffWithPython.Chapter16.P05_textMyself import textmyself
+    from pythontutorials.books.AutomateTheBoringStuffWithPython.Ch16.P05_textMyself import textmyself
 
     # Wait for wake_time
     sleep_time = datetime.timedelta(minutes=5)

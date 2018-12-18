@@ -19,7 +19,7 @@ Note:
 """
 
 
-from pythontutorials.books.AutomateTheBoringStuffWithPython.Chapter05.PracticeProjects.P01_fantasy_game_inventory import displayInventory
+from pythontutorials.books.AutomateTheBoringStuffWithPython.Ch05.PracticeProjects.P01_fantasy_game_inventory import displayInventory
 
 
 def addToInventory(inventory: dict, addedItems: list) -> dict:
