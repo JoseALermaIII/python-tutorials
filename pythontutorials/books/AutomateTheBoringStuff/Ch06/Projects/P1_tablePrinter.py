@@ -1,22 +1,39 @@
-# This program displays a list of strings in a table
-#
-# Write a function named printTable() that takes a list of lists of strings and
-# displays it in a well-organized table with each column right-justified. Assume
-# that all the inner lists will contain the same number of strings.
-#
-# For example, the value could look like this:
-# tableData = [['apples', 'oranges', 'cherries', 'banana'],
-#              ['Alice', 'Bob', 'Carol', 'David'],
-#              ['dogs', 'cats', 'moose', 'goose']]
-#
-# Your printTable() function would print the following:
-#   apples Alice  dogs
-#  oranges   Bob  cats
-# cherries Carol moose
-#   banana David goose
+"""Table printer
+
+This program displays a list of strings in a table.
+
+Write a function named :meth:`print_table` that takes a list of lists of strings and
+displays it in a well-organized table with each column right-justified. Assume
+that all the inner lists will contain the same number of strings.
+
+For example, the value could look like this::
+
+    tableData = [['apples', 'oranges', 'cherries', 'banana'],
+                 ['Alice', 'Bob', 'Carol', 'David'],
+                 ['dogs', 'cats', 'moose', 'goose']]
+
+Your :meth:`print_table` function would print the following::
+
+      apples Alice  dogs
+     oranges   Bob  cats
+    cherries Carol moose
+      banana David goose
+
+"""
 
 
-def print_table(matrix):
+def print_table(matrix: list) -> None:
+    """Print table
+
+    Prints given matrix with right justification based
+    on the longest word in each row.
+
+    Args:
+        matrix: List of lists containing strings.
+
+    Returns:
+        None. Prints out matrix as table.
+    """
     # Calculate length of longest word in each row
     col_widths = []
     for row in matrix:
@@ -40,8 +57,9 @@ def print_table(matrix):
 
 def main():
     table_data = [['apples', 'oranges', 'cherries', 'banana'],
-                 ['Alice', 'Bob', 'Carol', 'David'],
-                 ['dogs', 'cats', 'moose', 'goose']]
+                  ['Alice', 'Bob', 'Carol', 'David'],
+                  ['dogs', 'cats', 'moose', 'goose']]
+
     print_table(table_data)
 
 
