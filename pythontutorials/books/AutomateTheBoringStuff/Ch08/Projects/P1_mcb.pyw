@@ -11,7 +11,8 @@
 # command line argument that will delete all keywords.
 
 
-import shelve, pyperclip, sys
+import shelve, sys
+from pythontutorials.books.AutomateTheBoringStuff.Ch08 import pyperclip
 
 mcbShelf = shelve.open('mcb')
 
