@@ -1,41 +1,61 @@
 #! python3
-# renameDates.py - Renames filenames with American MM-DD-YYYY date format
-# to European DD-MM-YYYY.
+"""Rename dates
 
-import shutil, os, re
+Renames filenames with American MM-DD-YYYY date format to European DD-MM-YYYY date format.
 
-# Create a regex that matches files with the American date format.
-datePattern = re.compile(r"""
-        ^(.*?)          # all text before the date
-        ((0|1)?\d)-     # one or two digits for the month
-        ((0|1|2|3)?\d)- # one or two digits for the day
-        ((19|20)\d\d)   # four digits for the year
-        (.*?)$          # all the text after the date
-        """, re.VERBOSE)
+Uses :py:mod:`os` to get the list of files, :py:mod:`re` to find the files with the American
+date format, and :py:mod:`shutil` to rename them.
 
-# Loop over the files in the working directory.
-for amerFilename in os.listdir('.'):
-    mo = datePattern.search(amerFilename)
 
-    # Skip files without a date.
-    if mo is None:
-        continue
+Note:
+    * Assumes only files with American date format are in the folder. May also match files with
+      European date format.
 
-    # Get the different parts of the filename.
-    beforePart = mo.group(1)
-    monthPart = mo.group(2)
-    dayPart = mo.group(4)
-    yearPart = mo.group(6)
-    afterPart = mo.group(8)
+    * Using debug mode: Prints out files to be renamed. Uncomment to rename files.
 
-    # Form the European-style filename.
-    euroFilename = beforePart + dayPart + '-' + monthPart + '-' + yearPart + afterPart
+"""
 
-    # Get the full, absolute file paths.
-    absWorkingDir = os.path.abspath('.')
-    amerFilename = os.path.join(absWorkingDir, amerFilename)
-    euroFilename = os.path.join(absWorkingDir, euroFilename)
 
-    # Rename the files.
-    print('Renaming "%s" to "%s"...' % (amerFilename, euroFilename))  # DEBUG
-    #shutil.move(amerFilename, euroFilename)  # uncomment after testing
+def main():
+    import shutil, os, re
+
+    # Create a regex that matches files with the American date format.
+    datePattern = re.compile(r"""
+            ^(.*?)          # all text before the date
+            ((0|1)?\d)-     # one or two digits for the month
+            ((0|1|2|3)?\d)- # one or two digits for the day
+            ((19|20)\d\d)   # four digits for the year
+            (.*?)$          # all the text after the date
+            """, re.VERBOSE)
+    """re.compile: Regex object representing American date format MM-DD-YYYY"""
+
+    # Loop over the files in the working directory.
+    for amerFilename in os.listdir('.'):
+        mo = datePattern.search(amerFilename)
+
+        # Skip files without a date.
+        if mo is None:
+            continue
+
+        # Get the different parts of the filename.
+        beforePart = mo.group(1)
+        monthPart = mo.group(2)
+        dayPart = mo.group(4)
+        yearPart = mo.group(6)
+        afterPart = mo.group(8)
+
+        # Form the European-style filename.
+        euroFilename = beforePart + dayPart + '-' + monthPart + '-' + yearPart + afterPart
+
+        # Get the full, absolute file paths.
+        absWorkingDir = os.path.abspath('.')
+        amerFilename = os.path.join(absWorkingDir, amerFilename)
+        euroFilename = os.path.join(absWorkingDir, euroFilename)
+
+        # Rename the files.
+        print('Renaming "%s" to "%s"...' % (amerFilename, euroFilename))  # DEBUG
+        #shutil.move(amerFilename, euroFilename)  # uncomment after testing
+
+
+if __name__ == '__main__':
+    main()
