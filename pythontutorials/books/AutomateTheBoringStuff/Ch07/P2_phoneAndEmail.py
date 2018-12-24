@@ -11,7 +11,8 @@ Attributes:
 """
 
 
-import pythontutorials.books.CrackingCodesWithPython.pyperclip, re
+import re
+from pythontutorials.books.AutomateTheBoringStuff.Ch08 import pyperclip
 
 phoneRegex = re.compile(r'''(
     (\d{3}|\(\d{3}\))?              # area code (optional)
@@ -41,7 +42,7 @@ def main() -> None:
         None. Prints and copies matches to clipboard or prints status message.
     """
     # Find matches in clipboard text.
-    text = str(pythontutorials.books.CrackingCodesWithPython.pyperclip.paste())
+    text = str(pyperclip.paste())
     matches = []
     for groups in phoneRegex.findall(text):
         phoneNum = '-'.join([groups[1], groups[3], groups[5]])
@@ -53,7 +54,7 @@ def main() -> None:
 
     # Copy the results to the clipboard.
     if len(matches) > 0:
-        pythontutorials.books.CrackingCodesWithPython.pyperclip.copy('\n'.join(matches))
+        pyperclip.copy('\n'.join(matches))
         print('Copied to clipboard:')
         print('\n'.join(matches))
     else:
