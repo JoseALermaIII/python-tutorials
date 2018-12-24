@@ -1,21 +1,33 @@
 #! python3
-# P2_mcb.pyw - Saves and loads pieces of text to the clipboard.
-# Usage: py.exe P2_mcb.pyw save <keyword> - Saves clipboard to keyword.
-#        py.exe P2_mcb.pyw <keyword> - Loads keyword to clipboard.
-#        py.exe P2_mcb.pyw list - Loads all keywords to clipboard.
+"""Multiclipboard
 
-import shelve, pyperclip, sys
+Saves and loads pieces of text to/from the clipboard into :py:mod:`shelve` based on keywords.
 
-mcbShelf = shelve.open('mcb')
+Usage:
+    py.exe P2_mcb.pyw save <keyword> - Saves clipboard to keyword.
+    py.exe P2_mcb.pyw <keyword> - Loads keyword to clipboard.
+    py.exe P2_mcb.pyw list - Loads all keywords to clipboard.
+"""
 
-# Save clipboard content.
-if len(sys.argv) == 3 and sys.argv[1].lower() == 'save':
-    mcbShelf[sys.argv[2]] = pyperclip.paste()
-elif len(sys.argv) == 2:
-    # List keywords and load content.
-    if sys.argv[1].lower() == 'list':
-        pyperclip.copy(str(list(mcbShelf.keys())))
-    elif sys.argv[1] in mcbShelf:
-        pyperclip.copy(mcbShelf[sys.argv[1]])
 
-mcbShelf.close()
+def main():
+    import shelve, sys
+    from pythontutorials.books.AutomateTheBoringStuff.Ch08 import pyperclip
+
+    mcbShelf = shelve.open('mcb')
+
+    # Save clipboard content.
+    if len(sys.argv) == 3 and sys.argv[1].lower() == 'save':
+        mcbShelf[sys.argv[2]] = pyperclip.paste()
+    elif len(sys.argv) == 2:
+        # List keywords and load content.
+        if sys.argv[1].lower() == 'list':
+            pyperclip.copy(str(list(mcbShelf.keys())))
+        elif sys.argv[1] in mcbShelf:
+            pyperclip.copy(mcbShelf[sys.argv[1]])
+
+    mcbShelf.close()
+
+
+if __name__ == '__main__':
+    main()
