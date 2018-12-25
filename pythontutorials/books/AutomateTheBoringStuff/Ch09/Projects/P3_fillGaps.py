@@ -25,7 +25,7 @@ def is_sequence(numberlist: list) -> bool:
 
     Can take a list returned by :meth:`get_numbers` and determine if
     it is a sequence based on the property
-    `list_length == (last_element - first_element + 1)`.
+    ``list_length == (last_element - first_element + 1)``.
 
     Args:
         numberlist: List containing integers to check for a sequence.
