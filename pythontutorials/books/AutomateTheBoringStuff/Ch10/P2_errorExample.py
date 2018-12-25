@@ -1,12 +1,38 @@
-# This program raises an exception and automatically displays the traceback
+"""Error Example
+
+This program raises an exception and automatically displays the traceback.
+
+"""
 
 
-def spam():
+def spam() -> None:
+    """Spam
+
+    Calls :meth:`bacon`.
+
+    Returns:
+        None.
+    """
     bacon()
 
 
-def bacon():
+def bacon() -> None:
+    """Bacon
+
+    Raises base exception.
+
+    Returns:
+        None.
+
+    Raises:
+        Exception: Always
+    """
     raise Exception("This is the error message.")
 
 
-spam()
+def main():
+    spam()
+
+
+if __name__ == '__main__':
+    main()
