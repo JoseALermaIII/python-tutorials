@@ -10,7 +10,7 @@ As an added challenge, write another program that can insert gaps into numbered
 files so that a new file can be added.
 
 Note:
-    By default, uses not provided `./testdir` and a gap of `2`.
+    By default, uses not provided ``./testdir`` and a gap of ``2``.
 """
 
 from pythontutorials.books.AutomateTheBoringStuff.Ch09.Projects.P3_fillGaps \
@@ -34,11 +34,11 @@ def make_gaps(folder: str, gap: int) -> None:
         None. Prints applicable error message and renames files.
 
     Example:
-        If folder `test` has files `text1.txt`, `text2.txt`, and `text3.txt`. Then,
+        If folder ``test`` has files ``text1.txt``, ``text2.txt``, and ``text3.txt``. Then,
 
         >>> make_gaps('test', 2)
 
-        would change the file names to `text1.txt`, `text3.txt`, and `text4.txt`.
+        would change the file names to ``text1.txt``, ``text3.txt``, and ``text4.txt``.
 
     Note:
         Running in debug mode. Files to be renamed are printed. Uncomment
