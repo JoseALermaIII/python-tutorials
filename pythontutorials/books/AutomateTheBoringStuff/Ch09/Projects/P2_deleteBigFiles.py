@@ -11,7 +11,7 @@ large files or folders—say, ones that have a file size of more than 100MB.
 Print these files with their absolute path to the screen.
 
 Note:
-    * `testfile.txt` was created by typing `truncate -s 101M testfile.txt` in terminal.
+    * ``testfile.txt`` was created by typing ``truncate -s 101M testfile.txt`` in terminal.
     * Defaults to current working directory and > 100 MiB files
 """
 
