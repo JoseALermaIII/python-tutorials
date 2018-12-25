@@ -1,11 +1,31 @@
 #! python3
-# backupToZip.py - Copies an entire folder and its contents into
-# a ZIP file whose filename increments.
+"""P5_backupToZip.py
+
+Implements a function that copies an entire folder and its contents into
+a ZIP file whose filename increments.
+
+Note:
+    Uses provided ``./delicious`` folder as a demonstration.
+
+"""
 
 import zipfile, os
 
 
-def backupToZip(folder):
+def backupToZip(folder: str) -> None:
+    """Backup to ZIP
+
+    Copies given folder and its contents into a ZIP file with the name ``folder_#.zip``,
+    where ``folder`` is the given folder and ``#`` is an incremented integer starting from
+    ``1``.
+
+    Args:
+        folder: String with path to folder that is to be archived.
+            Function automatically converts to absolute path, so relative paths are okay.
+
+    Returns:
+        None. Prints status updates and creates ZIP file in same folder as given folder.
+    """
     # Backup the entire contents of "folder" into a ZIP file.
 
     folder = os.path.abspath(folder)  # make sure folder is absolute
@@ -38,4 +58,9 @@ def backupToZip(folder):
     print('Done.')
 
 
-backupToZip('./delicious')
+def main():
+    backupToZip('./delicious')
+
+
+if __name__ == '__main__':
+    main()
