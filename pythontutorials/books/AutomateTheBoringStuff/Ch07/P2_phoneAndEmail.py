@@ -2,7 +2,7 @@
 """Phone and email
 
 Finds phone numbers and email addresses in the clipboard using :py:mod:`re` and
-:py:mod:`pythontutorials.books.CrackingCodesWithPython.pyperclip`.
+:py:mod:`pyperclip`.
 
 Attributes:
     phoneRegex (re.compile): Regular expression object representing a phone number pattern.
@@ -12,7 +12,6 @@ Attributes:
 
 
 import re
-from pythontutorials.books.AutomateTheBoringStuff.Ch08 import pyperclip
 
 phoneRegex = re.compile(r'''(
     (\d{3}|\(\d{3}\))?              # area code (optional)
@@ -41,6 +40,7 @@ def main() -> None:
     Returns:
         None. Prints and copies matches to clipboard or prints status message.
     """
+    import pyperclip
     # Find matches in clipboard text.
     text = str(pyperclip.paste())
     matches = []

@@ -3,7 +3,7 @@
 # command line or clipboard.
 
 import webbrowser, sys
-from pythontutorials.books.CrackingCodesWithPython.pyperclip import paste  # To run from CLI, pyperclip must be in same folder
+from pyperclip import paste
 
 if len(sys.argv) > 1:
     # Get address from command line.

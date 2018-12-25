@@ -15,6 +15,7 @@ PyMsgBox==1.0.6
 PyPDF4==1.27.0
 PyScreeze==0.1.18
 PySocks==1.6.8
+pyperclip==1.7.0
 python-docx==0.8.7
 python3-xlib==0.15
 PyTweening==1.0.3

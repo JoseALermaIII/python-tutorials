@@ -21,12 +21,13 @@ Note:
 
 import sys
 import random
-from pythontutorials.books.CrackingCodesWithPython.pyperclip import copy
 from pythontutorials.books.CrackingCodesWithPython.Chapter13.cryptomath import gcd, findModInverse
 SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?.'
 
 
 def main():
+    from pyperclip import copy
+
     myMessage = """"A computer would deserve to be called intelligent if it 
     could deceive a human into believing that it was human." -Alan Turing"""
     myKey = 2894

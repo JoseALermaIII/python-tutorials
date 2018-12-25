@@ -14,7 +14,6 @@ Note:
 
 import re
 import copy
-import pythontutorials.books.CrackingCodesWithPython.pyperclip
 from pythontutorials.books.CrackingCodesWithPython.Chapter16.simpleSubCipher import decryptMessage
 from pythontutorials.books.CrackingCodesWithPython.Chapter17.wordPatterns import allPatterns
 from pythontutorials.books.CrackingCodesWithPython.Chapter17.makeWordPatterns import getWordPattern
@@ -25,6 +24,8 @@ nonLettersOrSpacePattern = re.compile('[^A-Z\s]')
 
 
 def main():
+    import pyperclip
+
     message = """Sy l nlx sr pyyacao l ylwj eiswi upar lulsxrj isr
 sxrjsxwjr, ia esmm rwctjsxsza sj wmpramh, lxo txmarr jia aqsoaxwa
 sr pqaceiamnsxu, ia esmm caytra jp famsaqa sj. Sy, px jia pjiac
@@ -46,7 +47,7 @@ rmsuijarj aqsoaxwa. Jia pcsusx py nhjir sr agbmlsxao sx jisr elh.
     print()
     print('Copying hacked message to clipboard:')
     hackedMessage = decryptWithCipherletterMapping(message, letterMapping)
-    books.CrackingCodesWithPython.pyperclip.copy(hackedMessage)
+    pyperclip.copy(hackedMessage)
     print(hackedMessage)
 
 

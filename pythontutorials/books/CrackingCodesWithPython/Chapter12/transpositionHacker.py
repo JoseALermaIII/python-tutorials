@@ -6,13 +6,12 @@ Note:
     * https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 """
 
-
-from pythontutorials.books.CrackingCodesWithPython.pyperclip import copy
 from pythontutorials.books.CrackingCodesWithPython.Chapter11.detectEnglish import isEnglish
 from pythontutorials.books.CrackingCodesWithPython.Chapter08.transpositionDecrypt import decryptMessage
 
 
 def main():
+    from pyperclip import copy
     # You might want to copy & paste this text from the source code at
     # https://www.nostarch.com/crackingcodes/:
     myMessage = """AaKoosoeDe5 b5sn ma reno ora'lhlrrceey e  enlh na  indeit n uhoretrm au ieu v er Ne2 gmanw,forwnlbsya apor tE.no euarisfatt  e mealefedhsppmgAnlnoe(c -or)alat r lw o eb  nglom,Ain one dtes ilhetcdba. t tg eturmudg,tfl1e1 v  nitiaicynhrCsaemie-sp ncgHt nie cetrgmnoa yc r,ieaa  toesa- e a0m82e1w shcnth  ekh gaecnpeutaaieetgn iodhso d ro hAe snrsfcegrt NCsLc b17m8aEheideikfr aBercaeu thllnrshicwsg etriebruaisss  d iorr."""

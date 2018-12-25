@@ -10,7 +10,6 @@ Note:
 
 """
 
-from pythontutorials.books.CrackingCodesWithPython.pyperclip import copy
 from pythontutorials.books.CrackingCodesWithPython.Chapter11.detectEnglish import isEnglish
 from pythontutorials.books.CrackingCodesWithPython.Chapter18.vigenereCipher import decryptMessage
 
@@ -18,6 +17,8 @@ DICTIONARY_FILE = "/home/jose/PycharmProjects/python-tutorials/pythontutorials/b
 
 
 def main():
+    from pyperclip import copy
+
     ciphertext = """Tzx isnz eccjxkg nfq lol mys bbqq I lxcz."""
     hackedMessage = hackVigenereDictionary(ciphertext)
 

@@ -16,7 +16,7 @@
 # so the user can quickly paste the output to a text file or email.
 
 import time
-import pythontutorials.books.AutomateTheBoringStuff.Ch08.pyperclip as pyperclip
+import pyperclip
 
 # Display the program's instructions
 print("Press ENTER to begin. Afterwards, press ENTER to 'click' the stopwatch. "

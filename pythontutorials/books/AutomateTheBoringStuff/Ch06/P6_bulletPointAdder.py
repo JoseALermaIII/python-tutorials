@@ -10,7 +10,7 @@ Adds `Wikipedia style`_ bullet points to the start of each line of text on the c
 
 
 def main():
-    import pythontutorials.books.AutomateTheBoringStuff.Ch08.pyperclip as pyperclip
+    import pyperclip
 
     text = pyperclip.paste
 

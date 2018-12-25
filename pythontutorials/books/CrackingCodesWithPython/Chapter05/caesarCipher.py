@@ -6,10 +6,9 @@ Note:
     https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 """
 
-from pythontutorials.books.CrackingCodesWithPython.pyperclip import copy
-
 
 def main():
+    from pyperclip import copy
     # The string to be encrypted/decrypted:
     message = 'This is my secret message.'
 

@@ -7,10 +7,10 @@ Note:
 """
 
 import math
-from pythontutorials.books.CrackingCodesWithPython.pyperclip import copy
 
 
 def main():
+    from pyperclip import copy
     myMessage = "Cenoonommstmme oo snnio. s s c"
     myKey = 8
 

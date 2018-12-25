@@ -19,7 +19,7 @@ pyautogui.doubleClick()  # double click left button
 # Scrolling the Mouse
 pyautogui.scroll(200)  # Units vary depending on OS and application
 
-import pythontutorials.books.AutomateTheBoringStuff.Ch08.pyperclip as pyperclip  # imports should be at top of file
+import pyperclip  # imports should be at top of file
 numbers = ''
 for i in range(200):
     numbers = numbers + str(i) + '\n'

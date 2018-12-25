@@ -10,7 +10,6 @@ Note:
 
 """
 
-from pythontutorials.books.CrackingCodesWithPython.pyperclip import copy
 from pythontutorials.books.CrackingCodesWithPython.Chapter14.affineCipher import decryptMessage, SYMBOLS, getKeyParts
 from pythontutorials.books.CrackingCodesWithPython.Chapter13.cryptomath import gcd
 from pythontutorials.books.CrackingCodesWithPython.Chapter11.detectEnglish import isEnglish
@@ -19,6 +18,8 @@ SILENT_MODE = True
 
 
 def main():
+    from pyperclip import copy
+
     # You might want to copy & paste this text from the source code at
     # https://www.nostarch.com/crackingcodes/.
     myMessage = """5QG9ol3La6QI93!xQxaia6faQL9QdaQG1!!axQARLa!!AuaRLQ

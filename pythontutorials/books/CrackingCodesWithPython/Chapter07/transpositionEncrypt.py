@@ -6,10 +6,9 @@ Note:
     https://www.nostarch.com/crackingcodes/ (BSD Licensed)
 """
 
-from pythontutorials.books.CrackingCodesWithPython.pyperclip import copy
-
 
 def main():
+    from pyperclip import copy
     myMessage = 'Common sense is not so common.'
     myKey = 8
 

@@ -17,12 +17,12 @@ Note:
 
 """
 
-from pythontutorials.books.CrackingCodesWithPython.pyperclip import copy
-
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 
 def main():
+    from pyperclip import copy
+
     # This text can be downloaded from https://www.nostarch.com/crackingcodes/:
     myMessage = """Alan Mathison Turing was a British mathematician, logician, cryptanalyst, and computer scientist."""
     myKey = 'ASIMOV'

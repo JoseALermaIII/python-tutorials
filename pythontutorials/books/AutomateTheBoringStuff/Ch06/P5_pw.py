@@ -12,7 +12,7 @@ def main() -> None:
     """P5_pw.py
 
     If given account name is in the dictionary, the matching password is copied to the
-    clipboard via :py:mod:`pythontutorials.books.AutomateTheBoringStuff.Ch08.pyperclip`.
+    clipboard via :py:mod:`pyperclip`.
     Otherwise, an error is printed.
 
     Returns:
@@ -22,7 +22,7 @@ def main() -> None:
         If called without arguments, program exits with error message.
     """
     import sys
-    import pythontutorials.books.AutomateTheBoringStuff.Ch08.pyperclip as pyperclip
+    import pyperclip
 
     PASSWORDS = {'email': 'F7minlBDDuvMJuxESSKHFhTxFtjVB6',
                  'blog': 'VmALvQyKAxiVH5G8v01if1MLZF3sdt',
