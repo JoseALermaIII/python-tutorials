@@ -4,7 +4,7 @@ This program reads PDF files.
 
 Note:
     * Example PDFs can be downloaded from http://nostarch.com/automatestuff/
-    * Book uses PyPDF2; I'm an overachiever that uses PyPDF4
+    * Book uses :py:mod:`PyPDF2`; I'm an overachiever that uses PyPDF4
 
 """
 
