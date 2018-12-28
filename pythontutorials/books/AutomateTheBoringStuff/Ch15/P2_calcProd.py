@@ -16,7 +16,7 @@ import time, cProfile, timeit
 def calcProd() -> int:
     """Calculate product
 
-    Calculates the product of the first 100000 integers using a :class:`for` loop.
+    Calculates the product of the first 100000 integers using a :ref:`for <python:for>` loop.
 
     Returns:
         Integer product.
