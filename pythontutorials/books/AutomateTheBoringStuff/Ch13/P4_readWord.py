@@ -1,4 +1,5 @@
 """Read Word
+
 This program uses :py:mod:`docx` to read Word documents.
 
 """
