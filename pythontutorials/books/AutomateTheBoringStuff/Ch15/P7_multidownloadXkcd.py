@@ -1,11 +1,32 @@
 #! python3
-# P7_multidownloadXkcd.py - Downloads XKCD comics using multiple threads.
+"""Multidownload XKCD
 
-import requests, os, bs4, threading
-os.makedirs('xkcd', exist_ok=True)  # store comics in ./xkcd
+Downloads 1400 `XKCD`_ comics much faster by using :py:mod:`threading`.
+
+Note:
+    Default output directory is ``./xkcd``.
+
+.. _XKCD:
+    https://xkcd.com/
+
+"""
+
+import requests, os, bs4
 
 
-def downloadXkcd(startComic, endComic):
+def downloadXkcd(startComic: str, endComic: str) -> None:
+    """Download XKCD
+
+    Uses :py:mod:`requests` and :py:mod:`bs4' to download all comics in a given range.
+
+    Args:
+        startComic: Comic ID number to start from.
+        endComic: Comic ID number to end at.
+
+    Returns:
+        None. Prints status updates and downloads comics to download directory.
+
+    """
     for urlNumber in range(startComic, endComic):
         # Download the page.
         print('Downloading page http://xkcd.com/%s...' % urlNumber)
@@ -32,14 +53,22 @@ def downloadXkcd(startComic, endComic):
             imageFile.close()
 
 
-# Create and start the Thread objects.
-downloadThreads = []  # a list of all the Thread objects
-for i in range(0, 1400, 100):  # loops 14 times, creates 14 threads
-    downloadThread = threading.Thread(target=downloadXkcd, args=(i, i + 99))
-    downloadThreads.append(downloadThread)
-    downloadThread.start()
+def main():
+    import threading
+    os.makedirs('xkcd', exist_ok=True)  # store comics in ./xkcd
 
-# Wait for all threads to end.
-for downloadThread in downloadThreads:
-    downloadThread.join()
-print('Done.')
+    # Create and start the Thread objects.
+    downloadThreads = []  # a list of all the Thread objects
+    for i in range(0, 1400, 100):  # loops 14 times, creates 14 threads
+        downloadThread = threading.Thread(target=downloadXkcd, args=(i, i + 99))
+        downloadThreads.append(downloadThread)
+        downloadThread.start()
+
+    # Wait for all threads to end.
+    for downloadThread in downloadThreads:
+        downloadThread.join()
+    print('Done.')
+
+
+if __name__ == '__main__':
+    main()
