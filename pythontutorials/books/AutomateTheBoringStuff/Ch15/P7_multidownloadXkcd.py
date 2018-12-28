@@ -11,7 +11,6 @@ Note:
 
 """
 
-import requests, os, bs4
 
 def downloadXkcd(startComic: int, endComic: int) -> None:
     """Download XKCD
@@ -53,7 +52,7 @@ def downloadXkcd(startComic: int, endComic: int) -> None:
 
 
 def main():
-    import threading
+    import requests, os, bs4, threading
     os.makedirs('xkcd', exist_ok=True)  # store comics in ./xkcd
 
     # Create and start the Thread objects.
