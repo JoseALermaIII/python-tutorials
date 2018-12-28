@@ -194,5 +194,7 @@ def setup(app):
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'python': ('https://docs.python.org/3/', None),
+                       'bs4': ('https://www.crummy.com/software/BeautifulSoup/bs4/doc/', None),
+                       'imapclient': ('https://imapclient.readthedocs.io/en/2.1.0/', None),
                        'pypdf2': ('https://pythonhosted.org/PyPDF2/', None),
                        'openpyxl': ('https://openpyxl.readthedocs.io/en/stable/', None),}
