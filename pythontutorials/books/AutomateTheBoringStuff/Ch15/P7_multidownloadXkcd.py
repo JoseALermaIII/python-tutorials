@@ -15,7 +15,7 @@ Note:
 def downloadXkcd(startComic: int, endComic: int) -> None:
     """Download XKCD
 
-    Uses :py:mod:`requests` and :py:mod:`bs4' to download all comics in a given range.
+    Uses :py:mod:`requests` and :py:mod:`bs4` to download all comics in a given range.
 
     Args:
         startComic: Comic ID number to start from.
