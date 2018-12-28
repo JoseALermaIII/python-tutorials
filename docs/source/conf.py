@@ -196,5 +196,6 @@ def setup(app):
 intersphinx_mapping = {'python': ('https://docs.python.org/3/', None),
                        'bs4': ('https://www.crummy.com/software/BeautifulSoup/bs4/doc/', None),
                        'IMAPClient': ('https://imapclient.readthedocs.io/en/2.1.0/', None),
+                       'openpyxl': ('https://openpyxl.readthedocs.io/en/stable/', None),
                        'PyPDF2': ('https://pythonhosted.org/PyPDF2/', None),
                        'openpyxl': ('https://openpyxl.readthedocs.io/en/stable/', None),}
