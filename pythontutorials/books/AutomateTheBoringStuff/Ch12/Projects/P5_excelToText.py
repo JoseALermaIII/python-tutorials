@@ -1,4 +1,4 @@
-"""Excel to test
+"""Excel to text
 
 Write a program that performs the tasks of the previous program in reverse
 order: The program should open a spreadsheet and write the cells of column A
