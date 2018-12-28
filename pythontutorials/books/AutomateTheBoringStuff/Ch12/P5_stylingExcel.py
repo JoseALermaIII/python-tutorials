@@ -1,6 +1,6 @@
 """Styling Excel
 
-This program uses the OpenPyXL module to manipulate Excel documents
+This program uses :py:mod:`openpyxl` to format Excel documents
 
 """
 
