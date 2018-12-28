@@ -13,8 +13,7 @@ Note:
 
 import requests, os, bs4
 
-
-def downloadXkcd(startComic: str, endComic: str) -> None:
+def downloadXkcd(startComic: int, endComic: int) -> None:
     """Download XKCD
 
     Uses :py:mod:`requests` and :py:mod:`bs4' to download all comics in a given range.
