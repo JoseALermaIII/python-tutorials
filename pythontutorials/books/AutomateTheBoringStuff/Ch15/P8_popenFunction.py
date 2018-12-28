@@ -1,6 +1,6 @@
 """Popen function
 
-This program uses :func:`subprocess.Popen` to launch programs.
+This program uses :class:`subprocess.Popen` to launch programs.
 
 """
 
