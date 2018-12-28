@@ -6,6 +6,10 @@ one line of text per row. The lines of the first text file will be in the
 cells of column A, the lines of the second text file will be in the cells of
 column B, and so on.
 
+Note:
+    * Default folder is ``./p4files/``
+    * Default output file is ``textToExcel.xlsx``
+
 """
 
 
