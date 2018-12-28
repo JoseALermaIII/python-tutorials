@@ -1,7 +1,17 @@
-# This program uses the threading module to manipulate threads
+"""Multithreading
 
-import threading
+This program demonstrates :class:`threading.Thread` on :func:`print`.
 
-# Passing Arguments to the Thread's Target Function
-threadObj = threading.Thread(target=print, args=['Cats', 'Dogs', 'Frogs'], kwargs={'sep': ' & '})
-threadObj.start()
+"""
+
+
+def main():
+    import threading
+
+    # Passing Arguments to the Thread's Target Function
+    threadObj = threading.Thread(target=print, args=['Cats', 'Dogs', 'Frogs'], kwargs={'sep': ' & '})
+    threadObj.start()
+
+
+if __name__ == '__main__':
+    main()
