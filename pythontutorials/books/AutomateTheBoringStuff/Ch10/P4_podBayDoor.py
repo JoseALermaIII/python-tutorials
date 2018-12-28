@@ -1,6 +1,6 @@
 """Pod Bay Door
 
-This program raises an AssertionError.
+This program raises an :py:class:`AssertionError`.
 
 Note:
     Correction submitted for line 13
