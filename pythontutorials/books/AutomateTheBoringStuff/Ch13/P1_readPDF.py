@@ -1,6 +1,6 @@
 """Read PDF
 
-This program reads PDF files.
+This program uses PyPDF4 to read PDF files.
 
 Note:
     * Example PDFs can be downloaded from http://nostarch.com/automatestuff/
