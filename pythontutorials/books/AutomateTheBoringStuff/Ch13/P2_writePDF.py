@@ -1,10 +1,10 @@
 """Write PDF
 
-This program uses :py:mod:`PyPDF4` to write PDF documents.
+This program uses PyPDF4 to write PDF documents.
 
 Note:
     * Example PDFs can be downloaded from http://nostarch.com/automatestuff/
-    * Book uses PyPDF2; I'm an overachiever that uses PyPDF4
+    * Book uses :py:mod:`PyPDF2`; I'm an overachiever that uses PyPDF4
 
 """
 
