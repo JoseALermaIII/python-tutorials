@@ -1,21 +1,31 @@
 #! python3
-# P9_countdown.py - A simple countdown script.
-#
-# Note:
-# - sound file can be downloaded from http://nostarch.com/automatestuff/
+"""Countdown
 
-import time, subprocess, sys
+A simple countdown script that plays an alarm after a given number of seconds.
 
-# Get timeLeft from command line arguments
-if len(sys.argv) < 2:
-    print('Usage: P9_countdown.py seconds')
-    sys.exit()
-timeLeft = int(sys.argv[1])
+Note:
+    * Sound file can be downloaded from http://nostarch.com/automatestuff/
 
-while timeLeft > 0:
-    print(timeLeft)
-    time.sleep(1)
-    timeLeft -= 1
+"""
 
-# At the end of the countdown, play a sound file.
-subprocess.Popen(['see', 'alarm.wav'])
+
+def main():
+    import time, subprocess, sys
+
+    # Get timeLeft from command line arguments
+    if len(sys.argv) < 2:
+        print('Usage: P9_countdown.py seconds')
+        sys.exit()
+    timeLeft = int(sys.argv[1])
+
+    while timeLeft > 0:
+        print(timeLeft)
+        time.sleep(1)
+        timeLeft -= 1
+
+    # At the end of the countdown, play a sound file.
+    subprocess.Popen(['see', 'alarm.wav'])
+
+
+if __name__ == '__main__':
+    main()
