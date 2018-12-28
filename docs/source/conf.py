@@ -198,4 +198,5 @@ intersphinx_mapping = {'python': ('https://docs.python.org/3/', None),
                        'IMAPClient': ('https://imapclient.readthedocs.io/en/2.1.0/', None),
                        'openpyxl': ('https://openpyxl.readthedocs.io/en/stable/', None),
                        'PyPDF2': ('https://pythonhosted.org/PyPDF2/', None),
-                       'openpyxl': ('https://openpyxl.readthedocs.io/en/stable/', None),}
+                       'docx': ('https://python-docx.readthedocs.io/en/latest/', None),
+                       }
