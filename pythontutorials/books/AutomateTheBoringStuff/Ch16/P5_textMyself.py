@@ -31,4 +31,3 @@ def textmyself(message: str) -> None:
     """
     twilioCli = Client(accountSID, authToken)
     twilioCli.messages.create(body=message, from_=twilioNumber, to=myNumber)
-    return None
