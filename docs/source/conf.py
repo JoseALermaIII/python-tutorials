@@ -191,7 +191,7 @@ def setup(app):
 
 
 # Mock top-level imports outside of module's main()
-autodoc_mock_imports = ['docx', 'twilio', 'bs4', 'logging']
+autodoc_mock_imports = ['docx', 'twilio', 'bs4', 'logging', 'imapclient', 'pyzmail']
 
 # -- Options for intersphinx extension ---------------------------------------
 intersphinx_mapping = {'python': ('https://docs.python.org/3/', None),
