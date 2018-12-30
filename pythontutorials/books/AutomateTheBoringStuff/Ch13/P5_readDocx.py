@@ -7,6 +7,8 @@ Note:
     * Example .docx files can be downloaded from http://nostarch.com/automatestuff/
 """
 
+import docx
+
 
 def getText(filename: str) -> str:
     """Get text
