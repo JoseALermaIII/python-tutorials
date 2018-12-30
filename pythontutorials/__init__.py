@@ -2,4 +2,4 @@
 # MIT license
 # Jose A. Lerma III jose@JoseALerma.com
 
-__version__ = '1.1.1'
+__version__ = '1.2.0'
