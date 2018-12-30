@@ -202,4 +202,5 @@ intersphinx_mapping = {'python': ('https://docs.python.org/3/', None),
                        'PyPDF2': ('https://pythonhosted.org/PyPDF2/', None),
                        'docx': ('https://python-docx.readthedocs.io/en/latest/', None),
                        'pyperclip': ('https://pyperclip.readthedocs.io/en/latest/', None),
+                       'PIL': ('https://pillow.readthedocs.io/en/5.3.x/', None),
                        }
