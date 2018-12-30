@@ -189,10 +189,11 @@ epub_exclude_files = ['search.html']
 def setup(app):
 	app.add_stylesheet('css/custom.css')
 
+
+# Mock top-level imports outside of module's main()
+autodoc_mock_imports = ['docx', 'twilio', 'bs4']
+
 # -- Options for intersphinx extension ---------------------------------------
-
-
-# Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'python': ('https://docs.python.org/3/', None),
                        'requests': ('http://docs.python-requests.org/en/latest/', None),
                        'bs4': ('https://www.crummy.com/software/BeautifulSoup/bs4/doc/', None),
