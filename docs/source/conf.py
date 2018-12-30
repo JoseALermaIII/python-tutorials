@@ -191,7 +191,7 @@ def setup(app):
 
 
 # Mock top-level imports outside of module's main()
-autodoc_mock_imports = ['docx', 'twilio', 'bs4', 'logging', 'imapclient', 'pyzmail']
+autodoc_mock_imports = ['docx', 'twilio', 'bs4', 'logging', 'imapclient', 'pyzmail', 'pyautogui']
 
 # -- Options for intersphinx extension ---------------------------------------
 intersphinx_mapping = {'python': ('https://docs.python.org/3/', None),
@@ -203,4 +203,5 @@ intersphinx_mapping = {'python': ('https://docs.python.org/3/', None),
                        'docx': ('https://python-docx.readthedocs.io/en/latest/', None),
                        'pyperclip': ('https://pyperclip.readthedocs.io/en/latest/', None),
                        'PIL': ('https://pillow.readthedocs.io/en/5.3.x/', None),
+                       'PyAutoGUI': ('https://pyautogui.readthedocs.io/en/latest/', None),
                        }
