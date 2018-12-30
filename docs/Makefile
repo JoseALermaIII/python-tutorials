@@ -7,7 +7,7 @@ SPHINXBUILD   = sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = ../../python-tutorials-docs
 PDFBUILDDIR   = /tmp
-PDF           = ../manual.pdf
+PDF           = ../pythontutorials.pdf
 
 # Put it first so that "make" without argument is like "make help".
 help:
