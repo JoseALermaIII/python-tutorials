@@ -95,7 +95,7 @@ ENV/
 frankenstein*.txt
 *_privkey.txt
 *_pubkey.txt
-/pythontutorials/books/CrackingCodes/Chapter24/encrypted_file.txt
+/pythontutorials/books/CrackingCodes/Ch24/encrypted_file.txt
 
 # AutomateTheBoringStuff settings
 capitalsquiz*.txt
