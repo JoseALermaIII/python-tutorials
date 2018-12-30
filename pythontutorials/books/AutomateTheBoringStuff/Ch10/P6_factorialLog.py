@@ -9,7 +9,6 @@ logging.basicConfig(level=logging.DEBUG, format=" %(asctime)s - %(levelname)s - 
 #logging.basicConfig(filename="factorialLog.txt", level=logging.DEBUG,
 #                    format=" %(asctime)s - %(levelname)s - %(message)s")  # optional log to file
 logging.disable(logging.CRITICAL)  # Stop logging, comment out to debug
-logging.debug("Start of program")
 
 
 def factorial(n: int) -> int:
@@ -33,6 +32,7 @@ def factorial(n: int) -> int:
 
 
 def main():
+    logging.debug("Start of program")
     print(factorial(5))
     logging.debug("End of program")
 
