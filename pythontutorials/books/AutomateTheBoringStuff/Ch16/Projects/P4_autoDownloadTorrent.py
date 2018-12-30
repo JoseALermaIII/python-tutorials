@@ -1,43 +1,57 @@
-# Write a program that checks an email account every 15 minutes for any instructions
-# you email it and executes those instructions automatically.
-#
-# For example, BitTorrent is a peer-to-peer downloading system. Using free BitTorrent
-# software such as qBittorrent, you can download large media files on your home computer.
-# If you email the program a (completely legal, not at all piratical) BitTorrent link,
-# the program will eventually check its email, find this message, extract the link, and
-# then launch qBittorrent to start downloading the file. This way, you can have your
-# home computer begin downloads while you’re away, and the (completely legal, not at
-# all piratical) download can be finished by the time you return home.
-#
-# Note:
-# - Shutting down after downloading is considered "Hit 'n' run" and goes against torrenting
-#   - Consider setting up a seed ratio limit and let it stop sharing afterward
-# - Transmission torrent client is used since it is available in Ubuntu by default
-#   - A bash script is ultimately needed to shutdown Transmission
-#   - Remote access is needed to run the bash script (hint)
+"""Auto download torrent
+
+Write a program that checks an email account every 15 minutes for any instructions
+you email it and executes those instructions automatically.
+
+For example, BitTorrent is a peer-to-peer downloading system. Using free BitTorrent
+software such as qBittorrent, you can download large media files on your home computer.
+If you email the program a (completely legal, not at all piratical) BitTorrent link,
+the program will eventually check its email, find this message, extract the link, and
+then launch qBittorrent to start downloading the file. This way, you can have your
+home computer begin downloads while you’re away, and the (completely legal, not at
+all piratical) download can be finished by the time you return home.
+
+Notes:
+    * Shutting down after downloading is considered "Hit 'n' run" and goes against torrenting.
+
+        * Consider setting up a seed ratio limit and let it stop sharing afterward.
+
+    * `Transmission`_ torrent client is used since it is available in `Ubuntu`_ by default.
+
+        * A bash script is ultimately needed to shutdown Transmission.
+        * Remote access is needed to run the bash script (hint).
+
+.. _Transmission:
+    https://transmissionbt.com/
+
+.. _Ubuntu:
+    https://www.ubuntu.com/
+
+"""
 
 import imapclient, imaplib, subprocess, smtplib, logging, pyzmail, datetime, time, bs4
 
 # Setup logging
 logging.basicConfig(filename='p4Log.txt', level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
-#logging.disable(logging.CRITICAL)  # Stop logging, comment out to debug
+logging.disable(logging.CRITICAL)  # Stop logging, comment out to debug
 
 # Increase size limit from 10,000 bytes to 10,000,000 bytes
 imaplib._MAXLINE = 10000000
 
 
-def countdown(time_arg):
-    # Wait for time_arg seconds
-    logging.info('Start countdown')
-    while time_arg > 0:
-        time.sleep(1)
-        time_arg -= 1
-    logging.info('End countdown')
-    return True
+def login_smtp(file_arg: str) -> tuple:
+    """Login SMTP
 
+    Logs into SMTP server with credentials from given file, then returns the configured :class:`smtplib.SMTP_SSL`
+    object and account email.
 
-def login_smtp(file_arg):
+    Args:
+        file_arg: String with path to SMTP server information file.
+
+    Returns:
+        Tuple with :class:`smtplib.SMTP_SSL` object and account email.
+    """
     # Login to SMTP server
     with open(file_arg) as config:
         email, password, server, port = config.read().splitlines()
@@ -50,7 +64,18 @@ def login_smtp(file_arg):
     return smtp_obj, email
 
 
-def login_imap(file_arg):
+def login_imap(file_arg: str) -> imapclient.IMAPClient:
+    """Login IMAP
+
+    Logs into IMAP server with credentials from given file, then returns the configured :class:`imapclient.IMAPClient`
+    object.
+
+    Args:
+        file_arg: String with path to IMAP server information file.
+
+    Returns:
+        Configured :class:`imapclient.IMAPClient` object.
+    """
     # Login to IMAP server
     with open(file_arg) as config:
         email, password, server, port = config.read().splitlines()
@@ -62,7 +87,18 @@ def login_imap(file_arg):
     return imap_obj
 
 
-def fetch_emails(imap_obj_arg):
+def fetch_emails(imap_obj_arg: imapclient.IMAPClient) -> tuple:
+    """Fetch emails
+
+    Gets emails from IMAP server and returns the email's uids and their raw messages.
+
+    Args:
+        imap_obj_arg: Configured :class:`imapclient.IMAPClient` object from :meth:`login_imap`.
+
+    Returns:
+        Tuple with a list of message uids and a dictionary of raw messages with message uids as keys.
+
+    """
     # Get emails from server
     imap_obj_arg.select_folder('INBOX', readonly=False)  # Enable mark as read and delete
     today = datetime.datetime.today()
@@ -74,7 +110,19 @@ def fetch_emails(imap_obj_arg):
     return uids, raw_messages
 
 
-def fetch_torrents(uids_arg, raw_messages_arg):
+def fetch_torrents(uids_arg: list, raw_messages_arg: dict) -> dict:
+    """Fetch torrents
+
+    Takes given list of message uids and dictionary of raw messages from :meth:`fetch_emails` and
+    parses out the torrent urls.
+
+    Args:
+        uids_arg: List of message uids.
+        raw_messages_arg: Dictionary of raw messages with message uids as keys and message data as values.
+
+    Returns:
+        Dictionary with message uids as keys and the torrent url string as values.
+    """
     urls = {}
     for uid in uids_arg:
         message = pyzmail.PyzMessage.factory(raw_messages_arg[uid][b'BODY[]'])
@@ -102,7 +150,27 @@ def fetch_torrents(uids_arg, raw_messages_arg):
     return urls
 
 
-def autodownload_torrent(url_arg):
+def autodownload_torrent(url_arg: str) -> None:
+    """Auto download torrent
+
+    Starts :py:mod:`subprocess` with Transmission client and waits until given torrent url is downloaded.
+
+    Args:
+        url_arg: String with url of torrent to download.
+
+    Returns:
+        None. Torrent client specifies where torrent is downloaded to.
+
+    Note:
+        Configured specifically for `Transmission`_ torrent client in `Ubuntu`_.
+
+    .. _Transmission:
+        https://transmissionbt.com/
+
+    .. _Ubuntu:
+        https://www.ubuntu.com/
+
+    """
     # Send link to torrent client
     logging.info(f'Opening: {url_arg}')
     torrent_proc = subprocess.Popen(['/usr/bin/transmission-gtk', url_arg])
@@ -116,7 +184,7 @@ def autodownload_torrent(url_arg):
 def main():
     logging.info('Start of program')
     wait_time = datetime.timedelta(minutes=15)
-    countdown(wait_time.total_seconds())
+    time.sleep(wait_time.total_seconds())
 
     imap_obj = login_imap('../imap_info')
     uids, raw_messages = fetch_emails(imap_obj)
