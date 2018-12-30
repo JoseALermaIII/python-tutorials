@@ -5,4 +5,4 @@ books
    :maxdepth: 4
 
    AutomateTheBoringStuff
-   CrackingCodesWithPython
+   CrackingCodes
