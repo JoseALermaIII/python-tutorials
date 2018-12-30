@@ -91,11 +91,11 @@ ENV/
 # Pycharm project settings
 .idea/
 
-# CrackingCodesWithPython settings
+# CrackingCodes settings
 frankenstein*.txt
 *_privkey.txt
 *_pubkey.txt
-/pythontutorials/books/CrackingCodesWithPython/Chapter24/encrypted_file.txt
+/pythontutorials/books/CrackingCodes/Chapter24/encrypted_file.txt
 
 # AutomateTheBoringStuff settings
 capitalsquiz*.txt
