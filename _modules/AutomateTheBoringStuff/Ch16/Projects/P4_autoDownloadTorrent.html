@@ -1,0 +1,458 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AutomateTheBoringStuff.Ch16.Projects.P4_autoDownloadTorrent &mdash; python-tutorials 1.2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/automate/automate.html">AutomateTheBoringStuff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/cracking/cracking.html">CrackingCodesWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>AutomateTheBoringStuff.Ch16.Projects.P4_autoDownloadTorrent</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for AutomateTheBoringStuff.Ch16.Projects.P4_autoDownloadTorrent</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Auto download torrent</span>
+
+<span class="sd">Write a program that checks an email account every 15 minutes for any instructions</span>
+<span class="sd">you email it and executes those instructions automatically.</span>
+
+<span class="sd">For example, BitTorrent is a peer-to-peer downloading system. Using free BitTorrent</span>
+<span class="sd">software such as qBittorrent, you can download large media files on your home computer.</span>
+<span class="sd">If you email the program a (completely legal, not at all piratical) BitTorrent link,</span>
+<span class="sd">the program will eventually check its email, find this message, extract the link, and</span>
+<span class="sd">then launch qBittorrent to start downloading the file. This way, you can have your</span>
+<span class="sd">home computer begin downloads while you’re away, and the (completely legal, not at</span>
+<span class="sd">all piratical) download can be finished by the time you return home.</span>
+
+<span class="sd">Notes:</span>
+<span class="sd">    * Shutting down after downloading is considered &quot;Hit &#39;n&#39; run&quot; and goes against torrenting.</span>
+
+<span class="sd">        * Consider setting up a seed ratio limit and let it stop sharing afterward.</span>
+
+<span class="sd">    * `Transmission`_ torrent client is used since it is available in `Ubuntu`_ by default.</span>
+
+<span class="sd">        * A bash script is ultimately needed to shutdown Transmission.</span>
+<span class="sd">        * Remote access is needed to run the bash script (hint).</span>
+
+<span class="sd">.. _Transmission:</span>
+<span class="sd">    https://transmissionbt.com/</span>
+
+<span class="sd">.. _Ubuntu:</span>
+<span class="sd">    https://www.ubuntu.com/</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">imapclient</span><span class="o">,</span> <span class="nn">imaplib</span><span class="o">,</span> <span class="nn">subprocess</span><span class="o">,</span> <span class="nn">smtplib</span><span class="o">,</span> <span class="nn">logging</span><span class="o">,</span> <span class="nn">pyzmail</span><span class="o">,</span> <span class="nn">datetime</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">bs4</span>
+
+<span class="c1"># Setup logging</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;p4Log.txt&#39;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+                    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> - </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">)</span>  <span class="c1"># Stop logging, comment out to debug</span>
+
+<span class="c1"># Increase size limit from 10,000 bytes to 10,000,000 bytes</span>
+<span class="n">imaplib</span><span class="o">.</span><span class="n">_MAXLINE</span> <span class="o">=</span> <span class="mi">10000000</span>
+
+
+<div class="viewcode-block" id="login_smtp"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch16.Projects.html#AutomateTheBoringStuff.Ch16.Projects.P4_autoDownloadTorrent.login_smtp">[docs]</a><span class="k">def</span> <span class="nf">login_smtp</span><span class="p">(</span><span class="n">file_arg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Login SMTP</span>
+
+<span class="sd">    Logs into SMTP server with credentials from given file, then returns the configured :class:`smtplib.SMTP_SSL`</span>
+<span class="sd">    object and account email.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file_arg: String with path to SMTP server information file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Tuple with :class:`smtplib.SMTP_SSL` object and account email.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Login to SMTP server</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_arg</span><span class="p">)</span> <span class="k">as</span> <span class="n">config</span><span class="p">:</span>
+        <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+    <span class="n">smtp_obj</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP_SSL</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>  <span class="c1"># Using port 465</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;SMTP EHLO: {smtp_obj.ehlo()}&#39;</span><span class="p">)</span>
+
+    <span class="n">smtp_login</span> <span class="o">=</span> <span class="n">smtp_obj</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;SMTP Login: </span><span class="si">{smtp_login}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">smtp_obj</span><span class="p">,</span> <span class="n">email</span></div>
+
+
+<div class="viewcode-block" id="login_imap"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch16.Projects.html#AutomateTheBoringStuff.Ch16.Projects.P4_autoDownloadTorrent.login_imap">[docs]</a><span class="k">def</span> <span class="nf">login_imap</span><span class="p">(</span><span class="n">file_arg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">imapclient</span><span class="o">.</span><span class="n">IMAPClient</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Login IMAP</span>
+
+<span class="sd">    Logs into IMAP server with credentials from given file, then returns the configured :class:`imapclient.IMAPClient`</span>
+<span class="sd">    object.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file_arg: String with path to IMAP server information file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Configured :class:`imapclient.IMAPClient` object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Login to IMAP server</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_arg</span><span class="p">)</span> <span class="k">as</span> <span class="n">config</span><span class="p">:</span>
+        <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+    <span class="n">imap_obj</span> <span class="o">=</span> <span class="n">imapclient</span><span class="o">.</span><span class="n">IMAPClient</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">ssl</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">imap_login</span> <span class="o">=</span> <span class="n">imap_obj</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;IMAP login: </span><span class="si">{imap_login}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">imap_obj</span></div>
+
+
+<div class="viewcode-block" id="fetch_emails"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch16.Projects.html#AutomateTheBoringStuff.Ch16.Projects.P4_autoDownloadTorrent.fetch_emails">[docs]</a><span class="k">def</span> <span class="nf">fetch_emails</span><span class="p">(</span><span class="n">imap_obj_arg</span><span class="p">:</span> <span class="n">imapclient</span><span class="o">.</span><span class="n">IMAPClient</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Fetch emails</span>
+
+<span class="sd">    Gets emails from IMAP server and returns the email&#39;s uids and their raw messages.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        imap_obj_arg: Configured :class:`imapclient.IMAPClient` object from :meth:`login_imap`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Tuple with a list of message uids and a dictionary of raw messages with message uids as keys.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get emails from server</span>
+    <span class="n">imap_obj_arg</span><span class="o">.</span><span class="n">select_folder</span><span class="p">(</span><span class="s1">&#39;INBOX&#39;</span><span class="p">,</span> <span class="n">readonly</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Enable mark as read and delete</span>
+    <span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+    <span class="n">interval</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">yesterday</span> <span class="o">=</span> <span class="p">(</span><span class="n">today</span> <span class="o">-</span> <span class="n">interval</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">-%b-%Y&#39;</span><span class="p">)</span>
+    <span class="n">uids</span> <span class="o">=</span> <span class="n">imap_obj_arg</span><span class="o">.</span><span class="n">search</span><span class="p">([</span><span class="s1">&#39;SINCE&#39;</span><span class="p">,</span> <span class="n">yesterday</span><span class="p">])</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;UIDs: </span><span class="si">{uids}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">raw_messages</span> <span class="o">=</span> <span class="n">imap_obj_arg</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">uids</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;BODY[]&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">uids</span><span class="p">,</span> <span class="n">raw_messages</span></div>
+
+
+<div class="viewcode-block" id="fetch_torrents"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch16.Projects.html#AutomateTheBoringStuff.Ch16.Projects.P4_autoDownloadTorrent.fetch_torrents">[docs]</a><span class="k">def</span> <span class="nf">fetch_torrents</span><span class="p">(</span><span class="n">uids_arg</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">raw_messages_arg</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Fetch torrents</span>
+
+<span class="sd">    Takes given list of message uids and dictionary of raw messages from :meth:`fetch_emails` and</span>
+<span class="sd">    parses out the torrent urls.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        uids_arg: List of message uids.</span>
+<span class="sd">        raw_messages_arg: Dictionary of raw messages with message uids as keys and message data as values.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary with message uids as keys and the torrent url string as values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">urls</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">uids_arg</span><span class="p">:</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">pyzmail</span><span class="o">.</span><span class="n">PyzMessage</span><span class="o">.</span><span class="n">factory</span><span class="p">(</span><span class="n">raw_messages_arg</span><span class="p">[</span><span class="n">uid</span><span class="p">][</span><span class="sa">b</span><span class="s1">&#39;BODY[]&#39;</span><span class="p">])</span>
+        <span class="n">subject</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">get_subject</span><span class="p">()</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Current subject line: </span><span class="si">{subject}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="c1"># Check subject line for command and password</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">html_part</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;torrent bot&#39;</span> <span class="ow">and</span> <span class="s1">&#39;password&#39;</span> <span class="ow">in</span> <span class="n">subject</span><span class="o">.</span><span class="n">lower</span><span class="p">()):</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Accessing UID#</span><span class="si">{uid}</span><span class="s1">: </span><span class="si">{subject}</span><span class="s1"> from: {message.get_address(&quot;from&quot;)}...&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Soupify message</span>
+            <span class="n">html</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">html_part</span><span class="o">.</span><span class="n">get_payload</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">html_part</span><span class="o">.</span><span class="n">charset</span><span class="p">)</span>
+            <span class="n">soup</span> <span class="o">=</span> <span class="n">bs4</span><span class="o">.</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Look for torrent link in email body</span>
+            <span class="n">anchors</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Anchor list: </span><span class="si">{anchors}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">anchor</span> <span class="ow">in</span> <span class="n">anchors</span><span class="p">:</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="n">anchor</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.torrent&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">url</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;magnet:&#39;</span><span class="p">):</span>
+                    <span class="n">urls</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;RuntimeError: Email is not HTML, missing command, or password.</span><span class="se">\n</span><span class="s1">&#39;</span>
+                          <span class="n">f</span><span class="s1">&#39;Skipping UID#</span><span class="si">{uid}</span><span class="s1">: </span><span class="si">{subject}</span><span class="s1"> from: {message.get_address(&quot;from&quot;)}&#39;</span><span class="p">)</span>
+            <span class="k">continue</span>
+    <span class="k">return</span> <span class="n">urls</span></div>
+
+
+<div class="viewcode-block" id="autodownload_torrent"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch16.Projects.html#AutomateTheBoringStuff.Ch16.Projects.P4_autoDownloadTorrent.autodownload_torrent">[docs]</a><span class="k">def</span> <span class="nf">autodownload_torrent</span><span class="p">(</span><span class="n">url_arg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Auto download torrent</span>
+
+<span class="sd">    Starts :py:mod:`subprocess` with Transmission client and waits until given torrent url is downloaded.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        url_arg: String with url of torrent to download.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None. Torrent client specifies where torrent is downloaded to.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        Configured specifically for `Transmission`_ torrent client in `Ubuntu`_.</span>
+
+<span class="sd">    .. _Transmission:</span>
+<span class="sd">        https://transmissionbt.com/</span>
+
+<span class="sd">    .. _Ubuntu:</span>
+<span class="sd">        https://www.ubuntu.com/</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Send link to torrent client</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Opening: </span><span class="si">{url_arg}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">torrent_proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s1">&#39;/usr/bin/transmission-gtk&#39;</span><span class="p">,</span> <span class="n">url_arg</span><span class="p">])</span>
+
+    <span class="c1"># Wait for torrent client to finish download</span>
+    <span class="n">torrent_proc</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">torrent_proc</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Torrent client did not quit properly.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch16.Projects.html#AutomateTheBoringStuff.Ch16.Projects.P4_autoDownloadTorrent.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Start of program&#39;</span><span class="p">)</span>
+    <span class="n">wait_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">wait_time</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">())</span>
+
+    <span class="n">imap_obj</span> <span class="o">=</span> <span class="n">login_imap</span><span class="p">(</span><span class="s1">&#39;../imap_info&#39;</span><span class="p">)</span>
+    <span class="n">uids</span><span class="p">,</span> <span class="n">raw_messages</span> <span class="o">=</span> <span class="n">fetch_emails</span><span class="p">(</span><span class="n">imap_obj</span><span class="p">)</span>
+
+    <span class="n">urls</span> <span class="o">=</span> <span class="n">fetch_torrents</span><span class="p">(</span><span class="n">uids</span><span class="p">,</span> <span class="n">raw_messages</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">urls</span> <span class="o">==</span> <span class="p">{}</span> <span class="ow">or</span> <span class="n">uids</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;No torrents to download.&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No torrents to download.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="n">smtp_obj</span><span class="p">,</span> <span class="n">email</span> <span class="o">=</span> <span class="n">login_smtp</span><span class="p">(</span><span class="s1">&#39;../smtp_info&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">urls</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">urls</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span>
+        <span class="c1"># Compose and send start email</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Starting torrent...&#39;</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Subject: Starting torrent</span><span class="se">\n</span><span class="s1">Greetings!</span><span class="se">\n</span><span class="s1">I have received instructions &#39;</span> \
+                  <span class="s1">&#39;to download</span><span class="se">\n</span><span class="s1"> </span><span class="si">%s</span><span class="se">\n\n</span><span class="s1">Regards,</span><span class="se">\n</span><span class="s1">Torrent Bot&#39;</span> <span class="o">%</span> <span class="n">url</span>
+        <span class="n">unsent</span> <span class="o">=</span> <span class="n">smtp_obj</span><span class="o">.</span><span class="n">sendmail</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="s1">&#39;contact.me@JoseALerma.com&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Unsent emails: </span><span class="si">{unsent}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="n">autodownload_torrent</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+        <span class="c1"># Compose and send end email</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Torrent finished...&#39;</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Subject: Finished torrent</span><span class="se">\n</span><span class="s1">Greetings!</span><span class="se">\n</span><span class="s1">I have finished downloading</span><span class="se">\n</span><span class="s1"> </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> \
+                  <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Regards,</span><span class="se">\n</span><span class="s1">Torrent Bot&#39;</span> <span class="o">%</span> <span class="n">url</span>
+        <span class="n">unsent</span> <span class="o">=</span> <span class="n">smtp_obj</span><span class="o">.</span><span class="n">sendmail</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="s1">&#39;contact.me@JoseALerma.com&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Unsent emails: </span><span class="si">{unsent}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Mark completed command email for deletion</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Deleting UID#</span><span class="si">{uid}</span><span class="s1">...&#39;</span><span class="p">)</span>
+        <span class="n">delete</span> <span class="o">=</span> <span class="n">imap_obj</span><span class="o">.</span><span class="n">delete_messages</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Marked for deletion: </span><span class="si">{delete}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Delete marked emails</span>
+    <span class="n">deleted</span> <span class="o">=</span> <span class="n">imap_obj</span><span class="o">.</span><span class="n">expunge</span><span class="p">()</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Deleted: </span><span class="si">{deleted}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Disconnect from SMTP server</span>
+    <span class="n">smtp_logoff</span> <span class="o">=</span> <span class="n">smtp_obj</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;SMTP Logoff: </span><span class="si">{smtp_logoff}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Disconnect from IMAP server</span>
+    <span class="n">imap_logoff</span> <span class="o">=</span> <span class="n">imap_obj</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;IMAP Logoff: </span><span class="si">{imap_logoff}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;End of program&#39;</span><span class="p">)</span></div>
+
+
+<span class="c1"># If run directly (instead of imported), run main()</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

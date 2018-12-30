@@ -1,5 +1,5 @@
-********************************************
-AutomateTheBoringStuffWithPython Corrections
-********************************************
+**********************************
+AutomateTheBoringStuff Corrections
+**********************************
 
-.. include:: ../../../../pythontutorials/books/AutomateTheBoringStuffWithPython/corrections.rst
+.. include:: ../../../../pythontutorials/books/AutomateTheBoringStuff/corrections.rst

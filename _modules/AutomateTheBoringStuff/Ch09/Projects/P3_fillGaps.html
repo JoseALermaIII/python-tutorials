@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AutomateTheBoringStuff.Ch09.Projects.P3_fillGaps &mdash; python-tutorials 1.2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/automate/automate.html">AutomateTheBoringStuff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/cracking/cracking.html">CrackingCodesWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>AutomateTheBoringStuff.Ch09.Projects.P3_fillGaps</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for AutomateTheBoringStuff.Ch09.Projects.P3_fillGaps</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;P3_fillGaps.py</span>
+
+<span class="sd">Write a program that finds all files with a given prefix, such as spam001.txt,</span>
+<span class="sd">spam002.txt, and so on, in a single folder and locates any gaps in the numbering</span>
+<span class="sd">(such as if there is a spam001.txt and spam003.txt but no spam002.txt).</span>
+
+<span class="sd">Have the program rename all the later files to close this gap.</span>
+
+<span class="sd">Attributes:</span>
+<span class="sd">    seqRegex (re.compile): Regular expression object used to group numbers in</span>
+<span class="sd">        filename.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">re</span>
+
+<span class="n">seqRegex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                      ^(.*?)    # All text before numbering</span>
+<span class="s2">                      (\d+)     # One or more numbers</span>
+<span class="s2">                      (.*?)$    # All text after numbering</span>
+<span class="s2">                      &quot;&quot;&quot;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="is_sequence"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch09.Projects.html#AutomateTheBoringStuff.Ch09.Projects.P3_fillGaps.is_sequence">[docs]</a><span class="k">def</span> <span class="nf">is_sequence</span><span class="p">(</span><span class="n">numberlist</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Is sequence</span>
+
+<span class="sd">    Can take a list returned by :meth:`get_numbers` and determine if</span>
+<span class="sd">    it is a sequence based on the property</span>
+<span class="sd">    ``list_length == (last_element - first_element + 1)``.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        numberlist: List containing integers to check for a sequence.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        True if list contains a sequence of numbers, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">numberlist</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">numberlist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">numberlist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_gap"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch09.Projects.html#AutomateTheBoringStuff.Ch09.Projects.P3_fillGaps.get_gap">[docs]</a><span class="k">def</span> <span class="nf">get_gap</span><span class="p">(</span><span class="n">numberlist</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get gap</span>
+
+<span class="sd">    Can take an integer list returned by :meth:`get_numbers` and determine</span>
+<span class="sd">    the missing sequence number.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        numberlist: List of numbers to find a gap in.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Missing number in the sequence or None if there is no gap.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">seqlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">numberlist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">numberlist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">seqlist</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">element</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">numberlist</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">element</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="get_filenames"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch09.Projects.html#AutomateTheBoringStuff.Ch09.Projects.P3_fillGaps.get_filenames">[docs]</a><span class="k">def</span> <span class="nf">get_filenames</span><span class="p">(</span><span class="n">folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Get file names</span>
+
+<span class="sd">    Called by :meth:`fill_gaps` to makes a list of all numbered</span>
+<span class="sd">    file names in a given folder.</span>
+
+<span class="sd">    Breaks each file into the prefix (before numbering), numbering,</span>
+<span class="sd">    and suffix (after numbering).</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        folder: String containing folder path to get file names of.</span>
+<span class="sd">            Relative paths are okay.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of lists of strings with segmented names of files in</span>
+<span class="sd">        alphanumerical order.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">foldername</span><span class="p">,</span> <span class="n">subfolders</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
+        <span class="n">filenames</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+            <span class="n">match_object</span> <span class="o">=</span> <span class="n">seqRegex</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+            <span class="c1"># Skip files without numbering</span>
+            <span class="k">if</span> <span class="n">match_object</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Get parts of filename</span>
+            <span class="n">prefix</span> <span class="o">=</span> <span class="n">match_object</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">number</span> <span class="o">=</span> <span class="n">match_object</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">suffix</span> <span class="o">=</span> <span class="n">match_object</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+            <span class="n">files</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">prefix</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">suffix</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">files</span></div>
+
+
+<div class="viewcode-block" id="get_numbers"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch09.Projects.html#AutomateTheBoringStuff.Ch09.Projects.P3_fillGaps.get_numbers">[docs]</a><span class="k">def</span> <span class="nf">get_numbers</span><span class="p">(</span><span class="n">files</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Get numbers</span>
+
+<span class="sd">    Can take a list returned by :meth:`get_filenames` and make</span>
+<span class="sd">    an integer list of the numerical parts of the file names.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        files: List of segmented file names.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of integers from file names in numerical order.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">numlist</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="n">numlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">numlist</span></div>
+
+
+<div class="viewcode-block" id="fill_gaps"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch09.Projects.html#AutomateTheBoringStuff.Ch09.Projects.P3_fillGaps.fill_gaps">[docs]</a><span class="k">def</span> <span class="nf">fill_gaps</span><span class="p">(</span><span class="n">folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Fill gaps</span>
+
+<span class="sd">    Fills gaps in file name numbering of a given folder.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        folder: String containing path of folder to fill filename gaps.</span>
+<span class="sd">            Relative paths are okay.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None. Prints applicable error message and renames files.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        Running in debug mode. Files to be renamed are printed. Uncomment</span>
+<span class="sd">        after testing to rename files.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="n">get_filenames</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+
+    <span class="c1"># Get list of numbers used in file names</span>
+    <span class="n">numlist</span> <span class="o">=</span> <span class="n">get_numbers</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+
+    <span class="c1"># Check if numbers are in sequence</span>
+    <span class="k">if</span> <span class="n">is_sequence</span><span class="p">(</span><span class="n">numlist</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are no gaps to fill.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># Find gap in sequence</span>
+    <span class="n">gap</span> <span class="o">=</span> <span class="n">get_gap</span><span class="p">(</span><span class="n">numlist</span><span class="p">)</span>
+
+    <span class="c1"># Rename files to close gap</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="n">prefix</span><span class="p">,</span> <span class="n">number</span><span class="p">,</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">file</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">file</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">file</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">gap</span> <span class="o">&lt;=</span> <span class="nb">int</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+            <span class="c1"># Make file names</span>
+            <span class="n">numlen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+            <span class="n">oldfilename</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="n">newfilename</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">gap</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="n">numlen</span><span class="p">)</span> <span class="o">+</span> <span class="n">suffix</span>
+            <span class="n">gap</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="c1"># Get absolute paths</span>
+            <span class="n">workingdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+            <span class="n">oldfilepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workingdir</span><span class="p">,</span> <span class="n">oldfilename</span><span class="p">)</span>
+            <span class="n">newfilepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workingdir</span><span class="p">,</span> <span class="n">newfilename</span><span class="p">)</span>
+
+            <span class="c1"># Rename file</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Renaming &#39;</span><span class="si">%s</span><span class="s2">&#39; to &#39;</span><span class="si">%s</span><span class="s2">&#39;...&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">oldfilename</span><span class="p">,</span> <span class="n">newfilename</span><span class="p">))</span>  <span class="c1"># DEBUG</span></div>
+            <span class="c1">#os.rename(oldfilepath, newfilepath)  # Uncomment after testing</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch09.Projects.html#AutomateTheBoringStuff.Ch09.Projects.P3_fillGaps.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">fill_gaps</span><span class="p">(</span><span class="s2">&quot;./testdir&quot;</span><span class="p">)</span></div>
+
+
+<span class="c1"># If P3_fillGaps.py is run instead of imported, run main():</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

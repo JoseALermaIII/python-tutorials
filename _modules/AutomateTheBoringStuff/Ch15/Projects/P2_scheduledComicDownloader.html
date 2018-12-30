@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AutomateTheBoringStuff.Ch15.Projects.P2_scheduledComicDownloader &mdash; python-tutorials 1.2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/automate/automate.html">AutomateTheBoringStuff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/cracking/cracking.html">CrackingCodesWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>AutomateTheBoringStuff.Ch15.Projects.P2_scheduledComicDownloader</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for AutomateTheBoringStuff.Ch15.Projects.P2_scheduledComicDownloader</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Scheduled comic downloader</span>
+
+<span class="sd">Write a program that checks the websites of several web comics and automatically</span>
+<span class="sd">downloads the images if the comic was updated since the program’s last visit.</span>
+
+<span class="sd">Your operating system’s scheduler (Scheduled Tasks on Windows, launchd on OS X,</span>
+<span class="sd">and cron on Linux) can run your Python program once a day.</span>
+
+<span class="sd">The Python program itself can download the comic and then copy it to your desktop</span>
+<span class="sd">so that it is easy to find. This will free you from having to check the website</span>
+<span class="sd">yourself to see whether it has updated.</span>
+
+<span class="sd">Note:</span>
+<span class="sd">    This only downloads from http://www.lefthandedtoons.com/ and</span>
+<span class="sd">    http://buttersafe.com/ because all websites are different.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">bs4</span><span class="o">,</span> <span class="nn">datetime</span><span class="o">,</span> <span class="nn">shelve</span><span class="o">,</span> <span class="nn">re</span>
+
+
+<div class="viewcode-block" id="get_soup"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch15.Projects.html#AutomateTheBoringStuff.Ch15.Projects.P2_scheduledComicDownloader.get_soup">[docs]</a><span class="k">def</span> <span class="nf">get_soup</span><span class="p">(</span><span class="n">url_arg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">bs4</span><span class="o">.</span><span class="n">BeautifulSoup</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Get soup</span>
+
+<span class="sd">    Downloads given url with :py:mod:`requests` and converts it to :class:`bs4.BeautifulSoup`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        url_arg: String with url to soupify.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        BeautifulSoup object of given url.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        requests.exceptions.HTTPError: If download of website url failed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Downloading page </span><span class="si">{url_arg}</span><span class="s1">...&#39;</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_arg</span><span class="p">)</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">bs4</span><span class="o">.</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="compare_timestamps"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch15.Projects.html#AutomateTheBoringStuff.Ch15.Projects.P2_scheduledComicDownloader.compare_timestamps">[docs]</a><span class="k">def</span> <span class="nf">compare_timestamps</span><span class="p">(</span><span class="n">timestamp_arg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">shelf_arg</span><span class="p">:</span> <span class="n">shelve</span><span class="o">.</span><span class="n">open</span><span class="p">,</span> <span class="n">url_arg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Compare timestamps</span>
+
+<span class="sd">    Compares timestamp of current comic to last downloaded comic timestamp of given url.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        timestamp_arg: String with date in ``Month DD, YYYY`` format.</span>
+<span class="sd">        shelf_arg: :py:mod:`shelve` object with urls as keys and</span>
+<span class="sd">            :meth:`datetime.datetime.date` as values.</span>
+<span class="sd">        url_arg: String with website url.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        True if comic&#39;s timestamp is after saved timestamp, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">comic_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">timestamp_arg</span><span class="p">,</span> <span class="s1">&#39;%B </span><span class="si">%d</span><span class="s1">, %Y&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+    <span class="n">shelf_date</span> <span class="o">=</span> <span class="n">shelf_arg</span><span class="p">[</span><span class="n">url_arg</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">comic_date</span> <span class="o">&gt;</span> <span class="n">shelf_date</span><span class="p">:</span>  <span class="c1"># New comic available, download comic</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="check_key"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch15.Projects.html#AutomateTheBoringStuff.Ch15.Projects.P2_scheduledComicDownloader.check_key">[docs]</a><span class="k">def</span> <span class="nf">check_key</span><span class="p">(</span><span class="n">shelf_arg</span><span class="p">:</span> <span class="n">shelve</span><span class="o">.</span><span class="n">open</span><span class="p">,</span> <span class="n">url_arg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Check key</span>
+
+<span class="sd">    Checks if given url is a key in the given shelf.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        shelf_arg: :py:mod:`shelve` object with urls as keys and</span>
+<span class="sd">            :meth:`datetime.datetime.date` as values.</span>
+<span class="sd">        url_arg: String with website url.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        True if the url is in the shelf, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="n">shelf_arg</span><span class="o">.</span><span class="n">keys</span>
+    <span class="k">if</span> <span class="n">url_arg</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="save_comic"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch15.Projects.html#AutomateTheBoringStuff.Ch15.Projects.P2_scheduledComicDownloader.save_comic">[docs]</a><span class="k">def</span> <span class="nf">save_comic</span><span class="p">(</span><span class="n">comic_url_arg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">shelf_arg</span><span class="p">:</span> <span class="n">shelve</span><span class="o">.</span><span class="n">open</span><span class="p">,</span> <span class="n">url_arg</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Save comic</span>
+
+<span class="sd">    Downloads given comic url and saves to desktop, then updates download time of given website url in given shelf.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        comic_url_arg: String with url of comic image.</span>
+<span class="sd">        shelf_arg: :py:mod:`shelve` object with urls as keys and</span>
+<span class="sd">            :meth:`datetime.datetime.date` as values.</span>
+<span class="sd">        url_arg: String with website url.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None. Comic image is saved to desktop.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        requests.exceptions.HTTPError: If download of comic url failed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Downloading image </span><span class="si">{comic_url_arg}</span><span class="s1">...&#39;</span><span class="p">)</span>
+    <span class="n">comic_res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">comic_url_arg</span><span class="p">)</span>
+    <span class="n">comic_res</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+    <span class="c1"># Save the comic to desktop.</span>
+    <span class="n">image_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~/Desktop&#39;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">comic_url_arg</span><span class="p">)),</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">comic_res</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="mi">100000</span><span class="p">):</span>
+        <span class="n">image_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+    <span class="n">image_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+    <span class="n">shelf_arg</span><span class="p">[</span><span class="n">url_arg</span><span class="p">]</span> <span class="o">=</span> <span class="n">now</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch15.Projects.html#AutomateTheBoringStuff.Ch15.Projects.P2_scheduledComicDownloader.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">comic_shelf</span> <span class="o">=</span> <span class="n">shelve</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;comic&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Download page</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://www.lefthandedtoons.com/&#39;</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="c1"># Get comic url in case it needs to be downloaded</span>
+    <span class="n">image_elem</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;.comicimage&#39;</span><span class="p">)</span>
+    <span class="n">comic_url</span> <span class="o">=</span> <span class="n">image_elem</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Compare page&#39;s timestamp to shelve&#39;s</span>
+    <span class="n">comic_title_elem</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;.comictitlearea&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">comic_title_elem</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Could not find comic timestamp.&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">title_text</span> <span class="o">=</span> <span class="n">comic_title_elem</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getText</span><span class="p">()</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;\w+ \d+, \d</span><span class="si">{4}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">title_text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">check_key</span><span class="p">(</span><span class="n">comic_shelf</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span> <span class="ow">or</span> <span class="n">compare_timestamps</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(),</span> <span class="n">comic_shelf</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+            <span class="n">save_comic</span><span class="p">(</span><span class="n">comic_url</span><span class="p">,</span> <span class="n">comic_shelf</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+
+    <span class="c1"># Download page</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://buttersafe.com/&#39;</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">get_soup</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="c1"># Get comic url in case it needs to be downloaded</span>
+    <span class="n">div_elem</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;comic&#39;</span><span class="p">})</span>
+    <span class="n">comic_url</span> <span class="o">=</span> <span class="n">div_elem</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">)[</span><span class="s1">&#39;src&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Compare page&#39;s timestamp to shelve&#39;s</span>
+    <span class="n">comic_header</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;#headernav-date&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">comic_header</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Could not find comic timestamp.&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">header_text</span> <span class="o">=</span> <span class="n">comic_header</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getText</span><span class="p">()</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;(\w+), (\w+) (\d+).., (\d</span><span class="si">{4}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">header_text</span><span class="p">)</span>
+        <span class="n">comic_timestamp</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;{match.group(2)} {match.group(3)}, {match.group(4)}&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">check_key</span><span class="p">(</span><span class="n">comic_shelf</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span> <span class="ow">or</span> <span class="n">compare_timestamps</span><span class="p">(</span><span class="n">comic_timestamp</span><span class="p">,</span> <span class="n">comic_shelf</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+            <span class="n">save_comic</span><span class="p">(</span><span class="n">comic_url</span><span class="p">,</span> <span class="n">comic_shelf</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+
+    <span class="n">comic_shelf</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

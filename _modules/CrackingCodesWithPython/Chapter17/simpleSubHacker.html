@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CrackingCodesWithPython.Chapter17.simpleSubHacker &mdash; python-tutorials 1.1.1 documentation</title>
+  <title>CrackingCodesWithPython.Chapter17.simpleSubHacker &mdash; python-tutorials 1.2.0 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                1.1
+                1.2
               </div>
             
           
@@ -87,7 +87,7 @@
 </ul>
 <p class="caption"><span class="caption-text">books</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../books/automate/automate.html">AutomateTheBoringStuffWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/automate/automate.html">AutomateTheBoringStuff</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../books/cracking/cracking.html">CrackingCodesWithPython</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../books/wikibook.html">wikibook</a></li>
 </ul>
@@ -180,7 +180,6 @@
 
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">copy</span>
-<span class="kn">import</span> <span class="nn">pythontutorials.books.CrackingCodesWithPython.pyperclip</span>
 <span class="kn">from</span> <span class="nn">pythontutorials.books.CrackingCodesWithPython.Chapter16.simpleSubCipher</span> <span class="k">import</span> <span class="n">decryptMessage</span>
 <span class="kn">from</span> <span class="nn">pythontutorials.books.CrackingCodesWithPython.Chapter17.wordPatterns</span> <span class="k">import</span> <span class="n">allPatterns</span>
 <span class="kn">from</span> <span class="nn">pythontutorials.books.CrackingCodesWithPython.Chapter17.makeWordPatterns</span> <span class="k">import</span> <span class="n">getWordPattern</span>
@@ -191,6 +190,8 @@
 
 
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../CrackingCodesWithPython.Chapter17.html#CrackingCodesWithPython.Chapter17.simpleSubHacker.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="kn">import</span> <span class="nn">pyperclip</span>
+
     <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Sy l nlx sr pyyacao l ylwj eiswi upar lulsxrj isr</span>
 <span class="s2">sxrjsxwjr, ia esmm rwctjsxsza sj wmpramh, lxo txmarr jia aqsoaxwa</span>
 <span class="s2">sr pqaceiamnsxu, ia esmm caytra jp famsaqa sj. Sy, px jia pjiac</span>
@@ -212,7 +213,7 @@
     <span class="nb">print</span><span class="p">()</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Copying hacked message to clipboard:&#39;</span><span class="p">)</span>
     <span class="n">hackedMessage</span> <span class="o">=</span> <span class="n">decryptWithCipherletterMapping</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">letterMapping</span><span class="p">)</span>
-    <span class="n">books</span><span class="o">.</span><span class="n">CrackingCodesWithPython</span><span class="o">.</span><span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">hackedMessage</span><span class="p">)</span>
+    <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">hackedMessage</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">hackedMessage</span><span class="p">)</span></div>
 
 
@@ -448,6 +449,7 @@
         <script type="text/javascript" src="../../../_static/jquery.js"></script>
         <script type="text/javascript" src="../../../_static/underscore.js"></script>
         <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
     
 
   

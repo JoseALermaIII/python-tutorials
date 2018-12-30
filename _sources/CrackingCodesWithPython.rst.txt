@@ -31,18 +31,6 @@ Subpackages
     CrackingCodesWithPython.Chapter23
     CrackingCodesWithPython.Chapter24
 
-Submodules
-----------
-
-CrackingCodesWithPython.pyperclip module
-----------------------------------------
-
-.. automodule:: CrackingCodesWithPython.pyperclip
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
 Module contents
 ---------------
 

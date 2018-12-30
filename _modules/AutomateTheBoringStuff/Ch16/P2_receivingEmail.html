@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AutomateTheBoringStuff.Ch16.P2_receivingEmail &mdash; python-tutorials 1.2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/automate/automate.html">AutomateTheBoringStuff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/cracking/cracking.html">CrackingCodesWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>AutomateTheBoringStuff.Ch16.P2_receivingEmail</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for AutomateTheBoringStuff.Ch16.P2_receivingEmail</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Receiving email</span>
+
+<span class="sd">This program uses :class:`imapclient.IMAPClient` and `pyzmail36`_ to retrieve emails.</span>
+
+<span class="sd">Notes:</span>
+<span class="sd">    * ``imap_info`` file has each item on a separate line.</span>
+<span class="sd">    * Email address used is specially created for this chapter.</span>
+<span class="sd">    * Use :func:`input` for password to prevent storing in unencrypted file.</span>
+
+<span class="sd">.. _pyzmail36:</span>
+<span class="sd">    https://pypi.org/project/pyzmail36/</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../AutomateTheBoringStuff.Ch16.html#AutomateTheBoringStuff.Ch16.P2_receivingEmail.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Connecting to an IMAP Server</span>
+    <span class="kn">import</span> <span class="nn">imapclient</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;imap_info&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config</span><span class="p">:</span>
+        <span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+    <span class="n">imap_obj</span> <span class="o">=</span> <span class="n">imapclient</span><span class="o">.</span><span class="n">IMAPClient</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">ssl</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Logging in to the IMAP Server</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">imap_obj</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">password</span><span class="p">))</span>
+
+    <span class="c1"># Searching for Email</span>
+    <span class="kn">import</span> <span class="nn">pprint</span>  <span class="c1"># Don&#39;t do this, imports should be at the top of the file</span>
+    <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">imap_obj</span><span class="o">.</span><span class="n">list_folders</span><span class="p">())</span>
+
+    <span class="n">imap_obj</span><span class="o">.</span><span class="n">select_folder</span><span class="p">(</span><span class="s1">&#39;INBOX&#39;</span><span class="p">,</span> <span class="n">readonly</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">uids</span> <span class="o">=</span> <span class="n">imap_obj</span><span class="o">.</span><span class="n">search</span><span class="p">([</span><span class="s1">&#39;SINCE&#39;</span><span class="p">,</span> <span class="s1">&#39;01-Jan-2015&#39;</span><span class="p">,</span> <span class="s1">&#39;NOT&#39;</span><span class="p">,</span> <span class="s1">&#39;FROM&#39;</span><span class="p">,</span> <span class="s1">&#39;alice@exmaple.com&#39;</span><span class="p">])</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">uids</span><span class="p">)</span>
+
+    <span class="c1"># Increase size limit from 10,000 bytes to 10,000,000 bytes</span>
+    <span class="kn">import</span> <span class="nn">imaplib</span>
+    <span class="n">imaplib</span><span class="o">.</span><span class="n">_MAXLINE</span> <span class="o">=</span> <span class="mi">10000000</span>
+
+    <span class="c1"># Fetching an Email and Marking it as Read</span>
+    <span class="n">raw_messages</span> <span class="o">=</span> <span class="n">imap_obj</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">uids</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;BODY[]&#39;</span><span class="p">])</span>
+    <span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">raw_messages</span><span class="p">)</span>
+
+    <span class="c1">#imap_obj.select_folder(&#39;INBOX&#39;, readonly=False)  # Allows marking as read when using fetch()</span>
+
+    <span class="c1"># Getting Email Addresses from a Raw Message</span>
+    <span class="kn">import</span> <span class="nn">pyzmail</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">pyzmail</span><span class="o">.</span><span class="n">PyzMessage</span><span class="o">.</span><span class="n">factory</span><span class="p">(</span><span class="n">raw_messages</span><span class="p">[</span><span class="n">uids</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="sa">b</span><span class="s1">&#39;BODY[]&#39;</span><span class="p">])</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">get_subject</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">get_addresses</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">get_addresses</span><span class="p">(</span><span class="s1">&#39;to&#39;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">get_addresses</span><span class="p">(</span><span class="s1">&#39;cc&#39;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">get_addresses</span><span class="p">(</span><span class="s1">&#39;bcc&#39;</span><span class="p">))</span>
+
+    <span class="c1"># Getting the Body from a Raw Message</span>
+    <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">text_part</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">text_part</span><span class="o">.</span><span class="n">get_payload</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">text_part</span><span class="o">.</span><span class="n">charset</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">html_part</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">html_part</span><span class="o">.</span><span class="n">get_payload</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">html_part</span><span class="o">.</span><span class="n">charset</span><span class="p">))</span>
+
+    <span class="c1"># Deleting Emails</span>
+    <span class="n">imap_obj</span><span class="o">.</span><span class="n">select_folder</span><span class="p">(</span><span class="s1">&#39;INBOX&#39;</span><span class="p">,</span> <span class="n">readonly</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Allows deleting of emails</span>
+    <span class="n">uids</span> <span class="o">=</span> <span class="n">imap_obj</span><span class="o">.</span><span class="n">search</span><span class="p">([</span><span class="s1">&#39;ON&#39;</span><span class="p">,</span> <span class="s1">&#39;15-Sep-2018&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">uids</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">imap_obj</span><span class="o">.</span><span class="n">delete_messages</span><span class="p">(</span><span class="n">uids</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">imap_obj</span><span class="o">.</span><span class="n">expunge</span><span class="p">())</span>
+
+    <span class="c1"># Disconnecting from the IMAP Server</span>
+    <span class="n">imap_obj</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

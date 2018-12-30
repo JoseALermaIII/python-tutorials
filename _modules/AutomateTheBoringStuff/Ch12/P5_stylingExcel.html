@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AutomateTheBoringStuff.Ch12.P5_stylingExcel &mdash; python-tutorials 1.2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/automate/automate.html">AutomateTheBoringStuff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/cracking/cracking.html">CrackingCodesWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>AutomateTheBoringStuff.Ch12.P5_stylingExcel</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for AutomateTheBoringStuff.Ch12.P5_stylingExcel</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Styling Excel</span>
+
+<span class="sd">This program uses :py:mod:`openpyxl` to format Excel documents</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../AutomateTheBoringStuff.Ch12.html#AutomateTheBoringStuff.Ch12.P5_stylingExcel.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="kn">import</span> <span class="nn">openpyxl</span>
+    <span class="kn">from</span> <span class="nn">openpyxl.styles</span> <span class="k">import</span> <span class="n">Font</span><span class="p">,</span> <span class="n">NamedStyle</span>
+    
+    <span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="p">[</span><span class="s2">&quot;Sheet&quot;</span><span class="p">]</span>
+    
+    <span class="c1"># Setting the Font Style of Cells</span>
+    <span class="n">italic24Font</span> <span class="o">=</span> <span class="n">NamedStyle</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;italic24Font&quot;</span><span class="p">)</span>
+    <span class="n">italic24Font</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="n">Font</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">italic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;A1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">italic24Font</span>
+    <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;A1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Hello world!&quot;</span>
+    <span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;styled.xlsx&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Font Objects</span>
+    <span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="p">[</span><span class="s2">&quot;Sheet&quot;</span><span class="p">]</span>
+    
+    <span class="n">fontObj1</span> <span class="o">=</span> <span class="n">Font</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Times New Roman&quot;</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">styleObj1</span> <span class="o">=</span> <span class="n">NamedStyle</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;styleObj1&quot;</span><span class="p">)</span>
+    <span class="n">styleObj1</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="n">fontObj1</span>
+    <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;A1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">styleObj1</span>
+    <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;A1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Bold Times New Roman&quot;</span>
+    
+    <span class="n">fontObj2</span> <span class="o">=</span> <span class="n">Font</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">italic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">styleObj2</span> <span class="o">=</span> <span class="n">NamedStyle</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;styleObj2&quot;</span><span class="p">)</span>
+    <span class="n">styleObj2</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="n">fontObj2</span>
+    <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;B3&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">styleObj2</span>
+    <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;B3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;24 pt Italic&quot;</span>
+    <span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;styles.xlsx&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Formulas</span>
+    <span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">active</span>
+    <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;A1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span>
+    <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;A2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
+    <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;A3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;=SUM(A1:A2)&quot;</span>
+    <span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;writeFormula.xlsx&quot;</span><span class="p">)</span>
+    
+    <span class="n">wbFormulas</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="s2">&quot;writeFormula.xlsx&quot;</span><span class="p">)</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">wbFormulas</span><span class="o">.</span><span class="n">active</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;A3&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    
+    <span class="n">wbDataOnly</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="s2">&quot;writeFormula.xlsx&quot;</span><span class="p">,</span> <span class="n">data_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">wbDataOnly</span><span class="o">.</span><span class="n">active</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;A3&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>  <span class="c1"># Not working with LibreOffice 6.0.3.2</span>
+    
+    <span class="c1"># Adjusting Rows and Columns</span>
+    <span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">active</span>
+    <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;A1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Tall row&quot;</span>
+    <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;B2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Wide column&quot;</span>
+    <span class="n">sheet</span><span class="o">.</span><span class="n">row_dimensions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">70</span>
+    <span class="n">sheet</span><span class="o">.</span><span class="n">column_dimensions</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;dimensions.xlsx&quot;</span><span class="p">)</span>
+    
+    <span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">active</span>
+    <span class="n">sheet</span><span class="o">.</span><span class="n">merge_cells</span><span class="p">(</span><span class="s2">&quot;A1:D3&quot;</span><span class="p">)</span>
+    <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;A1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Twelve cells merged together.&quot;</span>
+    <span class="n">sheet</span><span class="o">.</span><span class="n">merge_cells</span><span class="p">(</span><span class="s2">&quot;C5:D5&quot;</span><span class="p">)</span>
+    <span class="n">sheet</span><span class="p">[</span><span class="s2">&quot;C5&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Two merged cells.&quot;</span>
+    <span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;merged.xlsx&quot;</span><span class="p">)</span>
+    
+    <span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="s2">&quot;merged.xlsx&quot;</span><span class="p">)</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">active</span>
+    <span class="n">sheet</span><span class="o">.</span><span class="n">unmerge_cells</span><span class="p">(</span><span class="s2">&quot;A1:D3&quot;</span><span class="p">)</span>
+    <span class="n">sheet</span><span class="o">.</span><span class="n">unmerge_cells</span><span class="p">(</span><span class="s2">&quot;C5:D5&quot;</span><span class="p">)</span>
+    <span class="c1">#wb.save(&quot;merged.xlsx&quot;)  # uncomment to see changes</span>
+    
+    <span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="s2">&quot;produceSales.xlsx&quot;</span><span class="p">)</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">active</span>
+    <span class="n">sheet</span><span class="o">.</span><span class="n">freeze_panes</span> <span class="o">=</span> <span class="s2">&quot;A2&quot;</span>
+    <span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;freezeExample.xlsx&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Charts</span>
+    <span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
+    <span class="n">sheet</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">active</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>    <span class="c1"># create some data in column A</span>
+        <span class="n">sheet</span><span class="p">[</span><span class="s1">&#39;A&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">i</span>
+    
+    <span class="n">refObj</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">Reference</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">min_row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">min_col</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_row</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_col</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">seriesObj</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">refObj</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;First Series&quot;</span><span class="p">)</span>  <span class="c1"># FIXME: Chart layout is wrong (LibreOffice 6.0.3.2)</span>
+    
+    <span class="n">chartObj</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">BarChart</span><span class="p">()</span>
+    <span class="n">chartObj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seriesObj</span><span class="p">)</span>
+    <span class="n">chartObj</span><span class="o">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="s2">&quot;B3&quot;</span>  <span class="c1"># set the position</span>
+    <span class="n">chartObj</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="mf">7.94</span>  <span class="c1"># set the size (in centimeters, where 1 cm = 37.8 pixels)</span>
+    <span class="n">chartObj</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mf">5.29</span>
+    
+    <span class="n">sheet</span><span class="o">.</span><span class="n">add_chart</span><span class="p">(</span><span class="n">chartObj</span><span class="p">)</span>
+    <span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;sampleChart.xlsx&quot;</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AutomateTheBoringStuff.Ch17.Projects.P3_seatingCards &mdash; python-tutorials 1.2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/automate/automate.html">AutomateTheBoringStuff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/cracking/cracking.html">CrackingCodesWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>AutomateTheBoringStuff.Ch17.Projects.P3_seatingCards</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for AutomateTheBoringStuff.Ch17.Projects.P3_seatingCards</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Seating cards</span>
+
+<span class="sd">Chapter 13 included a practice project to create custom invitations from a list of</span>
+<span class="sd">guests in a plaintext file - :py:mod:`.P3_invitations`. As an additional project, use</span>
+<span class="sd">:py:mod:`PIL` to create images for custom seating cards for your guests. For each of</span>
+<span class="sd">the guests listed in ``guests.txt``, generate an image file with the guest&#39;s name and</span>
+<span class="sd">some flowery decoration.</span>
+
+<span class="sd">To ensure that each seating card is the same size, add a black rectangle on the edges</span>
+<span class="sd">of the invitation image so that when the image is printed out, there will be a</span>
+<span class="sd">guideline for cutting. The PNG files that :py:mod:`PIL.Image` produces are set</span>
+<span class="sd">to 72 pixels per inch, so a 4×5-inch card would require a 288×360-pixel image.</span>
+
+<span class="sd">Note:</span>
+<span class="sd">    * Flowery decoration from: http://www.reusableart.com/flower-02.html</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../../AutomateTheBoringStuff.Ch17.Projects.html#AutomateTheBoringStuff.Ch17.Projects.P3_seatingCards.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageFont</span><span class="p">,</span> <span class="n">ImageDraw</span>
+
+    <span class="n">GUEST_FILE</span> <span class="o">=</span> <span class="s1">&#39;../../Ch13/Projects/guests.txt&#39;</span>
+    <span class="n">FLOWER_FILENAME</span> <span class="o">=</span> <span class="s1">&#39;flower-02.png&#39;</span>
+    <span class="n">OUTPUT_FOLDER</span> <span class="o">=</span> <span class="s1">&#39;seatingCards&#39;</span>
+    <span class="n">FONTS_FOLDER</span> <span class="o">=</span> <span class="s1">&#39;/usr/share/fonts/truetype&#39;</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">OUTPUT_FOLDER</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># Get guest list from file</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">GUEST_FILE</span><span class="p">)</span> <span class="k">as</span> <span class="n">guest_list</span><span class="p">:</span>
+        <span class="n">guests</span> <span class="o">=</span> <span class="n">guest_list</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">guest</span> <span class="ow">in</span> <span class="n">guests</span><span class="p">:</span>
+        <span class="c1"># Open flowery decoration</span>
+        <span class="n">deco</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">FLOWER_FILENAME</span><span class="p">)</span>
+        <span class="n">deco_width</span><span class="p">,</span> <span class="n">deco_height</span> <span class="o">=</span> <span class="n">deco</span><span class="o">.</span><span class="n">size</span>
+
+        <span class="c1"># Resize decoration if smaller than 4x5-inch card</span>
+        <span class="k">if</span> <span class="n">deco_width</span> <span class="o">&lt;</span> <span class="mi">288</span> <span class="ow">or</span> <span class="n">deco_height</span> <span class="o">&lt;</span> <span class="mi">360</span><span class="p">:</span>
+            <span class="c1"># Calculate the new width and height to resize to</span>
+            <span class="k">if</span> <span class="n">deco_width</span> <span class="o">&gt;</span> <span class="n">deco_height</span><span class="p">:</span>
+                <span class="n">deco_height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="mi">288</span> <span class="o">/</span> <span class="n">deco_width</span><span class="p">)</span> <span class="o">*</span> <span class="n">deco_height</span><span class="p">)</span>
+                <span class="n">deco_width</span> <span class="o">=</span> <span class="mi">288</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">deco_width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="mi">360</span> <span class="o">/</span> <span class="n">deco_height</span><span class="p">)</span> <span class="o">*</span> <span class="n">deco_width</span><span class="p">)</span>
+                <span class="n">deco_height</span> <span class="o">=</span> <span class="mi">360</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Resizing decoration...&#39;</span><span class="p">)</span>
+            <span class="n">deco</span> <span class="o">=</span> <span class="n">deco</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">deco_width</span><span class="p">,</span> <span class="n">deco_height</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">ANTIALIAS</span><span class="p">)</span>
+            <span class="n">deco</span> <span class="o">=</span> <span class="n">deco</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;L&#39;</span><span class="p">)</span>  <span class="c1"># Convert back to grayscale (if original image is grayscale)</span>
+
+        <span class="c1"># Add guest&#39;s name</span>
+        <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">deco</span><span class="p">)</span>
+        <span class="k">if</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="se">\u014d</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">guest</span><span class="p">:</span>  <span class="c1"># Replace ō with o since draw.textsize can&#39;t translate it</span>
+            <span class="n">guest</span> <span class="o">=</span> <span class="n">guest</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;</span><span class="se">\u014d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+        <span class="n">text_width</span><span class="p">,</span> <span class="n">text_height</span> <span class="o">=</span> <span class="n">draw</span><span class="o">.</span><span class="n">textsize</span><span class="p">(</span><span class="n">guest</span><span class="p">)</span>
+        <span class="n">font</span> <span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">truetype</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">FONTS_FOLDER</span><span class="p">,</span> <span class="s1">&#39;/liberation/LiberationSerif-Regular.ttf&#39;</span><span class="p">),</span> <span class="mi">15</span><span class="p">)</span>
+        <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="nb">int</span><span class="p">((</span><span class="n">deco_width</span> <span class="o">-</span> <span class="n">text_width</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">int</span><span class="p">((</span><span class="n">deco_height</span> <span class="o">-</span> <span class="n">text_height</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">guest</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;black&#39;</span>
+                  <span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
+
+        <span class="c1"># Make black card with extra space for cutting</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGBA&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">deco_width</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span> <span class="n">deco_height</span> <span class="o">+</span> <span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">size</span>
+
+        <span class="c1"># Add modified decoration to background</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">deco</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">((</span><span class="n">width</span> <span class="o">-</span> <span class="n">deco_width</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">int</span><span class="p">((</span><span class="n">height</span> <span class="o">-</span> <span class="n">deco_height</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)))</span>
+
+        <span class="c1"># Save seating card</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">isalnum</span><span class="p">,</span> <span class="n">guest</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">OUTPUT_FOLDER</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

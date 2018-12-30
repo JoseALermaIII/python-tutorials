@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AutomateTheBoringStuff.Ch08.P1_randomQuizGenerator &mdash; python-tutorials 1.2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/automate/automate.html">AutomateTheBoringStuff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/cracking/cracking.html">CrackingCodesWithPython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>AutomateTheBoringStuff.Ch08.P1_randomQuizGenerator</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for AutomateTheBoringStuff.Ch08.P1_randomQuizGenerator</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! python 3</span>
+<span class="sd">&quot;&quot;&quot;Random quiz generator</span>
+
+<span class="sd">Creates quizzes with questions and answers in random order, along with the answer key.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../AutomateTheBoringStuff.Ch08.html#AutomateTheBoringStuff.Ch08.P1_randomQuizGenerator.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;P1_randomQuizGenerator.py</span>
+
+<span class="sd">    Uses given dictionary with US states and their capitals to create 35 randomly generated</span>
+<span class="sd">    quizzes with answer keys.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">         None. Files are generated in same folder as program.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">random</span>
+
+    <span class="n">capitals</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Alabama&#39;</span><span class="p">:</span> <span class="s1">&#39;Montgomery&#39;</span><span class="p">,</span> <span class="s1">&#39;Alaska&#39;</span><span class="p">:</span> <span class="s1">&#39;Juneau&#39;</span><span class="p">,</span> <span class="s1">&#39;Arizona&#39;</span><span class="p">:</span> <span class="s1">&#39;Phoenix&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Arkansas&#39;</span><span class="p">:</span> <span class="s1">&#39;Little Rock&#39;</span><span class="p">,</span> <span class="s1">&#39;California&#39;</span><span class="p">:</span> <span class="s1">&#39;Sacramento&#39;</span><span class="p">,</span> <span class="s1">&#39;Colorado&#39;</span><span class="p">:</span> <span class="s1">&#39;Denver&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Connecticut&#39;</span><span class="p">:</span> <span class="s1">&#39;Hartford&#39;</span><span class="p">,</span> <span class="s1">&#39;Delaware&#39;</span><span class="p">:</span> <span class="s1">&#39;Dover&#39;</span><span class="p">,</span> <span class="s1">&#39;Florida&#39;</span><span class="p">:</span> <span class="s1">&#39;Tallahassee&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Georgia&#39;</span><span class="p">:</span> <span class="s1">&#39;Atlanta&#39;</span><span class="p">,</span> <span class="s1">&#39;Hawaii&#39;</span><span class="p">:</span> <span class="s1">&#39;Honolulu&#39;</span><span class="p">,</span> <span class="s1">&#39;Idaho&#39;</span><span class="p">:</span> <span class="s1">&#39;Boise&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Illinois&#39;</span><span class="p">:</span> <span class="s1">&#39;Springfield&#39;</span><span class="p">,</span> <span class="s1">&#39;Indiana&#39;</span><span class="p">:</span> <span class="s1">&#39;Indianapolis&#39;</span><span class="p">,</span> <span class="s1">&#39;Iowa&#39;</span><span class="p">:</span> <span class="s1">&#39;Des Moines&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Kansas&#39;</span><span class="p">:</span> <span class="s1">&#39;Topeka&#39;</span><span class="p">,</span> <span class="s1">&#39;Kentucky&#39;</span><span class="p">:</span> <span class="s1">&#39;Frankfort&#39;</span><span class="p">,</span> <span class="s1">&#39;Louisiana&#39;</span><span class="p">:</span> <span class="s1">&#39;Baton Rouge&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Maine&#39;</span><span class="p">:</span> <span class="s1">&#39;Augusta&#39;</span><span class="p">,</span> <span class="s1">&#39;Maryland&#39;</span><span class="p">:</span> <span class="s1">&#39;Annapolis&#39;</span><span class="p">,</span> <span class="s1">&#39;Massachusetts&#39;</span><span class="p">:</span> <span class="s1">&#39;Boston&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Michigan&#39;</span><span class="p">:</span> <span class="s1">&#39;Lansing&#39;</span><span class="p">,</span> <span class="s1">&#39;Minnesota&#39;</span><span class="p">:</span> <span class="s1">&#39;Saint Paul&#39;</span><span class="p">,</span> <span class="s1">&#39;Mississippi&#39;</span><span class="p">:</span> <span class="s1">&#39;Jackson&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Missouri&#39;</span><span class="p">:</span> <span class="s1">&#39;Jefferson City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montana&#39;</span><span class="p">:</span> <span class="s1">&#39;Helena&#39;</span><span class="p">,</span> <span class="s1">&#39;Nebraska&#39;</span><span class="p">:</span> <span class="s1">&#39;Lincoln&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Nevada&#39;</span><span class="p">:</span> <span class="s1">&#39;Carson City&#39;</span><span class="p">,</span> <span class="s1">&#39;New Hampshire&#39;</span><span class="p">:</span> <span class="s1">&#39;Concord&#39;</span><span class="p">,</span> <span class="s1">&#39;New Jersey&#39;</span><span class="p">:</span> <span class="s1">&#39;Trenton&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;New Mexico&#39;</span><span class="p">:</span> <span class="s1">&#39;Santa Fe&#39;</span><span class="p">,</span> <span class="s1">&#39;New York&#39;</span><span class="p">:</span> <span class="s1">&#39;Albany&#39;</span><span class="p">,</span> <span class="s1">&#39;North Carolina&#39;</span><span class="p">:</span> <span class="s1">&#39;Raleigh&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;North Dakota&#39;</span><span class="p">:</span> <span class="s1">&#39;Bismarck&#39;</span><span class="p">,</span> <span class="s1">&#39;Ohio&#39;</span><span class="p">:</span> <span class="s1">&#39;Columbus&#39;</span><span class="p">,</span> <span class="s1">&#39;Oklahoma&#39;</span><span class="p">:</span> <span class="s1">&#39;Oklahoma City&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Oregon&#39;</span><span class="p">:</span> <span class="s1">&#39;Salem&#39;</span><span class="p">,</span> <span class="s1">&#39;Pennsylvania&#39;</span><span class="p">:</span> <span class="s1">&#39;Harrisburg&#39;</span><span class="p">,</span> <span class="s1">&#39;Rhode Island&#39;</span><span class="p">:</span> <span class="s1">&#39;Providence&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;South Carolina&#39;</span><span class="p">:</span> <span class="s1">&#39;Columbia&#39;</span><span class="p">,</span> <span class="s1">&#39;South Dakota&#39;</span><span class="p">:</span> <span class="s1">&#39;Pierre&#39;</span><span class="p">,</span> <span class="s1">&#39;Tennessee&#39;</span><span class="p">:</span> <span class="s1">&#39;Nashville&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Texas&#39;</span><span class="p">:</span> <span class="s1">&#39;Austin&#39;</span><span class="p">,</span> <span class="s1">&#39;Utah&#39;</span><span class="p">:</span> <span class="s1">&#39;Salt Lake City&#39;</span><span class="p">,</span> <span class="s1">&#39;Vermont&#39;</span><span class="p">:</span> <span class="s1">&#39;Montpelier&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Virginia&#39;</span><span class="p">:</span> <span class="s1">&#39;Richmond&#39;</span><span class="p">,</span> <span class="s1">&#39;Washington&#39;</span><span class="p">:</span> <span class="s1">&#39;Olympia&#39;</span><span class="p">,</span> <span class="s1">&#39;West Virginia&#39;</span><span class="p">:</span> <span class="s1">&#39;Charleston&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Wisconsin&#39;</span><span class="p">:</span> <span class="s1">&#39;Madison&#39;</span><span class="p">,</span> <span class="s1">&#39;Wyoming&#39;</span><span class="p">:</span> <span class="s1">&#39;Cheyenne&#39;</span><span class="p">}</span>
+    <span class="sd">&quot;&quot;&quot;dict: The quiz data. Keys are states and values are their capitals.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Generate 35 quiz files.</span>
+    <span class="k">for</span> <span class="n">quizNum</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">35</span><span class="p">):</span>
+        <span class="c1"># Create the quiz and answer key files.</span>
+        <span class="n">quizFile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;capitalsquiz</span><span class="si">%s</span><span class="s1">.txt&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">quizNum</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">answerKeyFile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;capitalsquiz_answers</span><span class="si">%s</span><span class="s1">.txt&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">quizNum</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Write out the header for the quiz.</span>
+        <span class="n">quizFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Name:</span><span class="se">\n\n</span><span class="s1">Date:</span><span class="se">\n\n</span><span class="s1">Period:</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">quizFile</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="mi">20</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;State Capitals Quiz (Form </span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">quizNum</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">quizFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Shuffle the order of the states.</span>
+        <span class="n">states</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">capitals</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
+
+        <span class="c1"># Loop through all 50 states, making a question for each.</span>
+        <span class="k">for</span> <span class="n">questionNum</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+
+            <span class="c1"># Get right and wrong answers.</span>
+            <span class="n">correctAnswer</span> <span class="o">=</span> <span class="n">capitals</span><span class="p">[</span><span class="n">states</span><span class="p">[</span><span class="n">questionNum</span><span class="p">]]</span>
+            <span class="n">wrongAnswers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">capitals</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+            <span class="k">del</span> <span class="n">wrongAnswers</span><span class="p">[</span><span class="n">wrongAnswers</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">correctAnswer</span><span class="p">)]</span>
+            <span class="n">wrongAnswers</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">wrongAnswers</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="n">answerOptions</span> <span class="o">=</span> <span class="n">wrongAnswers</span> <span class="o">+</span> <span class="p">[</span><span class="n">correctAnswer</span><span class="p">]</span>
+            <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">answerOptions</span><span class="p">)</span>
+
+            <span class="c1"># Write the question and answer options to the quiz file.</span>
+            <span class="n">quizFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">. What is the capital of </span><span class="si">%s</span><span class="s1">?</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">questionNum</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">states</span><span class="p">[</span><span class="n">questionNum</span><span class="p">]))</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+                <span class="n">quizFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39; </span><span class="si">%s</span><span class="s1">. </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;ABCD&#39;</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">answerOptions</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+            <span class="n">quizFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Write the answer key to a file.</span>
+            <span class="n">answerKeyFile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">. </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">questionNum</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;ABCD&#39;</span><span class="p">[</span><span class="n">answerOptions</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">correctAnswer</span><span class="p">)]))</span>
+
+        <span class="n">quizFile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">answerKeyFile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

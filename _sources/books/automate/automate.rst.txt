@@ -1,4 +1,4 @@
-.. include:: ../../../../pythontutorials/books/AutomateTheBoringStuffWithPython/README.rst
+.. include:: ../../../../pythontutorials/books/AutomateTheBoringStuff/README.rst
 
 .. toctree::
     :hidden:

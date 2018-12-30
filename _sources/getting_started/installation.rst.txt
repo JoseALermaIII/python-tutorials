@@ -91,4 +91,3 @@ Though covered by the MIT License, I reiterate: executable programs written from
 bad things.
 
   Read and understand all code you copy and paste before running it.
-
