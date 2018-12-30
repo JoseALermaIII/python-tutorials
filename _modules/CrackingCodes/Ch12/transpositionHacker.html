@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CrackingCodes.Ch12.transpositionHacker &mdash; python-tutorials 1.2.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/automate/automate.html">AutomateTheBoringStuff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/cracking/cracking.html">CrackingCodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>CrackingCodes.Ch12.transpositionHacker</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for CrackingCodes.Ch12.transpositionHacker</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Transposition Cipher Hacker</span>
+
+<span class="sd">Implements a function that can hack a transposition cipher encrypted message.</span>
+
+<span class="sd">Note:</span>
+<span class="sd">    * https://www.nostarch.com/crackingcodes/ (BSD Licensed)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pythontutorials.books.CrackingCodes.Ch11.detectEnglish</span> <span class="k">import</span> <span class="n">isEnglish</span>
+<span class="kn">from</span> <span class="nn">pythontutorials.books.CrackingCodes.Ch08.transpositionDecrypt</span> <span class="k">import</span> <span class="n">decryptMessage</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../CrackingCodes.Ch12.html#CrackingCodes.Ch12.transpositionHacker.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">pyperclip</span> <span class="k">import</span> <span class="n">copy</span>
+    <span class="c1"># You might want to copy &amp; paste this text from the source code at</span>
+    <span class="c1"># https://www.nostarch.com/crackingcodes/:</span>
+    <span class="n">myMessage</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;AaKoosoeDe5 b5sn ma reno ora&#39;lhlrrceey e  enlh na  indeit n uhoretrm au ieu v er Ne2 gmanw,forwnlbsya apor tE.no euarisfatt  e mealefedhsppmgAnlnoe(c -or)alat r lw o eb  nglom,Ain one dtes ilhetcdba. t tg eturmudg,tfl1e1 v  nitiaicynhrCsaemie-sp ncgHt nie cetrgmnoa yc r,ieaa  toesa- e a0m82e1w shcnth  ekh gaecnpeutaaieetgn iodhso d ro hAe snrsfcegrt NCsLc b17m8aEheideikfr aBercaeu thllnrshicwsg etriebruaisss  d iorr.&quot;&quot;&quot;</span>
+
+    <span class="n">hackedMessage</span> <span class="o">=</span> <span class="n">hackTransposition</span><span class="p">(</span><span class="n">myMessage</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">hackedMessage</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failed to hack encryption.&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Copying hacked message to clipboard:&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">hackedMessage</span><span class="p">)</span>
+        <span class="n">copy</span><span class="p">(</span><span class="n">hackedMessage</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="hackTransposition"><a class="viewcode-back" href="../../../CrackingCodes.Ch12.html#CrackingCodes.Ch12.transpositionHacker.hackTransposition">[docs]</a><span class="k">def</span> <span class="nf">hackTransposition</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Hacks transposition cipher encrypted messages</span>
+
+<span class="sd">    Brute-forces a given encrypted message by looping through all the keys, checking if the result is English, and</span>
+<span class="sd">    prompting the user for confirmation of decryption.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        message: String with message to brute-force.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Prints out possible results and prompts user for confirmation. If confirmed, prints out and returns</span>
+<span class="sd">        full decrypted message, otherwise returns None.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hacking...&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Python programs can be stopped at any time by pressing</span>
+    <span class="c1"># Ctrl-C (on Windows) or Ctrl-D (on macOS and Linux):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(Press Ctl-C (on Windows) or Ctrl-D (on macOS and Linux) to quit at any time.)&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Brute-force by looping through every possible key:</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Trying key #</span><span class="si">%s</span><span class="s1">...&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">))</span>
+
+        <span class="n">decryptedText</span> <span class="o">=</span> <span class="n">decryptMessage</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">isEnglish</span><span class="p">(</span><span class="n">decryptedText</span><span class="p">):</span>
+            <span class="c1"># Ask user if this is the correct decryption:</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Possible encryption hack:&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Key </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">decryptedText</span><span class="p">[:</span><span class="mi">100</span><span class="p">]))</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Enter D if done, anything else to continue hacking:&#39;</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;&gt; &#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">decryptedText</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

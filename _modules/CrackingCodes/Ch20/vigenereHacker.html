@@ -1,0 +1,594 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CrackingCodes.Ch20.vigenereHacker &mdash; python-tutorials 1.2.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/automate/automate.html">AutomateTheBoringStuff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/cracking/cracking.html">CrackingCodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>CrackingCodes.Ch20.vigenereHacker</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for CrackingCodes.Ch20.vigenereHacker</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Vigenère Cipher Hacker</span>
+
+<span class="sd">Implements a series of functions that can hack a Vigenère cipher encrypted message by brute-forcing key lengths.</span>
+
+<span class="sd">Attributes:</span>
+<span class="sd">    LETTERS (str): String with uppercase latin letters.</span>
+<span class="sd">    MAX_KEY_LENGTH (int): Will not attempt keys longer than this.</span>
+<span class="sd">    NUM_MOST_FREQ_LETTERS (int): Attempt this many letters per subkey.</span>
+<span class="sd">    SILENT_MODE (bool): If set to True, program doesn&#39;t print anything.</span>
+<span class="sd">    NONLETTERS_PATTERN (re._sre.SRE_Pattern): Regular expression object representing all non-letter characters.</span>
+
+<span class="sd">Note:</span>
+<span class="sd">    * https://www.nostarch.com/crackingcodes/ (BSD Licensed)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">pythontutorials.books.CrackingCodes.Ch18.vigenereCipher</span> <span class="k">import</span> <span class="n">decryptMessage</span>
+<span class="kn">from</span> <span class="nn">pythontutorials.books.CrackingCodes.Ch19.freqAnalysis</span> <span class="k">import</span> <span class="n">englishFreqMatchScore</span>
+<span class="kn">from</span> <span class="nn">pythontutorials.books.CrackingCodes.Ch11.detectEnglish</span> <span class="k">import</span> <span class="n">isEnglish</span>
+
+<span class="n">LETTERS</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>
+<span class="n">MAX_KEY_LENGTH</span> <span class="o">=</span> <span class="mi">16</span>  <span class="c1"># Will not attempt keys longer than this.</span>
+<span class="n">NUM_MOST_FREQ_LETTERS</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># Attempt this many letters per subkey.</span>
+<span class="n">SILENT_MODE</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># If set to True, program doesn&#39;t print anything.</span>
+<span class="n">NONLETTERS_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[^A-Z]&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../CrackingCodes.Ch20.html#CrackingCodes.Ch20.vigenereHacker.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">pyperclip</span> <span class="k">import</span> <span class="n">copy</span>
+
+    <span class="c1"># Instead of typing this ciphertext out, you can copy &amp; paste it</span>
+    <span class="c1"># from https://www.nostarch.com/crackingcodes/:</span>
+    <span class="n">ciphertext</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;Adiz Avtzqeci Tmzubb wsa m Pmilqev halpqavtakuoi, lgouqdaf, kdmktsvmztsl, izr xoexghzr kkusitaaf. Vz wsa twbhdg ubalmmzhdad qz hce vmhsgohuqbo ox kaakulmd gxiwvos, krgdurdny i rcmmstugvtawz ca tzm ocicwxfg jf &quot;stscmilpy&quot; oid &quot;uwydptsbuci&quot; wabt hce Lcdwig eiovdnw. Bgfdny qe kddwtk qjnkqpsmev ba pz tzm roohwz at xoexghzr kkusicw izr vrlqrwxist uboedtuuznum. Pimifo Icmlv Emf DI, Lcdwig owdyzd xwd hce Ywhsmnemzh Xovm mby Cqxtsm Supacg (GUKE) oo Bdmfqclwg Bomk, Tzuhvif&#39;a ocyetzqofifo ositjm. Rcm a lqys ce oie vzav wr Vpt 8, lpq gzclqab mekxabnittq tjr Ymdavn fihog cjgbhvnstkgds. Zm psqikmp o iuejqf jf lmoviiicqg aoj jdsvkavs Uzreiz qdpzmdg, dnutgrdny bts helpar jf lpq pjmtm, mb zlwkffjmwktoiiuix avczqzs ohsb ocplv nuby swbfwigk naf ohw Mzwbms umqcifm. Mtoej bts raj pq kjrcmp oo tzm Zooigvmz Khqauqvl Dincmalwdm, rhwzq vz cjmmhzd gvq ca tzm rwmsl lqgdgfa rcm a kbafzd-hzaumae kaakulmd, hce SKQ. Wi 1948 Tmzubb jgqzsy Msf Zsrmsv&#39;e Qjmhcfwig Dincmalwdm vt Eizqcekbqf Pnadqfnilg, ivzrw pq onsaafsy if bts yenmxckmwvf ca tzm Yoiczmehzr uwydptwze oid tmoohe avfsmekbqr dn eifvzmsbuqvl tqazjgq. Pq kmolm m dvpwz ab ohw ktshiuix pvsaa at hojxtcbefmewn, afl bfzdakfsy okkuzgalqzu xhwuuqvl jmmqoigve gpcz ie hce Tmxcpsgd-Lvvbgbubnkq zqoxtawz, kciup isme xqdgo otaqfqev qz hce 1960k. Bgfdny&#39;a tchokmjivlabk fzsmtfsy if i ofdmavmz krgaqqptawz wi 1952, wzmz vjmgaqlpad iohn wwzq goidt uzgeyix wi tzm Gbdtwl Wwigvwy. Vz aukqdoev bdsvtemzh rilp rshadm tcmmgvqg (xhwuuqvl uiehmalqab) vs sv mzoejvmhdvw ba dmikwz. Hpravs rdev qz 1954, xpsl whsm tow iszkk jqtjrw pug 42id tqdhcdsg, rfjm ugmbddw xawnofqzu. Vn avcizsl lqhzreqzsy tzif vds vmmhc wsa eidcalq; vds ewfvzr svp gjmw wfvzrk jqzdenmp vds vmmhc wsa mqxivmzhvl. Gv 10 Esktwunsm 2009, fgtxcrifo mb Dnlmdbzt uiydviyv, Nfdtaat Dmiem Ywiikbqf Bojlab Wrgez avdw iz cafakuog pmjxwx ahwxcby gv nscadn at ohw Jdwoikp scqejvysit xwd &quot;hce sxboglavs kvy zm ion tjmmhzd.&quot; Sa at Haq 2012 i bfdvsbq azmtmd&#39;g widt ion bwnafz tzm Tcpsw wr Zjrva ivdcz eaigd yzmbo Tmzubb a kbmhptgzk dvrvwz wa efiohzd.&quot;&quot;&quot;</span>
+    <span class="n">hackedMessage</span> <span class="o">=</span> <span class="n">hackVigenere</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">hackedMessage</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Copying hacked message to clipboard:&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">hackedMessage</span><span class="p">)</span>
+        <span class="n">copy</span><span class="p">(</span><span class="n">hackedMessage</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failed to hack encryption.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="findRepeatSequencesSpacings"><a class="viewcode-back" href="../../../CrackingCodes.Ch20.html#CrackingCodes.Ch20.vigenereHacker.findRepeatSequencesSpacings">[docs]</a><span class="k">def</span> <span class="nf">findRepeatSequencesSpacings</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Find spacing between repeat sequences</span>
+
+<span class="sd">    Goes through the message and finds any 3- to 5-letter sequences</span>
+<span class="sd">    that are repeated. Then counts the number of letters between the</span>
+<span class="sd">    repeated sequences.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">         message: String with message to find repeat sequence spacing.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary with the keys of the sequence and</span>
+<span class="sd">        values of a list of spacings (num of letters between the repeats).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Use a regular expression to remove non-letters from the message:</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">NONLETTERS_PATTERN</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">message</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+
+    <span class="c1"># Compile a list of seqLen-letter sequences found in the message:</span>
+    <span class="n">seqSpacings</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Keys are sequences; values are lists of int spacings.</span>
+    <span class="k">for</span> <span class="n">seqLen</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">seqStart</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="o">-</span> <span class="n">seqLen</span><span class="p">):</span>
+            <span class="c1"># Determine what the sequence is and store it in seq:</span>
+            <span class="n">seq</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="n">seqStart</span><span class="p">:</span><span class="n">seqStart</span> <span class="o">+</span> <span class="n">seqLen</span><span class="p">]</span>
+
+            <span class="c1"># Look for this sequence in the rest of the message:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">seqStart</span> <span class="o">+</span> <span class="n">seqLen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="o">-</span> <span class="n">seqLen</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">message</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">seqLen</span><span class="p">]</span> <span class="o">==</span> <span class="n">seq</span><span class="p">:</span>
+                    <span class="c1"># Found a repeated sequence:</span>
+                    <span class="k">if</span> <span class="n">seq</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seqSpacings</span><span class="p">:</span>
+                        <span class="n">seqSpacings</span><span class="p">[</span><span class="n">seq</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Initialize blank list.</span>
+
+                    <span class="c1"># Append the spacing distance between the repeated</span>
+                    <span class="c1"># sequence and the original sequence:</span>
+                    <span class="n">seqSpacings</span><span class="p">[</span><span class="n">seq</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">seqStart</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">seqSpacings</span></div>
+
+
+<div class="viewcode-block" id="getUsefulFactors"><a class="viewcode-back" href="../../../CrackingCodes.Ch20.html#CrackingCodes.Ch20.vigenereHacker.getUsefulFactors">[docs]</a><span class="k">def</span> <span class="nf">getUsefulFactors</span><span class="p">(</span><span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Get useful factors</span>
+
+<span class="sd">    Returns a list of useful factors of num. By &quot;useful&quot; we mean factors</span>
+<span class="sd">    less than MAX_KEY_LENGTH + 1 and not 1.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        num: Integer to get useful factors of.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of useful factors, if found, empty list otherwise.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; getUsefulFactors(144)</span>
+<span class="sd">        [2, 3, 4, 6, 8, 9, 12, 16]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>  <span class="c1"># Numbers less than 2 have no useful factors.</span>
+
+    <span class="n">factors</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># The list of factors found.</span>
+
+    <span class="c1"># When finding factors, you only need to check the integers up to</span>
+    <span class="c1"># MAX_KEY_LENGTH:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">MAX_KEY_LENGTH</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>  <span class="c1"># Don&#39;t test 1: it&#39;s not useful.</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">factors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">otherFactor</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num</span> <span class="o">/</span> <span class="n">i</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">otherFactor</span> <span class="o">&lt;</span> <span class="n">MAX_KEY_LENGTH</span> <span class="o">+</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">otherFactor</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">factors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">otherFactor</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">factors</span><span class="p">))</span>  <span class="c1"># Remove duplicate factors.</span></div>
+
+
+<div class="viewcode-block" id="getItemAtIndexOne"><a class="viewcode-back" href="../../../CrackingCodes.Ch20.html#CrackingCodes.Ch20.vigenereHacker.getItemAtIndexOne">[docs]</a><span class="k">def</span> <span class="nf">getItemAtIndexOne</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Get item at index one</span>
+
+<span class="sd">    Helper function that returns the second element of given tuple.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x: Tuple with integers as values.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Second element of x.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="getMostCommonFactors"><a class="viewcode-back" href="../../../CrackingCodes.Ch20.html#CrackingCodes.Ch20.vigenereHacker.getMostCommonFactors">[docs]</a><span class="k">def</span> <span class="nf">getMostCommonFactors</span><span class="p">(</span><span class="n">seqFactors</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Get most common factors</span>
+
+<span class="sd">    Counts how often each factor in the seqFactors dictionary occurs and returns a list of tuples with each factor</span>
+<span class="sd">    and its count.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">         seqFactors: Dictionary with 3- to 5- letter sequences as keys and the factors of the spacings between them</span>
+<span class="sd">            as values.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list of tuples of each factor and its count.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># First, get a count of how many times a factor occurs in seqFactors:</span>
+    <span class="n">factorCounts</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># Key is a factor; value is how often it occurs.</span>
+
+    <span class="c1"># seqFactors keys are sequences; values are lists of factors of the</span>
+    <span class="c1"># spacings. seqFactors has a value like {&#39;GFD&#39;: [2, 3, 4, 6, 9, 12,</span>
+    <span class="c1"># 18, 23, 36, 46, 69, 92, 138, 207], &#39;ALW&#39;: [2, 3, 4, 6, ...], ...}.</span>
+    <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqFactors</span><span class="p">:</span>
+        <span class="n">factorList</span> <span class="o">=</span> <span class="n">seqFactors</span><span class="p">[</span><span class="n">seq</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">factor</span> <span class="ow">in</span> <span class="n">factorList</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">factor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">factorCounts</span><span class="p">:</span>
+                <span class="n">factorCounts</span><span class="p">[</span><span class="n">factor</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">factorCounts</span><span class="p">[</span><span class="n">factor</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Second, put the factor and its count into a tuple and make a list</span>
+    <span class="c1"># of these tuples so we can sort them:</span>
+    <span class="n">factorsByCount</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">factor</span> <span class="ow">in</span> <span class="n">factorCounts</span><span class="p">:</span>
+        <span class="c1"># Exclude factors larger than MAX_KEY_LENGTH:</span>
+        <span class="k">if</span> <span class="n">factor</span> <span class="o">&lt;=</span> <span class="n">MAX_KEY_LENGTH</span><span class="p">:</span>
+            <span class="c1"># factorsByCount is a list of tuples: (factor, factorCount).</span>
+            <span class="c1"># factorsByCount has a value like [(3, 497), (2, 487), ...].</span>
+            <span class="n">factorsByCount</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="p">(</span><span class="n">factor</span><span class="p">,</span> <span class="n">factorCounts</span><span class="p">[</span><span class="n">factor</span><span class="p">])</span> <span class="p">)</span>
+
+    <span class="c1"># Sort the list by the factor count:</span>
+    <span class="n">factorsByCount</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">getItemAtIndexOne</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">factorsByCount</span></div>
+
+
+<div class="viewcode-block" id="kasiskiExamination"><a class="viewcode-back" href="../../../CrackingCodes.Ch20.html#CrackingCodes.Ch20.vigenereHacker.kasiskiExamination">[docs]</a><span class="k">def</span> <span class="nf">kasiskiExamination</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Kasiski Examination</span>
+
+<span class="sd">    Uses `Kasiski Examination`_ to determine the likely length of the key used to encrypt the given ciphertext.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ciphertext: String containing encrypted message.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of likely key lengths used to encrypt message.</span>
+
+<span class="sd">    .. _Kasiski Examination:</span>
+<span class="sd">        https://en.wikipedia.org/wiki/Kasiski_examination</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Find out the sequences of 3 to 5 letters that occur multiple times</span>
+    <span class="c1"># in the ciphertext. repeatedSeqSpacings has a value like</span>
+    <span class="c1"># {&#39;EXG&#39;: [192], &#39;NAF&#39;: [339, 972, 633], ... }:</span>
+    <span class="n">repeatedSeqSpacings</span> <span class="o">=</span> <span class="n">findRepeatSequencesSpacings</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">)</span>
+
+    <span class="c1"># (See getMostCommonFactors() for a description of seqFactors.)</span>
+    <span class="n">seqFactors</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">repeatedSeqSpacings</span><span class="p">:</span>
+        <span class="n">seqFactors</span><span class="p">[</span><span class="n">seq</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">spacing</span> <span class="ow">in</span> <span class="n">repeatedSeqSpacings</span><span class="p">[</span><span class="n">seq</span><span class="p">]:</span>
+            <span class="n">seqFactors</span><span class="p">[</span><span class="n">seq</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">getUsefulFactors</span><span class="p">(</span><span class="n">spacing</span><span class="p">))</span>
+
+    <span class="c1"># (See getMostCommonFactors() for a description of factorsByCount.)</span>
+    <span class="n">factorsByCount</span> <span class="o">=</span> <span class="n">getMostCommonFactors</span><span class="p">(</span><span class="n">seqFactors</span><span class="p">)</span>
+
+    <span class="c1"># Now we extract the factor counts from factorsByCount and</span>
+    <span class="c1"># put them in allLikelyKeyLengths so that they are easier to</span>
+    <span class="c1"># use later:</span>
+    <span class="n">allLikelyKeyLengths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">twoIntTuple</span> <span class="ow">in</span> <span class="n">factorsByCount</span><span class="p">:</span>
+        <span class="n">allLikelyKeyLengths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">twoIntTuple</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">allLikelyKeyLengths</span></div>
+
+
+<div class="viewcode-block" id="getNthSubkeysLetters"><a class="viewcode-back" href="../../../CrackingCodes.Ch20.html#CrackingCodes.Ch20.vigenereHacker.getNthSubkeysLetters">[docs]</a><span class="k">def</span> <span class="nf">getNthSubkeysLetters</span><span class="p">(</span><span class="n">nth</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">keyLength</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Get nth subkeys letters</span>
+
+<span class="sd">    Gets every nth letter for each set of letters of a given length in a given text.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        nth: Integer representing desired letter in message (similar to an index number).</span>
+<span class="sd">        keyLength: Integer representing length of key to use (spacing between nth letters).</span>
+<span class="sd">        message: String containing text to extract subkey letters from.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        String with every nth letter for each specified key length.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; getNthSubkeysLetters(1, 3, &#39;ABCABCABC&#39;)</span>
+<span class="sd">        &#39;AAA&#39;</span>
+<span class="sd">        &gt;&gt;&gt; getNthSubkeysLetters(2, 3, &#39;ABCABCABC&#39;)</span>
+<span class="sd">        &#39;BBB&#39;</span>
+<span class="sd">        &gt;&gt;&gt; getNthSubkeysLetters(3, 3, &#39;ABCABCABC&#39;)</span>
+<span class="sd">        &#39;CCC&#39;</span>
+<span class="sd">        &gt;&gt;&gt; getNthSubkeysLetters(1, 5, &#39;ABCDEFGHI&#39;)</span>
+<span class="sd">        &#39;AF&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Use a regular expression to remove non-letters from the message:</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">NONLETTERS_PATTERN</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+
+    <span class="n">i</span> <span class="o">=</span> <span class="n">nth</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">letters</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+        <span class="n">letters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">message</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="n">keyLength</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">letters</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="attemptHackWithKeyLength"><a class="viewcode-back" href="../../../CrackingCodes.Ch20.html#CrackingCodes.Ch20.vigenereHacker.attemptHackWithKeyLength">[docs]</a><span class="k">def</span> <span class="nf">attemptHackWithKeyLength</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mostLikelyKeyLength</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Attempt hack with key length</span>
+
+<span class="sd">    Brute-forces ciphertext using every key of a given length, checks if decrypted message is</span>
+<span class="sd">    English with the :func:`~books.CrackingCodes.Ch11.detectEnglish.isEnglish` module, and prompts user</span>
+<span class="sd">    for confirmation by displaying first 200 characters.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ciphertext: String with encrypted message.</span>
+<span class="sd">        mostLikelyKeyLength: Integer representing the length of the key used to encrypt message.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Decrypted message, if confirmed, None otherwise.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        * Key length is not limited to likely key lengths from :func:`~kasiskiExamination`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Determine the most likely letters for each letter in the key:</span>
+    <span class="n">ciphertextUp</span> <span class="o">=</span> <span class="n">ciphertext</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="c1"># allFreqScores is a list of mostLikelyKeyLength number of lists.</span>
+    <span class="c1"># These inner lists are the freqScores lists:</span>
+    <span class="n">allFreqScores</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">nth</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">mostLikelyKeyLength</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">nthLetters</span> <span class="o">=</span> <span class="n">getNthSubkeysLetters</span><span class="p">(</span><span class="n">nth</span><span class="p">,</span> <span class="n">mostLikelyKeyLength</span><span class="p">,</span> <span class="n">ciphertextUp</span><span class="p">)</span>
+
+        <span class="c1"># freqScores is a list of tuples like</span>
+        <span class="c1"># [(&lt;letter&gt;, &lt;Eng. Freq. match score&gt;), ...]</span>
+        <span class="c1"># List is sorted by match score. Higher score means better match.</span>
+        <span class="c1"># See the englishFreqMatchScore() comments in freqAnalysis.py.</span>
+        <span class="n">freqScores</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">possibleKey</span> <span class="ow">in</span> <span class="n">LETTERS</span><span class="p">:</span>
+            <span class="n">decryptedText</span> <span class="o">=</span> <span class="n">decryptMessage</span><span class="p">(</span><span class="n">possibleKey</span><span class="p">,</span> <span class="n">nthLetters</span><span class="p">)</span>
+            <span class="n">keyAndFreqMatchTuple</span> <span class="o">=</span> <span class="p">(</span><span class="n">possibleKey</span><span class="p">,</span> <span class="n">englishFreqMatchScore</span><span class="p">(</span><span class="n">decryptedText</span><span class="p">))</span>
+            <span class="n">freqScores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keyAndFreqMatchTuple</span><span class="p">)</span>
+        <span class="c1"># Sort by match score:</span>
+        <span class="n">freqScores</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">getItemAtIndexOne</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">allFreqScores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">freqScores</span><span class="p">[:</span><span class="n">NUM_MOST_FREQ_LETTERS</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">SILENT_MODE</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">allFreqScores</span><span class="p">)):</span>
+            <span class="c1"># Use i + 1 so the first letter is not called the &quot;0th&quot; letter:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Possible letters for letter </span><span class="si">%s</span><span class="s1"> of the key: &#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">freqScore</span> <span class="ow">in</span> <span class="n">allFreqScores</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">freqScore</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>  <span class="c1"># Print a newline.</span>
+
+    <span class="c1"># Try every combination of the most likely letters for each position</span>
+    <span class="c1"># in the key:</span>
+    <span class="k">for</span> <span class="n">indexes</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">NUM_MOST_FREQ_LETTERS</span><span class="p">),</span> <span class="n">repeat</span><span class="o">=</span><span class="n">mostLikelyKeyLength</span><span class="p">):</span>
+        <span class="c1"># Create a possible key from the letters in allFreqScores:</span>
+        <span class="n">possibleKey</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">mostLikelyKeyLength</span><span class="p">):</span>
+            <span class="n">possibleKey</span> <span class="o">+=</span> <span class="n">allFreqScores</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">indexes</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">SILENT_MODE</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Attempting with key: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">possibleKey</span><span class="p">)</span>
+
+        <span class="n">decryptedText</span> <span class="o">=</span> <span class="n">decryptMessage</span><span class="p">(</span><span class="n">possibleKey</span><span class="p">,</span> <span class="n">ciphertextUp</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">isEnglish</span><span class="p">(</span><span class="n">decryptedText</span><span class="p">):</span>
+            <span class="c1"># Set the hacked ciphertext to the original casing:</span>
+            <span class="n">origCase</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">ciphertext</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+                    <span class="n">origCase</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">decryptedText</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">origCase</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">decryptedText</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+            <span class="n">decryptedText</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">origCase</span><span class="p">)</span>
+
+            <span class="c1"># Check with user to see if the key has been found:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Possible encryption hack with key </span><span class="si">%s</span><span class="s1">:&#39;</span> <span class="o">%</span> <span class="n">possibleKey</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">decryptedText</span><span class="p">[:</span><span class="mi">200</span><span class="p">])</span>  <span class="c1"># Only show first 200 characters.</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Enter D if done, anything else to continue hacking:&#39;</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;&gt; &#39;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">decryptedText</span>
+
+    <span class="c1"># No English-looking decryption found, so return None:</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="hackVigenere"><a class="viewcode-back" href="../../../CrackingCodes.Ch20.html#CrackingCodes.Ch20.vigenereHacker.hackVigenere">[docs]</a><span class="k">def</span> <span class="nf">hackVigenere</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Hack vigenere</span>
+
+<span class="sd">    Hacks Vigenère cipher encrypted message using likely key lengths, otherwise all possible key lengths.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">         ciphertext: String containing Vigenère cipher encrypted message.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Decrypted message, if confirmed, None otherwise.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># First, we need to do Kasiski examination to figure out what the</span>
+    <span class="c1"># length of the ciphertext&#39;s encryption key is:</span>
+    <span class="n">allLikelyKeyLengths</span> <span class="o">=</span> <span class="n">kasiskiExamination</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">SILENT_MODE</span><span class="p">:</span>
+        <span class="n">keyLengthStr</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">keyLength</span> <span class="ow">in</span> <span class="n">allLikelyKeyLengths</span><span class="p">:</span>
+            <span class="n">keyLengthStr</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">keyLength</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Kasiski examination results say the most likely key lengths are: &#39;</span> <span class="o">+</span> <span class="n">keyLengthStr</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">hackedMessage</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">keyLength</span> <span class="ow">in</span> <span class="n">allLikelyKeyLengths</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">SILENT_MODE</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Attempting hack with key length </span><span class="si">%s</span><span class="s1"> (</span><span class="si">%s</span><span class="s1"> possible keys)...&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">keyLength</span><span class="p">,</span> <span class="n">NUM_MOST_FREQ_LETTERS</span> <span class="o">**</span> <span class="n">keyLength</span><span class="p">))</span>
+        <span class="n">hackedMessage</span> <span class="o">=</span> <span class="n">attemptHackWithKeyLength</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">,</span> <span class="n">keyLength</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">hackedMessage</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="c1"># If none of the key lengths found using Kasiski examination</span>
+    <span class="c1"># worked, start brute-forcing through key lengths:</span>
+    <span class="k">if</span> <span class="n">hackedMessage</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">SILENT_MODE</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unable to hack message with likely key length(s). Brute-forcing key length...&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">keyLength</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">MAX_KEY_LENGTH</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># Don&#39;t recheck key lengths already tried from Kasiski:</span>
+            <span class="k">if</span> <span class="n">keyLength</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allLikelyKeyLengths</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">SILENT_MODE</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Attempting hack with key length </span><span class="si">%s</span><span class="s1"> (</span><span class="si">%s</span><span class="s1"> possible keys)...&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">keyLength</span><span class="p">,</span> <span class="n">NUM_MOST_FREQ_LETTERS</span> <span class="o">**</span> <span class="n">keyLength</span><span class="p">))</span>
+                <span class="n">hackedMessage</span> <span class="o">=</span> <span class="n">attemptHackWithKeyLength</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">,</span> <span class="n">keyLength</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">hackedMessage</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">break</span>
+    <span class="k">return</span> <span class="n">hackedMessage</span></div>
+
+
+<span class="c1"># If vigenereHacker.py is run (instead of imported as a module), call</span>
+<span class="c1"># the main() function:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

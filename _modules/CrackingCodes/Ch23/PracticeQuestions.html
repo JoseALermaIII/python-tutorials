@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CrackingCodes.Ch23.PracticeQuestions &mdash; python-tutorials 1.2.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/automate/automate.html">AutomateTheBoringStuff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/cracking/cracking.html">CrackingCodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>CrackingCodes.Ch23.PracticeQuestions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for CrackingCodes.Ch23.PracticeQuestions</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Chapter 23 Practice Questions</span>
+
+<span class="sd">Answers Chapter 23 Practice Questions via Python code.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../CrackingCodes.Ch23.html#CrackingCodes.Ch23.PracticeQuestions.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># 1. What is the difference between a symmetric cipher and an asymmetric</span>
+    <span class="c1">#    cipher?</span>
+    <span class="c1"># Hint: Check page 336</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;.noitpyrced dna noitpyrcne rof yek emas eht esu taht srehpiC :cirtemmyS&quot;</span>
+    <span class="n">message2</span> <span class="o">=</span> <span class="s2">&quot;.noitpyrced rof rehtona dna noitpyrcne rof yek eno esu taht srehpiC :cirtemmysA&quot;</span>
+    <span class="c1">#print(blank[::-1])  # Fill in the blank</span>
+    <span class="c1">#print(blank[::-1])</span>
+
+    <span class="c1"># 2. Alice generates a public key and a private key. Unfortunately, she later</span>
+    <span class="c1">#    loses her private key.</span>
+    <span class="c1">#    a.  Will other people be able to send her encrypted messages?</span>
+    <span class="c1">#    b.  Will she be able to decrypt messages previously sent to her?</span>
+    <span class="c1">#    c.  Will she be able to digitally sign documents?</span>
+    <span class="c1">#    d.  Will other people be able to verify her previously signed documents?</span>
+    <span class="c1"># Hint: Check pages 336 and 338 - 339</span>
+    <span class="n">yesno</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Yes&quot;</span><span class="p">,</span> <span class="s2">&quot;No&quot;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a.: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">yesno</span><span class="p">[</span><span class="mi">8</span> <span class="o">*</span> <span class="mi">0</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;b.: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">yesno</span><span class="p">[</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">-</span> <span class="mi">6</span> <span class="o">-</span> <span class="mi">3</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;c.: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">yesno</span><span class="p">[</span><span class="mi">10</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">//</span> <span class="mi">50</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;d.: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">yesno</span><span class="p">[</span><span class="mi">100</span> <span class="o">//</span> <span class="mi">25</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">-</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">2</span><span class="p">])</span>
+
+    <span class="c1"># 3. What are authentication and confidentiality? How are they different?</span>
+    <span class="c1"># Hint: Check page 338</span>
+    <span class="c1"># Don&#39;t do this - imports should be at the top of the file</span>
+    <span class="kn">import</span> <span class="nn">pythontutorials.books.CrackingCodes.Ch01.caesarCipher</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;L65spy5tnl5tzy:H13zzqH5sl5H8szH0z6&#39;3pHnzxx6ytnl5tyrH8t5sHt4H8szH5sp0H4l0H5sp0Hl3pK&quot;</span>  <span class="c1"># Key 11</span>
+    <span class="n">message2</span> <span class="o">=</span> <span class="s2">&quot;O1zrupqz6umxu6 :Iwqq2uzsI6tqIyq55msqImI5qo4q6L&quot;</span>  <span class="c1"># Key 12</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="s2">&quot;X99Tz6?52ABT6 TC52Ty!!8T?A!E612Tz! 3612 C6x96CH,TyDCTxDC52 C6zxC6! T6BT3A2.D2 C9HTyxB21T! TF5!T5xBTC52TA645CT82HW&quot;</span>  <span class="c1"># Key 23</span>
+    <span class="c1">#print(books.CrackingCodes.Ch01.caesarCipher.decryptMessage(blank, blank))  # Fill in the blanks</span>
+    <span class="c1">#print(books.CrackingCodes.Ch01.caesarCipher.decryptMessage(blank, blank))</span>
+    <span class="c1">#print(books.CrackingCodes.Ch01.caesarCipher.decryptMessage(blank, blank))</span>
+
+    <span class="c1"># 4. What is non-repudiation?</span>
+    <span class="c1"># Hint: Check page 339</span>
+    <span class="c1"># Don&#39;t do this - imports should be at the top of the file</span>
+    <span class="kn">import</span> <span class="nn">pythontutorials.books.CrackingCodes.Ch20.vigenereDictionaryHacker</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Klt axirtvhrv xwuw aofmcav awi kis tchufvtx d uelaotv adh&#39;w je tjzr ks syqg anbvbimca wpam usfjevy db a eihri xxgh.&quot;</span></div>
+    <span class="c1">#print(books.CrackingCodes.Ch20.vigenereDictionaryHacker.hackVigenereDictionary(blank))  # Fill in the blank</span>
+
+
+<span class="c1"># If PracticeQuestions.py is run (instead of imported as a module), call</span>
+<span class="c1"># the main() function:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

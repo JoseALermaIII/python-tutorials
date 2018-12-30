@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CrackingCodes.Ch16.simpleSubCipher &mdash; python-tutorials 1.2.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> python-tutorials
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">books</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/automate/automate.html">AutomateTheBoringStuff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/cracking/cracking.html">CrackingCodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../books/wikibook.html">wikibook</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Online Courses</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../udacity.html">Udacity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Module Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">books</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">python-tutorials</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>CrackingCodes.Ch16.simpleSubCipher</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for CrackingCodes.Ch16.simpleSubCipher</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Simple Substitution Cipher</span>
+
+<span class="sd">Provides functions that implement a substitution cipher.</span>
+
+<span class="sd">Attributes:</span>
+<span class="sd">    LETTERS (str): String containing uppercase latin letters.</span>
+
+<span class="sd">Example:</span>
+<span class="sd">    &gt;&gt;&gt; import pythontutorials.books.CrackingCodes.Ch16.simpleSubCipher as simpleSubCipher</span>
+<span class="sd">    &gt;&gt;&gt; key = simpleSubCipher.getRandomKey()  # key = &#39;VIAXLGJBKSZDUTRPYCEWNFHOMQ&#39;, in this example</span>
+<span class="sd">    &gt;&gt;&gt; message = &#39;You\\&#39;d be surprised what you can live through.&#39;</span>
+<span class="sd">    &gt;&gt;&gt; simpleSubCipher.encryptMessage(key, message)</span>
+<span class="sd">    &quot;Mrn&#39;x il encpckelx hbvw mrn avt dkfl wbcrnjb&quot;</span>
+
+<span class="sd">Note:</span>
+<span class="sd">    * https://www.nostarch.com/crackingcodes/ (BSD Licensed)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">LETTERS</span> <span class="o">=</span> <span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;</span>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../../CrackingCodes.Ch16.html#CrackingCodes.Ch16.simpleSubCipher.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">pyperclip</span> <span class="k">import</span> <span class="n">copy</span>
+
+    <span class="n">myMessage</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;If a man is offered a fact which goes against his</span>
+<span class="s1">instincts, he will scrutinize it closely, and unless the evidence</span>
+<span class="s1">is overwhelming, he will refuse to believe it. If, on the other</span>
+<span class="s1">hand, he is offered something which affords a reason for acting</span>
+<span class="s1">in accordance to his instincts, he will accept it even on the</span>
+<span class="s1">slightest evidence. The origin of myths is explained in this way.</span>
+<span class="s1">-Bertrand Russell&#39;&#39;&#39;</span>
+    <span class="n">myKey</span> <span class="o">=</span> <span class="s1">&#39;LFWOAYUISVKMNXPBDCRJTQEGHZ&#39;</span>
+    <span class="n">myMode</span> <span class="o">=</span> <span class="s1">&#39;encrypt&#39;</span>  <span class="c1"># Set to &#39;encrypt&#39; or &#39;decrypt&#39;.</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">keyIsValid</span><span class="p">(</span><span class="n">myKey</span><span class="p">):</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s1">&#39;There is an error in the key or symbol set.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">myMode</span> <span class="o">==</span> <span class="s1">&#39;encrypt&#39;</span><span class="p">:</span>
+        <span class="n">translated</span> <span class="o">=</span> <span class="n">encryptMessage</span><span class="p">(</span><span class="n">myKey</span><span class="p">,</span> <span class="n">myMessage</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">myMode</span> <span class="o">==</span> <span class="s1">&#39;decrypt&#39;</span><span class="p">:</span>
+        <span class="n">translated</span> <span class="o">=</span> <span class="n">decryptMessage</span><span class="p">(</span><span class="n">myKey</span><span class="p">,</span> <span class="n">myMessage</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using key </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">myKey</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The </span><span class="si">%s</span><span class="s1">ed message is:&#39;</span> <span class="o">%</span> <span class="n">myMode</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">translated</span><span class="p">)</span>
+    <span class="n">copy</span><span class="p">(</span><span class="n">translated</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This message has been copied to the clipboard.&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">myMode</span> <span class="o">==</span> <span class="s1">&#39;encrypt&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Decrypted message is:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">decryptMessage</span><span class="p">(</span><span class="n">myKey</span><span class="p">,</span> <span class="n">translated</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="keyIsValid"><a class="viewcode-back" href="../../../CrackingCodes.Ch16.html#CrackingCodes.Ch16.simpleSubCipher.keyIsValid">[docs]</a><span class="k">def</span> <span class="nf">keyIsValid</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Checks key for validity.</span>
+
+<span class="sd">    Ensures key contains all letters in LETTERS.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        key: String containing key used to encrypt with substitution cipher.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        True if key and LETTERS match, False otherwise.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">keyList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="n">lettersList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">LETTERS</span><span class="p">)</span>
+    <span class="n">keyList</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="n">lettersList</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">keyList</span> <span class="o">==</span> <span class="n">lettersList</span></div>
+
+
+<div class="viewcode-block" id="encryptMessage"><a class="viewcode-back" href="../../../CrackingCodes.Ch16.html#CrackingCodes.Ch16.simpleSubCipher.encryptMessage">[docs]</a><span class="k">def</span> <span class="nf">encryptMessage</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Substitution Cipher Encrypt</span>
+
+<span class="sd">    Wrapper function that encrypts given message with the given key using the substitution cipher.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        key: String containing key used to encrypt with substitution cipher.</span>
+<span class="sd">        message: String containing message to encrypt.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Encrypted message.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">translateMessage</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="s1">&#39;encrypt&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="decryptMessage"><a class="viewcode-back" href="../../../CrackingCodes.Ch16.html#CrackingCodes.Ch16.simpleSubCipher.decryptMessage">[docs]</a><span class="k">def</span> <span class="nf">decryptMessage</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Substitution Cipher Decrypt</span>
+
+<span class="sd">    Wrapper function that decrypts given substitution cipher encrypted message with the given key.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        key: String containing key used to decrypt substitution cipher.</span>
+<span class="sd">        message: String containing message to decrypt.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Decrypted message.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">translateMessage</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="s1">&#39;decrypt&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="translateMessage"><a class="viewcode-back" href="../../../CrackingCodes.Ch16.html#CrackingCodes.Ch16.simpleSubCipher.translateMessage">[docs]</a><span class="k">def</span> <span class="nf">translateMessage</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Substitution Cipher</span>
+
+<span class="sd">    Implements a substitution cipher that can encrypt or decrypt messages depending on the given mode.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        key: String containing key used to decrypt/encrypt messages.</span>
+<span class="sd">        message: String containing message to decrypt/encrypt.</span>
+<span class="sd">        mode: String specifying whether to &#39;encrypt&#39; or &#39;decrypt&#39;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Encrypted or decrypted message.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">translated</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">charsA</span> <span class="o">=</span> <span class="n">LETTERS</span>
+    <span class="n">charsB</span> <span class="o">=</span> <span class="n">key</span>
+    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;decrypt&#39;</span><span class="p">:</span>
+        <span class="c1"># For decrypting, we can use the same code as encrypting. We</span>
+        <span class="c1"># just need to swap where the key and LETTERS strings are used.</span>
+        <span class="n">charsA</span><span class="p">,</span> <span class="n">charsB</span> <span class="o">=</span> <span class="n">charsB</span><span class="p">,</span> <span class="n">charsA</span>
+
+    <span class="c1"># Loop through each symbol in the message:</span>
+    <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">message</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">symbol</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">charsA</span><span class="p">:</span>
+            <span class="c1"># Encrypt/decrypt the symbol:</span>
+            <span class="n">symIndex</span> <span class="o">=</span> <span class="n">charsA</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">symbol</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">symbol</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+                <span class="n">translated</span> <span class="o">+=</span> <span class="n">charsB</span><span class="p">[</span><span class="n">symIndex</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">translated</span> <span class="o">+=</span> <span class="n">charsB</span><span class="p">[</span><span class="n">symIndex</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Symbol is not in LETTERS; just add it:</span>
+            <span class="n">translated</span> <span class="o">+=</span> <span class="n">symbol</span>
+
+    <span class="k">return</span> <span class="n">translated</span></div>
+
+
+<div class="viewcode-block" id="getRandomKey"><a class="viewcode-back" href="../../../CrackingCodes.Ch16.html#CrackingCodes.Ch16.simpleSubCipher.getRandomKey">[docs]</a><span class="k">def</span> <span class="nf">getRandomKey</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Substitution cipher key generator</span>
+
+<span class="sd">    Generates a random key that can be used with the substitution cipher.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        String with a random, valid key.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">LETTERS</span><span class="p">)</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Jose A. Lerma III
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

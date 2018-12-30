@@ -1,4 +1,4 @@
-.. include:: ../../../../pythontutorials/books/CrackingCodesWithPython/README.rst
+.. include:: ../../../../pythontutorials/books/CrackingCodes/README.rst
 
 .. toctree::
     :hidden:
