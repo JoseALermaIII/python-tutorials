@@ -1,6 +1,6 @@
 """Receiving email
 
-This program uses :py:mod:`imapclient` and `pyzmail36`_ to retrieve emails.
+This program uses :class:`imapclient.IMAPClient` and `pyzmail36`_ to retrieve emails.
 
 Notes:
     * ``imap_info`` file has each item on a separate line.
