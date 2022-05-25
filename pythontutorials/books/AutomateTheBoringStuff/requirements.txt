@@ -10,7 +10,7 @@ lxml==4.2.4
 openpyxl==2.5.5
 Pillow==5.2.0
 PyAutoGUI==0.9.38
-PyJWT==1.6.4
+PyJWT==2.4.0
 PyMsgBox==1.0.6
 PyPDF4==1.27.0
 PyScreeze==0.1.18
